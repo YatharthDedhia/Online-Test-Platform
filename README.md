@@ -13,3 +13,16 @@ Furthermore, if the shop has ample staff, I can choose a delivery option, althou
 4.  As one important goal is to help the customer with buying the product for the cheapest price possible, *the app can also compare products on various online websites such as amazon, flipkart, etc.*
 
 ---
+## A comparison example between The same product on  amazon (left) and  flipkart(right):
+![Flipkart price](/Assets/flipkart.png)
+![Amazon price](/Assets/Amazon.png)
+
+There is variation in prices of the same product from one vendor to another.
+
+---
+
+## FUNCTIONING (For Businesses) :
+1. The functioning would be quite simple, the shopkeeper will sign up initially after we verify his ownership of the claimed shop.
+2. This verification will be done by methods such as videos, photos, physical postcard, etc.
+3. Once verification is out of the way, the shopkeeper or the workers can upload the shop's inventory on the website. 
+4. This data will be sent to the app and as mentioned earlier, anyone can view and sort it.

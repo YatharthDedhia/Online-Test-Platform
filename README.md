@@ -1,28 +1,38 @@
-# Local-E-Commerce
-## REVIVAL OF LOCAL STORES:
-1. Due to increasing competition from online shopping during the Covid-19 outbreak which has been the case since, local shops, have seen a downfall in their sales and profit. This is mainly due to the fact that online shopping allows ppl to select and buy products from the comfort of one's home.
-2. Since our application also ensures user comfort to an end and there are shops who provide delivery, local businesses will boost.
-3. It is important to note that we are not limiting products from the customers as they can also compare products available on shopping websites.
+# **ONLINE TEST PLATFORM**
 
----
-## FUNCTIONS (For users) :
-1.  *To filter out shops which contain xyz item and sort the shops/items based on brand reviews/shop reviews/product reviews/price/size/region/material ,etc.* Lets say I want a pressure cooker but I’m not aware of the prices of various companies and various sizes in my locality. So I, as a user of the app, can easily select an appropriate pressure cooker in approx 10-15 min. I can check the available colors and also the amount of stock left.
-2.  *Comparison of various products  and their specs can also be performed.*
-Furthermore, if the shop has ample staff, I can choose a delivery option, although the same cannot be said for all shops. *Delivery from local shops will also take considerably less time.*
-3.*Booking of products:* Customers can also book products on the application.
-4.  As one important goal is to help the customer with buying the product for the cheapest price possible, *the app can also compare products on various online websites such as amazon, flipkart, etc.*
-
----
-## A comparison example between The same product on  amazon (left) and  flipkart(right):
-![Flipkart price](/Assets/flipkart.png)
-![Amazon price](/Assets/Amazon.png)
-
-There is variation in prices of the same product from one vendor to another.
+### **Domains:** Web dev, data science, artificial intelligence, computer vision 
 
 ---
 
-## FUNCTIONING (For Businesses) :
-1. The functioning would be quite simple, the shopkeeper will sign up initially after we verify his ownership of the claimed shop.
-2. This verification will be done by methods such as videos, photos, physical postcard, etc.
-3. Once verification is out of the way, the shopkeeper or the workers can upload the shop's inventory on the website. 
-4. This data will be sent to the app and as mentioned earlier, anyone can view and sort it.
+## Description:
+An online test platform with proctoring system
+
+---
+
+### **Features** of Test Platform:
+1. Institutes can upload question papers in either mcq format or subjective/writing format.
+2. Students can login with their ids and attempt the question papers.
+a. For mcqs, they can select the correct option on the website itself.
+b. Subjective qpapers will be uploaded in pdf format or displayed on the website.
+So, students can write their answers on a sheet of paper and upload the answer sheet in pdf format.
+c. For mcqs, if the answer key is already provided, student can see his/her score immediately if the institute
+wishes to allow them to.
+3. Other than uploading question papers, institutes can also upload educational content such as videos and study
+material and even homework which can be submitted like tests.
+4. After other students submit their test, and if the institute allows it, scores of all students can be compared.
+Comparison of scores can be done on bases of ‘all’ students, ‘by region’ or within a group of students who
+generally score similar marks. Can be aided by graphs.
+5. Students can also check their progress in the tests over time with statistics and graphs.
+6. Based on their performances, and classification of questions by institute, students can be given
+7. Aside from student users registered via an institute, solo students can access PYQs, and their solutions.
+8. Study material recommendations will also be given for each subject&gt;chapter.
+
+## Proctoring System:
+Creating a proctoring system to monitor acts of cheating during aforementioned tests.
+Cheat detection will be based on:
+1. Number of people in the webcam view.
+2. Electronic Devices in the webcam view.
+3. Background audio
+
+Switching apps or changing tabs mid-test will result in instant disqualification. Exact rules to be decided by the
+institute.

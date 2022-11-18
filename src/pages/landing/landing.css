@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Quicksand&display=swap');
+
+html {
+	scroll-behavior: smooth;
+}
+
+* {
+	/* background: #121212;
+	color: white; */
+}
+
+.landing-page {
+	font-family: var(--font-family);
+	padding: 1rem 1rem;
+}
+
+.container {
+	width: 490px;
+	justify-content: center;
+	align-items: center;
+	height: 500px;
+	background-color: red;
+	margin: auto;
+	margin-top: 50px;
+	padding: 2px;
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px grey;
+	border-radius: 5px;
+}
+
+.SignUpBox {
+	/* position: absolute; */
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	width: 100%;
+	padding: 4px;
+	margin: auto;
+	transform: translate(-50%, -50%);
+	/* background: rgba(0,0,0,.5); */
+	/* box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6); */
+	border-radius: 10px;
+}
+
+.SignUpBox a:hover {
+	background: #03e9f4;
+	color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #03e9f4,
+		0 0 25px #03e9f4,
+		0 0 50px #03e9f4,
+		0 0 100px #03e9f4;
+}
+
+.SignUp {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	align-items: center;
+	justify-content: center;
+	width: 25%;
+}
+
+.SignUp h1 {
+	text-align: center;
+	display: block;
+	font-size: 2em;
+	margin-block-start: 0.67em;
+	margin-block-end: 0.67em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	font-weight: bold;
+}
+
+.FirstLast {
+	display: flex;
+	/* width: 50rem; */
+	align-items: center;
+	justify-content: center;
+}
+
+.FirstLast input {
+	border-bottom-right-radius: 0rem;
+	border-bottom-left-radius: 0rem;
+}
+
+.FirstName {
+	border-top-right-radius: 0rem;
+}
+
+.LastName {
+	border-top-left-radius: 0rem;
+}
+
+.EMail {
+	border-radius: 0rem;
+}
+
+.Password {
+	border-radius: 0rem;
+}
+
+.ConfirmPassword {
+	border-top-left-radius: 0rem;
+	border-top-right-radius: 0rem;
+}
+
+.Checkbox {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1rem;
+	margin-top: 0.5rem;
+}
+
+.Checkbox input {
+	margin: 0%;
+}
+
+.RadioCheck {
+	display: flex;
+	padding: 1.5rem;
+	/* border: 2px solid red; */
+}
+
+.AskLogin {
+	text-align: center;
+	padding-top: 0.9rem;
+	font-size: 1rem;
+	color: blue;
+}
+
+.AskLogin button {
+	height: 0rem;
+	width: 0rem;
+	background-color: yellow;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	text-decoration: underline;
+}
+
+.Footer {
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 20px;
+}
+
+
+.bubbly-button {
+	display: block;
+	font-size: 1em;
+	padding: 1em 2em;
+	margin-top: 20px;
+	margin-bottom: 60px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: blue;
+	color: #fff;
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+	/* box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5); */
+}
+
+input {
+	width: 100%;
+	border: 1px solid var(--color-input-border);
+	padding: 1rem 2rem;
+	border-radius: 0.5rem;
+	font-family: Inter;
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+input:active,
+input:focus {
+	outline: none;
+}
+
+input:placeholder {
+	color: var(--color-input-placeholder);
+}
+
+
+.landing-navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.8rem 3rem;
+	font-family: var(--font-family);
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 12;
+	background-color: var(--gradient-bg);
+	backdrop-filter: blur(12px);
+	border-bottom: 1px solid var(--color-input-border);
+}
+
+.landing-navbar .landing-navbar-links {
+	gap: 5rem;
+	display: flex;
+	font-weight: 500;
+	font-size: 1.1rem;
+	margin: 0 4rem;
+}
+
+.landing-navbar .landing-navbar-links p {
+	color: var(--color-navlinks);
+	transition: 0.2s all ease;
+}
+
+.landing-navbar .landing-navbar-links p:hover {
+	color: #222;
+}
+
+.landing-navbar-logo img {
+	width: 65%;
+}

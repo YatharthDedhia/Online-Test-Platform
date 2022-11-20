@@ -19,7 +19,7 @@ html {
 	justify-content: center;
 	align-items: center;
 	height: 500px;
-	background-color: red;
+	background-color:  #00DDFF;
 	margin: auto;
 	margin-top: 50px;
 	padding: 2px;
@@ -55,6 +55,7 @@ html {
 
 .SignUp {
 	display: block;
+	
 	margin-left: auto;
 	margin-right: auto;
 	align-items: center;
@@ -131,15 +132,43 @@ html {
 	color: blue;
 }
 
-.AskLogin button {
-	height: 0rem;
-	width: 0rem;
-	background-color: yellow;
+/* .AskLogin button {
+	height: 2rem;
+	width: 3rem;
+	background-color: #8bf0ba;
 	text-align: center;
 	justify-content: center;
 	align-items: center;
 	text-decoration: underline;
+	padding: 1px;
+	margin-left: 2px;
+} */
+/* Push */
+/* @keyframes AskLogin .button {
+	50% {
+		transform: scale(0.8);
+   }
+	100% {
+		transform: scale(1);
+   }
+} */
+.AskLogin button {
+	display: inline-block;
+	border: 2px solid rgb(234, 222, 222);
+	width: 4rem;
+	border-radius: 15px;
+	margin-left: 10px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	transform: translateZ(0);
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
+.AskLogin button:hover {
+	animation-name: push;
+	animation-duration: 0.3s;
+	animation-timing-function: linear;
+	animation-iteration-count: 1;
+}
+/* Pop */
 
 .Footer {
 	text-align: center;
@@ -150,7 +179,7 @@ html {
 }
 
 
-.bubbly-button {
+/* .bubbly-button {
 	display: block;
 	font-size: 1em;
 	padding: 1em 2em;
@@ -163,9 +192,8 @@ html {
 	border-radius: 4px;
 	border: none;
 	cursor: pointer;
-	/* box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5); */
-}
-
+	/* box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5); 
+} */
 input {
 	width: 100%;
 	border: 1px solid var(--color-input-border);
@@ -221,3 +249,52 @@ input:placeholder {
 .landing-navbar-logo img {
 	width: 65%;
 }
+/* Manav's Changes */
+.Logincontainer{
+	color:rgb(114, 93, 248);
+	padding: 35px;
+    margin: -398px -323px;
+    width: 500px;
+    height: 500px;
+    background-color: #03e9f4;
+	border-radius: 10px;
+}
+.Login{
+	padding-top: 7px;
+	padding-bottom: 5px;
+	margin: 5px 5px;
+	width: auto;
+	height: auto;
+}
+.LoginHeading{
+	margin-top: 10px;
+	padding: 10px;
+}
+.LoginHeading .EMail{
+margin-bottom:5px;
+}
+.bubbly-button {
+	width: 6rem;
+	height: 2rem;
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 60px;
+	margin-left: auto;
+	margin-right: auto;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	transition-duration: 0.3s;
+	transition-property: box-shadow;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	transform: translateZ(0);
+	box-shadow: inset 0 0 0 4px #ececec, 0 0 1px rgba(0, 0, 0, 0);
+   /* Hack to improve aliasing on mobile/tablet devices */
+}
+.bubbly-button:hover {
+	box-shadow: inset 0 0 0 4px #666, 0 0 1px rgba(0, 0, 0, 0);
+   /* Hack to improve aliasing on mobile/tablet devices */
+}
+
+
+

@@ -58,10 +58,10 @@ const Landing = () => {
 							<div className='AskLogin'>Already Registered?
 								<Popup trigger={<button> Login </button>}
 									position="center">
-									<div className='container'>
-										<div className='SignUpBox'>
-											<div className='SignUp'>
-												<h1 class="Heading">Login</h1>
+									<div className='Logincontainer'>
+										<div className='LoginBox'>
+											<div className='Login'>
+												<h1 class="LoginHeading">Login</h1>
 
 
 												<input className='EMail' type="text" placeholder='E-Mail ID' />
@@ -92,7 +92,8 @@ const Landing = () => {
 					</div>
 				</div>
 			</div>
-			<footer class="Footer">Copyright © 2022 All rights reserved.</footer>
+			{}
+			<footer className="Footer">Copyright © 2022 All rights reserved.</footer>
 		</React.Fragment>
 
 	);

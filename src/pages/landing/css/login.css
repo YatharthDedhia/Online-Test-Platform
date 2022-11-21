@@ -1,0 +1,32 @@
+.Logincontainer {
+	padding: 35px;
+	margin: -402px -250px;
+	width: 500px;
+	height: 500px;
+	background-color: #00DDFF;
+	border-radius: 5px;
+}
+
+.Login {
+	width: 74%;
+	margin-left: 12%;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.Login h1 {
+	margin-top: 10px;
+	padding: 10px;
+	margin-bottom: 5px;
+}
+
+.EMailLogin {
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.PasswordLogin {
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}

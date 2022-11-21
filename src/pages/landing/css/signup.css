@@ -1,0 +1,124 @@
+.container {
+	position: absolute;
+	top: 15%;
+	left: 33.75%;
+	z-index: 0;
+	width: 490px;
+	height: 500px;
+	background-color: #00DDFF;
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px grey;
+	border-radius: 5px;
+}
+
+.SignUpBox {
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	width: 75%;
+	height: 100%;
+	padding: 4px;
+	align-items: center;
+	text-align: center;
+	transform: translate(-50%, -50%);
+}
+
+.SignUpBox h1 {
+	text-align: center;
+	display: block;
+	font-size: 2em;
+	margin-block-start: 0.67em;
+	margin-block-end: 0.67em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	font-weight: bold;
+}
+
+.AskLogin {
+	text-align: center;
+	padding-top: 0.9rem;
+	font-size: 1rem;
+	color: blue;
+}
+
+.AskLogin button {
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	text-decoration: none;
+
+}
+
+.bubbly-button {
+	display: block;
+	font-size: 1em;
+	padding: 1em 2em;
+	margin-top: 20px;
+	margin-bottom: 60px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: blue;
+	color: #fff;
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+}
+
+.bubbly-button:hover {
+	box-shadow: inset 0 0 0 4px rgb(102, 102, 102), 0 0 1px rgba(0, 0, 0, 0);
+}
+
+
+/* Inputs CSS  */
+.FirstLast {
+	display: flex;
+	/* width: 50rem; */
+	align-items: center;
+	justify-content: center;
+}
+
+.FirstLast input {
+	border-bottom-right-radius: 0rem;
+	border-bottom-left-radius: 0rem;
+}
+
+.FirstName {
+	border-top-right-radius: 0rem;
+}
+
+.LastName {
+	border-top-left-radius: 0rem;
+}
+
+.EMail {
+	border-radius: 0rem;
+}
+
+.Password {
+	border-radius: 0rem;
+}
+
+.ConfirmPassword {
+	border-top-left-radius: 0rem;
+	border-top-right-radius: 0rem;
+}
+
+.Checkbox {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1rem;
+	margin-top: 0.5rem;
+}
+
+.Checkbox input {
+	margin: 0%;
+}
+
+.RadioCheck {
+	display: flex;
+	padding: 1.5rem;
+	/* border: 2px solid red; */
+}

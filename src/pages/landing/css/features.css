@@ -169,3 +169,113 @@
 .final-features .final-cta {
 	margin: 5rem;
 }
+.section-fluid-main{
+	position: relative;
+	display: block;
+	overflow: hidden;
+	width: calc(100% - 40px);
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto; 
+	max-width: 100%;
+	padding: 100px 0;
+  }
+  .section-row{
+	margin-right: -15px;
+  margin-left: -15px;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+  }
+  .section-row:hover .section-col{
+	opacity: 0.1;
+  }
+.section-col{
+	margin-top: 40%;
+	/* color: red; */
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	display: flex;
+	-ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  max-width: 25%;
+  transition: opacity 250ms linear;
+}
+.image img{
+	display: block;
+	max-width:17rem;
+	max-height: 15rem;
+	padding: 0.5rem;
+	margin: 3rem;
+	border: 4px solid red;
+	border-radius: 10%;
+	transition: transform 250ms linear;
+}
+
+.image{
+	position: relative;
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	border-radius: 24px;
+	cursor: pointer;
+  }
+.hover-text{
+	position: fixed;
+	color: aqua;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	z-index: 100;
+	pointer-events: none;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-align-items: center;
+	-moz-align-items: center;
+	-ms-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+	-ms-justify-content: center;
+	justify-content: center;
+	-ms-flex-pack: center;
+	text-align: center;
+	  -ms-flex-item-align: center;
+	  align-self: center;
+	mix-blend-mode: difference;
+  }
+  .hover-text h2{
+	font-family: 'Poppins', sans-serif;
+	font-weight: 800;
+	font-size: 3vw;
+	line-height: 1;
+	color: rgb(40, 237, 244);
+	opacity: 0;
+	transform: scale(0.8);
+	transition: transform 250ms linear, opacity 250ms ease;
+  }
+  .section-col:hover + .hover-text h2{
+	opacity: 1;
+	transform: scale(1);
+  }
+  @media (max-width: 767px) {
+	.section-col{
+	  -ms-flex: 0 0 100%;
+	  flex: 0 0 100%;
+	  max-width: 100%;
+	}
+	.hover-text h2{
+	  font-size: 12vw;
+	}
+  } 
+  .title-heading{
+	text-decoration:underline;
+	color:aqua;
+	
+  }

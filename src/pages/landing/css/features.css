@@ -210,7 +210,7 @@
 	max-height: 15rem;
 	padding: 0.5rem;
 	margin: 3rem;
-	border: 4px solid red;
+	border: 4px solid #00DDFF;
 	border-radius: 10%;
 	transition: transform 250ms linear;
 }
@@ -255,7 +255,7 @@
 	font-weight: 800;
 	font-size: 3vw;
 	line-height: 1;
-	color: rgb(40, 237, 244);
+	color: rgb(181, 231, 64);
 	opacity: 0;
 	transform: scale(0.8);
 	transition: transform 250ms linear, opacity 250ms ease;

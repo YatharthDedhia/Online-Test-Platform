@@ -5,7 +5,10 @@ import './css/features.css';
 import './css/navbar.css';
 import './css/login.css';
 import './css/signup.css';
-
+import anima from './images/anima.png';
+import improve from './images/improve.png';
+import lecture from './images/lecture.jpg';
+import proctor1 from './images/proctor1.jpg';
 const featureList = [
 	'Face Verification',
 	'Multiple People Detection',
@@ -70,7 +73,7 @@ const Landing = () => {
 
 			<div className="section-type-landing-page">
 
-				<div className="features-content">
+				{/* <div className="features-content">
 					<div className="curr-heading">
 						<p className="gradient-text">
 							<b>Powerful</b> & Lightweight
@@ -84,9 +87,54 @@ const Landing = () => {
 							<p className="single-feature">{it}</p>
 						))}
 					</div>
+				</div> */}
+				{/* m */}
+				<div className="section-fluid-main">
+				<div className="section-row">
+				<div className="section-col">
+					<div className='section'>
+					<div className="image">
+					<img src={anima} alt="" />
+					</div>
+					</div>
+					</div>
+				<div class="hover-text">
+				<h2>Animation filled User Interface</h2>
 				</div>
-
-				<div className="final-features">
+				<div className="section-col">
+				<div className='section'>
+					<div className="image">
+					<img src={improve} alt="" />
+					</div>
+					</div>
+					</div>
+					<div class="hover-text">
+				<h2>Improve by strengthening your weak topics</h2>
+				</div>
+				<div className="section-col">
+				<div className='section'>
+					<div className="image">
+					<img src={lecture} alt="" />
+					</div>
+					</div>
+					</div>
+					<div class="hover-text">
+				<h2>Online Lectures and frequent doubt solving with the best faculty</h2>
+				</div>
+				<div className="section-col">
+				<div className='section'>
+					<div className="image">
+					<img src={proctor1} alt="" />
+					</div>
+					</div>
+					</div>
+					<div class="hover-text">
+				<h2>Active invigilation by Proctoring Software</h2>
+				</div>
+					</div>
+				</div>
+				{/* m */}
+				{/* <div className="final-features">
 					<div className="top-sec">
 						<div className="left-text">
 							<h3 className="gradient-text">
@@ -109,7 +157,7 @@ const Landing = () => {
 				<div className='container'>
 					<div className='SignUpBox'>
 						<form>
-							<h1 class="Heading">Sign-Up</h1>
+							<h1 className="Heading">Sign-Up</h1>
 							<div className='FirstLast'>
 								<input className='FirstName' value={firstname} onChange={(e) => setFirstName(e.target.value)} type="text" placeholder='First Name' />
 								<input className='LastName' value={lastname} onChange={(e) => setLastName(e.target.value)} type="text" placeholder='Last Name' />
@@ -152,7 +200,7 @@ const Landing = () => {
 						</div>
 
 						<button className='bubbly-button'>Sign Up</button>
-
+						<h2 className="title-heading">Key Features of our website</h2>
 					</div>
 				</div>
 			</div>

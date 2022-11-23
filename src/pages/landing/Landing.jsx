@@ -5,10 +5,10 @@ import './css/features.css';
 import './css/navbar.css';
 import './css/login.css';
 import './css/signup.css';
-import anima from './images/anima.png';
-import improve from './images/improve.png';
-import lecture from './images/lecture.jpg';
-import proctor1 from './images/proctor1.jpg';
+import anima from '../../Images/anima.png';
+import improve from '../../Images/improve.png';
+import lecture from '../../Images/lecture.jpg';
+import proctor1 from '../../Images/proctor1.jpg';
 const featureList = [
 	'Face Verification',
 	'Multiple People Detection',
@@ -90,125 +90,125 @@ const Landing = () => {
 				</div> */}
 				{/* m */}
 				<div className="section-fluid-main">
-				<div className="section-row">
-				<div className="section-col">
-					<div className='section'>
-					<div className="image">
-					<img src={anima} alt="" />
-					</div>
-					</div>
-					</div>
-				<div class="hover-text">
-				<h2>Animation filled User Interface</h2>
-				</div>
-				<div className="section-col">
-				<div className='section'>
-					<div className="image">
-					<img src={improve} alt="" />
-					</div>
-					</div>
-					</div>
-					<div class="hover-text">
-				<h2>Improve by strengthening your weak topics</h2>
-				</div>
-				<div className="section-col">
-				<div className='section'>
-					<div className="image">
-					<img src={lecture} alt="" />
-					</div>
-					</div>
-					</div>
-					<div class="hover-text">
-				<h2>Online Lectures and frequent doubt solving with the best faculty</h2>
-				</div>
-				<div className="section-col">
-				<div className='section'>
-					<div className="image">
-					<img src={proctor1} alt="" />
-					</div>
-					</div>
-					</div>
-					<div class="hover-text">
-				<h2>Active invigilation by Proctoring Software</h2>
-				</div>
+					<div className="section-row">
+						<div className="section-col">
+							<div className='section'>
+								<div className="image">
+									<img src={anima} alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="hover-text">
+							<h2>Animation filled User Interface</h2>
+						</div>
+						<div className="section-col">
+							<div className='section'>
+								<div className="image">
+									<img src={improve} alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="hover-text">
+							<h2>Improve by strengthening your weak topics</h2>
+						</div>
+						<div className="section-col">
+							<div className='section'>
+								<div className="image">
+									<img src={lecture} alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="hover-text">
+							<h2>Online Lectures and frequent doubt solving with the best faculty</h2>
+						</div>
+						<div className="section-col">
+							<div className='section'>
+								<div className="image">
+									<img src={proctor1} alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="hover-text">
+							<h2>Active invigilation by Proctoring Software</h2>
+						</div>
 					</div>
 				</div>
 				{/* m */}
 				/* <div className="final-features">
-					<div className="top-sec">
-						<div className="left-text">
-							<h3 className="gradient-text">
-								Effortlessly integrates with
-							</h3>
-							<h1 className="title-heading">
-								Google Forms or Microsoft Surveys
-							</h1>
-						</div>
+	<div className="top-sec">
+		<div className="left-text">
+			<h3 className="gradient-text">
+				Effortlessly integrates with
+			</h3>
+			<h1 className="title-heading">
+				Google Forms or Microsoft Surveys
+			</h1>
+		</div>
 
-						<div className="right-text">
-							<h3 className="gradient-text">The best part?</h3>
-							<h1 className="title-heading">
-								Live Status on Admin Dashboard
-							</h1>
-						</div>
-					</div>
-				</div>
+		<div className="right-text">
+			<h3 className="gradient-text">The best part?</h3>
+			<h1 className="title-heading">
+				Live Status on Admin Dashboard
+			</h1>
+		</div>
+	</div>
+</div>
 
-				<div className='container'>
-					<div className='SignUpBox'>
-						<form>
-							<h1 className="Heading">Sign-Up</h1>
-							<div className='FirstLast'>
-								<input className='FirstName' value={firstname} onChange={(e) => setFirstName(e.target.value)} type="text" placeholder='First Name' />
-								<input className='LastName' value={lastname} onChange={(e) => setLastName(e.target.value)} type="text" placeholder='Last Name' />
-							</div>
-
-							<input className='EMail' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder='E-Mail ID' />
-							<input className='Password' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
-							<input className='ConfirmPassword' value={confpassword} onChange={(e) => setConfPassword(e.target.value)} type="password" placeholder='Confirm Password' />
-
-							<div className='Checkbox'>
-
-								<label className="RadioCheck">
-									<input type="radio" value={firstname} onChange={(e) => setFirstName(e.target.value)} name="checked" checked></input>Student
-								</label>
-								<label className="RadioCheck">
-									<input type="radio" value={firstname} onChange={(e) => setFirstName(e.target.value)} name="checked"></input>Institute
-								</label>
-							</div>
-						</form>
-						<div className='AskLogin'>
-							<Popup trigger={<button className='LoginButton' className='AskLogin' >Already Registered? Login </button>}
-								position="center">
-								<div className='Logincontainer'>
-									<div className='Login'>
-										<h1>Login</h1>
-										<input className='EMailLogin' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder='E-Mail ID' />
-										<input className='PasswordLogin' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
-										<div className='Checkbox'>
-											<label className="RadioCheck">
-												<input type="radio" name="checked" checked></input>Student
-											</label>
-											<label className="RadioCheck">
-												<input type="radio" name="checked"></input>Institute
-											</label>
-										</div>
-										<button className='bubbly-button'>Confirm</button>
-									</div>
-								</div>
-							</Popup>
-						</div>
-
-						<button className='bubbly-button'>Sign Up</button>
-						<h2 className="title-heading">Key Features of our website</h2>
-					</div>
-				</div>
+<div className='container'>
+	<div className='SignUpBox'>
+		<form>
+			<h1 className="Heading">Sign-Up</h1>
+			<div className='FirstLast'>
+				<input className='FirstName' value={firstname} onChange={(e) => setFirstName(e.target.value)} type="text" placeholder='First Name' />
+				<input className='LastName' value={lastname} onChange={(e) => setLastName(e.target.value)} type="text" placeholder='Last Name' />
 			</div>
 
-			<footer className="Footer">Copyright © 2022 All rights reserved.</footer>
-		</React.Fragment>
+			<input className='EMail' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder='E-Mail ID' />
+			<input className='Password' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
+			<input className='ConfirmPassword' value={confpassword} onChange={(e) => setConfPassword(e.target.value)} type="password" placeholder='Confirm Password' />
 
-	);
+			<div className='Checkbox'>
+
+				<label className="RadioCheck">
+					<input type="radio" value={firstname} onChange={(e) => setFirstName(e.target.value)} name="checked" checked></input>Student
+				</label>
+				<label className="RadioCheck">
+					<input type="radio" value={firstname} onChange={(e) => setFirstName(e.target.value)} name="checked"></input>Institute
+				</label>
+			</div>
+		</form>
+		<div className='AskLogin'>
+			<Popup trigger={<button className='LoginButton' className='AskLogin' >Already Registered? Login </button>}
+				position="center">
+				<div className='Logincontainer'>
+					<div className='Login'>
+						<h1>Login</h1>
+						<input className='EMailLogin' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder='E-Mail ID' />
+						<input className='PasswordLogin' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
+						<div className='Checkbox'>
+							<label className="RadioCheck">
+								<input type="radio" name="checked" checked></input>Student
+							</label>
+							<label className="RadioCheck">
+								<input type="radio" name="checked"></input>Institute
+							</label>
+						</div>
+						<button className='bubbly-button'>Confirm</button>
+					</div>
+				</div>
+			</Popup>
+		</div>
+
+		<button className='bubbly-button'>Sign Up</button>
+		<h2 className="title-heading">Key Features of our website</h2>
+	</div>
+</div>
+</div>
+
+<footer className="Footer">Copyright © 2022 All rights reserved.</footer>
+</React.Fragment>
+
+);
 };
 
 export default Landing;

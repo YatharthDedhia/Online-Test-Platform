@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Tabs</title>
+</head>
+
+<body>
+    <div class="mytabs">
+        <input type="radio" id="tabfree" name="mytabs" checked="checked"/   >
+        <label for="tabfree">Un-Attempted</label>
+        <div class="tab">
+            <div className="test-items">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Time</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{test.name}</td>
+                            <td>{test.time}</td>
+                            <td>{test.link}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <input type="radio" id="tabsilver" name="mytabs">
+        <label for="tabsilver">Attempted</label>
+        <div class="tab">
+            <div className="test-items">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Time</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{test.name}</td>
+                            <td>{test.time}</td>
+                            <td>{test.link}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <input type="radio" id="tabgold" name="mytabs">
+        <label for="tabgold">All</label>
+        <div class="tab">
+            <div className="test-items">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Time</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{test.name}</td>
+                            <td>{test.time}</td>
+                            <td>{test.link}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<style>
+    body {
+        background: #ccc;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .mytabs {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 25px;
+    }
+
+    .mytabs input[type="radio"] {
+        display: none;
+    }
+
+    .mytabs label {
+        padding: 25px;
+        background: #e2e2e2;
+        font-weight: bold;
+    }
+
+    .mytabs .tab {
+        width: 100%;
+        padding: 20px;
+        background: #fff;
+        order: 1;
+        display: none;
+    }
+
+    .mytabs .tab h2 {
+        font-size: 3em;
+    }
+
+    .mytabs input[type='radio']:checked+label+.tab {
+        display: block;
+    }
+
+    .mytabs input[type="radio"]:checked+label {
+        background: #fff;
+    }
+</style>

@@ -1,0 +1,33 @@
+.admin-dashboard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2em;
+	margin: 1.5rem;
+}
+
+.admin-dashboard .test-dashboard {
+	/* display: flex; */
+	/* flex-direction: row; */
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 2em;
+	padding: 2rem;
+	width: 100%;
+}
+
+.test-items {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+	width: 80%;
+}
+
+.test-items .test-item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 4rem;
+}

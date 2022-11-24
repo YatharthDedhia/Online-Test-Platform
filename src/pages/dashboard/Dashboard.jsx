@@ -90,6 +90,24 @@ const NavLinks = () => (
 const Navbar = () => {
 	return (
 		<div className="landing-navbar">
+			{/* m */}
+			<nav role="navigation">
+  <div id="menuToggle">
+    <input type="checkbox" />
+    
+    <span></span>
+    <span></span>
+    <span></span>
+    <ul id="menu">
+      <a href="#"><li>Announcements</li></a>
+      <a href="#"><li>Timetable</li></a>
+      <a href="#"><li>Test Schedule</li></a>
+      <a href="#"><li>Homework</li></a>
+      <a href="https://erikterwan.com/" target="_blank"><li>Show me more</li></a>
+    </ul>
+  </div>
+</nav>
+{/* m */}
 			<div className="landing-navbar-logo">
 				<h1>Test Platform</h1>
 			</div>

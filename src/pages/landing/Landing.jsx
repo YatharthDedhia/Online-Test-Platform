@@ -134,7 +134,7 @@ const Landing = () => {
 					</div>
 				</div>
 				{/* m */}
-				/* <div className="final-features">
+				 {/* <div className="final-features">
 					<div className="top-sec">
 						<div className="left-text">
 							<h3 className="gradient-text">
@@ -152,8 +152,8 @@ const Landing = () => {
 							</h1>
 						</div>
 					</div>
-				</div>
-
+				</div> */}
+				
 				<div className='container'>
 					<div className='SignUpBox'>
 						<form>

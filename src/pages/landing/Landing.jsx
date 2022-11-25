@@ -203,7 +203,7 @@ const Landing = () => {
 						<h2 className="title-heading">Key Features of our website</h2>
 					</div>
 				</div>
-				/* <div className="final-features">
+				 {/* <div className="final-features">
 	<div className="top-sec">
 		<div className="left-text">
 			<h3 className="gradient-text">
@@ -248,7 +248,7 @@ const Landing = () => {
 			</div>
 		</form>
 		<div className='AskLogin'>
-			<Popup trigger={<button className='LoginButton' className='AskLogin' >Already Registered? Login </button>}
+			<Popup trigger={<button className="LoginButton" className="AskLogin" >Already Registered? Login </button>}
 				position="center">
 				<div className='Logincontainer'>
 					<div className='Login'>
@@ -273,6 +273,7 @@ const Landing = () => {
 		<h2 className="title-heading">Key Features of our website</h2>
 	</div>
 </div>
+</div> */}
 </div>
 
 <footer className="Footer">Copyright © 2022 All rights reserved.</footer>

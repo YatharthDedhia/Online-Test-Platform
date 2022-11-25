@@ -76,7 +76,7 @@ const NavLinks = () => (
 		<p>
 			<div>
 				<form action="" autocomplete="on">
-					<input type="text" id='search' name='search' placeholder="Search" />
+					<input  className="Search1"type="text" id='search' name='search' placeholder="Search" />
 					<input id="search_submit" value="Rechercher" type="submit" />
 				</form>
 			</div>
@@ -165,5 +165,6 @@ const Dashboard = () => {
 		</React.Fragment>
 	);
 };
+
 
 export default Dashboard;

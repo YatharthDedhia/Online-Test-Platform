@@ -2,7 +2,7 @@
 @import url(https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css);
 
 
-input[type="text"] {
+.Search1{
     height: 60px;
     font-size: 200%;
     display: inline-block;
@@ -20,7 +20,7 @@ input[type="text"] {
     z-index: 3;
     transition: width 0.5s cubic-bezier(0.000, 0.795, 0.000, 1.000);
     cursor: pointer;
-}
+} 
 
 input[type="text"]:focus:hover {
     border-bottom: 1px solid #BBB;
@@ -28,9 +28,9 @@ input[type="text"]:focus:hover {
 
 input[type="text"]:focus {
     width: 200px;
-    z-index: 1;
+    z-index: 1; 
     /* border-bottom: 1px solid #BBB; */
-    cursor: text;
+     cursor: text;
     font-size: 100%;
 }
 

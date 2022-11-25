@@ -1,9 +1,9 @@
 .Logincontainer {
-	padding: 35px;
+	/* padding: 35px; */
 	margin: -402px -250px;
 	width: 500px;
-	height: 500px;
-	background-color: #00DDFF;
+	height: 510px;
+	background-color: #F9F8F8;
 	border-radius: 5px;
 }
 

@@ -5,7 +5,7 @@
 	z-index: 0;
 	width: 490px;
 	height: 500px;
-	background-color: #00DDFF;
+	background-color: #F9F8F8;
 	box-sizing: border-box;
 	box-shadow: 0 15px 25px grey;
 	border-radius: 5px;
@@ -38,7 +38,7 @@
 	text-align: center;
 	padding-top: 0.9rem;
 	font-size: 1rem;
-	color: blue;
+	color: #EB9486;
 }
 
 .AskLogin button {
@@ -59,7 +59,7 @@
 	margin-bottom: 60px;
 	margin-left: auto;
 	margin-right: auto;
-	background-color: blue;
+	background-color: #EB9486;
 	color: #fff;
 	border-radius: 4px;
 	border: none;

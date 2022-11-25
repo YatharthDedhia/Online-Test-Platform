@@ -11,7 +11,7 @@ html {
 }
 
 .ctabutton {
-	background-color: #5880f0;
+	background-color: #F9F8F8;
 	color: #fff;
 	font-family: Inter;
 	font-size: 1rem;
@@ -30,7 +30,23 @@ input {
 	font-family: Inter;
 	font-size: 1rem;
 	font-weight: 400;
+	background-color: #F9F8F8;
+	border-color: #EB9486;
 }
+
+input[type="text"] {
+	background: transparent;
+	border: none;
+}
+
+input[type="password"] {
+	background: transparent;
+	border: none;
+}
+
+/* input[type="radio"] {
+	display: none;
+} */
 
 input:active,
 input:focus {

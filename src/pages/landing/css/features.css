@@ -210,7 +210,7 @@
 	max-height: 15rem;
 	padding: 0.5rem;
 	margin: 3rem;
-	border: 4px solid #00DDFF;
+	border: 4px solid #EB9486;
 	border-radius: 10%;
 	transition: transform 250ms linear;
 }
@@ -225,7 +225,7 @@
   }
 .hover-text{
 	position: fixed;
-	color: aqua;
+	color: #EB9486;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -276,6 +276,6 @@
   } 
   .title-heading{
 	text-decoration:underline;
-	color:aqua;
+	color:#EB9486;
 	
   }

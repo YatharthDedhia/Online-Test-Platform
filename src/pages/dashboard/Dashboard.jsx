@@ -1,9 +1,13 @@
-import React from 'react';
+// import React from 'react';
+import React, { useState } from 'react';
+import Calendar from 'react-calendar';
 import './css/dashboard.css';
 import './css/copylink.css';
 import './css/commoninput.css';
 import './css/search.css'
 import './css/table.css'
+import './css/sidebar.css'
+import './css/calendar.css'
 
 const mockTests = [
 	{
@@ -76,7 +80,7 @@ const NavLinks = () => (
 		<p>
 			<div>
 				<form action="" autocomplete="on">
-					<input  className="Search1"type="text" id='search' name='search' placeholder="Search" />
+					<input className="Search1" type="text" id='search' name='search' placeholder="Search" />
 					<input id="search_submit" value="Rechercher" type="submit" />
 				</form>
 			</div>
@@ -87,27 +91,32 @@ const NavLinks = () => (
 	</React.Fragment>
 );
 
+const Sidebar = () => {
+	return (
+		<nav role="navigation">
+			<div id="menuToggle">
+				<input type="checkbox" />
+
+				<span></span>
+				<span></span>
+				<span></span>
+				<ul id="menu">
+					<a href="#"><li>Announcements</li></a>
+					<a href="#"><li>Timetable</li></a>
+					<a href="#"><li>Test Schedule</li></a>
+					<a href="#"><li>Homework</li></a>
+				</ul>
+			</div>
+		</nav>
+	);
+};
+
 const Navbar = () => {
 	return (
 		<div className="landing-navbar">
 			{/* m */}
-			<nav role="navigation">
-  <div id="menuToggle">
-    <input type="checkbox" />
-    
-    <span></span>
-    <span></span>
-    <span></span>
-    <ul id="menu">
-      <a href="#"><li>Announcements</li></a>
-      <a href="#"><li>Timetable</li></a>
-      <a href="#"><li>Test Schedule</li></a>
-      <a href="#"><li>Homework</li></a>
-      <a href="https://erikterwan.com/" target="_blank"><li>Show me more</li></a>
-    </ul>
-  </div>
-</nav>
-{/* m */}
+			<Sidebar />
+			{/* m */}
 			<div className="landing-navbar-logo">
 				<h1>Test Platform</h1>
 			</div>
@@ -143,6 +152,7 @@ const Table = () => {
 }
 
 const Dashboard = () => {
+	const [value, onChange] = useState(new Date());
 	return (
 		<React.Fragment>
 			<Navbar />
@@ -157,14 +167,14 @@ const Dashboard = () => {
 									<Table />
 								</div>
 							</div>
-
 						</div>
 					))}
+				</div>
+				<div className="calendar">
+					<Calendar onChange={onChange} value={value} />
 				</div>
 			</div >
 		</React.Fragment>
 	);
 };
-
-
 export default Dashboard;

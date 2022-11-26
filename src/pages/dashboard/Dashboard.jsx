@@ -8,122 +8,6 @@ import './css/table.css'
 import './css/sidebar.css'
 import './css/calendar.css'
 
-function Tabs() {
-	const [toggleState, setToggleState] = useState(1);
-  
-	const toggleTab = (index) => {
-	  setToggleState(index);
-	};
-	return (
-		<div className="container">
-		  <div className="bloc-tabs">
-			<button
-			  className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-			  onClick={() => toggleTab(1)}
-			>
-			 UnAttempted
-			</button>
-			<button
-			  className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-			  onClick={() => toggleTab(2)}
-			>
-			  Attempted
-			</button>
-			<button
-			  className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
-			  onClick={() => toggleTab(3)}
-			>
-			  All
-			</button>
-		  </div>
-	
-		  <div className="content-tabs">
-			<div
-			  className={toggleState === 1 ? "content  active-content" : "content"}
-			>
-			  <hr />
-			  <p>
-			  <table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Time</th>
-					<th>Link</th>
-				</tr>
-			</thead>
-			{mockTests.map((test) =>  (
-				<tbody>
-					<tr>
-						
-						<td>{test.name}</td>
-						<td>{test.time}</td>
-						<td>{test.link}</td>
-					</tr>
-				</tbody>
-			))}
-		</table>
-			  </p>
-			</div>
-	
-			<div
-			  className={toggleState === 2 ? "content  active-content" : "content"}
-			>
-			  <hr />
-			  <p>
-			  <table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Time</th>
-					<th>Link</th>
-				</tr>
-			</thead>
-
-			{mockTests.map((test) => (
-				<tbody>
-					<tr>
-						<td>{test.name}</td>
-						<td>{test.time}</td>
-						<td>{test.link}</td>
-					</tr>
-				</tbody>
-			))}
-		</table>
-			  </p>
-			</div>
-	
-			<div
-			  className={toggleState === 3 ? "content  active-content" : "content"}
-			>
-			  <hr />
-			  <p>
-			  <table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Time</th>
-					<th>Link</th>
-				</tr>
-			</thead>
-
-			{mockTests.map((test) => (
-				<tbody>
-					<tr>
-						<td>{test.name}</td>
-						<td>{test.time}</td>
-						<td>{test.link}</td>
-					</tr>
-				</tbody>
-			))}
-		</table>
-			  </p>
-			</div>
-		  </div>
-		</div>
-	  );
-	}
-	
-  
 const mockTests = [
 	{
 		name: 'Periodic Test - DBMS',
@@ -156,6 +40,122 @@ const tabList = [
 		name: "All"
 	}
 ]
+
+function Tabs() {
+	const [toggleState, setToggleState] = useState(1);
+
+	const toggleTab = (index) => {
+		setToggleState(index);
+	};
+	return (
+		<div className="container">
+			<div className="bloc-tabs">
+				<button
+					className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+					onClick={() => toggleTab(1)}
+				>
+					UnAttempted
+				</button>
+				<button
+					className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+					onClick={() => toggleTab(2)}
+				>
+					Attempted
+				</button>
+				<button
+					className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+					onClick={() => toggleTab(3)}
+				>
+					All
+				</button>
+			</div>
+
+			<div className="content-tabs">
+				<div className={toggleState === 1 ? "content  active-content" : "content"}>
+					<hr />
+					<p>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Time</th>
+									<th>Link</th>
+								</tr>
+							</thead>
+							{mockTests.map((test) => {
+								if (test.status == "unattempted") {
+									return <tbody>
+										<tr>
+											<td>{test.name}</td>
+											<td>{test.time}</td>
+											<td>{test.link}</td>
+										</tr>
+									</tbody>
+								}
+							})}
+						</table>
+					</p>
+				</div>
+
+				<div className={toggleState === 2 ? "content  active-content" : "content"}>
+					<hr />
+					<p>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Time</th>
+									<th>Link</th>
+								</tr>
+							</thead>
+
+							{mockTests.map((test) => {
+								if (test.status == "attempted") {
+									return <tbody>
+										<tr>
+											<td>{test.name}</td>
+											<td>{test.time}</td>
+											<td>{test.link}</td>
+										</tr>
+									</tbody>
+								}
+							})}
+						</table>
+					</p>
+				</div>
+
+				<div
+					className={toggleState === 3 ? "content  active-content" : "content"}
+				>
+					<hr />
+					<p>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Time</th>
+									<th>Link</th>
+								</tr>
+							</thead>
+
+							{mockTests.map((test) => (
+								<tbody>
+									<tr>
+										<td>{test.name}</td>
+										<td>{test.time}</td>
+										<td>{test.link}</td>
+									</tr>
+								</tbody>
+							))}
+						</table>
+					</p>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+
 
 // const CommonInput = ({ placeholderText = 'Input', value, onChange }) => {
 // 	return (
@@ -285,7 +285,7 @@ const Dashboard = () => {
 						</div>
 					))}
 				</div> */}
-				<Tabs/>
+				<Tabs />
 				<div className="calendar">
 					<Calendar onChange={setDate} value={date} tileContent={
 						({ activeStartDate, date, view }) => {

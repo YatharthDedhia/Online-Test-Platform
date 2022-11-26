@@ -29,18 +29,6 @@ const mockTests = [
 	}
 ];
 
-const tabList = [
-	{
-		name: "Un-Attempted"
-	},
-	{
-		name: "Attempted"
-	},
-	{
-		name: "All"
-	}
-]
-
 function Tabs() {
 	const [toggleState, setToggleState] = useState(1);
 
@@ -50,29 +38,19 @@ function Tabs() {
 	return (
 		<div className="container">
 			<div className="bloc-tabs">
-				<button
-					className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-					onClick={() => toggleTab(1)}
-				>
+				<button className={toggleState === 1 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(1)} >
 					UnAttempted
 				</button>
-				<button
-					className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-					onClick={() => toggleTab(2)}
-				>
+				<button className={toggleState === 2 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(2)} >
 					Attempted
 				</button>
-				<button
-					className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
-					onClick={() => toggleTab(3)}
-				>
+				<button className={toggleState === 3 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(3)} >
 					All
 				</button>
 			</div>
 
 			<div className="content-tabs">
-				<div className={toggleState === 1 ? "content  active-content" : "content"}>
-					<hr />
+				<div className={toggleState === 1 ? "content  active-content" : "content"} >
 					<p>
 						<table>
 							<thead>
@@ -97,8 +75,7 @@ function Tabs() {
 					</p>
 				</div>
 
-				<div className={toggleState === 2 ? "content  active-content" : "content"}>
-					<hr />
+				<div className={toggleState === 2 ? "content  active-content" : "content"} >
 					<p>
 						<table>
 							<thead>
@@ -124,10 +101,7 @@ function Tabs() {
 					</p>
 				</div>
 
-				<div
-					className={toggleState === 3 ? "content  active-content" : "content"}
-				>
-					<hr />
+				<div className={toggleState === 3 ? "content  active-content" : "content"} >
 					<p>
 						<table>
 							<thead>
@@ -154,41 +128,6 @@ function Tabs() {
 		</div>
 	);
 }
-
-
-
-// const CommonInput = ({ placeholderText = 'Input', value, onChange }) => {
-// 	return (
-// 		<input
-// 			type="text"
-// 			placeholder={placeholderText}
-// 			value={value}
-// 			onChange={onChange}
-// 		/>
-// 	);
-// };
-
-// const CopyLink = ({ link = 'http://github.com' }) => {
-// 	return (
-// 		<div className="copy-link">
-// 			<div className="copy-link-input">
-// 				<CommonInput value={link} />
-// 			</div>
-// 			<button
-// 				className="copy-btn"
-// 				onClick={(e) => {
-// 					navigator.clipboard.writeText(link);
-// 					e.target.innerHTML = 'Copied!';
-// 					setTimeout(function () {
-// 						e.target.innerHTML = 'Copy';
-// 					}, 2000);
-// 				}}
-// 			>
-// 				Copy
-// 			</button>
-// 		</div>
-// 	);
-// };
 
 const NavLinks = () => (
 	<React.Fragment>
@@ -242,49 +181,12 @@ const Navbar = () => {
 	);
 };
 
-const Table = () => {
-	return (
-		<table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Time</th>
-					<th>Link</th>
-				</tr>
-			</thead>
-
-			{mockTests.map((test) => (
-				<tbody>
-					<tr>
-						<td>{test.name}</td>
-						<td>{test.time}</td>
-						<td>{test.link}</td>
-					</tr>
-				</tbody>
-			))}
-		</table>
-	);
-}
-
 const Dashboard = () => {
 	const [date, setDate] = useState(new Date());
 	return (
 		<React.Fragment>
 			<Navbar />
 			<div className="section-type-admin-dashboard">
-				{/* <div className="test-dashboard">
-					{tabList.map((tab) => (
-						<div className="mytabs">
-							<input type="radio" id={tab.name} name="mytabs" checked="checked" />
-							<label for={tab.name}>{tab.name}</label>
-							<div className="tab">
-								<div className="test-items">
-									<Table />
-								</div>
-							</div>
-						</div>
-					))}
-				</div> */}
 				<Tabs />
 				<div className="calendar">
 					<Calendar onChange={setDate} value={date} tileContent={
@@ -305,4 +207,5 @@ const Dashboard = () => {
 		</React.Fragment>
 	);
 };
+
 export default Dashboard;

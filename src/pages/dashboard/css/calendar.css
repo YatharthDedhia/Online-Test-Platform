@@ -1,15 +1,16 @@
 .react-calendar {
   display: block;
   position: absolute;
-  top: 30%;
-  right: 6%;
-  width: 350px;
+  top: 18%;
+  right: 3%;
+  width: 400px;
   max-width: 100%;
   background: #F9F8F8;
   border: 1px solid #EB9486;
   border-radius: 10px;
   font-family: inherit;
   line-height: 1.125em;
+  /* color: #7E7F9A; */
 }
 
 .react-calendar--doubleView {
@@ -88,7 +89,7 @@
 }
 
 .react-calendar__month-view__days__day--weekend {
-  color: #d10000;
+  /* color: #d10000; */
   border-radius: 5px;
 }
 
@@ -109,6 +110,7 @@
   background: none;
   text-align: center;
   line-height: 16px;
+  /* color: #7E7F9A; */
 }
 
 .react-calendar__tile:disabled {
@@ -163,11 +165,12 @@
 
 .DateContent {
   position: relative;
-  top: -20%;
-  width: 100%;
+  top: -40%;
+  right: 10%;
+  width: 120%;
   background-color: #76baff;
-  height: 100%;
-  border-radius: 3px;
+  height: 125%;
+  border-radius: 3px; 
   align-items: center;
   text-align: center;
   justify-content: center;

@@ -9,6 +9,122 @@ import './css/table.css'
 import './css/sidebar.css'
 import './css/calendar.css'
 
+function Tabs() {
+	const [toggleState, setToggleState] = useState(1);
+  
+	const toggleTab = (index) => {
+	  setToggleState(index);
+	};
+	return (
+		<div className="container">
+		  <div className="bloc-tabs">
+			<button
+			  className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+			  onClick={() => toggleTab(1)}
+			>
+			 UnAttempted
+			</button>
+			<button
+			  className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+			  onClick={() => toggleTab(2)}
+			>
+			  Attempted
+			</button>
+			<button
+			  className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+			  onClick={() => toggleTab(3)}
+			>
+			  All
+			</button>
+		  </div>
+	
+		  <div className="content-tabs">
+			<div
+			  className={toggleState === 1 ? "content  active-content" : "content"}
+			>
+			  <hr />
+			  <p>
+			  <table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Time</th>
+					<th>Link</th>
+				</tr>
+			</thead>
+			{mockTests.map((test) =>  (
+				<tbody>
+					<tr>
+						
+						<td>{test.name}</td>
+						<td>{test.time}</td>
+						<td>{test.link}</td>
+					</tr>
+				</tbody>
+			))}
+		</table>
+			  </p>
+			</div>
+	
+			<div
+			  className={toggleState === 2 ? "content  active-content" : "content"}
+			>
+			  <hr />
+			  <p>
+			  <table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Time</th>
+					<th>Link</th>
+				</tr>
+			</thead>
+
+			{mockTests.map((test) => (
+				<tbody>
+					<tr>
+						<td>{test.name}</td>
+						<td>{test.time}</td>
+						<td>{test.link}</td>
+					</tr>
+				</tbody>
+			))}
+		</table>
+			  </p>
+			</div>
+	
+			<div
+			  className={toggleState === 3 ? "content  active-content" : "content"}
+			>
+			  <hr />
+			  <p>
+			  <table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Time</th>
+					<th>Link</th>
+				</tr>
+			</thead>
+
+			{mockTests.map((test) => (
+				<tbody>
+					<tr>
+						<td>{test.name}</td>
+						<td>{test.time}</td>
+						<td>{test.link}</td>
+					</tr>
+				</tbody>
+			))}
+		</table>
+			  </p>
+			</div>
+		  </div>
+		</div>
+	  );
+	}
+	
+  
 const mockTests = [
 	{
 		name: 'Periodic Test - DBMS',
@@ -156,12 +272,12 @@ const Dashboard = () => {
 	return (
 		<React.Fragment>
 			<Navbar />
-			<div className="section-type admin-dashboard">
-				<div className="test-dashboard">
+			<div className="section-type-admin-dashboard">
+				{/* <div className="test-dashboard">
 					{tabList.map((tab) => (
 						<div className="mytabs">
-							<input type="radio" id="tabfree" name="mytabs" checked="checked" />
-							<label for="tabfree">{tab.name}</label>
+							<input type="radio" id={tab.name} name="mytabs" checked="checked" />
+							<label for={tab.name}>{tab.name}</label>
 							<div className="tab">
 								<div className="test-items">
 									<Table />
@@ -169,7 +285,8 @@ const Dashboard = () => {
 							</div>
 						</div>
 					))}
-				</div>
+				</div> */}
+				<Tabs/>
 				<div className="calendar">
 					<Calendar onChange={onChange} value={value} />
 				</div>

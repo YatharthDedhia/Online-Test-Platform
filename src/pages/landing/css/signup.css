@@ -94,6 +94,9 @@
 
 .EMail {
 	border-radius: 0rem;
+	display: block;
+	margin-left: 0px;
+	
 }
 
 .Password {

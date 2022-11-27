@@ -10,128 +10,121 @@ import './css/calendar.css'
 
 function Tabs() {
 	const [toggleState, setToggleState] = useState(1);
-  
+
 	const toggleTab = (index) => {
-	  setToggleState(index);
+		setToggleState(index);
 	};
 	return (
 		<div className="container1">
-		  <div className="bloc-tabs">
-			<button
-			  className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-			  onClick={() => toggleTab(1)}
-			>
-			 UnAttempted
-			</button>
-			<button
-			  className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-			  onClick={() => toggleTab(2)}
-			>
-			  Attempted
-			</button>
-			<button
-			  className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
-			  onClick={() => toggleTab(3)}
-			>
-			  All
-			</button>
-		  </div>
-	
-		  <div className="content-tabs">
-			<div
-			  className={toggleState === 1 ? "content  active-content" : "content"}
-			>
-			  <hr />
-			  <p>
-			  <table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Time</th>
-					<th>Link</th>
-				</tr>
-			</thead>
-			{mockTests.map((test) =>  {
-				if (test.status=="unattempted")
-				{
-				return <tbody>
-					<tr>
-						
-						<td>{test.name}</td>
-						<td>{test.time}</td>
-						<td>{test.link}</td>
-					</tr>
-				</tbody>
-				}
-})}
-		</table>
-			  </p>
+			<div className="bloc-tabs">
+				<button
+					className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+					onClick={() => toggleTab(1)}
+				>
+					UnAttempted
+				</button>
+				<button
+					className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+					onClick={() => toggleTab(2)}
+				>
+					Attempted
+				</button>
+				<button
+					className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+					onClick={() => toggleTab(3)}
+				>
+					All
+				</button>
 			</div>
-	
-			<div
-			  className={toggleState === 2 ? "content  active-content" : "content"}
-			>
-			  <hr />
-			  <p>
-			  <table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Time</th>
-					<th>Link</th>
-				</tr>
-			</thead>
 
-			{mockTests.map((test) =>  {
-				if (test.status=="attempted")
-				{
-				return <tbody>
-					<tr>
-						
-						<td>{test.name}</td>
-						<td>{test.time}</td>
-						<td>{test.link}</td>
-					</tr>
-				</tbody>
-				}
-})}
-		</table>
-			  </p>
-			</div>
-	
-			<div
-			  className={toggleState === 3 ? "content  active-content" : "content"}
-			>
-			  <hr />
-			  <p>
-			  <table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Time</th>
-					<th>Link</th>
-				</tr>
-			</thead>
+			<div className="content-tabs">
+				<div className={toggleState === 1 ? "content  active-content" : "content"} >
+					<p>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Time</th>
+									<th>Link</th>
+								</tr>
+							</thead>
+							{mockTests.map((test) => {
+								if (test.status == "unattempted") {
+									return <tbody>
+										<tr>
 
-			{mockTests.map((test) =>  {
-				return <tbody>
-					<tr>
-						
-						<td>{test.name}</td>
-						<td>{test.time}</td>
-						<td>{test.link}</td>
-					</tr>
-				</tbody>
-})}
-		</table>
-			  </p>
+											<td>{test.name}</td>
+											<td>{test.time}</td>
+											<td>
+												<a href={test.link}>{test.link}</a>
+											</td>
+										</tr>
+									</tbody>
+								}
+							})}
+						</table>
+					</p>
+				</div>
+
+				<div className={toggleState === 2 ? "content  active-content" : "content"} >
+					<p>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Time</th>
+									<th>Link</th>
+								</tr>
+							</thead>
+
+							{mockTests.map((test) => {
+								if (test.status == "attempted") {
+									return <tbody>
+										<tr>
+
+											<td>{test.name}</td>
+											<td>{test.time}</td>
+											<td>
+												<a href={test.link}>{test.link}</a>
+											</td>
+										</tr>
+									</tbody>
+								}
+							})}
+						</table>
+					</p>
+				</div>
+
+				<div className={toggleState === 3 ? "content  active-content" : "content"} >
+					<p>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Time</th>
+									<th>Link</th>
+								</tr>
+							</thead>
+
+							{mockTests.map((test) => {
+								return <tbody>
+									<tr>
+
+										<td>{test.name}</td>
+										<td>{test.time}</td>
+										<td>
+											<a href={test.link}>{test.link}</a>
+										</td>
+									</tr>
+								</tbody>
+							})}
+						</table>
+					</p>
+				</div>
 			</div>
-		  </div>
 		</div>
-	  );
-	}
-	
-  
+	);
+}
 
 const mockTests = [
 	{
@@ -154,8 +147,6 @@ const mockTests = [
 	}
 ];
 
-
-
 const NavLinks = () => (
 	<React.Fragment>
 		<p>
@@ -167,7 +158,7 @@ const NavLinks = () => (
 			</div>
 		</p>
 		<p>
-			<a href="/login">Profile</a>
+			<a href="/profile">Profile</a>
 		</p>
 	</React.Fragment>
 );
@@ -219,16 +210,13 @@ const Dashboard = () => {
 					<Calendar onChange={setDate} value={date} tileContent={
 						({ activeStartDate, date, view }) => {
 							return mockTests.map((test) => (
-								(view === 'month' && date.getDate() === parseInt(test.time.slice(0, 2)) && date.getMonth() === (parseInt(test.time.slice(3, 5)) - 1) && date.getYear() === (parseInt(test.time.slice(6, 10)) - 1900))
-									? <p className='DateContent'
-									// onMouseEnter={
-									// 	// do whatever you want
-									// 	console.log()
-									// }
-									>{date.getDate()} Test Day {(test.time.slice(11, 16))}</p>
-									: null))
-						}
-					} />
+								(view === 'month' && date.getDate() === parseInt(test.time.slice(0, 2)) && date.getMonth() === (parseInt(test.time.slice(3, 5)) - 1) && date.getYear() === (parseInt(test.time.slice(6, 10)) - 1900)) ? <p className='DateContent'
+								// onMouseEnter={
+								// 	// do whatever you want
+								// 	console.log()
+								// }
+								>{date.getDate()} Test Day {(test.time.slice(11, 16))}</p> : null))
+						}} />
 				</div>
 			</div >
 		</React.Fragment>

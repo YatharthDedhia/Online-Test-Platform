@@ -56,6 +56,7 @@
   min-width: 44px;
   background: none;
   font-size: 20px;
+  background-color: #EB9486;
 }
 
 .react-calendar__navigation button:disabled {
@@ -66,7 +67,8 @@
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
   background-color: #e6e6e6;
-  border-radius: 10px;
+  /* border-radius: 10px; */
+  background-color: #f27d6b;
 }
 
 .react-calendar__month-view__weekdays {
@@ -147,14 +149,14 @@
 }
 
 .react-calendar__tile--active {
-  background: #EB9486;
+  background: #f27d6b;
   color: white;
   border-radius: 5px;
 }
 
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
-  background: #EB9486;
+  background: #f27d6b;
   border-radius: 5px;
 }
 
@@ -165,12 +167,17 @@
 
 .DateContent {
   position: relative;
-  top: -40%;
-  right: 10%;
-  width: 120%;
+  top: -35%;
+  right: 15%;
+  width: 130%;
   background-color: #76baff;
-  height: 125%;
-  border-radius: 3px; 
+  height: 126%;
+  border-radius: 3px;
+
+  padding-top: 10px;
+}
+
+.DateContent p {
   align-items: center;
   text-align: center;
   justify-content: center;

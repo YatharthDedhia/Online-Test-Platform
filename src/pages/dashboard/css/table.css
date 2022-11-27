@@ -71,20 +71,17 @@ display:none;
       }
       
       body {
-        /* background: #EB9486; */
-      }
+        background: #EB9486;
+      } 
       
-      .container {
+      .container1 {
         display: flex;
         flex-direction: column;
-        /* position: relative; */
-        width: auto;
+        position: relative;
+        width: 500px;
         height: auto;
         background: #f1f1f1;
-        /* margin: 100px auto 0; */
-        top: 25%;
-        left: 25%;
-        margin: auto;
+        margin: 300px 400px;
         word-break: break-all;
         border: 1px solid rgba(0, 0, 0, 0.274);
       }

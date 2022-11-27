@@ -16,7 +16,7 @@ function Tabs() {
 	  setToggleState(index);
 	};
 	return (
-		<div className="container">
+		<div className="container1">
 		  <div className="bloc-tabs">
 			<button
 			  className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
@@ -52,8 +52,10 @@ function Tabs() {
 					<th>Link</th>
 				</tr>
 			</thead>
-			{mockTests.map((test) =>  (
-				<tbody>
+			{mockTests.map((test) =>  {
+				if (test.status=="unattempted")
+				{
+				return <tbody>
 					<tr>
 						
 						<td>{test.name}</td>
@@ -61,7 +63,8 @@ function Tabs() {
 						<td>{test.link}</td>
 					</tr>
 				</tbody>
-			))}
+				}
+})}
 		</table>
 			  </p>
 			</div>
@@ -80,15 +83,19 @@ function Tabs() {
 				</tr>
 			</thead>
 
-			{mockTests.map((test) => (
-				<tbody>
+			{mockTests.map((test) =>  {
+				if (test.status=="attempted")
+				{
+				return <tbody>
 					<tr>
+						
 						<td>{test.name}</td>
 						<td>{test.time}</td>
 						<td>{test.link}</td>
 					</tr>
 				</tbody>
-			))}
+				}
+})}
 		</table>
 			  </p>
 			</div>
@@ -107,15 +114,16 @@ function Tabs() {
 				</tr>
 			</thead>
 
-			{mockTests.map((test) => (
-				<tbody>
+			{mockTests.map((test) =>  {
+				return <tbody>
 					<tr>
+						
 						<td>{test.name}</td>
 						<td>{test.time}</td>
 						<td>{test.link}</td>
 					</tr>
 				</tbody>
-			))}
+})}
 		</table>
 			  </p>
 			</div>

@@ -3,3 +3,4 @@ export { default as Dashboard } from './dashboard/Dashboard';
 export { default as Profile } from './profile/Profile';
 export { default as Test } from './test/Test';
 export { default as Admin } from './admin/Admin';
+export { default as Opening } from './opening/Opening';

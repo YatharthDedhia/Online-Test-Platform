@@ -4,7 +4,8 @@ import {
 	Dashboard,
 	Profile,
 	Admin,
-	Test
+	Test,
+	Opening
 } from './pages';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
@@ -19,6 +20,7 @@ const App = () => {
 					<Route exact path="/profile" element={<Profile />} />
 					<Route exact path="/test" element={<Test />} />
 					<Route exact path="/admin" element={<Admin />} />
+					<Route exact path="/opening" element={<Opening />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

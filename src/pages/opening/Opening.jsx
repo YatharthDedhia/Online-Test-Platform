@@ -26,7 +26,7 @@ const Opening = () => {
 			<div className="untitled__slideBg"></div>
 			<div className="untitled__slideContent">
 				<span> An Online Test Platform</span> 
-				<span>for All your competetive Exams</span>
+				<span>for All your Competitive Exams</span>
 				<a className="button" href="https://unsplash.com/@maicoamorim" target="/black">Sign Up</a>
 			</div>
 		</div>

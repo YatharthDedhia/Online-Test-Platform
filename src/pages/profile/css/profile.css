@@ -88,9 +88,9 @@ a {
 		text-decoration: underline;
 	}
 
-h1, h2, p, a, span{
+/* h1, h2, p, a, span{
 	color: #fff;
-}
+} */
 	.scnd-font-color {
 		color: #9099b7;
 	}
@@ -98,7 +98,7 @@ h1, h2, p, a, span{
 .input-container {
 	position: relative;
 }
-	input[type=text]{
+	/* input[type=text]{
 		width: 260px;
 		height: 50px;
 		margin-left: 20px;
@@ -108,23 +108,22 @@ h1, h2, p, a, span{
 		color: #fff;
 		border: solid 1px #1f253d;
 		border-radius: 5px;		
-	}
-		input[type=text]::-webkit-input-placeholder { /* WebKit browsers */
-	   		color: #fff;	   		
+	} */
+		/* input[type=text]::-webkit-input-placeholder { 
 	   	}
-		input[type=text]:-moz-input-placeholder { /* Mozilla Firefox 4 to 18 */
+		input[type=text]:-moz-input-placeholder { 
 	   		color: #fff;	   
 	   	}
-		input[type=text]::-moz-input-placeholder { /* Mozilla Firefox 19+ */
+		input[type=text]::-moz-input-placeholder { 
 	   		color: #fff;
 	   	}
-		input[type=text]:-ms-input-placeholder { /* Internet Explorer 10+ */
+		input[type=text]:-ms-input-placeholder { 
 	   		color: #fff;	   	
 	   	}
 	   	input[type=text]:focus {
-	   		outline: none; /* removes the default orange border when focus */
+	   		outline: none;
 	   		border: 1px solid #11a8ab;
-	   	}
+	   	} */
 	.input-icon {
 		font-size: 22px;
 		position: absolute;
@@ -310,10 +309,10 @@ h1, h2, p, a, span{
 				vertical-align: middle;				
 			}
 	/** CONTAINERS **/
-	.container {
+	/* .container {
 		float: left;
 		width: 300px;
-	}
+	} */
 		.block {
 			margin-bottom: 25px;
 			background: #394264;
@@ -1075,4 +1074,7 @@ h1, h2, p, a, span{
 						line-height: 34px;
 						background: #e64c65;
 						border-radius: 100%;
+					}
+					.container3{
+						width: 300px;
 					}

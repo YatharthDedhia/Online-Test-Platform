@@ -1,0 +1,184 @@
+.line-chart-block {
+	height: 400px;
+	position: relative;
+	top: -450px;
+	right: -1200px;
+	border-radius: 6px;
+}
+
+.line-chart {
+	height: 200px;
+	background: #11a8ab;
+	border-radius: 6px;
+}
+
+/******************************************
+				LINE-CHART by @kseso https://codepen.io/Kseso/pen/phiyL
+				******************************************/
+.grafico {
+	padding: 2rem 1rem 1rem;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	color: #fff;
+	font-size: 80%;
+}
+
+.grafico span {
+	display: block;
+	position: absolute;
+	bottom: 3rem;
+	left: 2rem;
+	height: 0;
+	border-top: 2px solid;
+	-webkit-transform-origin: left center;
+	transform-origin: left center;
+}
+
+.grafico span>span {
+	left: 100%;
+	bottom: 0;
+}
+
+[data-valor='25'] {
+	width: 75px;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+[data-valor='8'] {
+	width: 24px;
+	-webkit-transform: rotate(65deg);
+	transform: rotate(65deg);
+}
+
+[data-valor='13'] {
+	width: 39px;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+[data-valor='5'] {
+	width: 15px;
+	-webkit-transform: rotate(50deg);
+	transform: rotate(50deg);
+}
+
+[data-valor='23'] {
+	width: 69px;
+	-webkit-transform: rotate(-70deg);
+	transform: rotate(-70deg);
+}
+
+[data-valor='12'] {
+	width: 36px;
+	-webkit-transform: rotate(75deg);
+	transform: rotate(75deg);
+}
+
+[data-valor='15'] {
+	width: 45px;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+[data-valor]:before {
+	content: '';
+	position: absolute;
+	display: block;
+	right: -4px;
+	bottom: -3px;
+	padding: 4px;
+	background: #fff;
+	border-radius: 50%;
+}
+
+[data-valor='23']:after {
+	content: '+' attr(data-valor) '%';
+	position: absolute;
+	right: -2.7rem;
+	top: -1.7rem;
+	padding: .3rem .5rem;
+	background: #50597B;
+	border-radius: .5rem;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+[class^='eje-'] {
+	position: absolute;
+	left: 0;
+	bottom: 0rem;
+	width: 100%;
+	padding: 1rem 1rem 0 2rem;
+	height: 80%;
+}
+
+.eje-x {
+	height: 2.5rem;
+}
+
+.eje-y li {
+	height: 25%;
+	border-top: 1px solid #777;
+}
+
+[data-ejeY]:before {
+	content: attr(data-ejeY);
+	display: inline-block;
+	width: 2rem;
+	text-align: right;
+	line-height: 0;
+	position: relative;
+	left: -2.5rem;
+	top: -.5rem;
+}
+
+.eje-x li {
+	width: 33%;
+	float: left;
+	text-align: center;
+}
+
+/******************************************
+				END LINE-CHART by @kseso https://codepen.io/Kseso/pen/phiyL
+				******************************************/
+.time-lenght {
+	padding-top: 22px;
+	padding-left: 38px;
+}
+
+.time-lenght-btn {
+	display: block;
+	width: 70px;
+	line-height: 32px;
+	background: #50597b;
+	border-radius: 5px;
+	font-size: 14px;
+	text-align: center;
+	margin-right: 5px;
+	-webkit-transition: background .3s;
+	transition: background .3s;
+}
+
+.time-lenght-btn:hover {
+	text-decoration: none;
+	background: #e64c65;
+}
+
+.month-data {
+	padding-top: 28px;
+}
+
+.month-data p {
+	display: inline-block;
+	margin: 0;
+	padding: 0 25px 15px;
+	font-size: 16px;
+}
+
+.month-data p:last-child {
+	padding: 0 25px;
+	float: right;
+	font-size: 15px;
+}

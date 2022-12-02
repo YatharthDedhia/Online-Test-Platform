@@ -173,7 +173,7 @@
   background-color: #76baff;
   height: 126%;
   border-radius: 3px;
-
+  /* filter: blur(5px); */
   padding-top: 10px;
 }
 

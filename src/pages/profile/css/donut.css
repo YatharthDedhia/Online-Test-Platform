@@ -1,0 +1,105 @@
+.donut-chart-block {
+	height: 434px;
+}
+
+.donut-chart-block .titular {
+	padding: 10px 0;
+}
+
+.donut-chart {
+	height: 270px;
+}
+
+/******************************************
+				DONUT-CHART by @kseso https://codepen.io/Kseso/pen/phiyL
+				******************************************/
+.donut-chart {
+	position: relative;
+	width: 200px;
+	height: 200px;
+	margin: 0 auto 2rem;
+	border-radius: 100%
+}
+
+p.center-date {
+	background: #394264;
+	position: absolute;
+	text-align: center;
+	font-size: 28px;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 130px;
+	height: 130px;
+	margin: auto;
+	border-radius: 50%;
+	line-height: 35px;
+	padding: 15% 0 0;
+}
+
+.center-date span.scnd-font-color {
+	line-height: 0;
+}
+
+.recorte {
+	border-radius: 50%;
+	clip: rect(0px, 200px, 200px, 100px);
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+.quesito {
+	border-radius: 50%;
+	clip: rect(0px, 100px, 200px, 0px);
+	height: 100%;
+	position: absolute;
+	width: 100%;
+	font-family: monospace;
+	font-size: 1.5rem;
+}
+
+#porcion1 {
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+#porcion1 .quesito {
+	background-color: #E64C65;
+	-webkit-transform: rotate(76deg);
+	transform: rotate(76deg);
+}
+
+#porcion2 {
+	-webkit-transform: rotate(76deg);
+	transform: rotate(76deg);
+}
+
+#porcion2 .quesito {
+	background-color: #11A8AB;
+	-webkit-transform: rotate(140deg);
+	transform: rotate(140deg);
+}
+
+#porcion3 {
+	-webkit-transform: rotate(215deg);
+	transform: rotate(215deg);
+}
+
+#porcion3 .quesito {
+	background-color: #4FC4F6;
+	-webkit-transform: rotate(113deg);
+	transform: rotate(113deg);
+}
+
+#porcionFin {
+	-webkit-transform: rotate(-32deg);
+	transform: rotate(-32deg);
+}
+
+#porcionFin .quesito {
+	background-color: #FCB150;
+	-webkit-transform: rotate(32deg);
+	transform: rotate(32deg);
+}

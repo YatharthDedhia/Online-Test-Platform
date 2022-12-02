@@ -1,0 +1,39 @@
+
+.os-percentages {
+	padding-top: 36px;
+}
+
+.os-percentages li {
+	width: 75px;
+	border-left: 1px solid #394264;
+	text-align: center;
+	background: #50597b;
+}
+
+.os {
+	margin: 0;
+	padding: 10px 0 5px;
+	font-size: 15px;
+}
+
+.os.ios {
+	border-top: 4px solid #e64c65;
+}
+
+.os.mac {
+	border-top: 4px solid #11a8ab;
+}
+
+.os.linux {
+	border-top: 4px solid #fcb150;
+}
+
+.os.win {
+	border-top: 4px solid #4fc4f6;
+}
+
+.os-percentage {
+	margin: 0;
+	padding: 0 0 15px 10px;
+	font-size: 25px;
+}

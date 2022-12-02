@@ -7,6 +7,8 @@ import './css/search.css'
 import './css/table.css'
 import './css/sidebar.css'
 import './css/calendar.css'
+import Popup from 'reactjs-popup';
+import { render } from 'react-dom';
 
 function Tabs() {
 	const [toggleState, setToggleState] = useState(1);
@@ -130,7 +132,7 @@ const mockTests = [
 	{
 		name: 'Periodic Test - DBMS',
 		link: 'asd-qwvs-dfs',
-		time: '20/11/2022 17:30',
+		time: '26/11/2022 20:30',
 		status: "unattempted"
 	},
 	{
@@ -201,21 +203,22 @@ const Navbar = () => {
 
 const Dashboard = () => {
 	const [date, setDate] = useState(new Date());
+	const [calendarText, setCalendarText] = useState();
+
+	const handleDateChange = (value) => {
+		setCalendarText(`${value.toDateString()}`);
+	};
+
 	return (
 		<React.Fragment>
 			<Navbar />
 			<div className="section-type-admin-dashboard">
 				<Tabs />
 				<div className="calendar">
-					<Calendar onChange={setDate} value={date} tileContent={
+					<Calendar onChange={setDate} value={date} onClickDay={handleDateChange} tileContent={
 						({ activeStartDate, date, view }) => {
 							return mockTests.map((test) => (
-								(view === 'month' && date.getDate() === parseInt(test.time.slice(0, 2)) && date.getMonth() === (parseInt(test.time.slice(3, 5)) - 1) && date.getYear() === (parseInt(test.time.slice(6, 10)) - 1900)) ? <p className='DateContent'
-								// onMouseEnter={
-								// 	// do whatever you want
-								// 	console.log()
-								// }
-								>{date.getDate()} Test Day {(test.time.slice(11, 16))}</p> : null))
+								(view === 'month' && date.getDate() === parseInt(test.time.slice(0, 2)) && date.getMonth() === (parseInt(test.time.slice(3, 5)) - 1) && date.getYear() === (parseInt(test.time.slice(6, 10)) - 1900)) ? <p className='DateContent' >{date.getDate()} Test Day {(test.time.slice(11, 16))}</p> : null))
 						}} />
 				</div>
 			</div >

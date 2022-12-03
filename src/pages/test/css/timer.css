@@ -1,5 +1,3 @@
-
-
 /* h1 {
     font-family: "Roboto";
     text-align: center;
@@ -37,9 +35,20 @@
     
   }
    */
-   .timer-wrapper {
-    display: flex;
-    margin-top: 5%;
-    margin-right: 5%;
-    justify-content: right;
-  }
+.image-capture{
+  border-radius: 10px;
+  position: absolute;
+  top: 50px;
+  right: 1240px;
+}
+
+.timer-wrapper {
+  display: flex;
+  margin-top: 5%;
+  margin-right: 5%;
+  justify-content: right;
+}
+
+.hide {
+  display: none;
+}

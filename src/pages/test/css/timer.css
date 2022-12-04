@@ -35,7 +35,7 @@
     
   }
    */
-.image-capture{
+.image-capture {
   border-radius: 10px;
   position: absolute;
   top: 50px;
@@ -51,4 +51,11 @@
 
 .hide {
   display: none;
+}
+
+.react-quiz-container{
+  width: 500px;
+  position: relative;
+  right: 200px;
+  height: 500px;
 }

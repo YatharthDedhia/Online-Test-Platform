@@ -1,9 +1,12 @@
 .menu-box {
 	height: 360px;
 	position: relative;
-	right: -20px;
-	top: -450px;
+	/* right: -400px;
+	top: -450px; */
+	/* justify-content: center; */
 	border-radius: 5px;
+	margin-left:137px;
+	
 }
 
 .menu-box .titular {

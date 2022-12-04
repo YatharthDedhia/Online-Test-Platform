@@ -7,20 +7,7 @@ import React, { useState } from 'react';
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 import './css/timer.css';
-
-const renderTime = ({ remainingTime }) => {
-  if (remainingTime === 0) {
-    return <div className="timer">Too late...</div>;
-  }
-
-  return (
-    <div className="timer">
-      <div className="text">Remaining</div>
-      <div className="value">{remainingTime}</div>
-      <div className="text">seconds</div>
-    </div>
-  );
-};
+import { registry } from 'chart.js';
 
 export const quizzz = {
   "nrOfQuestions": "4",
@@ -124,7 +111,6 @@ const children = ({ remainingTime }) => {
   const hours = Math.floor(remainingTime / 3600)
   const minutes = Math.floor((remainingTime % 3600) / 60)
   const seconds = remainingTime % 60
-
   return `${hours}:${minutes}:${seconds}`
 }
 
@@ -164,105 +150,123 @@ const WebLiveCapture = () => {
   );
 };
 
-// const Quizz = () => {
-//   const questions = [
-//     {
-//       questionText: 'What is the capital of France?',
-//       answerOptions: [
-//         { answerText: 'New York', isCorrect: false },
-//         { answerText: 'London', isCorrect: false },
-//         { answerText: 'Paris', isCorrect: true },
-//         { answerText: 'Dublin', isCorrect: false },
-//       ],
-//     },
-//     {
-//       questionText: 'Who is CEO of Tesla?',
-//       answerOptions: [
-//         { answerText: 'Jeff Bezos', isCorrect: false },
-//         { answerText: 'Elon Musk', isCorrect: true },
-//         { answerText: 'Bill Gates', isCorrect: false },
-//         { answerText: 'Tony Stark', isCorrect: false },
-//       ],
-//     },
-//     {
-//       questionText: 'The iPhone was created by which company?',
-//       answerOptions: [
-//         { answerText: 'Apple', isCorrect: true },
-//         { answerText: 'Intel', isCorrect: false },
-//         { answerText: 'Amazon', isCorrect: false },
-//         { answerText: 'Microsoft', isCorrect: false },
-//       ],
-//     },
-//     {
-//       questionText: 'How many Harry Potter books are there?',
-//       answerOptions: [
-//         { answerText: '1', isCorrect: false },
-//         { answerText: '4', isCorrect: false },
-//         { answerText: '6', isCorrect: false },
-//         { answerText: '7', isCorrect: true },
-//       ],
-//     },
-//   ];
+const Quizz = () => {
+  const questions = [
+    {
+      questionText: 'What is the capital of France?',
+      answerOptions: [
+        { answerText: 'New York', isCorrect: false },
+        { answerText: 'London', isCorrect: false },
+        { answerText: 'Paris', isCorrect: true },
+        { answerText: 'Dublin', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'Who is CEO of Tesla?',
+      answerOptions: [
+        { answerText: 'Jeff Bezos', isCorrect: false },
+        { answerText: 'Elon Musk', isCorrect: true },
+        { answerText: 'Bill Gates', isCorrect: false },
+        { answerText: 'Tony Stark', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'The iPhone was created by which company?',
+      answerOptions: [
+        { answerText: 'Apple', isCorrect: true },
+        { answerText: 'Intel', isCorrect: false },
+        { answerText: 'Amazon', isCorrect: false },
+        { answerText: 'Microsoft', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'How many Harry Potter books are there?',
+      answerOptions: [
+        { answerText: '1', isCorrect: false },
+        { answerText: '4', isCorrect: false },
+        { answerText: '6', isCorrect: false },
+        { answerText: '7', isCorrect: true },
+      ],
+    },
+  ];
 
-//   const [currentQuestion, setCurrentQuestion] = useState(0);
-//   const [showScore, setShowScore] = useState(false);
-//   const [score, setScore] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentAns, setCurrentAns] = useState(0);
+  const [showScore, setShowScore] = useState(false);
+  const [score, setScore] = useState(0);
 
-//   const handleAnswerOptionClick = (isCorrect) => {
-//     if (isCorrect) {
-//       setScore(score + 1);
-//     }
+  const handleAnswerOptionClick = (isCorrect) => {
+    if (isCorrect) {
+      setScore(score + 1);
+    }
 
-//     const nextQuestion = currentQuestion + 1;
-//     if (nextQuestion < questions.length) {
-//       setCurrentQuestion(nextQuestion);
-//     } else {
-//       setShowScore(true);
-//     }
-//   };
-//   return (
-//     <div className='quizz-app'>
-//       {showScore ? (
-//         <div className='score-section'>
-//           You scored {score} out of {questions.length}
-//         </div>
-//       ) : (
-//         <>
-//           <div className='question-section'>
-//             <div className='question-count'>
-//               <span>Question {currentQuestion + 1}</span>/{questions.length}
-//             </div>
-//             <div className='question-text'>{questions[currentQuestion].questionText}</div>
-//           </div>
-//           <div className='answer-section'>
-//             {questions[currentQuestion].answerOptions.map((answerOption) => (
-//               <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
-//             ))}
-//           </div>
-//         </>
-//       )}
-//     </div>
-//   );
-// }
+    const nextQuestion = currentQuestion + 1;
+    if (nextQuestion > questions.length) {
+      setShowScore(true);
+      // setCurrentQuestion(nextQuestion);
+    }
+  };
+
+  const goNext = () => {
+    if (currentQuestion + 1 < questions.length) {
+      setCurrentQuestion(currentQuestion + 1);
+    }
+    else {
+      setShowScore(true);
+    }
+  }
+
+  const goPrev = () => {
+    if (currentQuestion - 1 >= 0) {
+      setCurrentQuestion(currentQuestion - 1);
+    }
+  }
+
+  return (
+    <div className='quizz-app'>
+      {showScore ? (
+        <div className='score-section'>
+          You scored {score} out of {questions.length}
+        </div>
+      ) : (
+        <>
+          <div className='question-section'>
+            <div className='question-count'>
+              <span>Question {currentQuestion + 1}</span>/{questions.length}
+            </div>
+            <div className='question-text'>{questions[currentQuestion].questionText}</div>
+          </div>
+          <div className='answer-section'>
+            {questions[currentQuestion].answerOptions.map((answerOption) => (
+              <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+            ))}
+          </div>
+          <button className='nextbutton' onClick={() => goNext()}>Next</button>
+          <button className='prevbutton' onClick={() => goPrev()}>Previous</button>
+        </>
+      )}
+    </div>
+  );
+}
 
 const Test = () => {
   return (
     <div className="timer-wrapper">
-      <Quiz quiz={quizzz} shuffle={true}/>
-      {/* <Quizz /> */}
+      {/* <Quiz quiz={quizzz} shuffle={true}/> */}
+      <Quizz />
       <CountdownCircleTimer
         isPlaying
-        duration={60}
+        duration={10}
         colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
         colorsTime={[60, 0.6 * 60, 0.3 * 60, 0]}
-      //   onComplete={() => ({ shouldRepeat: true, delay: 1 })}
+        // onComplete={() => (setShowScore(true))}
       >
         {children}
       </CountdownCircleTimer>
       <div className="image-capture">
         <WebLiveCapture />
       </div>
-    </div>
+    </div >
   );
 };
 export default Test;

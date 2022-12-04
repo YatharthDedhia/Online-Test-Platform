@@ -37,6 +37,12 @@
     display: flex;
     font-size: 24px;
     align-items: center;
+    color: #ffffff;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    top: 200px;
+    right: -150px;
 }
 
 /* QUESTION/TIMER/LEFT SECTION */
@@ -64,6 +70,10 @@
     justify-content: center;
     text-align: center;
     align-items: center;
+    position: relative;
+    top: 100px;
+    right: 60px;
+    font-size: 30px;
 }
 
 .timer-text {
@@ -83,7 +93,7 @@
     height: fit-content;
     flex-direction: row;
     justify-content: space-between;
-    position:relative;
+    position: relative;
     top: 200px;
     width: 100%;
 }
@@ -121,4 +131,21 @@ button:focus {
 
 button svg {
     margin-right: 5px;
+}
+
+.react-quiz-container {
+    width: 500px;
+    position: relative;
+    right: 200px;
+    height: 500px;
+}
+
+.nextbutton {
+    position: relative;
+    top: 250px;
+}
+
+.prevbutton {
+    position: relative;
+    top: 255px;
 }

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Popup from 'reactjs-popup';
 import './css/landing.css';
 import './css/features.css';
@@ -9,6 +10,8 @@ import anima from '../../Images/anima.png';
 import improve from '../../Images/improve.png';
 import lecture from '../../Images/lecture.jpg';
 import proctor1 from '../../Images/proctor1.jpg';
+// import { response } from 'express';
+
 const featureList = [
 	'Face Verification',
 	'Multiple People Detection',
@@ -17,6 +20,31 @@ const featureList = [
 	'Full Screen Check',
 	'Multiple Tabs Check'
 ];
+
+function StudentsInfo() {
+	const url = "https://viveksem3apiv4.azurewebsites.net/api/studentsinfo/";
+
+	const [posts, setPosts] = useState([]);
+
+	useEffect(() => {
+		axios
+			.get('https://jsonplaceholder.typicode.com/posts?_limit=10')
+			.then((response) => {
+				setPosts(response.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
+
+	return (
+		<div>
+			<h1>
+				hello
+			</h1>
+		</div>
+	);
+}
 
 const NavLinks = () => (
 	<React.Fragment>
@@ -70,7 +98,7 @@ const Landing = () => {
 	return (
 		<React.Fragment>
 			<Navbar />
-
+			<StudentsInfo />
 			<div className="section-type-landing-page">
 
 				{/* <div className="features-content">
@@ -134,7 +162,7 @@ const Landing = () => {
 					</div>
 				</div>
 				{/* m */}
-				 {/* <div className="final-features">
+				{/* <div className="final-features">
 					<div className="top-sec">
 						<div className="left-text">
 							<h3 className="gradient-text">
@@ -153,7 +181,7 @@ const Landing = () => {
 						</div>
 					</div>
 				</div> */}
-				
+
 				<div className='container'>
 					<div className='SignUpBox'>
 						<form>
@@ -203,7 +231,7 @@ const Landing = () => {
 						<h2 className="title-heading">Key Features of our website</h2>
 					</div>
 				</div>
-				 {/* <div className="final-features">
+				{/* <div className="final-features">
 	<div className="top-sec">
 		<div className="left-text">
 			<h3 className="gradient-text">
@@ -274,12 +302,12 @@ const Landing = () => {
 	</div>
 </div>
 </div> */}
-</div>
+			</div>
 
-<footer className="Footer">Copyright © 2022 All rights reserved.</footer>
-</React.Fragment>
+			<footer className="Footer">Copyright © 2022 All rights reserved.</footer>
+		</React.Fragment>
 
-);
+	);
 };
 
 export default Landing;

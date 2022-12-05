@@ -10,7 +10,6 @@ import anima from '../../Images/anima.png';
 import improve from '../../Images/improve.png';
 import lecture from '../../Images/lecture.jpg';
 import proctor1 from '../../Images/proctor1.jpg';
-// import { response } from 'express';
 
 const featureList = [
 	'Face Verification',
@@ -22,20 +21,20 @@ const featureList = [
 ];
 
 function StudentsInfo() {
-	const url = "https://viveksem3apiv4.azurewebsites.net/api/studentsinfo/";
+	const url = "https://viveksem3apiv4.azurewebsites.net/api/studentsinfo/76";
 
 	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
 		axios
-			.get('https://jsonplaceholder.typicode.com/posts?_limit=10')
+			.get(url)
 			.then((response) => {
-				setPosts(response.data);
+				console.log(response.data);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-	}, []);
+	}, [url]);
 
 	return (
 		<div>

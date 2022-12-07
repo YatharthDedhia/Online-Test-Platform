@@ -20,30 +20,39 @@ const featureList = [
 	'Multiple Tabs Check'
 ];
 
-function StudentsInfo() {
-	const url = "https://viveksem3apiv4.azurewebsites.net/api/studentsinfo/76";
+// function StudentsInfo() {
+// 	const url = "https://viveksem3apiv4.azurewebsites.net/api/studentsinfo";
 
-	const [posts, setPosts] = useState([]);
+// 	const [posts, setPosts] = useState([]);
 
-	useEffect(() => {
-		axios
-			.get(url)
-			.then((response) => {
-				console.log(response.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}, [url]);
+// 	useEffect(() => {
+// 		axios
+// 			.get(url)
+// 			.then((response) => {
+// 				var text=(response.data);
+// 				const text1=JSON.stringify(text[0][0]);
+// 				console.log(text1);
+// 				const obj = JSON.parse(text1, function (key, value) {
+// 					// if(=="StudentName")
+// 					// console.log("Yes");
+// 					// else
+// 					// console.log("NO");
+					
+// 				  });
+// 			})
+// 			.catch((err) => {
+// 				console.log(err);
+// 			});
+// 	}, [url]);
 
-	return (
-		<div>
-			<h1>
-				hello
-			</h1>
-		</div>
-	);
-}
+// 	return (
+// 		<div>
+// 			<h1>
+// 				hello
+// 			</h1>
+// 		</div>
+// 	);
+// }
 
 const NavLinks = () => (
 	<React.Fragment>
@@ -93,7 +102,38 @@ const Landing = () => {
 	const [password, setPassword] = useState('');
 	const [confpassword, setConfPassword] = useState('');
 	const [admin, setAdmin] = useState('');
-
+	function StudentsInfo() {
+		const url = "https://viveksem3apiv4.azurewebsites.net/api/studentsinfo";
+	
+		const [posts, setPosts] = useState([]);
+	
+		useEffect(() => {
+			axios
+				.get(url)
+				.then((response) => {
+					var text=(response.data);
+					const text1=JSON.stringify(text[0][0]);
+					console.log(text1);
+					const obj = JSON.parse(text1, function (key, value) {
+						console.log(email);
+						if(key=="StudentName"&&value==email)
+						console.log("Yes");
+						
+					  });
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}, [url]);
+	
+		return (
+			<div>
+				<h1>
+					hello
+				</h1>
+			</div>
+		);
+	}
 	return (
 		<React.Fragment>
 			<Navbar />

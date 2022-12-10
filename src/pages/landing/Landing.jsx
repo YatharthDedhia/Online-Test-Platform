@@ -21,7 +21,7 @@ const featureList = [
 ];
 
 // function StudentsInfo() {
-// 	const url = "https://viveksem3apiv4.azurewebsites.net/api/studentsinfo";
+// 	const url = "http://lmsapiv01.azurewebsites.net/api/usertable";
 
 // 	const [posts, setPosts] = useState([]);
 
@@ -29,16 +29,7 @@ const featureList = [
 // 		axios
 // 			.get(url)
 // 			.then((response) => {
-// 				var text=(response.data);
-// 				const text1=JSON.stringify(text[0][0]);
-// 				console.log(text1);
-// 				const obj = JSON.parse(text1, function (key, value) {
-// 					// if(=="StudentName")
-// 					// console.log("Yes");
-// 					// else
-// 					// console.log("NO");
-					
-// 				  });
+// 				console.log(response.data);
 // 			})
 // 			.catch((err) => {
 // 				console.log(err);
@@ -48,7 +39,7 @@ const featureList = [
 // 	return (
 // 		<div>
 // 			<h1>
-// 				hello
+// 				{/* hello */}
 // 			</h1>
 // 		</div>
 // 	);
@@ -100,84 +91,42 @@ const Landing = () => {
 	const postData = (e) => {
 		e.preventDefault();
 		console.log(e);
-		const sendData = {
-			StudentName: "abcde",
-			LastName: "vgker",
-			PhoneNo: "9324017811",
-			AddressofStudent: "Malad",
-			City: "Mumbai",
-			Country: "India",
-			password: "egrger"
-		};
-		console.log(sendData);
-		// let axiosConfig = {
-		// 	headers: {
-		// 		// "Cookie":"ARRAffinity=bcfc7242d88e7b13ea26ede32346e0037fd109b8fc0d7a0f5dc0f6e2b821fab0",
-		// 		// "Postman-Token":"<calculated when request is sent>",
-		// 		// "Accept":"/",
-		// 		// "Accept-Encoding":"gzip, deflate, br",
-		// 		// "User-Agent":"PostmanRuntime/7.29.2",
-		// 		// "Host":"<calculated when request is sent>",
-		// 		// "Content-Length":"<calculated when request is sent>",
-		// 		// "Connection":"application/json",
-		// 		// "Content-Type":"application/json"
-		// 	}
-		// };
-		const options = {
-			method: "POST",
-			headers: {
-				"Connection": "application/json",
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify(sendData)
-		};
-		// axios.post('https://viveksem3apiv4.azurewebsites.net/api/studentsinfo/', axiosConfig, sendData).then(result => { console.log(result.data) });
 
-		fetch('https://viveksem3apiv4.azurewebsites.net/api/studentsinfo/', options).then(result => { console.log(result.data) });
+		const sendData = {
+			"UserId": 18,
+			"UserName": "YatharthDedhia",
+			"Password": "abcdepassword",
+			"FirstName": "Yatharth",
+			"LastName": "Dedhia",
+			"EmailId": "yatharth@gmail.com",
+			"MobileNo": 123456890,
+			"LastLoginDateTime": "2022-11-27T00:00:00.000Z",
+			"DateOfBirth": "1974-07-13T00:00:00.000Z",
+			"Age": 26,
+			"TypeId": 1,
+			"ActivationStatus": null
+		};
+
+		console.log(sendData);
+
+		axios.post('http://lmsapiv01.azurewebsites.net/api/usertable', sendData).then(result => { console.log(result.data) });
 	}
-	
+
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+	const [confpassword, setConfPassword] = useState('');
 	const [firstname, setFirstName] = useState('');
 	const [lastname, setLastName] = useState('');
 	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [confpassword, setConfPassword] = useState('');
-	const [admin, setAdmin] = useState('');
-	function StudentsInfo() {
-		const url = "https://viveksem3apiv4.azurewebsites.net/api/studentsinfo";
-	
-		const [posts, setPosts] = useState([]);
-	
-		useEffect(() => {
-			axios
-				.get(url)
-				.then((response) => {
-					var text=(response.data);
-					const text1=JSON.stringify(text[0][0]);
-					console.log(text1);
-					const obj = JSON.parse(text1, function (key, value) {
-						console.log(email);
-						if(key=="StudentName"&&value==email)
-						console.log("Yes");
-						
-					  });
-				})
-				.catch((err) => {
-					console.log(err);
-				});
-		}, [url]);
-	
-		return (
-			<div>
-				<h1>
-					hello
-				</h1>
-			</div>
-		);
-	}
+	const [mobile, setMobile] = useState('');
+	const [dob, setDOB] = useState('');
+	const [age, setAge] = useState('');
+	const [type, setType] = useState('');
+
 	return (
 		<React.Fragment>
 			<Navbar />
-			<StudentsInfo />
+			{/* <StudentsInfo /> */}
 			<div className="section-type-landing-page">
 
 				{/* <div className="features-content">
@@ -196,6 +145,7 @@ const Landing = () => {
 					</div>
 				</div> */}
 				{/* m */}
+				
 				<div className="section-fluid-main">
 					<div className="section-row">
 						<div className="section-col">

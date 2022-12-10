@@ -194,9 +194,11 @@ const Quizz = () => {
   const [currentAns, setCurrentAns] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
+  const [AnsOption, setAnsOption] = useState(0);
 
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
+      setScore(0);
       setScore(score + 1);
     }
 
@@ -238,10 +240,10 @@ const Quizz = () => {
           </div>
           <div className='answer-section'>
             {questions[currentQuestion].answerOptions.map((answerOption) => (
-              <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+              <button type='radio' onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
             ))}
           </div>
-          <button className='nextbutton' onClick={() => goNext()}>Next</button>
+          <button className='nextbutton' onClick={() => goNext() }>Next</button>
           <button className='prevbutton' onClick={() => goPrev()}>Previous</button>
         </>
       )}

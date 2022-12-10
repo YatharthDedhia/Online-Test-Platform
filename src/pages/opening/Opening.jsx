@@ -10,7 +10,7 @@ const Opening = () => {
 			<div className="untitled__slideContent">
 				<span>Good</span> 
 				<span>Luck</span>
-				<a className="button" href="https://unsplash.com/@scoutthecity" target="/black">Sign Up</a>
+				<a className="button" href="/" target="/black">Sign Up</a>
 			</div>
 		</div>
 		<div className="untitled__slide">
@@ -19,7 +19,7 @@ const Opening = () => {
 				
 				<span>We Got</span> 
 				<span>This Covered</span>
-				<a className="button" href="https://unsplash.com/@madbyte" target="/black">Sign Up</a>
+				<a className="button" href="/" target="/black">Sign Up</a>
 			</div>
 		</div>
 		<div className="untitled__slide">
@@ -27,7 +27,7 @@ const Opening = () => {
 			<div className="untitled__slideContent">
 				<span> An Online Test Platform</span> 
 				<span>for All your Competitive Exams</span>
-				<a className="button" href="https://unsplash.com/@maicoamorim" target="/black">Sign Up</a>
+				<a className="button" href="/" target="/black">Sign Up</a>
 			</div>
 		</div>
 		<div className="untitled__slide">
@@ -35,7 +35,7 @@ const Opening = () => {
 			<div className="untitled__slideContent">
 				<span>Today you show this Test</span> 
 				<span>who the Boss is</span>
-				<a className="button" href="https://unsplash.com/@mariocalvo" target="/black">Sign Up</a>
+				<a className="button" href="/" target="/black">Sign Up</a>
 			</div>
 		</div>
 	</div>

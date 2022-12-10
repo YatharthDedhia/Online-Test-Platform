@@ -21,6 +21,7 @@
 	align-items: center;
 	text-align: center;
 	transform: translate(-50%, -50%);
+	color: #00008b
 }
 
 .SignUpBox h1 {
@@ -38,7 +39,7 @@
 	text-align: center;
 	padding-top: 0.9rem;
 	font-size: 1rem;
-	color: #EB9486;
+	color:  #00008b;
 }
 
 .AskLogin button {
@@ -59,7 +60,7 @@
 	margin-bottom: 60px;
 	margin-left: auto;
 	margin-right: auto;
-	background-color: #EB9486;
+	background-color:  #00008b;
 	color: #fff;
 	border-radius: 4px;
 	border: none;

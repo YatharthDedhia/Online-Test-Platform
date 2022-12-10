@@ -21,7 +21,7 @@ const featureList = [
 ];
 
 function StudentsInfo() {
-	const url = "https://viveksem3apiv4.azurewebsites.net/api/studentsinfo/76";
+	const url = "https://viveksem3apiv4.azurewebsites.net/api/studentsinfo/";
 
 	const [posts, setPosts] = useState([]);
 
@@ -39,7 +39,7 @@ function StudentsInfo() {
 	return (
 		<div>
 			<h1>
-				hello
+				{/* hello */}
 			</h1>
 		</div>
 	);
@@ -85,8 +85,48 @@ const CommonInput = ({ placeholderText = 'Input', value, onChange }) => {
 	);
 };
 
+
 const Landing = () => {
 
+	const postData = (e) => {
+		e.preventDefault();
+		console.log(e);
+		const sendData = {
+			StudentName: "abcde",
+			LastName: "vgker",
+			PhoneNo: "9324017811",
+			AddressofStudent: "Malad",
+			City: "Mumbai",
+			Country: "India",
+			password: "egrger"
+		};
+		console.log(sendData);
+		// let axiosConfig = {
+		// 	headers: {
+		// 		// "Cookie":"ARRAffinity=bcfc7242d88e7b13ea26ede32346e0037fd109b8fc0d7a0f5dc0f6e2b821fab0",
+		// 		// "Postman-Token":"<calculated when request is sent>",
+		// 		// "Accept":"/",
+		// 		// "Accept-Encoding":"gzip, deflate, br",
+		// 		// "User-Agent":"PostmanRuntime/7.29.2",
+		// 		// "Host":"<calculated when request is sent>",
+		// 		// "Content-Length":"<calculated when request is sent>",
+		// 		// "Connection":"application/json",
+		// 		// "Content-Type":"application/json"
+		// 	}
+		// };
+		const options = {
+			method: "POST",
+			headers: {
+				"Connection": "application/json",
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(sendData)
+		};
+		// axios.post('https://viveksem3apiv4.azurewebsites.net/api/studentsinfo/', axiosConfig, sendData).then(result => { console.log(result.data) });
+
+		fetch('https://viveksem3apiv4.azurewebsites.net/api/studentsinfo/', options).then(result => { console.log(result.data) });
+	}
+	
 	const [firstname, setFirstName] = useState('');
 	const [lastname, setLastName] = useState('');
 	const [email, setEmail] = useState('');
@@ -183,7 +223,7 @@ const Landing = () => {
 
 				<div className='container'>
 					<div className='SignUpBox'>
-						<form>
+						<form onSubmit={postData}>
 							<h1 className="Heading">Sign-Up</h1>
 							<div className='FirstLast'>
 								<input className='FirstName' value={firstname} onChange={(e) => setFirstName(e.target.value)} type="text" placeholder='First Name' />
@@ -203,6 +243,7 @@ const Landing = () => {
 									<input type="radio" value={firstname} onChange={(e) => setFirstName(e.target.value)} name="checked"></input>Institute
 								</label>
 							</div>
+							<button type='submit' className='bubbly-button'>Sign Up</button>
 						</form>
 						<div className='AskLogin'>
 							<Popup trigger={<button className='LoginButton' className='AskLogin' >Already Registered? Login </button>}
@@ -226,7 +267,6 @@ const Landing = () => {
 							</Popup>
 						</div>
 
-						<button className='bubbly-button'>Sign Up</button>
 						<h2 className="title-heading">Key Features of our website</h2>
 					</div>
 				</div>

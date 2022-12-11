@@ -87,22 +87,28 @@
 
 .FirstName {
 	border-top-right-radius: 0rem;
+	border: none;
+
 }
 
 .LastName {
 	border-top-left-radius: 0rem;
+	border: none;
+
 }
 
 .EMail {
 	border-radius: 0rem;
 	display: block;
 	margin-left: 0px;
-
+	width: 100%;
+	border: none;
 }
 
 .Username {
 	border-radius: 0rem;
 	display: block;
+	border: none;
 	margin-left: 0px;
 }
 
@@ -110,7 +116,7 @@
 	border-radius: 0rem;
 	display: block;
 	margin-left: 0px;
-
+	border: none;
 }
 
 .Password {
@@ -122,20 +128,49 @@
 	border-top-right-radius: 0rem;
 }
 
-.Checkbox {
+.selector {
+	position: relative;
 	display: flex;
-	align-items: center;
+	justify-content: space-around;
+	border-radius: 9999px;
+}
+
+.selector-item {
+	position: relative;
+	flex-basis: calc(70% / 3);
+	height: 100%;
+	display: flex;
 	justify-content: center;
-	font-size: 1rem;
-	margin-top: 0.5rem;
+	align-items: center;
 }
 
-.Checkbox input {
-	margin: 0%;
+.selector-item_radio {
+	appearance: none;
+	display: none;
 }
 
-.RadioCheck {
-	display: flex;
-	padding: 1.5rem;
-	/* border: 2px solid red; */
+.selector-item_label {
+	position: relative;
+	height: 80%;
+	width: 100%;
+	text-align: center;
+	border-radius: 10px;
+	transition-duration: .2s;
+	transition-property: transform, color, box-shadow;
+	transform: none;
+}
+
+.selector-item_radio:checked+.selector-item_label {
+	background-color: #00008b;
+	color: white;
+}
+
+@media (max-width:480px) {
+	.selector {
+		width: 90%;
+	}
+}
+
+.ReEnter{
+	color: red;
 }

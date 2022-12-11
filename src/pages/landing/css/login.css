@@ -1,11 +1,10 @@
 .Logincontainer {
-	/* padding: 35px; */
-	margin: -402px -250px;
-	width: 500px;
-	height: 510px;
-	background-color: #F9F8F8;
-	border-radius: 5px;
-	color: #00008b;
+	margin: -546px -254px;
+    width: 484px;
+    height: 545px;
+    background-color: #F9F8F8;
+    border-radius: 5px;
+    color: #00008b;
 }
 
 .Login {
@@ -30,4 +29,12 @@
 .PasswordLogin {
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
+}
+.Alert h1{
+	color: red;
+    margin-top: 123px;
+    width: 399px;
+    position: absolute;
+    font-size: medium;
+    margin-left: -308px;
 }

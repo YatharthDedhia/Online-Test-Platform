@@ -11,7 +11,7 @@ import improve from '../../Images/improve.png';
 import lecture from '../../Images/lecture.jpg';
 import proctor1 from '../../Images/proctor1.jpg';
 import { Navigate, useNavigate } from 'react-router';
- 
+
 const featureList = [
 	'Face Verification',
 	'Multiple People Detection',
@@ -34,7 +34,7 @@ const NavLinks = () => (
 		</p>
 	</React.Fragment>
 );
- 
+
 const Navbar = () => {
 	return (
 		<div className="landing-navbar">
@@ -49,14 +49,14 @@ const Navbar = () => {
 };
 
 const Landing = () => {
-	const[flag,setFlag]=useState(0);
+	const [flag, setFlag] = useState(0);
 	const StudentsInfo = (e) => {
 		e.preventDefault();
 		const url = "http://lmsapiv01.azurewebsites.net/api/usertable";
 		axios
 			.get(url)
 			.then((response) => {
- 
+
 				for (let i = 0; i < response.data[0].length; i++) {
 					if (email == response.data[0][i].EmailId && password == response.data[0][i].Password) {
 						console.log("UserId" + response.data[0][i].UserId);
@@ -66,18 +66,17 @@ const Landing = () => {
 
 						window.location.replace("dashboard")
 					}
-					else
-					{
+					else {
 						setFlag(1);
 					}
 				}
- 
+
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	}
- 
+
 	const postData = (e) => {
 		e.preventDefault();
 		if (password == confpassword) {
@@ -197,31 +196,31 @@ const Landing = () => {
 							{confirm ? <div className='ReEnter'>Confirm same password</div> : null}
 							<button type='submit' className='bubbly-button'>Sign Up</button>
 						</form>
- 
+
 						<div className='AskLogin'>
 							<Popup trigger={<button className='LoginButton' className='AskLogin' >Already Registered? Login </button>}
 								position="center">
 								<div className='Logincontainer'>
 									<div className='Login'>
-										<h1>Login</h1>
+										<h1 className='LoginH1'>Login</h1>
 										<form onSubmit={StudentsInfo}>
 
-											<input className='EMailLogin' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder='E-Mail ID' />
-											
+											<input className='EMailLogin' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='E-Mail ID' />
+
 											<input className='PasswordLogin' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
 
 											<div class="selector">
 												<div class="selector-item">
-													<input type="radio" id="radio1" name="selector" class="selector-item_radio" checked />
+													<input type="radio" id="radio1" name="selector" value="2" class="selector-item_radio" onClick={(e) => setType(e.target.value)} />
 													<label for="radio1" class="selector-item_label">Student</label>
 												</div>
 												<div class="selector-item">
-													<input type="radio" id="radio2" name="selector" class="selector-item_radio" />
+													<input type="radio" id="radio2" name="selector" value="1" class="selector-item_radio" onClick={(e) => setType(e.target.value)} />
 													<label for="radio2" class="selector-item_label">Institute</label>
 												</div>
 											</div>
-											<div className="Alert">{flag===1 ? <h1>Email or Password is incorrect.Please try again.</h1>:null}</div>
-											<button type='submit' className='bubbly-button'>Confirm</button>
+											<div className="Alert"><h1>Email or Password is incorrect.Please try again.</h1></div>
+											<button type='submit' className='bubbly-button-login'>Confirm</button>
 										</form>
 									</div>
 								</div>
@@ -231,11 +230,11 @@ const Landing = () => {
 					</div>
 				</div>
 			</div>
- 
+
 			<footer className="Footer">Copyright © 2022 All rights reserved.</footer>
 		</React.Fragment>
- 
+
 	);
 };
 //  export  const flag=flag;
-export  default Landing;
+export default Landing;

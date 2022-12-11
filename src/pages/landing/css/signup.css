@@ -37,6 +37,8 @@
 
 .AskLogin {
 	position:absolute;
+	top: 285px;
+	/* right: 25px; */
 	text-align: center;
 	padding-top: 0.9rem;
 	font-size: 1rem;
@@ -69,6 +71,9 @@
 	border-radius: 4px;
 	border: none;
 	cursor: pointer;
+	position: absolute;
+	top: 450px;
+	right: 115px;
 }
 
 .bubbly-button:hover {

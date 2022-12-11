@@ -10,6 +10,7 @@ import anima from '../../Images/anima.png';
 import improve from '../../Images/improve.png';
 import lecture from '../../Images/lecture.jpg';
 import proctor1 from '../../Images/proctor1.jpg';
+import { Navigate, useNavigate } from 'react-router';
 
 const featureList = [
 	'Face Verification',
@@ -20,30 +21,7 @@ const featureList = [
 	'Multiple Tabs Check'
 ];
 
-// function StudentsInfo() {
-// 	const url = "http://lmsapiv01.azurewebsites.net/api/usertable";
 
-// 	const [posts, setPosts] = useState([]);
-
-// 	useEffect(() => {
-// 		axios
-// 			.get(url)
-// 			.then((response) => {
-// 				console.log(response.data);
-// 			})
-// 			.catch((err) => {
-// 				console.log(err);
-// 			});
-// 	}, [url]);
-
-// 	return (
-// 		<div>
-// 			<h1>
-// 				{/* hello */}
-// 			</h1>
-// 		</div>
-// 	);
-// }
 
 const NavLinks = () => (
 	<React.Fragment>
@@ -87,24 +65,41 @@ const CommonInput = ({ placeholderText = 'Input', value, onChange }) => {
 
 
 const Landing = () => {
+	const StudentsInfo = (e) => {
+		e.preventDefault();
+		const url = "http://lmsapiv01.azurewebsites.net/api/usertable";
+		axios
+			.get(url)
+			.then((response) => {
+
+				for (let i = 0; i < response.data[0].length; i++) {
+					if (email == response.data[0][i].EmailId && password == response.data[0][i].Password) {
+						console.log("UserId" + response.data[0][i].UserId)
+						window.location.replace("dashboard")
+					}
+				}
+
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}
 
 	const postData = (e) => {
 		e.preventDefault();
-		console.log(e);
 
 		const sendData = {
-			"UserId": 18,
-			"UserName": "YatharthDedhia",
-			"Password": "abcdepassword",
-			"FirstName": "Yatharth",
-			"LastName": "Dedhia",
-			"EmailId": "yatharth@gmail.com",
-			"MobileNo": 123456890,
+			"UserName": username,
+			"Password": password,
+			"FirstName": firstname,
+			"LastName": lastname,
+			"EmailId": email,
+			"MobileNo": parseInt(mobile),
 			"LastLoginDateTime": "2022-11-27T00:00:00.000Z",
 			"DateOfBirth": "1974-07-13T00:00:00.000Z",
 			"Age": 26,
 			"TypeId": 1,
-			"ActivationStatus": null
+			"ActivationStatus": false
 		};
 
 		console.log(sendData);
@@ -126,7 +121,6 @@ const Landing = () => {
 	return (
 		<React.Fragment>
 			<Navbar />
-			{/* <StudentsInfo /> */}
 			<div className="section-type-landing-page">
 
 				{/* <div className="features-content">
@@ -145,7 +139,7 @@ const Landing = () => {
 					</div>
 				</div> */}
 				{/* m */}
-				
+
 				<div className="section-fluid-main">
 					<div className="section-row">
 						<div className="section-col">
@@ -221,6 +215,8 @@ const Landing = () => {
 							</div>
 
 							<input className='EMail' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder='E-Mail ID' />
+							<input className='mobile' value={mobile} onChange={(e) => setMobile(e.target.value)} placeholder='Mobile No.' />
+							<input className='Username' value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder='Username' />
 							<input className='Password' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
 							<input className='ConfirmPassword' value={confpassword} onChange={(e) => setConfPassword(e.target.value)} type="password" placeholder='Confirm Password' />
 
@@ -235,23 +231,26 @@ const Landing = () => {
 							</div>
 							<button type='submit' className='bubbly-button'>Sign Up</button>
 						</form>
+
 						<div className='AskLogin'>
 							<Popup trigger={<button className='LoginButton' className='AskLogin' >Already Registered? Login </button>}
 								position="center">
 								<div className='Logincontainer'>
 									<div className='Login'>
 										<h1>Login</h1>
-										<input className='EMailLogin' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder='E-Mail ID' />
-										<input className='PasswordLogin' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
-										<div className='Checkbox'>
-											<label className="RadioCheck">
-												<input type="radio" name="checked" checked></input>Student
-											</label>
-											<label className="RadioCheck">
-												<input type="radio" name="checked"></input>Institute
-											</label>
-										</div>
-										<button className='bubbly-button'>Confirm</button>
+										<form onSubmit={StudentsInfo}>
+											<input className='EMailLogin' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder='E-Mail ID' />
+											<input className='PasswordLogin' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
+											<div className='Checkbox'>
+												<label className="RadioCheck">
+													<input type="radio" name="checked" checked></input>Student
+												</label>
+												<label className="RadioCheck">
+													<input type="radio" name="checked"></input>Institute
+												</label>
+											</div>
+											<button type='submit' className='bubbly-button'>Confirm</button>
+										</form>
 									</div>
 								</div>
 							</Popup>

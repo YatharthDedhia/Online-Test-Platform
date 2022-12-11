@@ -10,6 +10,7 @@ import anima from '../../Images/anima.png';
 import improve from '../../Images/improve.png';
 import lecture from '../../Images/lecture.jpg';
 import proctor1 from '../../Images/proctor1.jpg';
+import { Navigate, useNavigate } from 'react-router';
  
 const featureList = [
 	'Face Verification',
@@ -20,7 +21,8 @@ const featureList = [
 	'Multiple Tabs Check'
 ];
  
- 
+//STUDENT TYPE 2
+//INSTITUTE TYPE 1
  
 const NavLinks = () => (
 	<React.Fragment>
@@ -62,38 +64,37 @@ const CommonInput = ({ placeholderText = 'Input', value, onChange }) => {
 	);
 };
  
- 
 const Landing = () => {
- 
-	const StudentsInfo = () => {
+	const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated")|| false));
+	const[flag,setFlag]=useState(0);
+	const StudentsInfo = (e) => {
+		e.preventDefault();
 		const url = "http://lmsapiv01.azurewebsites.net/api/usertable";
+		axios
+			.get(url)
+			.then((response) => {
  
-		const [posts, setPosts] = useState();
+				for (let i = 0; i < response.data[0].length; i++) {
+					if (email == response.data[0][i].EmailId && password == response.data[0][i].Password) {
+						console.log("UserId" + response.data[0][i].UserId);
+						setauthenticated(true);
+						window.location.replace("dashboard")
+    					localStorage.setItem("authenticated", true);
+					}
+					else
+					{
+						setFlag(1);
+					}
+				}
  
-		useEffect(() => {
-			axios
-				.get(url)
-				.then((response) => {
-					console.log(response.data[0][2].EmailId);
-					setPosts(response.data);
-				})
-				.catch((err) => {
-					console.log(err);
-				});
-		}, [url]);
- 
-		return (
-			<div>
-				<h1>
-					{/* hello */}
-				</h1>
-			</div>
-		);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	}
  
 	const postData = (e) => {
 		e.preventDefault();
-		console.log(e);
  
 		const sendData = {
 			"UserName": username,
@@ -101,12 +102,12 @@ const Landing = () => {
 			"FirstName": firstname,
 			"LastName": lastname,
 			"EmailId": email,
-			"MobileNo": 123456890,
+			"MobileNo": parseInt(mobile),
 			"LastLoginDateTime": "2022-11-27T00:00:00.000Z",
 			"DateOfBirth": "1974-07-13T00:00:00.000Z",
 			"Age": 26,
 			"TypeId": 1,
-			"ActivationStatus": false
+			"ActivationStatus": '0'
 		};
  
 		console.log(sendData);
@@ -128,7 +129,6 @@ const Landing = () => {
 	return (
 		<React.Fragment>
 			<Navbar />
-			<StudentsInfo />
 			<div className="section-type-landing-page">
  
 				{/* <div className="features-content">
@@ -225,8 +225,6 @@ const Landing = () => {
 							<input className='EMail' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder='E-Mail ID' />
 							<input className='mobile' value={mobile} onChange={(e) => setMobile(e.target.value)} placeholder='Mobile No.' />
 							<input className='Username' value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder='Username' />
-							<input className='mobile' value={mobile} onChange={(e) => setMobile(e.target.value)} placeholder='Mobile No.' />
-							<input className='Username' value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder='Username' />
 							<input className='Password' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
 							<input className='ConfirmPassword' value={confpassword} onChange={(e) => setConfPassword(e.target.value)} type="password" placeholder='Confirm Password' />
  
@@ -241,7 +239,7 @@ const Landing = () => {
 							</div>
 							<button type='submit' className='bubbly-button'>Sign Up</button>
 						</form>
-
+ 
 						<div className='AskLogin'>
 							<Popup trigger={<button className='LoginButton' className='AskLogin' >Already Registered? Login </button>}
 								position="center">
@@ -250,14 +248,17 @@ const Landing = () => {
 										<h1>Login</h1>
 										<form onSubmit={StudentsInfo}>
 											<input className='EMailLogin' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder='E-Mail ID' />
+											
 											<input className='PasswordLogin' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
 											<div className='Checkbox'>
 												<label className="RadioCheck">
 													<input type="radio" name="checked" checked></input>Student
 												</label>
+      											
 												<label className="RadioCheck">
 													<input type="radio" name="checked"></input>Institute
 												</label>
+												<div className="Alert">{flag===1 ? <h1>Email or Password is incorrect.Please try again.</h1>:null}</div>
 											</div>
 											<button type='submit' className='bubbly-button'>Confirm</button>
 										</form>
@@ -265,7 +266,6 @@ const Landing = () => {
 								</div>
 							</Popup>
 						</div>
- 
 						<h2 className="title-heading">Key Features of our website</h2>
 					</div>
 				</div>
@@ -347,6 +347,5 @@ const Landing = () => {
  
 	);
 };
- 
-export default Landing;
- 
+//  export  const flag=flag;
+export  default Landing;

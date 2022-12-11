@@ -13,6 +13,7 @@ import './App.css';
 const App = () => {
 	return (
 		<div className="App">
+			{/* <React.StrictMode> */}
 			<BrowserRouter>
 				<Routes>
 					<Route exact path="/" element={<Landing />} />
@@ -23,6 +24,7 @@ const App = () => {
 					<Route exact path="/opening" element={<Opening />} />
 				</Routes>
 			</BrowserRouter>
+			{/* </React.StrictMode> */}
 		</div>
 	);
 };

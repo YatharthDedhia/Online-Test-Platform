@@ -277,6 +277,9 @@
 	}
   } 
   .title-heading{
+	position:absolute;
+	top:630px;
+	left:60px;
 	text-decoration:underline;
 	color:#EB9486;
 	

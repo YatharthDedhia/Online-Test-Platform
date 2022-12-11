@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import Calendar from 'react-calendar';
 import './css/dashboard.css';
 import './css/copylink.css';
@@ -9,13 +9,13 @@ import './css/sidebar.css'
 import './css/calendar.css'
 import Popup from 'reactjs-popup';
 import { render } from 'react-dom';
-
+// import { flag } from '../landing/Landing';
 function Tabs() {
 	const [toggleState, setToggleState] = useState(1);
-
 	const toggleTab = (index) => {
 		setToggleState(index);
 	};
+	
 	return (
 		<div className="container1">
 			<div className="bloc-tabs">
@@ -204,11 +204,19 @@ const Navbar = () => {
 const Dashboard = () => {
 	const [date, setDate] = useState(new Date());
 	const [calendarText, setCalendarText] = useState();
-
+	const [authenticated, setauthenticated] = useState(null);
+ useEffect(() => {
+  const loggedInUser = localStorage.getItem("authenticated");
+  if (loggedInUser==true) {
+   setauthenticated(loggedInUser);
+  }
+ }, []);
 	const handleDateChange = (value) => {
 		setCalendarText(`${value.toDateString()}`);
 	};
-
+	if (!authenticated) {
+		//abc
+		} else {
 	return (
 		<React.Fragment>
 			<Navbar />
@@ -222,8 +230,11 @@ const Dashboard = () => {
 						}} />
 				</div>
 			</div >
+			
 		</React.Fragment>
+	
 	);
+	}
 };
 
 export default Dashboard;

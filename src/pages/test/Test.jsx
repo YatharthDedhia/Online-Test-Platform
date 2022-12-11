@@ -258,7 +258,7 @@ const Test = () => {
       <Quizz />
       <CountdownCircleTimer
         isPlaying
-        duration={10}
+        duration={60}
         colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
         colorsTime={[60, 0.6 * 60, 0.3 * 60, 0]}
         // onComplete={() => (setShowScore(true))}

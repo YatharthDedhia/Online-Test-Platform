@@ -10,7 +10,7 @@ import anima from '../../Images/anima.png';
 import improve from '../../Images/improve.png';
 import lecture from '../../Images/lecture.jpg';
 import proctor1 from '../../Images/proctor1.jpg';
-
+ 
 const featureList = [
 	'Face Verification',
 	'Multiple People Detection',
@@ -19,32 +19,9 @@ const featureList = [
 	'Full Screen Check',
 	'Multiple Tabs Check'
 ];
-
-// function StudentsInfo() {
-// 	const url = "http://lmsapiv01.azurewebsites.net/api/usertable";
-
-// 	const [posts, setPosts] = useState([]);
-
-// 	useEffect(() => {
-// 		axios
-// 			.get(url)
-// 			.then((response) => {
-// 				console.log(response.data);
-// 			})
-// 			.catch((err) => {
-// 				console.log(err);
-// 			});
-// 	}, [url]);
-
-// 	return (
-// 		<div>
-// 			<h1>
-// 				{/* hello */}
-// 			</h1>
-// 		</div>
-// 	);
-// }
-
+ 
+ 
+ 
 const NavLinks = () => (
 	<React.Fragment>
 		<p>
@@ -55,7 +32,7 @@ const NavLinks = () => (
 		</p>
 	</React.Fragment>
 );
-
+ 
 const Navbar = () => {
 	return (
 		<div className="landing-navbar">
@@ -68,12 +45,12 @@ const Navbar = () => {
 		</div>
 	);
 };
-
-
+ 
+ 
 const CtaButton = ({ text = 'Get Started' }) => {
 	return <button className="ctabutton">{text}</button>;
 };
-
+ 
 const CommonInput = ({ placeholderText = 'Input', value, onChange }) => {
 	return (
 		<input
@@ -84,21 +61,46 @@ const CommonInput = ({ placeholderText = 'Input', value, onChange }) => {
 		/>
 	);
 };
-
-
+ 
+ 
 const Landing = () => {
-
+ 
+	const StudentsInfo = () => {
+		const url = "http://lmsapiv01.azurewebsites.net/api/usertable";
+ 
+		const [posts, setPosts] = useState();
+ 
+		useEffect(() => {
+			axios
+				.get(url)
+				.then((response) => {
+					console.log(response.data[0][2].EmailId);
+					setPosts(response.data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}, [url]);
+ 
+		return (
+			<div>
+				<h1>
+					{/* hello */}
+				</h1>
+			</div>
+		);
+	}
+ 
 	const postData = (e) => {
 		e.preventDefault();
 		console.log(e);
-
+ 
 		const sendData = {
-			"UserId": 18,
-			"UserName": "YatharthDedhia",
-			"Password": "abcdepassword",
-			"FirstName": "Yatharth",
-			"LastName": "Dedhia",
-			"EmailId": "yatharth@gmail.com",
+			"UserName": username,
+			"Password": password,
+			"FirstName": firstname,
+			"LastName": lastname,
+			"EmailId": email,
 			"MobileNo": 123456890,
 			"LastLoginDateTime": "2022-11-27T00:00:00.000Z",
 			"DateOfBirth": "1974-07-13T00:00:00.000Z",
@@ -106,12 +108,12 @@ const Landing = () => {
 			"TypeId": 1,
 			"ActivationStatus": null
 		};
-
+ 
 		console.log(sendData);
-
+ 
 		axios.post('http://lmsapiv01.azurewebsites.net/api/usertable', sendData).then(result => { console.log(result.data) });
 	}
-
+ 
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [confpassword, setConfPassword] = useState('');
@@ -122,13 +124,13 @@ const Landing = () => {
 	const [dob, setDOB] = useState('');
 	const [age, setAge] = useState('');
 	const [type, setType] = useState('');
-
+ 
 	return (
 		<React.Fragment>
 			<Navbar />
-			{/* <StudentsInfo /> */}
+			<StudentsInfo />
 			<div className="section-type-landing-page">
-
+ 
 				{/* <div className="features-content">
 					<div className="curr-heading">
 						<p className="gradient-text">
@@ -137,7 +139,7 @@ const Landing = () => {
 						<h2 className="title-heading">Features</h2>
 						<br />
 					</div>
-
+ 
 					<div className="all-features">
 						{featureList.map((it) => (
 							<p className="single-feature">{it}</p>
@@ -145,7 +147,7 @@ const Landing = () => {
 					</div>
 				</div> */}
 				{/* m */}
-				
+ 
 				<div className="section-fluid-main">
 					<div className="section-row">
 						<div className="section-col">
@@ -201,7 +203,7 @@ const Landing = () => {
 								Google Forms or Microsoft Surveys
 							</h1>
 						</div>
-
+ 
 						<div className="right-text">
 							<h3 className="gradient-text">The best part?</h3>
 							<h1 className="title-heading">
@@ -210,7 +212,7 @@ const Landing = () => {
 						</div>
 					</div>
 				</div> */}
-
+ 
 				<div className='container'>
 					<div className='SignUpBox'>
 						<form onSubmit={postData}>
@@ -219,13 +221,15 @@ const Landing = () => {
 								<input className='FirstName' value={firstname} onChange={(e) => setFirstName(e.target.value)} type="text" placeholder='First Name' />
 								<input className='LastName' value={lastname} onChange={(e) => setLastName(e.target.value)} type="text" placeholder='Last Name' />
 							</div>
-
+ 
 							<input className='EMail' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder='E-Mail ID' />
+							<input className='mobile' value={mobile} onChange={(e) => setMobile(e.target.value)} placeholder='Mobile No.' />
+							<input className='Username' value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder='Username' />
 							<input className='Password' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
 							<input className='ConfirmPassword' value={confpassword} onChange={(e) => setConfPassword(e.target.value)} type="password" placeholder='Confirm Password' />
-
+ 
 							<div className='Checkbox'>
-
+ 
 								<label className="RadioCheck">
 									<input type="radio" value={firstname} onChange={(e) => setFirstName(e.target.value)} name="checked" checked></input>Student
 								</label>
@@ -256,7 +260,7 @@ const Landing = () => {
 								</div>
 							</Popup>
 						</div>
-
+ 
 						<h2 className="title-heading">Key Features of our website</h2>
 					</div>
 				</div>
@@ -270,7 +274,7 @@ const Landing = () => {
 				Google Forms or Microsoft Surveys
 			</h1>
 		</div>
-
+ 
 		<div className="right-text">
 			<h3 className="gradient-text">The best part?</h3>
 			<h1 className="title-heading">
@@ -279,7 +283,7 @@ const Landing = () => {
 		</div>
 	</div>
 </div>
-
+ 
 <div className='container'>
 	<div className='SignUpBox'>
 		<form>
@@ -287,15 +291,15 @@ const Landing = () => {
 			<div className='FirstLast'>
 				<input className='FirstName' value={firstname} onChange={(e) => setFirstName(e.target.value)} type="text" placeholder='First Name' />
 				<input className='LastName' value={lastname} onChange={(e) => setLastName(e.target.value)} type="text" placeholder='Last Name' />
-
+ 
 			</div>
-
+ 
 			<input className='EMail' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder='E-Mail ID' />
 			<input className='Password' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
 			<input className='ConfirmPassword' value={confpassword} onChange={(e) => setConfPassword(e.target.value)} type="password" placeholder='Confirm Password' />
-
+ 
 			<div className='Checkbox'>
-
+ 
 				<label className="RadioCheck">
 					<input type="radio" value={firstname} onChange={(e) => setFirstName(e.target.value)} name="checked" checked></input>Student
 				</label>
@@ -325,18 +329,19 @@ const Landing = () => {
 				</div>
 			</Popup>
 		</div>
-
+ 
 		<button className='bubbly-button'>Sign Up</button>
 		<h2 className="title-heading">Key Features of our website</h2>
 	</div>
 </div>
 </div> */}
 			</div>
-
+ 
 			<footer className="Footer">Copyright © 2022 All rights reserved.</footer>
 		</React.Fragment>
-
+ 
 	);
 };
-
+ 
 export default Landing;
+ 

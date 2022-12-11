@@ -4,7 +4,7 @@
 	left: 33.75%;
 	z-index: 0;
 	width: 490px;
-	height: 500px;
+	height: 550px;
 	background-color: #F9F8F8;
 	box-sizing: border-box;
 	box-shadow: 0 15px 25px grey;
@@ -36,6 +36,7 @@
 }
 
 .AskLogin {
+	position:absolute;
 	text-align: center;
 	padding-top: 0.9rem;
 	font-size: 1rem;
@@ -44,19 +45,22 @@
 
 .AskLogin button {
 	background: none;
-	border: none;
-	margin: 0;
-	padding: 0;
-	cursor: pointer;
-	text-decoration: none;
-
+    border: none;
+    /* margin: 0; */
+    margin-top: -3.7rem;
+    margin-left: 6rem;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    width: max-content;
 }
+
 
 .bubbly-button {
 	display: block;
 	font-size: 1em;
 	padding: 1em 2em;
-	margin-top: 20px;
+	margin-top: -10px;
 	margin-bottom: 60px;
 	margin-left: auto;
 	margin-right: auto;

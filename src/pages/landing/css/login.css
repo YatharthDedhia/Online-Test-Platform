@@ -1,11 +1,10 @@
 .Logincontainer {
-	/* padding: 35px; */
-	margin: -402px -250px;
-	width: 500px;
-	height: 510px;
-	background-color: #F9F8F8;
-	border-radius: 5px;
-	color: #00008b;
+	margin: -545px -250px;
+    width: 484px;
+    height: 545px;
+    background-color: #F9F8F8;
+    border-radius: 5px;
+    color: #00008b;
 }
 
 .Login {

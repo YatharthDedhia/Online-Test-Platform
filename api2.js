@@ -70,10 +70,10 @@ router.route('/student').get((request,response)=>{
     })
 })
 
-router.route('/student').post((request,response)=>
+router.route('/activate/student').post((request,response)=>
 {
-    let StudentTable = {... request.body};
-    Db.addToStudentTable(StudentTable).then(result=>
+    let activationInfo = {... request.body};
+    Db.addToStudentTable(activationInfo).then(result=>
         {
             response.status(201).json(result);
         })
@@ -86,6 +86,16 @@ router.route('/teacher').get((request,response)=>{
         response.json(result[0]);
     })
 })
+
+router.route('/activate/teacher').post((request,response)=>
+{
+    let activationInfo = {... request.body};
+    Db.addToTeacherTable(activationInfo).then(result=>
+        {
+            response.status(201).json(result);
+        })
+}
+)
 
 router.route('/course').get((request,response)=>{
     
@@ -111,31 +121,65 @@ router.route('/course').post((request,response)=>
 }
 )
 
-router.route('/questions').get((request,response)=>{
-    
-    Db.getQuestions_QB().then(result =>{
-        response.json(result[0]);
-    })
-})
-
-router.route('/questions/:id').get((request,response)=>{
-    
-    Db.getQuestion_QB(request.params.id).then(result =>{
-        response.json(result[0]);
-    })
-})
-
-router.route('/questions').post((request,response)=>
+router.route('/student/courses').post((request,response)=>  
 {
-    let Questions = {... request.body};
-    Db.addToQuestionBank(Questions).then(result=>
+    let studentCourses = {... request.body};
+    Db.assignCourseToStudent(studentCourses).then(result=>
         {
             response.status(201).json(result);
         })
 }
 )
 
-router.route('/questionpaper').get((request,response)=>{
+router.route('/studentcourses/:id').get((request,response)=>{ //NOT WORKING, INCORRECT METHOD
+    
+    Db.getCourseListStudent(request.params.id).then(result =>{
+        response.json(result[0]);
+    })
+})
+
+router.route('/teacher/courses').get((request,response)=>{  //NOT WORKING, INCORRECT METHOD
+    
+    Db.getCourseListTeacher().then(result =>{
+        response.json(result[0]);
+    })
+})
+
+router.route('/teacher/courses').post((request,response)=> 
+{
+    let teacherCourses = {... request.body};
+    Db.assignCourseToTeacher(teacherCourses).then(result=>
+        {
+            response.status(201).json(result);
+        })
+}
+)
+
+// router.route('/questions').get((request,response)=>{ //NOT WORKING
+    
+//     Db.getQuestions_QB().then(result =>{
+//         response.json(result[0]);
+//     })
+// })
+
+router.route('/questions/:id').get((request,response)=>{  //NOT WORKING
+    
+    Db.getQuestion_QB(request.params.id).then(result =>{
+        response.json(result[0]);
+    })
+})
+
+router.route('/questionbank').post((request,response)=>
+{
+    let Question = {... request.body};
+    Db.addToQuestionBank(Question).then(result=>
+        {
+            response.status(201).json(result);
+        })
+}
+)
+
+router.route('/questionpaper').get((request,response)=>{  //NOT WORKING ??
     
     Db.getQuestionPaper().then(result =>{
         response.json(result[0]);
@@ -159,7 +203,7 @@ router.route('/questionpaper/:id').get((request,response)=>{
     })
 })
 
-router.route('/questionpaper/questions').post((request,response)=>  ///ERROR!!!!
+router.route('/questionpaper/question').post((request,response)=>  ///ERROR!!!!
 {
     let Questions = {... request.body};
     Db.addToQuestionPaper(Questions).then(result=>
@@ -169,9 +213,19 @@ router.route('/questionpaper/questions').post((request,response)=>  ///ERROR!!!!
 }
 )
 
+router.route('/questionpaper/question').put((request,response)=>
+{
+    let Questions = {... request.body};
+    Db.deleteFromQuestionPaper(Questions).then(result=>
+        {
+            response.status(201).json(result);
+        })
+}
+)
+
 router.route('/answers').get((request,response)=>{
     
-    Db.addToAnswersTable().then(result =>{
+    Db.getAnswersTable().then(result =>{
         response.json(result[0]);
     })
 })

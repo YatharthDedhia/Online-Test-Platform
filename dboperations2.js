@@ -140,6 +140,7 @@ async function addToStudentTable(Student)
     }
 }
 
+
 async function getAllTeachersinfo(){
     try{
         let pool = await sql.connect(config.sql);
@@ -149,6 +150,24 @@ async function getAllTeachersinfo(){
     catch(error){
         console.log(error);
     } 
+}
+
+async function addToTeacherTable(Teacher)
+{
+    try
+    {
+        let pool = await sql.connect(config.sql);
+        let insertNewTeacher = await pool.request()
+
+            .input('UserId', sql.Int, Teacher.UserId )
+            .execute('AddToTeacherTable');
+        return insertNewTeacher.recordsets;    
+    }
+
+    catch(error)
+    {
+        console.log(error);
+    }
 }
 
 async function getCourses(){
@@ -184,7 +203,7 @@ async function addCourse(Courses)
         let insertNewCourse = await pool.request()
 
             //.input('CourseId',sql.Int,Courses.CourseId)
-            .input('CourseName',sql.VarChar(800), Courses.Coursename)
+            .input('CourseName',sql.VarChar(800), Courses.CourseName)
             .input('CourseCode',sql.Int,Courses.CourseCode)
             .execute('CreateCourse');
         return insertNewCourse.recordsets;    
@@ -196,32 +215,101 @@ async function addCourse(Courses)
     }
 }
 
-async function getQuestions_QB(){
+async function assignCourseToStudent(Student_Course)
+{
+    try
+    {
+        let pool = await sql.connect(config.sql);
+        let assignCourseToStudent = await pool.request()
+
+            .input('StudentId',sql.Int, Student_Course.StudentId)
+            .input('CourseId',sql.Int, Student_Course.CourseId)
+            .execute('AssignCourseToStudent');
+        return assignCourseToStudent.recordsets;    
+    }
+
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+
+async function assignCourseToTeacher(Teacher_Course)
+{
+    try
+    {
+        let pool = await sql.connect(config.sql);
+        let assignCourseToTeacher = await pool.request()
+
+            .input('TeacherId',sql.Int, Teacher_Course.TeacherId)
+            .input('CourseId',sql.Int, Teacher_Course.CourseId)
+            .execute('AssignCourseToTeacher');
+        return assignCourseToTeacher.recordsets;    
+    }
+
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+
+async function getCourseListStudent(UserTable){  //NOT WORKING
     try{
         let pool = await sql.connect(config.sql);
-        let products = await pool.request().query("Select * from QuestionBank");
-        return products.recordsets;
+        let studentsCourses = await pool.request()
+            
+            .input('UserId', sql.Int, UserTable.UserId)
+            .execute("CourseListOfStudent");
+        return studentsCourses.recordsets;
     }
     catch(error){
         console.log(error);
     } 
 }
 
-async function getQuestion_QB(Id){
+async function getCourseListTeacher(UserTable){ //NOT WORKING 
     try{
         let pool = await sql.connect(config.sql);
-        let product = await pool.request()
-            .input("input_param", sql.Int, Id)
-            .query('select * from QuestionBank where QuestNo = @input_param');
-        return product.recordsets;
+        let teachersCourses = await pool.request()
             
+            .input('UserId', sql.Int, UserTable.UserId)
+            .execute("CourseListOfTeacher");
+        return teachersCourses.recordsets;
     }
-    catch(err){
-        consolele.log(err);
-    }
+    catch(error){
+        console.log(error);
+    } 
 }
 
-async function addToQuestionBank(QuestionBank) //course column needs to added to input
+// async function getQuestion_QB(Id){  //NOT WORKING
+//     try{
+//         let pool = await sql.connect(config.sql);
+//         let product = await pool.request()
+//             .input("input_param", sql.Int, Id)
+//             .execute("DisplayQuestionBank");
+//         return product.recordsets;
+            
+//     }
+//     catch(err){
+//         consolele.log(err);
+//     }
+// }
+
+// async function getQuestion_QB(Id){
+//     try{
+//         let pool = await sql.connect(config.sql);
+//         let product = await pool.request()
+//             .input("input_param", sql.Int, Id)
+//             .query('select * from QuestionBank where QuestNo = @input_param');
+//         return product.recordsets;
+            
+//     }
+//     catch(err){
+//         consolele.log(err);
+//     }
+// }
+
+async function addToQuestionBank(QuestionBank) 
 {
     try
     {
@@ -231,6 +319,7 @@ async function addToQuestionBank(QuestionBank) //course column needs to added to
             .input('Question',sql.VarChar(8000),QuestionBank.Question)
             .input('Marks',sql.Int,QuestionBank.Marks)
             .input('Difficulty',sql.Int,QuestionBank.Difficulty)
+            .input('CourseId', sql.Int, QuestionBank.CourseId)
             .execute('AddToQuestionBank')
         return insertNewQuestion.recordsets;    
     }
@@ -241,7 +330,7 @@ async function addToQuestionBank(QuestionBank) //course column needs to added to
     }
 }
 
-async function getQuestionPaper(PaperCode){
+async function getQuestionPaper(PaperCode){  //NOT WORKING?
     try{
         let pool = await sql.connect(config.sql);
         let questionpaper = await pool.request()
@@ -277,17 +366,36 @@ async function createQuestionPaper(QuestionPaper)
     }
 }
 
-async function addToQuestionPaper(QuestionPaper,QuestionBank) //ERROR!!!!
+async function addToQuestionPaper(QuestionPaperQuestions) 
 {
     try
     {
         let pool = await sql.connect(config.sql);
         let insertNewQuestion = await pool.request()
 
-            .input('PaperCode',sql.Int,QuestionPaper.PaperCode)
-            .input('QuestNo',sql.Int,QuestionBank.QuestNo)
+            .input('PaperCode',sql.Int,QuestionPaperQuestions.PaperCode)
+            .input('QuestNo',sql.Int,QuestionPaperQuestions.QuestNo)
             .execute('AddToQuestionPaper')
         return insertNewQuestion.recordsets;    
+    }
+
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+
+async function deleteFromQuestionPaper(QuestionPaperQuestions)
+{
+    try
+    {
+        let pool = await sql.connect(config.sql);
+        let deleteQuestion = await pool.request()
+
+            .input('PaperCode', sql.Int, QuestionPaperQuestions.PaperCode)
+            .input('QuestNo', sql.Int, QuestionPaperQuestions.QuestNo)
+            .execute('DelFromQuestionPaper')
+        return deleteQuestion.recordsets;    
     }
 
     catch(error)
@@ -337,15 +445,21 @@ module.exports ={
     getAllStudentsinfo : getAllStudentsinfo,
     addToStudentTable : addToStudentTable,
     getAllTeachersinfo : getAllTeachersinfo,
+    addToTeacherTable : addToTeacherTable,
     getCourses :  getCourses,
     getCourse : getCourse,
     addCourse : addCourse,
-    getQuestions_QB : getQuestions_QB,
-    getQuestion_QB : getQuestion_QB,
+    assignCourseToStudent : assignCourseToStudent,
+    assignCourseToTeacher : assignCourseToTeacher,
+    getCourseListStudent : getCourseListStudent,
+    getCourseListTeacher : getCourseListTeacher,
+    // getQuestions_QB : getQuestions_QB,
+    // getQuestion_QB : getQuestion_QB,
     addToQuestionBank : addToQuestionBank,
     createQuestionPaper : createQuestionPaper,
     getQuestionPaper : getQuestionPaper,
     addToQuestionPaper : addToQuestionPaper,
+    deleteFromQuestionPaper : deleteFromQuestionPaper,
     getAnswersTable : getAnswersTable,
     addToAnswersTable : addToAnswersTable,
 }

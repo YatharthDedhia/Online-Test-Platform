@@ -4,6 +4,7 @@ class QuestionBank{
         this.Question = Question;
         this.Marks = Marks;
         this.Difficulty = Difficulty;
+        this.CourseId = this.CourseId;
     }
 }
 

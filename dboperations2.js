@@ -7,7 +7,8 @@ const { password } = require('./config');
 async function getUsers(){
     try{
         let pool = await sql.connect(config.sql);
-        let products = await pool.request().query("Select * from UserTable");
+        let products = await pool.request()
+            .execute("UsersList");
         return products.recordsets;
     }
     catch(error){

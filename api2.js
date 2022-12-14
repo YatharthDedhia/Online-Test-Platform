@@ -131,16 +131,16 @@ router.route('/student/courses').post((request,response)=>
 }
 )
 
-router.route('/studentcourses/:id').get((request,response)=>{ //NOT WORKING, INCORRECT METHOD
+router.route('/student/courses/:id').get((request,response)=>{ 
     
     Db.getCourseListStudent(request.params.id).then(result =>{
         response.json(result[0]);
     })
 })
 
-router.route('/teacher/courses').get((request,response)=>{  //NOT WORKING, INCORRECT METHOD
+router.route('/teacher/courses/:id').get((request,response)=>{  
     
-    Db.getCourseListTeacher().then(result =>{
+    Db.getCourseListTeacher(request.params.id).then(result =>{
         response.json(result[0]);
     })
 })
@@ -155,16 +155,9 @@ router.route('/teacher/courses').post((request,response)=>
 }
 )
 
-// router.route('/questions').get((request,response)=>{ //NOT WORKING
+router.route('/questions/:id').get((request,response)=>{ 
     
-//     Db.getQuestions_QB().then(result =>{
-//         response.json(result[0]);
-//     })
-// })
-
-router.route('/questions/:id').get((request,response)=>{  //NOT WORKING
-    
-    Db.getQuestion_QB(request.params.id).then(result =>{
+    Db.getQuestions_QB(request.params.id).then(result =>{
         response.json(result[0]);
     })
 })
@@ -179,7 +172,7 @@ router.route('/questionbank').post((request,response)=>
 }
 )
 
-router.route('/questionpaper').get((request,response)=>{  //NOT WORKING ??
+router.route('/questionpaper').get((request,response)=>{  //NOT WORKING //SP wrong
     
     Db.getQuestionPaper().then(result =>{
         response.json(result[0]);
@@ -203,7 +196,7 @@ router.route('/questionpaper/:id').get((request,response)=>{
     })
 })
 
-router.route('/questionpaper/question').post((request,response)=>  ///ERROR!!!!
+router.route('/questionpaper/question').post((request,response)=> 
 {
     let Questions = {... request.body};
     Db.addToQuestionPaper(Questions).then(result=>
@@ -240,6 +233,60 @@ router.route('/answers').post((request,response)=>
 }
 )
 
+router.route('/update/password').put((request,response)=> //NOT WORKING
+{
+    let PasswordInfo = {... request.body};
+    Db.updatePassword(PasswordInfo).then(result=>
+        {
+            response.status(201).json(result);
+        })
+}
+)
+
+router.route('/update/answer').post((request,response)=>
+{
+    let OptionsUpdate = {... request.body};
+    Db.updateSingleAnswer(OptionsUpdate).then(result=>
+        {
+            response.status(201).json(result);
+        })
+}
+)
+
+router.route('/update/question').post((request,response)=>
+{
+    let QuestionUpdate = {... request.body};
+    Db.updateSingleQuestion(QuestionUpdate).then(result=>
+        {
+            response.status(201).json(result);
+        })
+}
+)
+
+router.route('/reactivatequestion').post((request,response)=>
+{
+    let question = {... request.body};
+    Db.reactivateQuestion(question).then(result=>
+        {
+            response.status(201).json(result);
+        })
+}
+)
+
+router.route('/activated/students').get((request,response)=>{
+    
+    Db.getActivatedStudents().then(result =>{
+        response.json(result[0]);
+    })
+})
+
+router.route('/activated/teachers').get((request,response)=>{
+    
+    Db.getActivatedTeachers().then(result =>{
+        response.json(result[0]);
+    })
+})
+
 router.use((request, response, next)=> { //middleware(used for authentication)
     console.log("middleware");
     next();
@@ -251,6 +298,3 @@ app.listen(config.port, ()=>{
     console.log(`App is listening on url http://${ config.host }:${ config.port }`)
 })
 
-// module.exports = {
-//     routes:router
-// }

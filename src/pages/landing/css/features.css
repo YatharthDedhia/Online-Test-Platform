@@ -216,7 +216,7 @@
 	max-width: 17rem;
 	max-height: 15rem;
 	padding: 0.5rem;
-	margin: 3rem;
+	/* margin-top: 3rem; */
 	border: 4px solid #00008b;
 	border-radius: 10%;
 	transition: transform 250ms linear;
@@ -234,7 +234,7 @@
 .hover-text {
 	position: fixed;
 	color: #EB9486;
-	top: 0;
+	top: 150px;
 	left: 0;
 	width: 100%;
 	height: 100%;
@@ -289,7 +289,7 @@
 
 .title-heading {
 	position: absolute;
-	top: 630px;
+	top: 570px;
 	left: 60px;
 	text-decoration: underline;
 	color: #EB9486;

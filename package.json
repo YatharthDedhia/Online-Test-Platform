@@ -6,6 +6,7 @@
     "axios": "^1.2.0",
     "chart.js": "^4.0.1",
     "express": "^4.18.2",
+    "gapi-script": "^1.2.0",
     "react": "^17.0.2",
     "react-calendar": "^4.0.0",
     "react-chartjs-2": "^5.0.1",

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
+import Login from './Login';
+import LoginHooks from './LoginHooks';
+
 import './css/landing.css';
 import './css/features.css';
 import './css/navbar.css';
@@ -221,6 +224,7 @@ const Landing = () => {
 											</div>
 											<div className="Alert"><h1>Email or Password is incorrect.Please try again.</h1></div>
 											<button type='submit' className='bubbly-button-login'>Confirm</button>
+											<Login />
 										</form>
 									</div>
 								</div>

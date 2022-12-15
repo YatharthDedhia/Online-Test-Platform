@@ -50,6 +50,7 @@ const Navbar = () => {
 
 const Landing = () => {
 	const [flag, setFlag] = useState(0);
+	const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated") || false));
 	const StudentsInfo = (e) => {
 		e.preventDefault();
 		const url = "http://lmsapiv01.azurewebsites.net/api/usertable";
@@ -62,9 +63,9 @@ const Landing = () => {
 						console.log("UserId" + response.data[0][i].UserId);
 						setauthenticated(true)
 						localStorage.setItem("authenticated", true);
-						console.group("AUTHENTICATED: " + authenticated)
+						console.log("AUTHENTICATED: " + authenticated)
 
-						window.location.replace("dashboard")
+						// window.location.replace("dashboard")
 					}
 					else {
 						setFlag(1);
@@ -116,7 +117,6 @@ const Landing = () => {
 	const [age, setAge] = useState('');
 	const [type, setType] = useState("2");
 	const [confirm, setConfirm] = useState(0);
-	const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated") || false));
 	return (
 		<React.Fragment>
 			<Navbar />
@@ -219,7 +219,7 @@ const Landing = () => {
 													<label for="radio2" class="selector-item_label">Institute</label>
 												</div>
 											</div>
-											<div className="Alert"><h1>Email or Password is incorrect.Please try again.</h1></div>
+											<div className="Alert"><h1>{flag===1? "Email or Password is incorrect.Please try again.":null}</h1></div>
 											<button type='submit' className='bubbly-button-login'>Confirm</button>
 										</form>
 									</div>

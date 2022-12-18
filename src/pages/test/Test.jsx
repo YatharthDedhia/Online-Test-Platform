@@ -5,7 +5,7 @@ import './css/test.css'
 import Webcam from 'react-webcam';
 import React, { useState } from 'react';
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-
+import axios from 'axios';
 import './css/timer.css';
 import { registry } from 'chart.js';
 
@@ -113,7 +113,26 @@ const children = ({ remainingTime }) => {
   const seconds = remainingTime % 60
   return `${hours}:${minutes}:${seconds}`
 }
+const postData = (e) => {
+  e.preventDefault();
+    const sendQuestions = {
+      "QuestNo":20,
+      "CourseId": 1,
+      "Question": "Which is the largest planet",
+      "Marks":2,
+      "Difficulty":3,
+      // "MobileNo": parseInt(mobile),
+      // "LastLoginDateTime": "2022-11-27T00:00:00.000Z",
+      // "DateOfBirth": "1974-07-13T00:00:00.000Z",
+      // "Age": 26,
+      // "TypeId": String(parseInt(type)),
+      // "ActivationStatus": '0'
+    };
 
+    console.log(sendQuestions);
+
+    axios.post('https://viveklmsapi01.azurewebsites.net/api/questionbank', sendQuestions).then(result => { console.log(result.data) });
+  };
 const videoConstraints = {
   width: 1280,
   height: 720,
@@ -267,6 +286,7 @@ const Test = () => {
       </CountdownCircleTimer>
       <div className="image-capture">
         <WebLiveCapture />
+        <postData />
       </div>
     </div >
   );

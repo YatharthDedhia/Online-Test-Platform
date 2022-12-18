@@ -1,0 +1,85 @@
+input{
+    padding-left: 30px;
+    padding-top: 40px;
+}
+.container4 {
+	position: absolute;
+	top: 15%;
+	left: 33.75%;
+	z-index: 0;
+	width: 490px;
+	height: 550px;
+	background-color: #F9F8F8;
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px grey;
+	border-radius: 5px;
+}
+.Question {
+	border-radius: 0rem;
+	display: block;
+	margin-left: 0px;
+	width: 100%;
+	border: none;
+}
+
+.Questionno {
+	border-radius: 0rem;
+	display: block;
+	border: none;
+	margin-left: 0px;
+}
+
+
+.opt4 .opt3 .opt2 .opt1 {
+	border-top-left-radius: 0rem;
+	border-top-right-radius: 0rem;
+}
+
+.selector {
+	position: relative;
+	display: flex;
+	justify-content: space-around;
+	border-radius: 9999px;
+}
+
+.selector-item {
+	position: relative;
+	flex-basis: calc(70% / 3);
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.selector-item_label {
+	position: relative;
+	height: 80%;
+	width: 100%;
+	text-align: center;
+	border-radius: 10px;
+	transition-duration: .2s;
+	transition-property: transform, color, box-shadow;
+	transform: none;
+}
+
+.selector-item_radio:checked+.selector-item_label {
+	background-color: #00008b;
+	color: white;
+}
+.bubbly-button2 {
+	display: block;
+	font-size: 1em;
+	padding: 1em 2em;
+	margin-top: -10px;
+	margin-bottom: 60px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #00008b;
+	color: #fff;
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+	position: absolute;
+	top: 450px;
+	right: 115px;
+}

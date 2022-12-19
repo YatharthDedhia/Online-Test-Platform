@@ -172,13 +172,6 @@ router.route('/questionbank').post((request,response)=>
 }
 )
 
-router.route('/questionpaper').get((request,response)=>{  //NOT WORKING //SP wrong
-    
-    Db.getQuestionPaper().then(result =>{
-        response.json(result[0]);
-    })
-})
-
 router.route('/questionpaper').post((request,response)=>
 {
     let QuestionPaper = {... request.body};

@@ -306,7 +306,7 @@ async function getQuestions_QB(CourseId){
             
     }
     catch(err){
-        consolele.log(err);
+        console.log(err);
     }
 }
 
@@ -331,13 +331,13 @@ async function addToQuestionBank(QuestionBank)
     }
 }
 
-async function getQuestionPaper(PaperCode){  //NOT WORKING // Wrong stored procedure
+async function getQuestionPaper(PaperCode){ 
     try{
         let pool = await sql.connect(config.sql);
         let questionpaper = await pool.request()
         
             .input("input_param",sql.Int,PaperCode )
-            .execute("EXEC GetQuestionPaper @input_param");
+            .query("EXEC GetQuestionPaper @input_param");
         return questionpaper.recordsets;
     }
     catch(error){
@@ -416,7 +416,7 @@ async function getAnswersTable(){
     } 
 }
 
-async function addToAnswersTable(Answers) //courseId column needs to added to input?//
+async function addToAnswersTable(Answers) 
 {
     try
     {
@@ -444,7 +444,7 @@ async function updatePassword(UserTable){ //NOT WORKING // where to input replac
 
             .input('UserId', sql.Int, UserTable.UserId)
             .input('Password', sql.VarChar(8000), UserTable.Password)
-            .input('newpassword', sql.VarChar(8000), UserTable.Password)
+            .replaceInput('newpassword', sql.VarChar(8000), UserTable.Password)
             .execute('UpdatePassword');
         return updatePassword.recordsets;
     }

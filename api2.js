@@ -155,7 +155,7 @@ router.route('/teacher/courses').post((request,response)=>
 }
 )
 
-router.route('/questions/:id').get((request,response)=>{ 
+router.route('/questionbank/:id').get((request,response)=>{ 
     
     Db.getQuestions_QB(request.params.id).then(result =>{
         response.json(result[0]);

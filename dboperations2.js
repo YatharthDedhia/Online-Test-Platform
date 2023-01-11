@@ -282,20 +282,6 @@ async function getCourseListTeacher(UserId){
     } 
 }
 
-// async function getQuestion_QB(Id){  //NOT WORKING
-//     try{
-//         let pool = await sql.connect(config.sql);
-//         let product = await pool.request()
-//             .input("input_param", sql.Int, Id)
-//             .execute("DisplayQuestionBank");
-//         return product.recordsets;
-            
-//     }
-//     catch(err){
-//         consolele.log(err);
-//     }
-// }
-
 async function getQuestions_QB(CourseId){
     try{
         let pool = await sql.connect(config.sql);
@@ -525,6 +511,28 @@ async function getActivatedTeachers(){
         console.log(error);
     } 
 }
+
+// async function getUnactivatedStudents(){
+//     try{
+//         let pool = await sql.connect(config.sql);
+//         let products = await pool.request().execute("ctivatedStudentsList");
+//         return products.recordsets;
+//     }
+//     catch(error){
+//         console.log(error);
+//     } 
+// }
+
+// async function getUnactivatedTeachers(){
+//     try{
+//         let pool = await sql.connect(config.sql);
+//         let products = await pool.request().execute("ActivatedTeachersList");
+//         return products.recordsets;
+//     }
+//     catch(error){
+//         console.log(error);
+//     } 
+// }
 
 module.exports ={
     getUsers : getUsers,

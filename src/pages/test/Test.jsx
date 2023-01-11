@@ -1,8 +1,8 @@
-import Quiz from 'react-quiz-component';
+// import Quiz from 'react-quiz-component';
 // import { quiz } from 'quiz';
+import Ml from '../ML/ml';
 import ReactDOM from "react-dom";
 import './css/test.css'
-import axios from 'axios';
 import Webcam from 'react-webcam';
 import React, { useState, useEffect } from 'react';
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
@@ -153,6 +153,8 @@ const WebLiveCapture = () => {
         videoConstraints={videoConstraints}
       />
 
+      {/* <Ml/> */}
+
       <button className="hide" onClick={capture}>
         Capture photo
       </button>
@@ -243,8 +245,9 @@ const Test = () => {
         {children}
       </CountdownCircleTimer>
       <div className="image-capture">
-        <WebLiveCapture />
+        {/* <WebLiveCapture /> */}
         <postData />
+        <Ml />
       </div>
     </div >
   );

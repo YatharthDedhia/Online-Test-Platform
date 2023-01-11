@@ -1,0 +1,12 @@
+.Ml{
+    position: absolute;
+    top:0px;
+    right: 250px;
+}
+
+.Copy{
+    position: absolute;
+    top: -30px;
+    right: -750px;
+    color: red;
+}

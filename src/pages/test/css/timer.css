@@ -1,3 +1,6 @@
+.App{
+  background-color:#ADD8E6;
+}
 .image-capture {
   border-radius: 10px;
   position: absolute;
@@ -10,6 +13,7 @@
   margin-top: 5%;
   margin-right: 5%;
   justify-content: right;
+  background-color:#ADD8E6;
 }
 
 .hide {

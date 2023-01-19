@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Quicksand&display=swap');
 
-html {
+/* html {
 	scroll-behavior: smooth;
-	/* background: linear-gradient(#141e30, #243b55); */
+	 background: linear-gradient(#141e30, #243b55); 
 	background-color: #ADD8E6;
 
-}
+} */
 
 * {
 	/* background: #121212;

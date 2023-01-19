@@ -204,19 +204,19 @@ const Navbar = () => {
 const Dashboard = () => {
 	const [date, setDate] = useState(new Date());
 	const [calendarText, setCalendarText] = useState();
-	const [authenticated, setauthenticated] = useState(null);
- useEffect(() => {
-  const loggedInUser = localStorage.getItem("authenticated");
-  if (loggedInUser==true) {
-   setauthenticated(loggedInUser);
-  }
- }, []);
+// 	const [authenticated, setauthenticated] = useState(null);
+//  useEffect(() => {
+//   const loggedInUser = localStorage.getItem("authenticated");
+//   if (loggedInUser==true) {
+//    setauthenticated(loggedInUser);
+//   }
+//  }, []);
 	const handleDateChange = (value) => {
 		setCalendarText(`${value.toDateString()}`);
 	};
-	if (!authenticated) {
-		//abc
-		} else {
+	// if (!authenticated) {
+	// 	//abc
+	// 	} else {
 	return (
 		<React.Fragment>
 			<Navbar />
@@ -234,7 +234,7 @@ const Dashboard = () => {
 		</React.Fragment>
 	
 	);
-	}
+	
 };
 
 export default Dashboard;

@@ -7,6 +7,7 @@ import "./css/ml.css"
 import { drawRect } from "./utilites"
 
 let count = 0;
+
 function Ml() {
   const [flag, setFlag] = useState(0);
 
@@ -44,16 +45,18 @@ function Ml() {
       canvasRef.current.height = videoHeight;
 
       // Make Detections
+
       const obj = await net.detect(video);
       console.log(obj.length)
 
-      if (obj.length > 1) {
+      if (obj.length > 1 || obj.length == 0) {
         setFlag(1)
         count++;
       }
       else {
         setFlag(0)
       }
+      // Speech();
 
       // Draw mesh
       const ctx = canvasRef.current.getContext("2d");
@@ -62,6 +65,7 @@ function Ml() {
   };
 
   useEffect(() => { runCoco() }, []);
+  // useEffect(() => { Speech() }, []);
 
   return (
     <div className="Ml">
@@ -100,6 +104,7 @@ function Ml() {
             width: 300,
             height: 300,
           }}
+
         />
       </header>
     </div>

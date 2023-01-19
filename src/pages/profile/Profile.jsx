@@ -33,16 +33,18 @@ const Header_Menu = () => {
 
     );
 };
-// const Profile_Menu = () => {
-//     return(
-//         <div class="profile-menu">
-//                  <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
-//                   <div class="profile-picture small-profile-picture">
-//                       <img width="40px" alt="Anne Hathaway picture" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"/>
-//                   </div>
-//         </div>
-//     );
-// };
+
+const Profile_Menu = () => {
+    return(
+        <div class="profile-menu">
+                 <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
+                  <div class="profile-picture small-profile-picture">
+                      <img width="40px" alt="Anne Hathaway picture" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"/>
+                  </div>
+        </div>
+    );
+};
+
 const Profile_Block = () => {
     return (
         <div class="profile block">

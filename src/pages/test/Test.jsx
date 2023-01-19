@@ -1,6 +1,7 @@
 // import Quiz from 'react-quiz-component';
 // import { quiz } from 'quiz';
 import Ml from '../ML/ml';
+import Speech from '../Speech/speech';
 import ReactDOM from "react-dom";
 import './css/test.css'
 import Webcam from 'react-webcam';
@@ -106,24 +107,24 @@ const children = ({ remainingTime }) => {
 }
 const postData = (e) => {
   e.preventDefault();
-    const sendQuestions = {
-      "QuestNo":20,
-      "CourseId": 1,
-      "Question": "Which is the largest planet",
-      "Marks":2,
-      "Difficulty":3,
-      // "MobileNo": parseInt(mobile),
-      // "LastLoginDateTime": "2022-11-27T00:00:00.000Z",
-      // "DateOfBirth": "1974-07-13T00:00:00.000Z",
-      // "Age": 26,
-      // "TypeId": String(parseInt(type)),
-      // "ActivationStatus": '0'
-    };
-
-    console.log(sendQuestions);
-
-    axios.post('https://viveklmsapi01.azurewebsites.net/api/questionbank', sendQuestions).then(result => { console.log(result.data) });
+  const sendQuestions = {
+    "QuestNo": 20,
+    "CourseId": 1,
+    "Question": "Which is the largest planet",
+    "Marks": 2,
+    "Difficulty": 3,
+    // "MobileNo": parseInt(mobile),
+    // "LastLoginDateTime": "2022-11-27T00:00:00.000Z",
+    // "DateOfBirth": "1974-07-13T00:00:00.000Z",
+    // "Age": 26,
+    // "TypeId": String(parseInt(type)),
+    // "ActivationStatus": '0'
   };
+
+  console.log(sendQuestions);
+
+  axios.post('https://viveklmsapi01.azurewebsites.net/api/questionbank', sendQuestions).then(result => { console.log(result.data) });
+};
 const videoConstraints = {
   width: 1280,
   height: 720,
@@ -248,10 +249,9 @@ const Test = () => {
         {/* <WebLiveCapture /> */}
         <postData />
         <Ml />
+        {/* <Speech/> */}
       </div>
     </div >
   );
 };
 export default Test;
-// const rootElement = document.getElementById("root");
-// ReactDOM.render(<App />, rootElement);

@@ -9,6 +9,7 @@ import './css/sidebar.css'
 import './css/calendar.css'
 import Popup from 'reactjs-popup';
 import { render } from 'react-dom';
+import axios from 'axios';
 // import { flag } from '../landing/Landing';
 function Tabs() {
 	const [toggleState, setToggleState] = useState(1);
@@ -204,19 +205,171 @@ const Navbar = () => {
 const Dashboard = () => {
 	const [date, setDate] = useState(new Date());
 	const [calendarText, setCalendarText] = useState();
-	const [authenticated, setauthenticated] = useState(null);
+	const [testName, setTestName] = useState('');
+const [courseName, setCourseName] = useState('');
+const [courseCode, setCourseCode] = useState(0);
+const [date1, setDate1] = useState(null);
+const [startTime, setStartTime] = useState("");
+const [endTime, setEndTime] = useState("");
+const [duration, setDuration] = useState(0);
+const [link, setLink] = useState("");
+	// const [authenticated, setauthenticated] = useState(null);
  useEffect(() => {
   const loggedInUser = localStorage.getItem("authenticated");
   if (loggedInUser==true) {
-   setauthenticated(loggedInUser);
+//    setauthenticated(loggedInUser);
   }
  }, []);
+ function Tabs() {
+	const [toggleState, setToggleState] = useState(1);
+	const toggleTab = (index) => {
+		setToggleState(index);
+	};
+	
+	return (
+		<div className="container1">
+			<div className="bloc-tabs">
+				<button
+					className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+					onClick={() => toggleTab(1)}
+				>
+					UnAttempted
+				</button>
+				<button
+					className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+					onClick={() => toggleTab(2)}
+				>
+					Attempted
+				</button>
+				<button
+					className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+					onClick={() => toggleTab(3)}
+				>
+					All
+				</button>
+			</div>
+
+			<div className="content-tabs">
+				<div className={toggleState === 1 ? "content  active-content" : "content"} >
+					<p>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Subject</th>
+									<th>Time</th>
+									<th>Link</th>
+								</tr>
+							</thead>
+							{mockTests.map((test) => {
+								if (test.status == "unattempted") {
+									return <tbody>
+										<tr>
+
+											<td>{testName}</td>
+											<td>{courseName}</td>
+											<td>{date1}</td>
+											<td>
+												<a href={link}>{link}</a>
+											</td>
+										</tr>
+									</tbody>
+								}
+							})}
+						</table>
+					</p>
+				</div>
+
+				<div className={toggleState === 2 ? "content  active-content" : "content"} >
+					<p>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Subject</th>
+									<th>Time</th>
+									<th>Link</th>
+								</tr>
+							</thead>
+
+							{mockTests.map((test) => {
+								if (test.status == "attempted") {
+									return <tbody>
+										<tr>
+
+											<td>{testName}</td>
+											<td>{courseName}</td>
+											<td>{date1}</td>
+											<td>
+												<a href={link}>{link}</a>
+											</td>
+										</tr>
+									</tbody>
+								}
+							})}
+						</table>
+					</p>
+				</div>
+
+				<div className={toggleState === 3 ? "content  active-content" : "content"} >
+					<p>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Subject</th>
+									<th>Time</th>
+									<th>Link</th>
+								</tr>
+							</thead>
+
+							{mockTests.map((test) => {
+								return <tbody>
+									<tr>
+
+										<td>{testName}</td>
+										<td>{courseName}</td>
+										<td>{date1}</td>
+										<td>
+											<a href={link}>{link}</a>
+										</td>
+									</tr>
+								</tbody>
+							})}
+						</table>
+					</p>
+				</div>
+			</div>
+		</div>
+	);
+}
+ const url4 = "https://lmsapiv01.azurewebsites.net/api/studentschedule/4";
+  axios
+    .get(url4)
+    .then((response) => {
+    //   console.log(response.data[0][0].Answer)
+      for (let i = 0; i < response.data[0].length; i++) {
+        setTestName(response.data[0][0].TestName);
+        setCourseName(response.data[0][0].CourseName);
+        setCourseCode(response.data[0][0].CourseCode);
+        setDate1(response.data[0][0].Date);
+		setStartTime(response.data[0][0].StartTime);
+		setEndTime(response.data[0][0].EndTime);
+		setDuration(response.data[0][0].Duration);
+		setLink(response.data[0][0].Link);
+
+      }
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 	const handleDateChange = (value) => {
 		setCalendarText(`${value.toDateString()}`);
 	};
-	if (!authenticated) {
+	// if (!authenticated) {
 		//abc
-		} else {
+		// } else {
 	return (
 		<React.Fragment>
 			<Navbar />
@@ -234,7 +387,7 @@ const Dashboard = () => {
 		</React.Fragment>
 	
 	);
-	}
+	// }
 };
 
 export default Dashboard;

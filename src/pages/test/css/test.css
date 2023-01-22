@@ -18,7 +18,20 @@
     align-items: center;
     min-height: 100vh;
   } */
-
+.question-diff{
+    position:absolute;
+    text-decoration: underline;
+    font-weight: bolder;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: fit-content;
+    background-color: aliceblue;
+    left: 453px;
+    border-radius: 25px;
+    padding: 10px;
+    
+}
 .quizz-app {
     background-color: #252d4a;
     width: 600px;

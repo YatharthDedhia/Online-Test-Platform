@@ -48,6 +48,8 @@ const questions = [
     ],
   },
 ];
+// const [flag, setFlag] = useState(0);
+	// const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated") || false));
 
 let answerOptions = []
 let option1 = {}
@@ -97,6 +99,7 @@ const Options = (e) => {
       console.log(err);
     });
 }
+
 
 const children = ({ remainingTime }) => {
   const hours = Math.floor(remainingTime / 3600)
@@ -161,7 +164,21 @@ const WebLiveCapture = () => {
     </React.Fragment>
   );
 };
+// const QuestionInfo = (e) => {
+//   // e.preventDefault();
+//   const url = "https://lmsapiv01.azurewebsites.net/api/questionbank/1";
+//   axios
+//     .get(url)
+//     .then((response) => {
 
+//       for (let i = 0; i < response.data[0].length; i++) {
+//       }
+
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// }
 const Quizz = () => {
 
   useEffect(() => {
@@ -170,10 +187,46 @@ const Quizz = () => {
   }, []);
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [question, setQuestion] = useState("");
   const [currentAns, setCurrentAns] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [AnsOption, setAnsOption] = useState(0);
+  const [quizLength, setquizLength] = useState(0);
+  const [Difficulty, setDifficulty] = useState(0);
+  
+
+  // const url = "https://lmsapiv01.azurewebsites.net/api/questionbank/1";
+  // axios
+  //   .get(url)
+  //   .then((response) => {
+  //     console.log(response.data[0][0].Question);
+  //     setquizLength(response.data[0].length);
+  //     for (let i = 0; i < response.data[0].length; i++) {
+  //     }
+
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+
+    const url2 = "https://lmsapiv01.azurewebsites.net/api/qbaf/1";
+  axios
+    .get(url2)
+    .then((response) => {
+      console.log(response.data[0][0].Answer)
+      setquizLength(Math.round(response.data[0].length/4));
+      for (let i = 0; i < response.data[0].length; i++) {
+        setCurrentAns(response.data[0][0].Answer);
+        setQuestion(response.data[0][0].Question);
+        setScore(response.data[0][i].Marks);
+        setDifficulty(response.data[0][0].Difficulty);
+      }
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
@@ -207,19 +260,20 @@ const Quizz = () => {
     <div className='quizz-app'>
       {showScore ? (
         <div className='score-section'>
-          You scored {score} out of {questions.length}
+          You scored {score} out of {quizLength}
         </div>
       ) : (
         <>
           <div className='question-section'>
+            <div className='question-diff'>Difficulty:{Difficulty}</div>
             <div className='question-count'>
-              <span>Question {currentQuestion + 1}</span>/{questions.length}
+              <span>Question {currentQuestion + 1}</span>/{quizLength}
             </div>
-            <div className='question-text'>{questions[currentQuestion].questionText}</div>
+            <div className='question-text'>{question}</div>
           </div>
           <div className='answer-section'>
             {questions[currentQuestion].answerOptions.map((answerOption) => (
-              <button type='radio' onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+              <button type='radio' onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{currentAns}</button>
             ))}
           </div>
           <button className='nextbutton' onClick={() => goNext()}>Next</button>
@@ -246,6 +300,7 @@ const Test = () => {
       </CountdownCircleTimer>
       <div className="image-capture">
         {/* <WebLiveCapture /> */}
+        {/* <QuestionInfo/> */}
         <postData />
         <Ml />
       </div>

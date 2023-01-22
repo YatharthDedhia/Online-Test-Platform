@@ -3,12 +3,12 @@ input{
     padding-top: 19px;
 }
 .container4 {
-	position: absolute;
-	top: 15%;
-	left: 33.75%;
+	position: relative;
+	/* top: 15%;
+	left: 33.75%; */
 	z-index: 0;
-	width: 490px;
-	height: 550px;
+	width: auto;
+	height: auto;
 	background-color: #F9F8F8;
 	box-sizing: border-box;
 	box-shadow: 0 15px 25px grey;

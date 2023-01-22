@@ -53,10 +53,10 @@ const Navbar = () => {
 
 const Landing = () => {
 	const [flag, setFlag] = useState(0);
-	const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated") || false));
+	// const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated") || false));
 	const StudentsInfo = (e) => {
 		e.preventDefault();
-		const url = "http://lmsapiv01.azurewebsites.net/api/usertable";
+		const url = "http://lmsapiv01.azurewebsites.net/api/user";
 		axios
 			.get(url)
 			.then((response) => {
@@ -64,9 +64,9 @@ const Landing = () => {
 				for (let i = 0; i < response.data[0].length; i++) {
 					if (email == response.data[0][i].EmailId && password == response.data[0][i].Password) {
 						console.log("UserId" + response.data[0][i].UserId);
-						setauthenticated(true)
-						localStorage.setItem("authenticated", true);
-						console.log("AUTHENTICATED: " + authenticated)
+						// setauthenticated(true)
+						// localStorage.setItem("authenticated", true);
+						// console.log("AUTHENTICATED: " + authenticated)
 
 						// window.location.replace("dashboard")
 					}
@@ -102,7 +102,7 @@ const Landing = () => {
 
 			console.log(sendData);
 
-			axios.post('http://lmsapiv01.azurewebsites.net/api/usertable', sendData).then(result => { console.log(result.data) });
+			axios.post('http://lmsapiv01.azurewebsites.net/api/user', sendData).then(result => { console.log(result.data) });
 		}
 		else {
 			setConfirm(1);

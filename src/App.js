@@ -7,8 +7,7 @@ import {
 	Test,
 	Opening,
 	Institute,
-	QuizInstructions,
-	Home
+	QuizInstructions
 } from './pages';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
@@ -27,7 +26,7 @@ const App = () => {
 					<Route exact path="/opening" element={<Opening />} />
 					<Route exact path="/institute" element={<Institute />} />
 					<Route exact path="/instruction" element={<QuizInstructions />} />
-					<Route exact path="/home" element={<Home />} />
+					{/* <Route exact path="/home" element={<Home />} /> */}
 					{/* <Route exact path="/quiz" element={<Quiz />} /> */}
 				</Routes>
 			</BrowserRouter>

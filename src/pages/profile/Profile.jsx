@@ -5,6 +5,11 @@ import Popup from 'reactjs-popup';
 import './css/profile.css'
 import './css/menubox.css'
 import './css/line-chart.css'
+import axios from 'axios';
+import line from "simple-line-chart";
+import { Chart, ChartSeries, ChartSeriesItem, ChartCategoryAxis, ChartCategoryAxisItem } from '@progress/kendo-react-charts';
+import 'hammerjs';
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
 const Header_Menu = () => {
     return (
         <header class="block">
@@ -26,41 +31,95 @@ const Header_Menu = () => {
             <div class="profile-menu">
                 <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
                 <div class="profile-picture small-profile-picture">
-                    <img width="40px" alt="Anne Hathaway picture" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" />
+                    {/* <img width="40px" alt="Anne Hathaway picture" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" /> */}
                 </div>
             </div>
         </header>
 
     );
 };
-
-const Profile_Menu = () => {
-    return(
-        <div class="profile-menu">
-                 <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
-                  <div class="profile-picture small-profile-picture">
-                      <img width="40px" alt="Anne Hathaway picture" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"/>
-                  </div>
-        </div>
-    );
-};
-
+const categories = ['Jan', 'Feb', 'Mar', 'Apr'];
+const ChartContainer = () => 
+     <Chart>
+      <ChartCategoryAxis>
+        <ChartCategoryAxisItem categories={categories}/>
+      </ChartCategoryAxis>
+      <ChartSeries>
+        <ChartSeriesItem type="verticalLine" data={[1, 2, 3, 5]} />
+        <ChartSeriesItem type="verticalLine" data={[-1, -2, -3, -5]} />
+      </ChartSeries>
+    </Chart>;
+// const Profile_Menu = () => {
+//     return(
+//         <div class="profile-menu">
+//                  <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
+//                   <div class="profile-picture small-profile-picture">
+//                       <img width="40px" alt="Anne Hathaway picture" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"/>
+//                   </div>
+//         </div>
+//     );
+// };
 const Profile_Block = () => {
+    const [firstName, setFirstName] = useState('');
+const [lastName, setLastName] = useState('');
+const [emailID, setemailID] = useState('');
+const [userName, setUsername] = useState('');
+const [image,setImage]=useState("");
+const [url,setUrl]=useState("");
+const url3 = "https://lmsapiv01.azurewebsites.net/api/user";
+  axios
+    .get(url3)
+    .then((response) => {
+    //   console.log(response.data[0][0].Answer)
+      for (let i = 0; i < response.data[0].length; i++) {
+        setFirstName(response.data[0][0].FirstName);
+        setLastName(response.data[0][0].LastName);
+        setemailID(response.data[0][0].EmailId);
+        setUsername(response.data[0][0].UserName);
+      }
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    const submitImage=()=>{
+        const data=new FormData()
+        data.append("file",image)
+        data.append("upload_preset","Inheritance")
+        data.append("cloud_name","dugkqpzgq")
+
+        fetch("https://api.cloudinary.com/v1_1/dugkqpzgq/image/upload",{
+        method :"post",
+        body:data
+    }
+        )
+    .then((res)=>res.json())
+    .then((data)=>{
+        setUrl(data.url)
+        console.log(data);
+    }).catch((err)=>{
+        console.log(err);
+    })
+    }
     return (
         <div class="profile block">
             <a class="add-button" href="#28"><span class="icon entypo-plus scnd-font-color"></span></a>
             <div class="profile-picture big-profile-picture clear">
-                <img width="150px" alt="Anne Hathaway picture" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" />
+                <img width="150px" alt="Anne Hathaway picture" src={url} />
             </div>
-            <h1 class="user-name">Manav Shah</h1>
+            <h1 class="user-name">{firstName} {lastName}</h1>
             <div class="profile-description">
-                <p class="scnd-font-color">DSA GOD</p>
+                <p class="scnd-font-color">Email ID : {emailID}</p>
+                <p class="scnd-font-color">UserName : {userName}</p>
             </div>
             <ul class="profile-options horizontal-list">
                 <li><a class="comments" href="#40"><p><span class="icon fontawesome-comment-alt scnd-font-color"></span>69</p></a></li>
                 <li><a class="views" href="#41"><p><span class="icon fontawesome-eye-open scnd-font-color"></span>420</p></a></li>
                 <li><a class="likes" href="#42"><p><span class="icon fontawesome-heart-empty scnd-font-color"></span>-69</p></a></li>
             </ul>
+            <input type="file" onChange={(e)=>setImage(e.target.files[0])}></input>
+            <button onClick={submitImage} className='bubbly-button'>Upload image as profile Photo</button>
+            {/* <img src={url}/> */}
         </div>
     );
 };
@@ -152,6 +211,7 @@ const Line_Graph = () => {
                 </ul>
             </div>
         </div>
+
     );
 };
 
@@ -165,6 +225,7 @@ const Profile = () => {
                 {/* <Donut_Block/> */}
                 <Menu_Box />
                 <Line_Graph />
+                {/* <ChartContainer/> */}
             </div>
         </div>
     );

@@ -93,11 +93,12 @@ const Landing = () => {
 				"LastName": lastname,
 				"EmailId": email,
 				"MobileNo": parseInt(mobile),
-				"LastLoginDateTime": "2022-11-27T00:00:00.000Z",
+				// "LastLoginDateTime": "2022-11-27T00:00:00.000Z",
 				"DateOfBirth": "1974-07-13T00:00:00.000Z",
 				"Age": 26,
 				"TypeId": String(parseInt(type)),
-				"ActivationStatus": '0'
+				// "ActivationStatus": '0',
+				"Photo":"https://www.nicepng.com/maxp/u2q8i1a9e6i1o0o0/"
 			};
 
 			console.log(sendData);

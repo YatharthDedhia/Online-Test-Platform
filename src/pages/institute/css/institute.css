@@ -6,8 +6,9 @@ input{
 	position: relative;
 	/* top: 15%;
 	left: 33.75%; */
+	/* display:flex; */
 	z-index: 0;
-	width: auto;
+	width: 500px;
 	height: auto;
 	background-color: #F9F8F8;
 	box-sizing: border-box;

@@ -3,7 +3,7 @@ import axios from 'axios';
 import Popup from 'reactjs-popup';
 import Login from './Login';
 import LoginHooks from './LoginHooks';
-
+import * as Components from './Components';
 import './css/landing.css';
 import './css/features.css';
 import './css/navbar.css';
@@ -13,6 +13,7 @@ import anima from '../../Images/anima.png';
 import improve from '../../Images/improve.png';
 import lecture from '../../Images/lecture.jpg';
 import proctor1 from '../../Images/proctor1.jpg';
+import logo from '../../Images/logo-no-background.png'
 import { Navigate, useNavigate } from 'react-router';
 
 const featureList = [
@@ -42,7 +43,7 @@ const Navbar = () => {
 	return (
 		<div className="landing-navbar">
 			<div className="landing-navbar-logo">
-				<h1>Test Platform</h1>
+				<img src={logo}></img>
 			</div>
 			<div className="landing-navbar-links">
 				<NavLinks />
@@ -53,6 +54,7 @@ const Navbar = () => {
 
 const Landing = () => {
 	const [flag, setFlag] = useState(0);
+	const [signIn, toggle] = React.useState(true);
 	// const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated") || false));
 	const StudentsInfo = (e) => {
 		e.preventDefault();
@@ -68,7 +70,7 @@ const Landing = () => {
 						// localStorage.setItem("authenticated", true);
 						// console.log("AUTHENTICATED: " + authenticated)
 
-						// window.location.replace("dashboard")
+						window.location.replace("dashboard")
 					}
 					else {
 						setFlag(1);
@@ -170,8 +172,80 @@ const Landing = () => {
 						</div>
 					</div>
 				</div>
+				<Components.Container>
+              <Components.SignUpContainer signinIn={signIn}>
+                  <Components.Form onSubmit={postData}>
+                      <Components.Title>Create Account</Components.Title>
+                      <Components.Input type='text' placeholder='First Name' value={firstname} onChange={(e) => setFirstName(e.target.value)} required/>
+					  <Components.Input type='text' placeholder='Last Name' value={lastname} onChange={(e) => setLastName(e.target.value)}  required/>
+                      <Components.Input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}  required/>
+					  <Components.Input type='number' placeholder='Mobile No.' value={mobile} onChange={(e) => setMobile(e.target.value)}  required/>
+					  <Components.Input type='text' placeholder='User Name' value={username} onChange={(e) => setUsername(e.target.value)}  required/>
+					  
+                      <Components.Input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required/>
+					  <Components.Input type='password' placeholder='Confirm Password' value={confpassword} onChange={(e) => setConfPassword(e.target.value)}  required/>
+					  <div class="selector">
+								<div class="selector-item">
+									<input type="radio" id="radio1" name="selector" value="2" class="selector-item_radio" onClick={(e) => setType(e.target.value)} />
+									<label for="radio1" class="selector-item_label">Student</label>
+								</div>
+								<div class="selector-item">
+									<input type="radio" id="radio2" name="selector" value="1" class="selector-item_radio" onClick={(e) => setType(e.target.value)} />
+									<label for="radio2" class="selector-item_label">Institute</label>
+								</div>
+							</div>
+                      <Components.Button type="submit" >Sign Up</Components.Button>
+                  </Components.Form>
+              </Components.SignUpContainer>
 
-				<div className='container'>
+              <Components.SignInContainer signinIn={signIn}>
+                   <Components.Form onSubmit={StudentsInfo}>
+                       <Components.Title>Sign in</Components.Title>
+                       <Components.Input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}  required/>
+                       <Components.Input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}  required/>
+					   <div class="selector1">
+								<div class="selector-item1">
+									<input type="radio" id="radio3" name="selector" value="2" class="selector-item_radio1" onClick={(e) => setType(e.target.value)} />
+									<label for="radio1" class="selector-item_label1">Student</label>
+								</div>
+								<div class="selector-item1">
+									<input type="radio" id="radio4" name="selector" value="1" class="selector-item_radio1" onClick={(e) => setType(e.target.value)} />
+									<label for="radio2" class="selector-item_label1">Institute</label>
+								</div>
+							</div>
+                       <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
+                       <Components.Button type="submit">Sigin In</Components.Button>
+                   </Components.Form>
+              </Components.SignInContainer>
+
+              <Components.OverlayContainer signinIn={signIn}>
+                  <Components.Overlay signinIn={signIn}>
+
+                  <Components.LeftOverlayPanel signinIn={signIn}>
+                      <Components.Title>Welcome Back!</Components.Title>
+                      <Components.Paragraph>
+                          To keep connected with us please login with your personal info
+                      </Components.Paragraph>
+                      <Components.GhostButton onClick={() => toggle(true)} >
+                          Sign In
+                      </Components.GhostButton>
+                      </Components.LeftOverlayPanel>
+
+                      <Components.RightOverlayPanel signinIn={signIn}>
+                        <Components.Title>Hello, Friend!</Components.Title>
+                        <Components.Paragraph>
+                            Enter Your personal details and start journey with us
+                        </Components.Paragraph>
+                            <Components.GhostButton onClick={() => toggle(false)}>
+                                Sigin Up
+                            </Components.GhostButton> 
+                      </Components.RightOverlayPanel>
+  
+                  </Components.Overlay>
+              </Components.OverlayContainer>
+
+          </Components.Container>
+				{/* <div className='container'>
 					<div className='SignUpBox'>
 						<form onSubmit={postData}>
 							<h1 className="Heading">Sign-Up</h1>
@@ -233,7 +307,7 @@ const Landing = () => {
 						</div>
 						<h2 className="title-heading">Key Features of our website</h2>
 					</div>
-				</div>
+				</div> */}
 			</div>
 
 			<footer className="Footer">Copyright © 2022 All rights reserved.</footer>

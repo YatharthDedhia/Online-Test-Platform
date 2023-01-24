@@ -175,6 +175,7 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,64,121,1) 7%, rgba(
 	position: relative;
 	height: 80%;
 	width: 100%;
+	padding: 9px;
 	text-align: center;
 	border-radius: 10px;
 	transition-duration: .2s;
@@ -183,7 +184,7 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,64,121,1) 7%, rgba(
 }
 
 .selector-item_radio:checked+.selector-item_label {
-	background-color: #00008b;
+	background-color: black;
 	color: white;
 }
 

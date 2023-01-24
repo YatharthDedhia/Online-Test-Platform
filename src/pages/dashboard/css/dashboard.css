@@ -16,7 +16,12 @@
 	padding: 2rem;
 	width: 100%;
 }
-
+.dashboard-logo img{
+	width: 7%;
+    position: absolute;
+    left: 264px;
+    top: 13px;
+}
 .landing-navbar {
 	/* color: aqua; */
 	/* margin: auto; */

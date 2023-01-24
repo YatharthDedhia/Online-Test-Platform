@@ -10,6 +10,7 @@ import './css/calendar.css'
 import Popup from 'reactjs-popup';
 import { render } from 'react-dom';
 import axios from 'axios';
+import logo from '../../Images/logo-no-background.png'
 // import { flag } from '../landing/Landing';
 function Tabs() {
 	const [toggleState, setToggleState] = useState(1);
@@ -182,8 +183,8 @@ const Navbar = () => {
 	return (
 		<div className="landing-navbar">
 			<Sidebar />
-			<div className="landing-navbar-logo">
-				<h1 className='site-name'>Test Platform</h1>
+			<div className='dashboard-logo'>
+				<img src={logo}></img>
 			</div>
 			<div className="landing-navbar-links">
 				<NavLinks />

@@ -3,7 +3,7 @@ const assert = require("assert");
 
 dotenv.config();
 
-const { PORT, HOST, HOST_URL, SQL_SERVER, SQL_DATABASE, SQL_USER, SQL_PASSWORD, } = process.env;
+const { PORT, HOST, HOST_URL, SQL_SERVER, SQL_DATABASE, SQL_USER, SQL_PASSWORD, ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET} = process.env;
 
 assert(PORT, "PORT IS REQUIRED"); //to check whether or not PORT is set up as environment variable. Can check for every other environment variable too
 assert(HOST, "HOST IS REQUIRED");
@@ -11,6 +11,8 @@ assert(SQL_SERVER, "SQL_SERVER IS REQUIRED");
 assert(SQL_DATABASE, "SQL_DATABASE IS REQUIRED");
 assert(SQL_USER, "SQL_USER IS REQUIRED");
 assert(SQL_PASSWORD, "SQL_PASSWORD IS REQUIRED");
+assert(ACCESS_TOKEN_SECRET, "ACCESS_TOKEN_SECRET IS REQUIRED");
+assert(REFRESH_TOKEN_SECRET, "REFRESH_TOKEN_SECRET IS REQUIRED");
 
 
 const sqlEncrypt = process.env.SQL_ENCRYPT === "true";
@@ -29,5 +31,8 @@ module.exports = {
             enableArithAbort: true
 
         }
-    }
+    },
+    access_token : ACCESS_TOKEN_SECRET,
+    refresh_token : REFRESH_TOKEN_SECRET
+
 };

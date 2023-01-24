@@ -26,7 +26,7 @@ async function getUser(UserId){
             
     }
     catch(err){
-        consolele.log(err);
+        console.log(err);
     }
 }
 
@@ -45,12 +45,12 @@ async function addUser(UserTable)
             
             
             .input('MobileNo',sql.Numeric(10,0),UserTable.MobileNo)
-            .input('LastLoginDateTime',sql.Date,UserTable.LastLoginDateTime)
+            //.input('LastLoginDateTime',sql.Date,UserTable.LastLoginDateTime)
             .input('DateOfBirth',sql.Date,UserTable.DateOfBirth)
             .input('Age',sql.Int,UserTable.Age)
             .input('TypeId',sql.Int,UserTable.TypeId )
             
-            .input('ActivationStatus',sql.Bit,UserTable.ActivationStatus)
+           // .input('ActivationStatus',sql.Bit,UserTable.ActivationStatus)
             .execute('RegisterUser');
         return insertNewUser.recordsets;    
     }
@@ -534,6 +534,21 @@ async function getActivatedTeachers(){
 //     } 
 // }
 
+async function getUserByUserName(UserTable){
+    try{
+        let pool = await sql.connect(config.sql);
+        let product = await pool.request()
+            .input('UserName',sql.VarChar(8000),UserTable.UserName)
+           // .input('Password', sql.VarChar(8000),UserTable.Password)
+            .execute("GetUserInfoUsingUserName");
+        return product.recordsets;
+            
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
 module.exports ={
     getUsers : getUsers,
     getUser : getUser,
@@ -564,5 +579,6 @@ module.exports ={
     updateSingleQuestion : updateSingleQuestion,
     reactivateQuestion : reactivateQuestion,
     getActivatedStudents : getActivatedStudents,
-    getActivatedTeachers : getActivatedTeachers
+    getActivatedTeachers : getActivatedTeachers,
+    getUserByUserName : getUserByUserName
 }

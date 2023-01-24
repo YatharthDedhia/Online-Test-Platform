@@ -182,7 +182,9 @@
 	max-width: 100%;
 	padding: 100px 0;
 	margin-top: 27px;
-	background-color: #ADD8E6;
+	/* background-color: #ADD8E6; */
+    /* background: linear-gradient(90deg, #fd8355 0%, #f0576c 37%, #f79cbd 100%); */
+	background-color: #201e1e;
 }
 
 .section-row {

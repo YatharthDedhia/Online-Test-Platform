@@ -18,9 +18,15 @@
     align-items: center;
     min-height: 100vh;
   } */
+
+  body{
+    /* background: linear-gradient(90deg, #fd8355 0%, #f0576c 37%, #f79cbd 100%); */
+    background-color: #201e1e;
+    ;
+  }
 .question-diff{
     position:absolute;
-    text-decoration: underline;
+    text-decoration: none;
     font-weight: bolder;
     justify-content: center;
     align-items: center;
@@ -30,10 +36,11 @@
     left: 453px;
     border-radius: 25px;
     padding: 10px;
-    
+    color: black;
 }
 .quizz-app {
-    background-color: #252d4a;
+    background-color: black;
+    color: white;
     width: 600px;
     min-height: 200px;
     height: 500px;
@@ -50,7 +57,7 @@
     display: flex;
     font-size: 24px;
     align-items: center;
-    color: #ffffff;
+    color: white;
     align-items: center;
     text-align: center;
     position: relative;
@@ -69,7 +76,7 @@
 
 .question-count {
     margin-bottom: 20px;
-    color: #ffffff;
+    color: white;
 }
 
 .question-count span {
@@ -114,14 +121,14 @@
 .quizz-app button {
     width: 100%;
     font-size: 16px;
-    color: #ffffff;
-    background-color: #252d4a;
+    color: white;
+    background-color: #201e1e;
     border-radius: 15px;
     /* display: flex; */
     padding: 5px;
     justify-content: flex-start;
     align-items: center;
-    border: 5px solid #234668;
+    border: 2px solid white;
     cursor: pointer;
     /* flex-direction: column; */
 }

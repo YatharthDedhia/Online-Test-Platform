@@ -39,15 +39,15 @@ const Header_Menu = () => {
     );
 };
 const categories = ['Jan', 'Feb', 'Mar', 'Apr'];
-const ChartContainer = () => 
-     <Chart>
-      <ChartCategoryAxis>
-        <ChartCategoryAxisItem categories={categories}/>
-      </ChartCategoryAxis>
-      <ChartSeries>
-        <ChartSeriesItem type="verticalLine" data={[1, 2, 3, 5]} />
-        <ChartSeriesItem type="verticalLine" data={[-1, -2, -3, -5]} />
-      </ChartSeries>
+const ChartContainer = () =>
+    <Chart>
+        <ChartCategoryAxis>
+            <ChartCategoryAxisItem categories={categories} />
+        </ChartCategoryAxis>
+        <ChartSeries>
+            <ChartSeriesItem type="verticalLine" data={[1, 2, 3, 5]} />
+            <ChartSeriesItem type="verticalLine" data={[-1, -2, -3, -5]} />
+        </ChartSeries>
     </Chart>;
 // const Profile_Menu = () => {
 //     return(
@@ -61,63 +61,58 @@ const ChartContainer = () =>
 // };
 const Profile_Block = () => {
     const [firstName, setFirstName] = useState('');
-const [lastName, setLastName] = useState('');
-const [emailID, setemailID] = useState('');
-const [userName, setUsername] = useState('');
-const [image,setImage]=useState("");
-const [url,setUrl]=useState("");
-const url3 = "https://lmsapiv01.azurewebsites.net/api/user";
-  axios
-    .get(url3)
-    .then((response) => {
-    //   console.log(response.data[0][0].Answer)
-      for (let i = 0; i < response.data[0].length; i++) {
-        setFirstName(response.data[0][0].FirstName);
-        setLastName(response.data[0][0].LastName);
-        setemailID(response.data[0][0].EmailId);
-        setUsername(response.data[0][0].UserName);
-      }
+    const [lastName, setLastName] = useState('');
+    const [emailID, setemailID] = useState('');
+    const [userName, setUsername] = useState('');
+    const [image, setImage] = useState("");
+    const [url, setUrl] = useState("");
+    const url3 = "https://lmsapiv01.azurewebsites.net/api/user";
+    axios
+        .get(url3)
+        .then((response) => {
+            //   console.log(response.data[0][0].Answer)
+            for (let i = 0; i < response.data[0].length; i++) {
+                setFirstName(response.data[0][0].FirstName);
+                setLastName(response.data[0][0].LastName);
+                setemailID(response.data[0][0].EmailId);
+                setUsername(response.data[0][0].UserName);
+            }
 
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-    const submitImage=()=>{
-        const data=new FormData()
-        data.append("file",image)
-        data.append("upload_preset","Inheritance")
-        data.append("cloud_name","dugkqpzgq")
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    const submitImage = () => {
+        const data = new FormData()
+        data.append("file", image)
+        data.append("upload_preset", "Inheritance")
+        data.append("cloud_name", "dugkqpzgq")
 
-        fetch("https://api.cloudinary.com/v1_1/dugkqpzgq/image/upload",{
-        method :"post",
-        body:data
-    }
+        fetch("https://api.cloudinary.com/v1_1/dugkqpzgq/image/upload", {
+            method: "post",
+            body: data
+        }
         )
-    .then((res)=>res.json())
-    .then((data)=>{
-        setUrl(data.url)
-        console.log(data);
-    }).catch((err)=>{
-        console.log(err);
-    })
+            .then((res) => res.json())
+            .then((data) => {
+                setUrl(data.url)
+                console.log(data);
+            }).catch((err) => {
+                console.log(err);
+            })
     }
     return (
         <div class="profile block">
             <a class="add-button" href="#28"><span class="icon entypo-plus scnd-font-color"></span></a>
             <div class="profile-picture big-profile-picture clear">
-                <img width="150px" alt="Anne Hathaway picture" src={url} />
+                <img width="150px" src={url}  />
             </div>
             <h1 class="user-name">{firstName} {lastName}</h1>
             <div class="profile-description">
                 <p class="scnd-font-color">Email ID : {emailID}</p>
                 <p class="scnd-font-color">UserName : {userName}</p>
             </div>
-            <ul class="profile-options horizontal-list">
-                <li><a class="comments" href="#40"><p><span class="icon fontawesome-comment-alt scnd-font-color"></span>69</p></a></li>
-                <li><a class="views" href="#41"><p><span class="icon fontawesome-eye-open scnd-font-color"></span>420</p></a></li>
-                <li><a class="likes" href="#42"><p><span class="icon fontawesome-heart-empty scnd-font-color"></span>-69</p></a></li>
-            </ul>
-            <input type="file" onChange={(e)=>setImage(e.target.files[0])}></input>
+            <input type="file" onChange={(e) => setImage(e.target.files[0])}></input>
             <button onClick={submitImage} className='bubbly-button'>Upload image as profile Photo</button>
             {/* <img src={url}/> */}
         </div>
@@ -174,7 +169,7 @@ const Line_Graph = () => {
                         <li data-ejeY='20'></li>
                         <li data-ejeY='10'></li>
                         <li data-ejeY='0'></li>
-                    </ul>
+                     </ul>
                     <ul class='eje-x'>
                         <li>Apr</li>
                         <li>May</li>
@@ -219,11 +214,11 @@ const Profile = () => {
     return (
         <div className='main-container'>
 
-            <Header_Menu />
+            {/* <Header_Menu /> */}
             <div className='container3'>
                 <Profile_Block />
                 {/* <Donut_Block/> */}
-                <Menu_Box />
+                {/* <Menu_Box />     */}
                 <Line_Graph />
                 {/* <ChartContainer/> */}
             </div>

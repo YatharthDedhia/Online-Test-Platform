@@ -1,81 +1,9 @@
-/* table {
-    width: 100%;
-    max-width: 960px;
-    margin: 0 auto;
-
-    border-collapse: separate;
-    border-spacing: 0;
-}
-
-tbody tr:nth-child(odd) {
-    background-color: #ECE9E9;
-}
-
-th,
-td {
-    padding: 0.75rem;
-    font-size: 0.9375rem;
-}
-
-th {
-    font-weight: 700;
-    text-align: left;
-    color: #272838;
-    border-bottom: 2px solid antiquewhite;
-
-    position: sticky;
-    top: 0;
-    background-color: #EB9486;
-}
-
-td {
-    color: #7E7F9A;
-}
-
-body {
-    padding: 6rem 2rem;
-    background-color: #F9F8F8;
-}
-
-.mytabs {
-    width: 80%;
-    margin-left: 10%;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.mytabs input[type="radio"] {
-    display: none;
-}
-
-.mytabs label {
-    padding: 25px;
-    background: #EB9486;
-}
-
-.mytabs .tab{
-    width: 100%;
-    padding: 20px;
-    order:1;
-}
-.mytabs input[type='radio'] :checked +label + .tab{
-display:none;
-}
-.mytabs input[type='radio'] :checked +label{
-    background-color: #EB9486;
-    } */
-
 ::before,
 ::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
-body {
-  /* background: #EB9486; */
-}
-
 .container1 {
   position: absolute;
   
@@ -105,7 +33,7 @@ body {
   padding: 15px;
   text-align: center;
   width: 50%;
-  background: #EB9486;
+  background: #353232;
   cursor: pointer;
   /* border-bottom: 1px solid rgba(0, 0, 0, 0.274); */
   box-sizing: content-box;
@@ -113,6 +41,7 @@ body {
   outline: none;
   font-size: 18px;
   /* color: #7E7F9A; */
+  color: white;
 
 }
 
@@ -121,10 +50,10 @@ body {
 }
 
 .active-tabs {
-  background: #F9F8F8;
+  background: black;
   /* border-bottom: 1px solid transparent; */
   font-size: 18px;
-  /* color: #222; */
+  color: white;
 }
 
 .active-tabs::before {
@@ -136,7 +65,7 @@ body {
   transform: translateX(-50%);
   width: calc(100% + 2px);
   height: 5px;
-  background: #EB9486;
+  background: black;
   border-radius: 5px;
 }
 
@@ -152,7 +81,7 @@ button {
 }
 
 .content {
-  background: #F9F8F8;
+  background: #201e1e;
   padding: 20px;
   width: 100%;
   height: 100%;
@@ -176,7 +105,7 @@ button {
 }
 
 .active-content {
-  background-color: #F9F8F8;
+  background-color: #201e1e;
   display: block;
 }
 
@@ -193,12 +122,13 @@ button {
 
 .content tr {
   /* border:10px #222 ; */
-  background-color: #EB9486;
+  background-color: black;
   /* border-radius: 5px; */
+  color: white;
 }
 
 tbody tr:nth-child(odd) {
-  background-color: #ECE9E9;
+  background-color: #222;
 }
 
 th,
@@ -210,5 +140,5 @@ td {
 
 td {
   /* body cell */
-  color: #7E7F9A;
+  color: white;
 }

@@ -1,5 +1,6 @@
 .App{
-  background-color:#ADD8E6;
+  /* background-color:#ADD8E6; */
+  /* background-color: #252d4a; */
 }
 .image-capture {
   border-radius: 10px;
@@ -13,7 +14,7 @@
   margin-top: 5%;
   margin-right: 5%;
   justify-content: right;
-  background-color:#ADD8E6;
+  color: white;
 }
 
 .hide {

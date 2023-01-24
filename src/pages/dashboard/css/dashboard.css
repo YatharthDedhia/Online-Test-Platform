@@ -23,8 +23,7 @@
 	/* padding: 50px; */
 	/* border: 3px solid red; */
 	margin-left: -33px;
-
-
+	color: white;
 }
 
 .test-items {
@@ -45,4 +44,17 @@
 
 .landing-navbar-logo {
 	padding-right: 60%;
+}
+
+.landing-navbar-links a{
+	color: white;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+.landing-navbar-links a:hover{
+	color: rgb(217, 214, 214);
+	text-decoration: none;
+	/* transition: slo; */
+	/* font-size: 20px; */
 }

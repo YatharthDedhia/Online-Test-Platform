@@ -219,7 +219,7 @@
 	max-height: 15rem;
 	padding: 0.5rem;
 	/* margin-top: 3rem; */
-	border: 4px solid #00008b;
+	border: 4px solid white;
 	border-radius: 10%;
 	transition: transform 250ms linear;
 }
@@ -235,7 +235,7 @@
 
 .hover-text {
 	position: fixed;
-	color: #EB9486;
+	color: white;
 	top: 150px;
 	left: 0;
 	width: 100%;

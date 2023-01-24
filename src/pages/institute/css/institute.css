@@ -63,10 +63,10 @@ input{
 	transform: none;
 }
 
-.selector-item_radio:checked+.selector-item_label {
+/* .selector-item_radio:checked+.selector-item_label {
 	background-color: #00008b;
 	color: white;
-}
+} */
 .bubbly-button2 {
 	display: block;
 	font-size: 1em;

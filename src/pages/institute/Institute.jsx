@@ -10,6 +10,34 @@ const check=(e)=>
 {
   console.log("Hello");
 }
+const Header_Menu = () => {
+  return (
+      <header class="block">
+          <ul class="header-menu horizontal-list">
+              <li>
+                  <a class="header-menu-tab" href="#1"><span class="icon fontawesome-calendar scnd-font-color"></span>Schedule Test</a>
+              </li>
+              <li>
+                  <a class="header-menu-tab" href="#2"><span class="icon fontawesome-trophy scnd-font-color"></span>Rank List</a>
+              </li>
+              <li>
+                  <a class="header-menu-tab" href="#3"><span class="icon fontawesome-envelope scnd-font-color"></span>Make Question Paper</a>
+                  <a class="header-menu-number" href="#4">5</a>
+              </li>
+              <li>
+                  <a class="header-menu-tab" href="#5"><span class="icon fontawesome-check scnd-font-color"></span>Asseignments Submitted</a>
+              </li>
+          </ul>
+          <div class="profile-menu">
+              <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
+              <div class="profile-picture small-profile-picture">
+                  <img width="40px" src="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg" />
+              </div>
+          </div>
+      </header>
+
+  );
+};
 
     const Institute = () => {
     const [Questionnumber, setQuestionnumber] = useState(0);
@@ -97,6 +125,7 @@ const postExam = (e) => {
 }
       return (
         <div>
+          <Header_Menu/>
         <form onSubmit={postData} className="container4">
         <label>
             Course ID:
@@ -208,7 +237,7 @@ const postExam = (e) => {
             onChange={e => setWeightage4(e.target.value)}
             required/>
           </label>
-          <label>
+          {/* { <label>
             Option 1 is:
             <input
             className="correct1"
@@ -226,67 +255,58 @@ const postExam = (e) => {
             //   value={this.state.numberOfGuests}
             onClick={e => setisCorrect1(false)}
             required/>False
-          </label>
+          </label> } */}
+          <label>
+            Option 1 is:
+          <div class="container6">
+    <div class="radio_container">
+        <input className="correct1" type="radio" name="radio1"  id="true" value="true"  onClick={e => setisCorrect1(true)} checked required/>
+        <label className="label1" for="true">True</label>
+        <input className="correct1" type="radio" name="radio1"  id="false" value="false"  onClick={e => setisCorrect1(false)} required/>
+        <label className="label1" for="false">False</label>
+        
+    </div>
+</div>
+</label>
           <br/>
           <label>
             Option 2 is:
-            <input
-            className="correct2"
-              name="iscorrect2"
-              type="radio"
-              value= "true" 
-            //   value={this.state.numberOfGuests}
-            onClick={e => setisCorrect2(true)}
-            required/>True
-            <input
-            className="correct2"
-              name="iscorrect2"
-              type="radio"
-              value="false"
-            //   value={this.state.numberOfGuests}
-            onClick={e => setisCorrect2(false)}
-            required/>False
-          </label>
+          <div class="container6">
+    <div class="radio_container">
+        <input className="correct2" type="radio" name="radio2" id="true1" value="true"  onClick={e => setisCorrect2(true)} checked required/>
+        <label className="label2" for="true1">True</label>
+        <input className="correct2" type="radio" name="radio2" id="false1" value="false"  onClick={e => setisCorrect2(false)} required/>
+        <label className="label2" for="false1">False</label>
+        
+    </div>
+</div>
+</label>
           <br/>
           <label>
             Option 3 is:
-            <input
-            className="correct3"
-              name="iscorrect3"
-              type="radio"
-              value= "true" 
-            //   value={this.state.numberOfGuests}
-            onClick={e => setisCorrect3(true)}
-            required/>True
-            <input
-            className="correct3"
-              name="iscorrect3"
-              type="radio"
-              value="false"
-            //   value={this.state.numberOfGuests}
-            onClick={e => setisCorrect3(false)}
-            required/>False
-          </label>
+          <div class="container6">
+    <div class="radio_container">
+        <input className="correct3" type="radio" name="radio3" id="true2" value="true"  onClick={e => setisCorrect3(true)} checked required/>
+        <label className="label3" for="true2">True</label>
+        <input className="correct3" type="radio" name="radio3" id="false2" value="false"  onClick={e => setisCorrect3(false)} required/>
+        <label className="label3" for="false2">False</label>
+        
+    </div>
+</div>
+</label>
           <br/>
           <label>
             Option 4 is:
-            <input
-            className="correct4"
-              name="iscorrect4"
-              type="radio"
-              value= "true" 
-            //   value={this.state.numberOfGuests}
-            onClick={e => setisCorrect4(true)}
-            required/>True
-            <input
-            className="correct4"
-              name="iscorrect4"
-              type="radio"
-              value="false"
-            //   value={this.state.numberOfGuests}
-            onClick={e => setisCorrect4(false)}
-            required/>False
-          </label>
+          <div class="container6">
+    <div class="radio_container">
+        <input className="correct4" type="radio" name="radio4" id="true3" value="true"  onClick={e => setisCorrect4(true)} checked required/>
+        <label className="label4" for="true3">True</label>
+        <input className="correct4" type="radio" name="radio4" id="false3" value="false"  onClick={e => setisCorrect4(false)} required/>
+        <label className="label4" for="false3">False</label>
+        
+    </div>
+</div>
+</label>
           <br/>
           
           <button className='bubbly-button2' type="submit">Submit</button>

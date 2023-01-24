@@ -4,14 +4,15 @@ export const Container = styled.div`
 position:absolute;
 top:-900px;
 margin:auto;
-background-color: #fff;
+background-color: black;
 border-radius: 10px;
 box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 position: relative;
 overflow: hidden;
-width: 678px;
+width: 800px;
 max-width: 100%;
 min-height: 400px;
+height:500px;
 `;
 
 export const SignUpContainer = styled.div`
@@ -27,8 +28,8 @@ export const SignUpContainer = styled.div`
    transform: translateX(100%);
    opacity: 1;
    z-index: 5;
- ` 
- : null}
+ `
+    : null}
 `;
 
 
@@ -44,7 +45,7 @@ ${props => (props.signinIn !== true ? `transform: translateX(100%);` : null)}
 `;
 
 export const Form = styled.form`
-background-color: #ffffff;
+background-color: black;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -56,12 +57,14 @@ text-align: center;
 
 export const Title = styled.h1`
 font-weight: bold;
+color:white;
 margin: 0;
 `;
 
 export const Input = styled.input`
-background-color: #eee;
+background-color: white;
 border: none;
+color:white;
 padding: 12px 15px;
 margin: 8px 0;
 width: 100%;
@@ -71,9 +74,9 @@ height:20px;
 
 export const Button = styled.button`
    border-radius: 20px;
-   border: 1px solid #ff4b2b;
-   background-color: #ff4b2b;
-   color: #ffffff;
+   border: 1px solid white;
+   background-color: white;
+   color: black;
    font-size: 12px;
    font-weight: bold;
    padding: 12px 45px;
@@ -86,14 +89,23 @@ export const Button = styled.button`
    &:focus {
        outline: none;
    }
+   &:hover{
+    background-color:#201e1e;
+    color:white;
+   }
 `;
 export const GhostButton = styled(Button)`
-background-color: transparent;
+background-color: black;
 border-color: #ffffff;
+color:white;
+&:hover{
+  background-color:white;
+  color:black;
+}
 `;
 
 export const Anchor = styled.a`
-color: #333;
+color: white;
 font-size: 14px;
 text-decoration: none;
 margin: 15px 0;
@@ -108,13 +120,11 @@ overflow: hidden;
 transition: transform 0.6s ease-in-out;
 z-index: 100;
 ${props =>
- props.signinIn !== true ? `transform: translateX(-100%);` : null}
+    props.signinIn !== true ? `transform: translateX(-100%);` : null}
 `;
 
 export const Overlay = styled.div`
-background: #ff416c;
-background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-background: linear-gradient(to right, #ff4b2b, #ff416c);
+background:#201e1e;
 background-repeat: no-repeat;
 background-size: cover;
 background-position: 0 0;

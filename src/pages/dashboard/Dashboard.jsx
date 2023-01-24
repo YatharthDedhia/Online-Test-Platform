@@ -199,11 +199,18 @@ const Dashboard = () => {
 	const [testName, setTestName] = useState('');
 	const [courseName, setCourseName] = useState('');
 	const [courseCode, setCourseCode] = useState(0);
-	const [date1, setDate1] = useState(null);
+	const [date1, setDate1] = useState("000000000000000000");
 	const [startTime, setStartTime] = useState("");
 	const [endTime, setEndTime] = useState("");
 	const [duration, setDuration] = useState(0);
 	const [link, setLink] = useState("");
+
+	let fullstamp = new Date().toJSON();
+	let fulldate = new Date().toJSON().slice(0, 10);
+	let fulltime = new Date().toJSON().slice(11, 16);
+	var d1 = Date.parse(fullstamp)
+
+
 	// const [authenticated, setauthenticated] = useState(null);
 	useEffect(() => {
 		const loggedInUser = localStorage.getItem("authenticated");
@@ -216,6 +223,14 @@ const Dashboard = () => {
 		const toggleTab = (index) => {
 			setToggleState(index);
 		};
+
+		// console.log(date1)
+		let d2 = Date.parse(date1)
+
+		if (d1 < d2) {
+			console.log(date1);
+			console.log(fullstamp);
+		}
 
 		return (
 			<div className="container1">
@@ -248,6 +263,7 @@ const Dashboard = () => {
 									<tr>
 										<th>Name</th>
 										<th>Subject</th>
+										<th>Date</th>
 										<th>Time</th>
 										<th>Link</th>
 									</tr>
@@ -259,9 +275,10 @@ const Dashboard = () => {
 
 												<td>{testName}</td>
 												<td>{courseName}</td>
-												<td>{date1}</td>
+												<td>{date1.slice(0, 10)}</td>
+												<td>{date1.slice(11, 16)}</td>
 												<td>
-													<a href={link}>{link}</a>
+													<a href="/test">{link}</a>
 												</td>
 											</tr>
 										</tbody>
@@ -278,6 +295,7 @@ const Dashboard = () => {
 									<tr>
 										<th>Name</th>
 										<th>Subject</th>
+										<th>Date</th>
 										<th>Time</th>
 										<th>Link</th>
 									</tr>
@@ -290,9 +308,10 @@ const Dashboard = () => {
 
 												<td>{testName}</td>
 												<td>{courseName}</td>
-												<td>{date1}</td>
+												<td>{date1.slice(0, 10)}</td>
+												<td>{date1.slice(11, 16)}</td>
 												<td>
-													<a href={link}>{link}</a>
+													<a href="/test">{link}</a>
 												</td>
 											</tr>
 										</tbody>
@@ -309,6 +328,7 @@ const Dashboard = () => {
 									<tr>
 										<th>Name</th>
 										<th>Subject</th>
+										<th>Date</th>
 										<th>Time</th>
 										<th>Link</th>
 									</tr>
@@ -320,9 +340,10 @@ const Dashboard = () => {
 
 											<td>{testName}</td>
 											<td>{courseName}</td>
-											<td>{date1}</td>
+											<td>{date1.slice(0, 10)}</td>												<td>{date1.slice(11, 16)}</td>
+											{/* <td>{date1.slice(11, 16)}</td> */}
 											<td>
-												<a href={link}>{link}</a>
+												<a href="/test">{link}</a>
 											</td>
 										</tr>
 									</tbody>
@@ -348,7 +369,6 @@ const Dashboard = () => {
 				setEndTime(response.data[0][0].EndTime);
 				setDuration(response.data[0][0].Duration);
 				setLink(response.data[0][0].Link);
-
 			}
 
 		})

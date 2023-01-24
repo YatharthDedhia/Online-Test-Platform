@@ -22,6 +22,16 @@
   /* border: 1px solid rgba(0, 0, 0, 0.274); */
 }
 
+.container1 a{
+  text-decoration: none;
+  color: white;
+}
+
+.container1 a:hover{
+  text-decoration: none;
+  color: blue;
+}
+
 .bloc-tabs {
   display: flex;
   /* background-color: #EB9486; */

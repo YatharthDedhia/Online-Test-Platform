@@ -34,7 +34,7 @@ const NavLinks = () => (
 			<a href="/">Pricing</a>
 		</p>
 		<p>
-			<a href="/login">Login</a>
+			<a href="/landing">Contact</a>
 		</p>
 	</React.Fragment>
 );
@@ -213,8 +213,8 @@ const Landing = () => {
 									<label for="radio2" class="selector-item_label1">Institute</label>
 								</div>
 							</div>
-                       <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
-                       <Components.Button type="submit">Sigin In</Components.Button>
+                       {/* <Components.Anchor href='#'>Forgot your password?</Components.Anchor> */}
+                       <Components.Button type="submit">Sign In</Components.Button>
                    </Components.Form>
               </Components.SignInContainer>
 
@@ -232,12 +232,12 @@ const Landing = () => {
                       </Components.LeftOverlayPanel>
 
                       <Components.RightOverlayPanel signinIn={signIn}>
-                        <Components.Title>Hello, Friend!</Components.Title>
+                        <Components.Title>Hello!</Components.Title>
                         <Components.Paragraph>
                             Enter Your personal details and start journey with us
                         </Components.Paragraph>
                             <Components.GhostButton onClick={() => toggle(false)}>
-                                Sigin Up
+                                Sign Up
                             </Components.GhostButton> 
                       </Components.RightOverlayPanel>
   

@@ -17,7 +17,7 @@ function Ml() {
   // Main function
   const runCoco = async () => {
     const net = await cocossd.load();
-    console.log("Handpose model loaded.");
+    // console.log("Handpose model loaded.");
     //  Loop and detect hands
     setInterval(() => {
       detect(net);
@@ -47,7 +47,7 @@ function Ml() {
       // Make Detections
 
       const obj = await net.detect(video);
-      console.log(obj.length)
+      // console.log(obj.length)
 
       if (obj.length > 1 || obj.length == 0) {
         setFlag(1)

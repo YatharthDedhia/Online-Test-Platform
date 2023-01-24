@@ -25,7 +25,7 @@ function Login() {
 
     return (
         <div>
-            <GoogleLogin
+            {/* <GoogleLogin
                 clientId={clientId}
                 buttonText="Login"
                 onSuccess={onSuccess}
@@ -33,7 +33,7 @@ function Login() {
                 cookiePolicy={'single_host_origin'}
                 style={{ marginTop: '100px' }}
                 isSignedIn={true}
-            />
+            /> */}
         </div>
     );
 }

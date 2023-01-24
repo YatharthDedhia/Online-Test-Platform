@@ -1,15 +1,9 @@
-// import Quiz from 'react-quiz-component';
-// import { quiz } from 'quiz';
 import Ml from '../ML/ml';
-import Speech from '../Speech/speech';
-import ReactDOM from "react-dom";
 import './css/test.css'
-import Webcam from 'react-webcam';
 import React, { useState, useEffect } from 'react';
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import axios from 'axios';
 import './css/timer.css';
-import { registry } from 'chart.js';
 
 const questions = [
   {
@@ -49,58 +43,18 @@ const questions = [
     ],
   },
 ];
-// const [flag, setFlag] = useState(0);
-	// const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated") || false));
 
-let answerOptions = []
-let option1 = {}
-
-let QuestionNo = [];
-const Questions = (e) => {
-  // e.preventDefault();
-  const url = "https://viveklmsapi01.azurewebsites.net/api/questions/1";
-  axios
-    .get(url)
-    .then((response) => {
-      console.log(response.data[0])
-      for (let i = 0; i < response.data[0].length; i++) {
-        // QuestionNo = response.data[0][i].QuestNo
-        QuestionNo.push(response.data[0][i].QuestNo)
-        console.log(QuestionNo)
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
-const Options = (e) => {
-  // e.preventDefault();
-  const url = "https://viveklmsapi01.azurewebsites.net/api/answers";
-  axios
-    .get(url)
-    .then((response) => {
-      console.log(response.data[0])
-
-      for (let i = 0; i < response.data[0].length; i++) {
-        console.log(response.data[0][i].QuestNo)
-        for (let j = 0; j < QuestionNo.length; j++) {
-          if (response.data[0][i].QuestNo == QuestionNo[j]) {
-            console.log(response.data[0][i].Answer)
-          }
-        }
-        option1.answerText = response.data[0][i].Answer
-        option1.isCorrect = response.data[0][i].isCorrect
-        answerOptions.push(option1)
-        console.log("option1: ", answerOptions)
-      }
-
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
+const test = [
+  {
+    questionText: '',
+    answerOptions: [
+      { answerText: '', isCorrect: false },
+      { answerText: '', isCorrect: false },
+      { answerText: '', isCorrect: true },
+      { answerText: '', isCorrect: false },
+    ],
+  }
+];
 
 const children = ({ remainingTime }) => {
   const hours = Math.floor(remainingTime / 3600)
@@ -108,102 +62,74 @@ const children = ({ remainingTime }) => {
   const seconds = remainingTime % 60
   return `${hours}:${minutes}:${seconds}`
 }
-const postData = (e) => {
-  e.preventDefault();
-  const sendQuestions = {
-    "QuestNo": 20,
-    "CourseId": 1,
-    "Question": "Which is the largest planet",
-    "Marks": 2,
-    "Difficulty": 3,
-    // "MobileNo": parseInt(mobile),
-    // "LastLoginDateTime": "2022-11-27T00:00:00.000Z",
-    // "DateOfBirth": "1974-07-13T00:00:00.000Z",
-    // "Age": 26,
-    // "TypeId": String(parseInt(type)),
-    // "ActivationStatus": '0'
-  };
 
-  console.log(sendQuestions);
+const Test = () => {
 
-  axios.post('https://viveklmsapi01.azurewebsites.net/api/questionbank', sendQuestions).then(result => { console.log(result.data) });
-};
-const videoConstraints = {
-  width: 1280,
-  height: 720,
-  facingMode: 'user'
-};
-
-const WebLiveCapture = () => {
-  const webcamRef = React.useRef(null);
-  const [image, setImage] = useState('');
-  const capture = React.useCallback(
-    () => {
-      const imageSrc = webcamRef.current.getScreenshot();
-      setImage(imageSrc);
-      // console.log('Captured');
-    },
-    [webcamRef]
-  );
-
-  return (
-    <React.Fragment>
-      <Webcam
-        audio={false}
-        ref={webcamRef}
-        screenshotFormat="image/jpeg"
-        height={150}
-        width={300}
-        videoConstraints={videoConstraints}
-      />
-
-      {/* <Ml/> */}
-
-      <button className="hide" onClick={capture}>
-        Capture photo
-      </button>
-    </React.Fragment>
-  );
-};
-// const QuestionInfo = (e) => {
-//   // e.preventDefault();
-//   const url = "https://lmsapiv01.azurewebsites.net/api/questionbank/1";
-//   axios
-//     .get(url)
-//     .then((response) => {
-
-//       for (let i = 0; i < response.data[0].length; i++) {
-//       }
-
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// }
-const Quizz = () => {
-
-  useEffect(() => {
-    Questions();
-    Options();
-  }, []);
-
+  const [paper, setPaper] = useState(test)
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [question, setQuestion] = useState("");
-  const [currentAns, setCurrentAns] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
-  const [AnsOption, setAnsOption] = useState(0);
   const [quizLength, setquizLength] = useState(0);
   const [Difficulty, setDifficulty] = useState(0);
-  
+  const [isDisabled, setIsDisabled] = useState(false);
 
-  // const url = "https://lmsapiv01.azurewebsites.net/api/questionbank/1";
+  let questionobj = []
+  let obj = {}
+
+  const getPaper = () => {
+    const url2 = "https://lmsapiv01.azurewebsites.net/api/qbaf/1";
+    axios
+      .get(url2)
+      .then((response) => {
+        console.log(response.data[0])
+        setquizLength(response.data[0].length / 4)
+        for (let j = 0; j < (response.data[0].length); j++) {
+          obj["questionText"] = response.data[0][j].Question
+          setDifficulty(response.data[0][j].Difficulty)
+          // console.log(j)
+          let temparr = []
+          for (let i = 0; i < 4; i++) {
+            let tempobj = {}
+            console.log(i + j)
+            tempobj["answerText"] = response.data[0][i + j].Answer
+            tempobj["isCorrect"] = response.data[0][i + j].isCorrect
+
+            temparr.push(tempobj)
+            obj["answerOptions"] = temparr
+          }
+          console.log(obj)
+          questionobj.push(obj)
+          j += 3
+        }
+
+        // console.log(questionobj[0].questionText)
+        setPaper(questionobj)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // console.log(questionobj[0].questionText)
+
+  }
+  console.log(paper)
+
+  useEffect(() => {
+    // Questions();
+    // Options();
+    getPaper();
+  }, []);
+
+  // const url2 = "https://lmsapiv01.azurewebsites.net/api/qbaf/1";
   // axios
-  //   .get(url)
+  //   .get(url2)
   //   .then((response) => {
-  //     console.log(response.data[0][0].Question);
-  //     setquizLength(response.data[0].length);
+  //     console.log(response.data[0][0].Answer)
+  //     setquizLength(Math.round(response.data[0].length / 4));
   //     for (let i = 0; i < response.data[0].length; i++) {
+  //       setCurrentAns(response.data[0][0].Answer);
+  //       setQuestion(response.data[0][0].Question);
+  //       setScore(response.data[0][i].Marks);
+  //       setDifficulty(response.data[0][0].Difficulty);
   //     }
 
   //   })
@@ -211,39 +137,22 @@ const Quizz = () => {
   //     console.log(err);
   //   });
 
-    const url2 = "https://lmsapiv01.azurewebsites.net/api/qbaf/1";
-  axios
-    .get(url2)
-    .then((response) => {
-      console.log(response.data[0][0].Answer)
-      setquizLength(Math.round(response.data[0].length/4));
-      for (let i = 0; i < response.data[0].length; i++) {
-        setCurrentAns(response.data[0][0].Answer);
-        setQuestion(response.data[0][0].Question);
-        setScore(response.data[0][i].Marks);
-        setDifficulty(response.data[0][0].Difficulty);
-      }
-
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
       setScore(0);
       setScore(score + 1);
+      setIsDisabled(true)
     }
 
     const nextQuestion = currentQuestion + 1;
-    if (nextQuestion > questions.length) {
+    if (nextQuestion > paper.length) {
       setShowScore(true);
       // setCurrentQuestion(nextQuestion);
     }
   };
 
   const goNext = () => {
-    if (currentQuestion + 1 < questions.length) {
+    if (currentQuestion + 1 < paper.length) {
       setCurrentQuestion(currentQuestion + 1);
     }
     else {
@@ -257,52 +166,43 @@ const Quizz = () => {
     }
   }
 
-  return (
-    <div className='quizz-app'>
-      {showScore ? (
-        <div className='score-section'>
-          You scored {score} out of {quizLength}
-        </div>
-      ) : (
-        <>
-          <div className='question-section'>
-            <div className='question-diff'>Difficulty:{Difficulty}</div>
-            <div className='question-count'>
-              <span>Question {currentQuestion + 1}</span>/{quizLength}
-            </div>
-            <div className='question-text'>{question}</div>
-          </div>
-          <div className='answer-section'>
-            {questions[currentQuestion].answerOptions.map((answerOption) => (
-              <button type='radio' onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{currentAns}</button>
-            ))}
-          </div>
-          <button className='nextbutton' onClick={() => goNext()}>Next</button>
-          <button className='prevbutton' onClick={() => goPrev()}>Previous</button>
-        </>
-      )}
-    </div>
-  );
-}
 
-const Test = () => {
   return (
     <div className="timer-wrapper">
-      {/* <Quiz quiz={quizzz} shuffle={true}/> */}
-      <Quizz />
+      <div className='quizz-app'>
+        {showScore ? (
+          <div className='score-section'>
+            You scored {score} out of {quizLength}
+          </div>
+        ) : (
+          <>
+            <div className='question-section'>
+              <div className='question-diff'>Difficulty:{Difficulty}</div>
+              <div className='question-count'>
+                <span>Question {currentQuestion + 1}</span>/{quizLength}
+              </div>
+              <div className='question-text'>{paper[currentQuestion].questionText}</div>
+            </div>
+            <div className='answer-section'>
+              {paper[currentQuestion].answerOptions.map((answerOption) => (
+                <button disabled={isDisabled} type='radio' onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+              ))}
+            </div>
+            <button className='nextbutton' onClick={() => goNext()}>Next</button>
+            <button className='prevbutton' onClick={() => goPrev()}>Previous</button>
+          </>
+        )}
+      </div>
       <CountdownCircleTimer
         isPlaying
-        duration={60}
+        duration={6}
         colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
         colorsTime={[60, 0.6 * 60, 0.3 * 60, 0]}
-      // onComplete={() => (setShowScore(true))}
+        onComplete={() => setShowScore(true)}
       >
         {children}
       </CountdownCircleTimer>
       <div className="image-capture">
-        {/* <WebLiveCapture /> */}
-        {/* <QuestionInfo/> */}
-        <postData />
         <Ml />
         {/* <Speech/> */}
       </div>

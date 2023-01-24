@@ -59,16 +59,46 @@
 	content: "\e611";
 }
 
+.line-chart {
+	background-color: black;
+}
+
+.grafico {
+	background-color: black;
+}
+
+.file-button{
+	display: block;
+	font-size: 1em;
+	background-color: white;
+	color: black;
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+	position: relative;
+	top: 50px;
+	right: -80px;
+	height: 35px;
+	width: auto;
+
+}
+
+input[type="file"] {
+	/* visibility: hidden;
+	display: none; */
+	height: 5px;
+	width: 5px;
+	top: -210px;
+	right: -350px;
+	position: relative;
+}
+
 /************************************* END FONTS *************************************/
 
 * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-}
-
-body {
-	background: #1f253d;
 }
 
 ul {
@@ -232,12 +262,26 @@ a:hover {
 	padding-right: 2px;
 }
 
+.profile-pic-upload {
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	height: 150px;
+	width: 150px;
+	display: flex;
+	top: 0px;
+	right: 0px;
+	/* background-position: 50% 50%; */
+}
+
 .profile-picture {
 	border-radius: 100%;
 	overflow: hidden;
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
+	position: relative;
+	top: 15px;
 }
 
 .big-profile-picture {
@@ -260,7 +304,7 @@ a:hover {
 	font-family: 'Ubuntu', sans-serif;
 	width: 100%;
 	height: 100%;
-	background-color:#1f253d;
+	background-color: #201e1e;
 	/* margin: 6em auto; */
 }
 
@@ -323,6 +367,7 @@ header {
 	float: right;
 	height: 80px;
 	padding-right: 20px;
+	background-color: black;
 }
 
 .profile-menu p {
@@ -353,9 +398,10 @@ header {
 	} */
 .block {
 	margin-bottom: 25px;
-	background: #394264;
+	background: black;
 	/* border-radius: 5px; */
 	width: 100%;
+	color: white;
 }
 
 /******************************************** LEFT CONTAINER *****************************************/
@@ -370,7 +416,7 @@ header {
 }
 
 .menu-box .titular {
-	background: #11a8ab;
+	background: black;
 }
 
 .menu-box-menu .icon {
@@ -384,7 +430,7 @@ header {
 .menu-box-number {
 	width: 36px;
 	line-height: 22px;
-	background: #50597b;
+	background: black;
 	text-align: center;
 	border-radius: 15px;
 	position: absolute;
@@ -703,7 +749,8 @@ p.center-date {
 	top: +15px;
 	border-radius: 6px;
 	position: relative;
-	right: -600px;
+	right: -1100px;
+	width: 400px;
 }
 
 .add-button .icon {

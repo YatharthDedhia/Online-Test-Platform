@@ -103,9 +103,14 @@ const Profile_Block = () => {
     }
     return (
         <div class="profile block">
-            <a class="add-button" href="#28"><span class="icon entypo-plus scnd-font-color"></span></a>
+            <a class="add-button">
+                <label >
+                    {/* <input type="file" class="icon entypo-plus scnd-font-color" onChange={(e) => setImage(e.target.files[0])} /> */}
+                    {/* <i>i</i> */}
+                </label>
+            </a>
             <div class="profile-picture big-profile-picture clear">
-                <img width="150px" src={url}  />
+                <img className='profile-pic-upload' src={url} />
             </div>
             <h1 class="user-name">{firstName} {lastName}</h1>
             <div class="profile-description">
@@ -113,50 +118,12 @@ const Profile_Block = () => {
                 <p class="scnd-font-color">UserName : {userName}</p>
             </div>
             <input type="file" onChange={(e) => setImage(e.target.files[0])}></input>
-            <button onClick={submitImage} className='bubbly-button'>Upload image as profile Photo</button>
-            {/* <img src={url}/> */}
+            {/* <label>Select Picture</label> */}
+            <button onClick={submitImage} className='file-button'>Upload image as profile Photo</button>
         </div>
     );
 };
-const Donut_Block = () => {
-    return (
-        <div class="donut-chart-block block">
-            <h2 class="titular">OS AUDIENCE STATS</h2>
-            <div class="donut-chart">
-                <div id="porcion1" class="recorte"><div class="quesito ios" data-rel="21"></div></div>
-                <div id="porcion2" class="recorte"><div class="quesito mac" data-rel="39"></div></div>
-                <div id="porcion3" class="recorte"><div class="quesito win" data-rel="31"></div></div>
-                <div id="porcionFin" class="recorte"><div class="quesito linux" data-rel="9"></div></div>
-                <p class="center-date">JUNE<br><span class="scnd-font-color">2013</span></br></p>
-            </div>
-        </div>
-    );
-};
-const Menu_Box = () => {
-    return (
-        <div class="menu-box block">
-            {/* <!-- MENU BOX (LEFT-CONTAINER) --> */}
-            <h2 class="titular">MENU BOX</h2>
-            <ul class="menu-box-menu">
-                <li>
-                    <a class="menu-box-tab" href="#6"><span class="icon fontawesome-envelope scnd-font-color"></span>Messages<div class="menu-box-number">24</div></a>
-                </li>
-                <li>
-                    <a class="menu-box-tab" href="#8"><span class="icon entypo-paper-plane scnd-font-color"></span>Invites<div class="menu-box-number">3</div></a>
-                </li>
-                <li>
-                    <a class="menu-box-tab" href="#10"><span class="icon entypo-calendar scnd-font-color"></span>Events<div class="menu-box-number">5</div></a>
-                </li>
-                <li>
-                    <a class="menu-box-tab" href="#12"><span class="icon entypo-cog scnd-font-color"></span>Account Settings</a>
-                </li>
-                <li>
-                    <a class="menu-box-tab" href="#13"><sapn class="icon entypo-chart-line scnd-font-color"></sapn>Statistics</a>
-                </li>
-            </ul>
-        </div>
-    );
-};
+
 const Line_Graph = () => {
     return (
         <div class="line-chart-block block clear">
@@ -169,7 +136,7 @@ const Line_Graph = () => {
                         <li data-ejeY='20'></li>
                         <li data-ejeY='10'></li>
                         <li data-ejeY='0'></li>
-                     </ul>
+                    </ul>
                     <ul class='eje-x'>
                         <li>Apr</li>
                         <li>May</li>
@@ -184,12 +151,6 @@ const Line_Graph = () => {
                                             <span data-valor='15'>
                                             </span></span></span></span></span></span></span>
                 </div>
-                {/* <!-- END LINE-CHART by @kseso https://codepen.io/Kseso/pen/phiyL --> */}
-                <ul class="time-lenght horizontal-list">
-                    <li><a class="time-lenght-btn" href="#14">Week</a></li>
-                    <li><a class="time-lenght-btn" href="#15">Month</a></li>
-                    <li><a class="time-lenght-btn" href="#16">Year</a></li>
-                </ul>
                 <ul class="month-data clear">
                     <li>
                         <p>APR<span class="scnd-font-color"> 2013</span></p>
@@ -213,14 +174,9 @@ const Line_Graph = () => {
 const Profile = () => {
     return (
         <div className='main-container'>
-
-            {/* <Header_Menu /> */}
             <div className='container3'>
                 <Profile_Block />
-                {/* <Donut_Block/> */}
-                {/* <Menu_Box />     */}
                 <Line_Graph />
-                {/* <ChartContainer/> */}
             </div>
         </div>
     );

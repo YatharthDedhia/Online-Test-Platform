@@ -1,16 +1,19 @@
-.ranklist-container-institute{
+.ranklist-container-institute {
     position: relative;
-    top: 25px;
-    right:-500px;
-    width: 500px;
-    background-color: black;
+    top: 125px;
+    right: -350px;
+    width: 800px;
+    background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+    background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+    background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
     justify-content: center;
     text-align: center;
     align-items: center;
     color: white;
+    border-radius: 8px;
 }
 
-.ranklist-wrapper-institute th{
-    width: 150px;
+.ranklist-wrapper-institute th {
+    width: 800px;
     color: white;
 }

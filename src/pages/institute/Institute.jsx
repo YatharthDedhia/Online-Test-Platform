@@ -2,17 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import './css/institute.css';
 import './css/ranklist.css';
+import './css/navbar.css';
 import axios from "axios";
-
-// function handleChange(event) {
-//   console.log(event.target.value);
-// }
-const check = (e) => {
-  console.log("Hello");
-}
+import logo from '../../Images/logo-no-background.png'
 
 const Institute = () => {
-  const [Questionnumber, setQuestionnumber] = useState(0);
   const [Question, setQuestion] = useState('');
   const [option1, setOption1] = useState('');
   const [option2, setOption2] = useState('');
@@ -37,27 +31,80 @@ const Institute = () => {
   const [link, setLink] = useState("");
   const [label, setlabel] = useState(0)
 
-  const Header_Menu = () => {
+  // const Header_Menu = () => {
+  //   return (
+  //     <header class="block-institute">
+  //       <ul class="header-menu horizontal-list">
+  //         <li>
+  //           <button className="header-menu-tab" onClick={() => setlabel(1)}><span className="icon fontawesome-calendar scnd-font-color"></span>Schedule Test</button>
+  //         </li>
+  //         <li>
+  //           <button className="header-menu-tab" onClick={() => { setlabel(3) }} href="#2"><span className="icon fontawesome-trophy scnd-font-color"></span>Rank List</button>
+  //         </li>
+  //         <li>
+  //           <button className="header-menu-tab" onClick={() => { setlabel(0) }}><span className="icon fontawesome-envelope scnd-font-color"></span>Make Question Paper</button>
+  //         </li>
+  //       </ul>
+  //       <div className="profile-menu">
+  //         <p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>
+  //         <div className="profile-picture small-profile-picture">
+  //           <img width="40px" src="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg" />
+  //         </div>
+  //       </div>
+  //     </header>
+  //   );
+  // };
+
+  const NavLinks = () => (
+    <React.Fragment>
+      <p>
+        <a >
+          <button className="institute-navbar-button" onClick={() => setlabel(1)}><span></span>Schedule Test</button>
+        </a>
+      </p>
+
+      <p>
+        <a>
+          <button className="institute-navbar-button" onClick={() => { setlabel(3) }} href="#2"><span></span>Rank List</button>
+        </a>
+      </p>
+
+      <p>
+        <a>
+          <button className="institute-navbar-button" onClick={() => { setlabel(0) }}><span></span>Make Paper</button>
+        </a>
+      </p>
+      {/* <p>
+        <a href="/">Pricing</a>
+      </p>
+
+      <p>
+        <li class="nav-link dropdown"><a href="" class="dropdown">Contact<i
+          class="bi bi-chevron-compact-down"></i></a>
+          <ul class="dropdown-list">
+            <li class="nav-link">
+              <a href="mailto:cod.callofduty@gmail.com" target="_blank">&nbsp;&nbsp;E-Mail</a>
+              <li class="nav-link">
+                <a href="">Phone</a>
+              </li>
+            </li>
+          </ul>
+        </li>
+      </p> */}
+    </React.Fragment>
+  );
+
+  const Navbar = () => {
     return (
-      <header class="block-institute">
-        <ul class="header-menu horizontal-list">
-          <li>
-            <button className="header-menu-tab" onClick={() => setlabel(1)}><span className="icon fontawesome-calendar scnd-font-color"></span>Schedule Test</button>
-          </li>
-          <li>
-            <button className="header-menu-tab" onClick={() => { setlabel(3) }} href="#2"><span className="icon fontawesome-trophy scnd-font-color"></span>Rank List</button>
-          </li>
-          <li>
-            <button className="header-menu-tab" onClick={() => { setlabel(0) }}><span className="icon fontawesome-envelope scnd-font-color"></span>Make Question Paper</button>
-          </li>
-        </ul>
-        <div className="profile-menu">
-          <p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>
-          <div className="profile-picture small-profile-picture">
-            <img width="40px" src="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg" />
-          </div>
+      <div className="landing-navbar">
+        <div className="institute-navbar-logo">
+          <img src={logo}></img>
         </div>
-      </header>
+
+        <div className="landing-navbar-links">
+          <NavLinks />
+        </div>
+      </div>
     );
   };
 
@@ -390,28 +437,11 @@ const Institute = () => {
         "FirstName": "Manav",
         "LastName": "Shah",
         "MarksScored": 5
-      },
-      {
-        "UserID": 4,
-        "paperCode": 103,
-        "TestName": "Express",
-        "FirstName": "Manav",
-        "LastName": "Shah",
-        "MarksScored": 5
-      },
-      {
-        "UserID": 4,
-        "paperCode": 103,
-        "TestName": "Express",
-        "FirstName": "Manav",
-        "LastName": "Shah",
-        "MarksScored": 5
       }
     ];
 
-    const [obj, setObj] = useState(testObj)
-    // const [temparr, settemparr] = useState([])
-    var temparr = []
+    const [obj, setObj] = useState([])
+    let temparr = []
 
     useEffect(async () => {
       axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
@@ -424,17 +454,20 @@ const Institute = () => {
             axios
               .get("https://lmsapiv01.azurewebsites.net/api/totalmarksallstuds/" + str)
               .then((response2) => {
+                // console.log(response2.data[0])
                 response2.data[0].map((res) => {
-                  temparr.push(res)
-                  console.log(temparr)
+                  // temparr.push(res)
+                  setObj(current => [...current, res])
+                  // console.log(obj);
                 })
               })
               .catch((err) => {
                 console.log(err);
               });
-            })
           })
-          // console.log(temparr)      
+          // console.log(temparr);
+        })
+      // setObj(temparr);
     }, [])
 
     return (
@@ -454,30 +487,33 @@ const Institute = () => {
                 <th>Marks</th>
               </tr>
             </thead>
-            <tbody>
-              {console.log("obj")}
-              {console.log(obj)}
-              {obj.map((e) => {
-                { console.log("entered map") }
-                return (
+            {/* <tbody> */}
+            {/* {console.log(obj)} */}
+            {obj.map((e) => {
+              // { console.log(e) }
+              return (
+                <tbody>
                   <tr>
                     <td class="ranklist-rank">{e.UserID}</td>
                     <td class="ranklist-team">{e.FirstName + ' ' + e.LastName}</td>
                     <td class="ranklist-points">{e.TestName}</td>
                     <td class="ranklist-up-down">{e.MarksScored}</td>
                   </tr>
-                )
-              })}
-            </tbody>
+                </tbody>
+              )
+
+            })}
+            {/* </tbody> */}
           </table>
         </div>
       </div>
     )
-  };
+  }
 
   return (
     <div>
-      <Header_Menu />
+      {/* <Header_Menu /> */}
+      <Navbar />
       {label === 0 && <MakeExam />}
       {label === 1 && <ScheduleExam />}
       {label === 3 && <RankList />}

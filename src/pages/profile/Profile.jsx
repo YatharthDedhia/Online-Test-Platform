@@ -22,7 +22,7 @@ import { Chart, ChartSeries, ChartSeriesItem, ChartCategoryAxis, ChartCategoryAx
 import 'hammerjs';
 import { useEffect } from 'react';
 import logo from '../../Images/logo-no-background.png'
-{/* <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link> */}
+{/* <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link> */ }
 
 const NavLinks = () => (
     <React.Fragment>
@@ -223,12 +223,15 @@ const Graph = () => {
         }
     ]
 
+    const [graph_data, setGraphData] = useState([])
+    // const [finished, setFinished] = useState(false)
+
     pdata.map((f) => {
         f["StartTime"] = (parseInt(f.StartTime.slice(8, 10))).toString() + "/" + (parseInt(f.StartTime.slice(5, 7))).toString();
     })
 
-    const graph_data = []
-    useEffect(async () => {
+    useEffect(() => {
+        // setGraphData([])
         axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
             .then((response) => {
 
@@ -239,43 +242,40 @@ const Graph = () => {
                     axios
                         .get("https://lmsapiv01.azurewebsites.net/api/totalmarksallstuds/" + str)
                         .then((response2) => {
-                            // console.log(response2.data[0])
                             response2.data[0].map((res) => {
                                 if (res.UserID === 4) {
                                     f["marks"] = res.MarksScored;
                                     f["StartTime"] = f.StartTime.slice(0, 10);
-                                    f["StartTime"] = f.StartTime.slice(8, 10) + " " + f.StartTime.slice(5, 7) + " " + f.StartTime.slice(0, 4);
+                                    f["StartTime"] = f.StartTime.slice(8, 10) + "/" + f.StartTime.slice(5, 7);
                                 }
                             })
                         })
                         .catch((err) => {
                             console.log(err);
                         });
-                    // console.log(f)
-                    graph_data.push(f)
-                    console.log(graph_data)
+                    setGraphData(current => [...current, f])
                 })
             })
     }, [])
-
     return (
         <div className='graph-head'>
             <h1 className="text-heading">
-                Performance Graph
+                Performance Grap
             </h1>
+            <div>
+                {console.log(graph_data)}
+                <ResponsiveContainer width="100%" aspect={3}>
+                    <LineChart data={graph_data} margin={{ right: 300 }}>
+                        <Line type="monotone" dataKey="marks" stroke="#8884d8" activeDot={{ r: 8 }} />
+                        <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                        <XAxis dataKey="StartTime" stroke="white" />
+                        <YAxis stroke="white" />
+                        <Tooltip />
+                    </LineChart>
+                </ResponsiveContainer>
 
-            {console.log("he")}
-            {console.log(graph_data)}
+            </div>
 
-            <ResponsiveContainer width="100%" aspect={3}>
-                <LineChart data={pdata} margin={{ right: 300 }}>
-                    <Line type="monotone" dataKey="marks" stroke="#8884d8" activeDot={{ r: 8 }} />
-                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                    <XAxis dataKey="TestName" stroke="white" />
-                    <YAxis stroke="white" />
-                    <Tooltip />
-                </LineChart>
-            </ResponsiveContainer>
         </div>
     );
 }
@@ -290,53 +290,38 @@ const RankList = () => {
             "FirstName": "Manav",
             "LastName": "Shah",
             "MarksScored": 5
-        },
-        {
-            "UserID": 4,
-            "paperCode": 103,
-            "TestName": "Express",
-            "FirstName": "Manav",
-            "LastName": "Shah",
-            "MarksScored": 5
-        },
-        {
-            "UserID": 4,
-            "paperCode": 103,
-            "TestName": "Express",
-            "FirstName": "Manav",
-            "LastName": "Shah",
-            "MarksScored": 5
         }
     ];
 
-    const [obj, setObj] = useState(testObj)
+    const [obj, setObj] = useState([])
     let temparr = []
 
-    // useEffect(async () => {
-    //     axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
-    //         .then((response) => {
+    useEffect(async () => {
+        axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
+            .then((response) => {
 
-    //             response.data[0].map((f) => {
-    //                 var num = f.PaperCode
-    //                 var str = num.toString()
+                response.data[0].map((f) => {
+                    var num = f.PaperCode
+                    var str = num.toString()
 
-    //                 axios
-    //                     .get("https://lmsapiv01.azurewebsites.net/api/totalmarksallstuds/" + str)
-    //                     .then((response2) => {
-    //                         console.log(response2.data[0])
-    //                         response2.data[0].map((res) => {
-    //                             temparr.push(res)
-    //                         })
-    //                     })
-    //                     .catch((err) => {
-    //                         console.log(err);
-    //                     });
-    //             })
-    //             console.log(temparr);
-    //             console.log(obj);
-    //         })
-    //     setObj(temparr);
-    // }, [])
+                    axios
+                        .get("https://lmsapiv01.azurewebsites.net/api/totalmarksallstuds/" + str)
+                        .then((response2) => {
+                            // console.log(response2.data[0])
+                            response2.data[0].map((res) => {
+                                // temparr.push(res)
+                                setObj(current => [...current, res])
+                                // console.log(obj);
+                            })
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+                })
+                // console.log(temparr);
+            })
+        // setObj(temparr);
+    }, [])
 
     return (
         <div class="ranklist-container">
@@ -356,25 +341,21 @@ const RankList = () => {
                         </tr>
                     </thead>
                     {/* <tbody> */}
-                        {console.log(obj)}
-                        {obj.map((e) => {
-                            {console.log(e)}
-                            return (
-                                <tbody>
+                    {/* {console.log(obj)} */}
+                    {obj.map((e) => {
+                        // { console.log(e) }
+                        return (
+                            <tbody>
                                 <tr>
-                                    {/* <td class="ranklist-rank">Manav</td>
-                                    <td class="ranklist-team">Shah</td>
-                                    <td class="ranklist-points">Manav</td>
-                                    <td class="ranklist-up-down">Shah</td> */}
                                     <td class="ranklist-rank">{e.UserID}</td>
                                     <td class="ranklist-team">{e.FirstName + ' ' + e.LastName}</td>
                                     <td class="ranklist-points">{e.TestName}</td>
                                     <td class="ranklist-up-down">{e.MarksScored}</td>
                                 </tr>
-                                </tbody>
-                            )
-                            
-                        })}
+                            </tbody>
+                        )
+
+                    })}
                     {/* </tbody> */}
                 </table>
             </div>

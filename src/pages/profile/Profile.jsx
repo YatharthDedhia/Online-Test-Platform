@@ -168,7 +168,7 @@ const RankList = () => {
                     axios
                         .get("https://lmsapiv01.azurewebsites.net/api/totalmarksallstuds/" + str)
                         .then((response2) => {
-                            console.log(response2.data[0])
+                            // console.log(response2.data[0])
                             response2.data[0].map((res) => {
                                 temparr.push(res)
                             })
@@ -177,10 +177,11 @@ const RankList = () => {
                             console.log(err);
                         });
                 })
-                console.log(temparr);
-                console.log(obj);
+                // console.log(temparr);
+                // console.log(obj);
             })
-        setObj(temparr);
+            setObj(temparr);
+        // {console.log(obj)};
     }, [])
 
     return (
@@ -200,20 +201,27 @@ const RankList = () => {
                             <th>Marks</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    {/* <tbody> */}
                         {console.log(obj)}
                         {obj.map((e) => {
-                            console.log(e)
+                            {console.log(e)}
                             return (
+                                <tbody>
                                 <tr>
+                                    {/* <td class="ranklist-rank">Manav</td>
+                                    <td class="ranklist-team">Shah</td>
+                                    <td class="ranklist-points">Manav</td>
+                                    <td class="ranklist-up-down">Shah</td> */}
                                     <td class="ranklist-rank">{e.UserID}</td>
                                     <td class="ranklist-team">{e.FirstName + ' ' + e.LastName}</td>
                                     <td class="ranklist-points">{e.TestName}</td>
                                     <td class="ranklist-up-down">{e.MarksScored}</td>
                                 </tr>
+                                </tbody>
                             )
+                            
                         })}
-                    </tbody>
+                    {/* </tbody> */}
                 </table>
             </div>
         </div>

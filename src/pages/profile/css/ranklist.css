@@ -7,8 +7,10 @@
     justify-content: center;
     text-align: center;
     align-items: center;
+    color:white;
 }
 
 .ranklist-wrapper th{
     width: 150px;
+    color:white;
 }

@@ -48,7 +48,7 @@ const test = [
   {
     questionText: 'Dummy Question',
     Difficulty: 0,
-    Marks:0,
+    Marks: 0,
     answerOptions: [
       { answerText: 'Option 1', isCorrect: false },
       { answerText: 'Option 2', isCorrect: false },
@@ -74,6 +74,7 @@ const Test = () => {
   const [quizLength, setquizLength] = useState(0);
   const [isDisabled, setIsDisabled] = useState(false);
   const [active, setActive] = useState(false);
+  const [getduration, setduration] = useState(60);
 
   let questionobj = []
   let obj = {}
@@ -174,7 +175,7 @@ const Test = () => {
       <div className='quizz-app'>
         {showScore ? (
           <div className='score-section'>
-            You scored {score} out of {quizLength+1}
+            You scored {score} out of {quizLength + 1}
           </div>
         ) : (
           <>
@@ -182,7 +183,7 @@ const Test = () => {
               <div className='question-diff'>Difficulty:{paper[currentQuestion].Difficulty}</div>
               <div className='question-diff1'>Marks: {paper[currentQuestion].Marks}</div>
               <div className='question-count'>
-                <span>Question {currentQuestion + 1}</span>/{quizLength+1}
+                <span>Question {currentQuestion + 1}</span>/{quizLength + 1}
               </div>
               <div className='question-text'>{paper[currentQuestion].questionText}</div>
             </div>
@@ -202,7 +203,7 @@ const Test = () => {
       </div>
       <CountdownCircleTimer
         isPlaying
-        duration={60}
+        duration={getduration}
         colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
         colorsTime={[60, 0.6 * 60, 0.3 * 60, 0]}
         onComplete={() => setShowScore(true)}

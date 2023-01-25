@@ -38,11 +38,10 @@ const obj = [
 		CourseName: "FrontEnd",
 		CourseCode: 1,
 		Date: "2023-10-14T00:00:00.000Z",
-		StartTime: "2023-01-01T08:00:00.000Z",
+		StartTime: "2023-01-26T08:00:00.000Z",
 		EndTime: "2023-01-01T11:00:00.000Z",
 		Duration: 3,
 		Link: "dfd-dfd-dfd",
-		status: "attempted"
 	}
 ]
 
@@ -113,11 +112,14 @@ const Dashboard = () => {
 	}, [])
 
 	tests.map((test) => {
-		if (test.StartTime > d1) {
+		if (Date.parse(test.StartTime) > d1) {
+
 			test["status"] = "unattempted";
+			console.log("unattempted")
 		}
 		else {
 			test["status"] = "attempted";
+			console.log("attempted")
 		}
 	})
 

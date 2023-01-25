@@ -35,6 +35,7 @@ const Profile_Block = () => {
         .catch((err) => {
             console.log(err);
         });
+
     const submitImage = () => {
         const data = new FormData()
         data.append("file", image)
@@ -54,6 +55,7 @@ const Profile_Block = () => {
                 console.log(err);
             })
     }
+
     return (
         <div class="profile block">
             <a class="add-button">
@@ -71,7 +73,6 @@ const Profile_Block = () => {
                 <p class="scnd-font-color">UserName : {userName}</p>
             </div>
             <input type="file" onChange={(e) => setImage(e.target.files[0])}></input>
-            {/* <label>Select Picture</label> */}
             <button onClick={submitImage} className='file-button'>Upload image as profile Photo</button>
         </div>
     );
@@ -134,18 +135,36 @@ const RankList = () => {
             "FirstName": "Manav",
             "LastName": "Shah",
             "MarksScored": 5
+        },
+        {
+            "UserID": 4,
+            "paperCode": 103,
+            "TestName": "Express",
+            "FirstName": "Manav",
+            "LastName": "Shah",
+            "MarksScored": 5
+        },
+        {
+            "UserID": 4,
+            "paperCode": 103,
+            "TestName": "Express",
+            "FirstName": "Manav",
+            "LastName": "Shah",
+            "MarksScored": 5
         }
     ];
 
-    const [obj, setObj] = useState(testObj)
+    const [obj, setObj] = useState([])
     let temparr = []
-    useEffect(() => {
+
+    useEffect(async () => {
         axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
             .then((response) => {
+
                 response.data[0].map((f) => {
                     var num = f.PaperCode
                     var str = num.toString()
-                    // console.log("https://lmsapiv01.azurewebsites.net/api/totalmarksallstuds/" + str)
+
                     axios
                         .get("https://lmsapiv01.azurewebsites.net/api/totalmarksallstuds/" + str)
                         .then((response2) => {
@@ -158,13 +177,14 @@ const RankList = () => {
                             console.log(err);
                         });
                 })
-                console.log(temparr)
-                setObj(temparr)
+                console.log(temparr);
+                console.log(obj);
             })
+        setObj(temparr);
     }, [])
+
     return (
         <div class="ranklist-container">
-            {console.log(obj)}
             <header>
                 <br />
                 <h1>Rankings</h1>
@@ -181,7 +201,9 @@ const RankList = () => {
                         </tr>
                     </thead>
                     <tbody>
+                        {console.log(obj)}
                         {obj.map((e) => {
+                            console.log(e)
                             return (
                                 <tr>
                                     <td class="ranklist-rank">{e.UserID}</td>

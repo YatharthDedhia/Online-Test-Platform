@@ -69,7 +69,11 @@ input:placeholder {
     height: 32px;
 } */
 
-input[type="email"],input[type="number"]{
+/* input[type="email"],input[type="number"]{
+	color:white;
+	background-color: black;
+} */
+.No{
 	color:white;
 	background-color: black;
 }

@@ -1,0 +1,17 @@
+.graph-head{
+    position: relative;
+    top: -400px;
+    right: -10px;
+    width: 800px;
+    color: red;
+    /* background-color: black; */
+    background: transparent;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.text-heading{
+    position: relative;
+    top: -15px;
+    right:-160px;
+}

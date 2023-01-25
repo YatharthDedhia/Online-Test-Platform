@@ -178,8 +178,8 @@ const Landing = () => {
                       <Components.Title>Create Account</Components.Title>
                       <Components.Input type='text' placeholder='First Name' value={firstname} onChange={(e) => setFirstName(e.target.value)} required/>
 					  <Components.Input type='text' placeholder='Last Name' value={lastname} onChange={(e) => setLastName(e.target.value)}  required/>
-                      <Components.Input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}  required/>
-					  <Components.Input type='number' placeholder='Mobile No.' value={mobile} onChange={(e) => setMobile(e.target.value)}  required/>
+                      <Components.Input className="Email"type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}  required/>
+					  <Components.Input className="No"type='number' placeholder='Mobile No.' value={mobile} onChange={(e) => setMobile(e.target.value)}  required/>
 					  <Components.Input type='text' placeholder='User Name' value={username} onChange={(e) => setUsername(e.target.value)}  required/>
 					  
                       <Components.Input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required/>
@@ -201,7 +201,7 @@ const Landing = () => {
               <Components.SignInContainer signinIn={signIn}>
                    <Components.Form onSubmit={StudentsInfo}>
                        <Components.Title>Sign in</Components.Title>
-                       <Components.Input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}  required/>
+                       <Components.Input className="Email" type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}  required/>
                        <Components.Input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}  required/>
 					   <div class="selector1">
 								<div class="selector-item1">

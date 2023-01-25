@@ -1,16 +1,16 @@
-.ranklist-container{
+.ranklist-container-institute{
     position: relative;
-    top: -700px;
-    right:-550px;
+    top: 25px;
+    right:-500px;
     width: 500px;
     background-color: black;
     justify-content: center;
     text-align: center;
     align-items: center;
-    color:white;
+    color: white;
 }
 
-.ranklist-wrapper th{
+.ranklist-wrapper-institute th{
     width: 150px;
-    color:white;
+    color: white;
 }

@@ -1,6 +1,6 @@
-.ranklist-container{
+.ranklist-container-institute{
     position: relative;
-    top: -825px;
+    top: 25px;
     right:-500px;
     width: 500px;
     background-color: black;
@@ -10,7 +10,7 @@
     color: white;
 }
 
-.ranklist-wrapper th{
+.ranklist-wrapper-institute th{
     width: 150px;
     color: white;
 }

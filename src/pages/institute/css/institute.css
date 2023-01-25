@@ -36,19 +36,22 @@ header {
 }
 
 .header-menu-tab {
+	background: #50597b;
+	border-bottom: 4px solid #11a8ab;
 	padding: 0 27px;
 	display: block;
 	line-height: 74px;
 	font-size: 17px;
 	color:white;
-	-webkit-transition: background .3s;
-	transition: background .3s;
+
 }
 
 .header-menu-tab:hover {
-	background: #50597b;
-	border-bottom: 4px solid #11a8ab;
+	/* background: #50597b; */
+	/* border-bottom: 4px solid #11a8ab; */
 	text-decoration: none;
+	-webkit-transition: background .3s;
+	transition: background .3s;
 }
 
 .header-menu-tab .icon {

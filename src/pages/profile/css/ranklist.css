@@ -1,0 +1,14 @@
+.ranklist-container{
+    position: relative;
+    top: -825px;
+    right:-500px;
+    width: 500px;
+    background-color: black;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.ranklist-wrapper th{
+    width: 150px;
+}

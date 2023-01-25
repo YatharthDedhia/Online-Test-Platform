@@ -3,62 +3,15 @@
 import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
 import './css/profile.css'
-import './css/menubox.css'
 import './css/line-chart.css'
+import './css/ranklist.css'
 import axios from 'axios';
 import line from "simple-line-chart";
 import { Chart, ChartSeries, ChartSeriesItem, ChartCategoryAxis, ChartCategoryAxisItem } from '@progress/kendo-react-charts';
 import 'hammerjs';
+import { useEffect } from 'react';
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
-const Header_Menu = () => {
-    return (
-        <header class="block">
-            <ul class="header-menu horizontal-list">
-                <li>
-                    <a class="header-menu-tab" href="#1"><span class="icon entypo-cog scnd-font-color"></span>Settings</a>
-                </li>
-                <li>
-                    <a class="header-menu-tab" href="#2"><span class="icon fontawesome-user scnd-font-color"></span>Account</a>
-                </li>
-                <li>
-                    <a class="header-menu-tab" href="#3"><span class="icon fontawesome-envelope scnd-font-color"></span>Questions</a>
-                    <a class="header-menu-number" href="#4">5</a>
-                </li>
-                <li>
-                    <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span>Solutions</a>
-                </li>
-            </ul>
-            <div class="profile-menu">
-                <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
-                <div class="profile-picture small-profile-picture">
-                    {/* <img width="40px" alt="Anne Hathaway picture" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" /> */}
-                </div>
-            </div>
-        </header>
 
-    );
-};
-const categories = ['Jan', 'Feb', 'Mar', 'Apr'];
-const ChartContainer = () =>
-    <Chart>
-        <ChartCategoryAxis>
-            <ChartCategoryAxisItem categories={categories} />
-        </ChartCategoryAxis>
-        <ChartSeries>
-            <ChartSeriesItem type="verticalLine" data={[1, 2, 3, 5]} />
-            <ChartSeriesItem type="verticalLine" data={[-1, -2, -3, -5]} />
-        </ChartSeries>
-    </Chart>;
-// const Profile_Menu = () => {
-//     return(
-//         <div class="profile-menu">
-//                  <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
-//                   <div class="profile-picture small-profile-picture">
-//                       <img width="40px" alt="Anne Hathaway picture" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"/>
-//                   </div>
-//         </div>
-//     );
-// };
 const Profile_Block = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -171,12 +124,87 @@ const Line_Graph = () => {
     );
 };
 
+const RankList = () => {
+
+    const testObj = [
+        {
+            "UserID": 4,
+            "paperCode": 103,
+            "TestName": "Express",
+            "FirstName": "Manav",
+            "LastName": "Shah",
+            "MarksScored": 5
+        }
+    ];
+
+    const [obj, setObj] = useState(testObj)
+    let temparr = []
+    useEffect(() => {
+        axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
+            .then((response) => {
+                response.data[0].map((f) => {
+                    var num = f.PaperCode
+                    var str = num.toString()
+                    // console.log("https://lmsapiv01.azurewebsites.net/api/totalmarksallstuds/" + str)
+                    axios
+                        .get("https://lmsapiv01.azurewebsites.net/api/totalmarksallstuds/" + str)
+                        .then((response2) => {
+                            console.log(response2.data[0])
+                            response2.data[0].map((res) => {
+                                temparr.push(res)
+                            })
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+                })
+                console.log(temparr)
+                setObj(temparr)
+            })
+    }, [])
+    return (
+        <div class="ranklist-container">
+            {console.log(obj)}
+            <header>
+                <br />
+                <h1>Rankings</h1>
+                <br />
+            </header>
+            <div class="ranklist-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>UserID</th>
+                            <th>Name</th>
+                            <th>Test</th>
+                            <th>Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {obj.map((e) => {
+                            return (
+                                <tr>
+                                    <td class="ranklist-rank">{e.UserID}</td>
+                                    <td class="ranklist-team">{e.FirstName + ' ' + e.LastName}</td>
+                                    <td class="ranklist-points">{e.TestName}</td>
+                                    <td class="ranklist-up-down">{e.MarksScored}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    )
+}
+
 const Profile = () => {
     return (
         <div className='main-container'>
             <div className='container3'>
                 <Profile_Block />
                 <Line_Graph />
+                <RankList />
             </div>
         </div>
     );

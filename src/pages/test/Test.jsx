@@ -46,12 +46,14 @@ const questions = [
 
 const test = [
   {
-    questionText: '',
+    questionText: 'Dummy Question',
+    Difficulty: 0,
+    Marks:0,
     answerOptions: [
-      { answerText: '', isCorrect: false },
-      { answerText: '', isCorrect: false },
-      { answerText: '', isCorrect: true },
-      { answerText: '', isCorrect: false },
+      { answerText: 'Option 1', isCorrect: false },
+      { answerText: 'Option 2', isCorrect: false },
+      { answerText: 'Option 3', isCorrect: true },
+      { answerText: 'Option 4', isCorrect: false },
     ],
   }
 ];
@@ -70,76 +72,75 @@ const Test = () => {
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [quizLength, setquizLength] = useState(0);
-  const [Difficulty, setDifficulty] = useState(0);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [active, setActive] = useState(false);
 
   let questionobj = []
   let obj = {}
 
-  const getPaper = () => {
-    const url2 = "https://lmsapiv01.azurewebsites.net/api/qbaf/1";
-    axios
-      .get(url2)
-      .then((response) => {
-        console.log(response.data[0])
-        setquizLength(response.data[0].length / 4)
-        for (let j = 0; j < (response.data[0].length); j++) {
-          obj["questionText"] = response.data[0][j].Question
-          setDifficulty(response.data[0][j].Difficulty)
-          // console.log(j)
-          let temparr = []
-          for (let i = 0; i < 4; i++) {
-            let tempobj = {}
-            console.log(i + j)
-            tempobj["answerText"] = response.data[0][i + j].Answer
-            tempobj["isCorrect"] = response.data[0][i + j].isCorrect
 
-            temparr.push(tempobj)
-            obj["answerOptions"] = temparr
-          }
-          console.log(obj)
-          questionobj.push(obj)
-          j += 3
-        }
-
-        // console.log(questionobj[0].questionText)
-        setPaper(questionobj)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    // console.log(questionobj[0].questionText)
-
-  }
   console.log(paper)
 
   useEffect(() => {
-    // Questions();
-    // Options();
+
+    const getPaper = async () => {
+      const url2 = "https://lmsapiv01.azurewebsites.net/api/qbaf/1";
+      await axios
+        .get(url2)
+        .then((response) => {
+          // console.log(response.data[0])
+          setquizLength(response.data[0].length / 4)
+
+          for (let i = 0; i < response.data[0].length; i += 4) {
+            let tempobj1 = {}
+
+            let tempobj21 = {}
+            let tempobj22 = {}
+            let tempobj23 = {}
+            let tempobj24 = {}
+
+            let temparr = []
+
+            tempobj1["CourseId"] = response.data[0][i].CourseId;
+            tempobj1["QuestNo"] = response.data[0][i].QuestNo;
+            tempobj1["Marks"] = response.data[0][i].Marks;
+            tempobj1["Difficulty"] = response.data[0][i].Difficulty;
+            tempobj1["AnswerId"] = response.data[0][i].AnswerId;
+            tempobj1["Weightage"] = response.data[0][i].Weightage;
+            tempobj1["questionText"] = response.data[0][i].Question;
+
+            tempobj21["answerText"] = response.data[0][i].Answer;
+            tempobj22["answerText"] = response.data[0][i + 1].Answer;
+            tempobj23["answerText"] = response.data[0][i + 2].Answer;
+            tempobj24["answerText"] = response.data[0][i + 3].Answer;
+
+            tempobj21["isCorrect"] = response.data[0][i].isCorrect;
+            tempobj22["isCorrect"] = response.data[0][i + 1].isCorrect;
+            tempobj23["isCorrect"] = response.data[0][i + 2].isCorrect;
+            tempobj24["isCorrect"] = response.data[0][i + 3].isCorrect;
+
+            temparr.push(tempobj21)
+            temparr.push(tempobj22)
+            temparr.push(tempobj23)
+            temparr.push(tempobj24);
+
+            tempobj1["answerOptions"] = temparr;
+            paper.push(tempobj1);
+            // console.log(paper);
+          }
+          // console.log(paper);
+
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
     getPaper();
   }, []);
 
-  // const url2 = "https://lmsapiv01.azurewebsites.net/api/qbaf/1";
-  // axios
-  //   .get(url2)
-  //   .then((response) => {
-  //     console.log(response.data[0][0].Answer)
-  //     setquizLength(Math.round(response.data[0].length / 4));
-  //     for (let i = 0; i < response.data[0].length; i++) {
-  //       setCurrentAns(response.data[0][0].Answer);
-  //       setQuestion(response.data[0][0].Question);
-  //       setScore(response.data[0][i].Marks);
-  //       setDifficulty(response.data[0][0].Difficulty);
-  //     }
-
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
-      setScore(0);
       setScore(score + 1);
       setIsDisabled(true)
     }
@@ -147,13 +148,14 @@ const Test = () => {
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion > paper.length) {
       setShowScore(true);
-      // setCurrentQuestion(nextQuestion);
     }
+    setActive(!active);
   };
 
   const goNext = () => {
     if (currentQuestion + 1 < paper.length) {
       setCurrentQuestion(currentQuestion + 1);
+      setIsDisabled(false)
     }
     else {
       setShowScore(true);
@@ -164,22 +166,23 @@ const Test = () => {
     if (currentQuestion - 1 >= 0) {
       setCurrentQuestion(currentQuestion - 1);
     }
+    setIsDisabled(true)
   }
-
 
   return (
     <div className="timer-wrapper">
       <div className='quizz-app'>
         {showScore ? (
           <div className='score-section'>
-            You scored {score} out of {quizLength}
+            You scored {score} out of {quizLength+1}
           </div>
         ) : (
           <>
             <div className='question-section'>
-              <div className='question-diff'>Difficulty:{Difficulty}</div>
+              <div className='question-diff'>Difficulty:{paper[currentQuestion].Difficulty}</div>
+              <div className='question-diff1'>Marks: {paper[currentQuestion].Marks}</div>
               <div className='question-count'>
-                <span>Question {currentQuestion + 1}</span>/{quizLength}
+                <span>Question {currentQuestion + 1}</span>/{quizLength+1}
               </div>
               <div className='question-text'>{paper[currentQuestion].questionText}</div>
             </div>
@@ -187,9 +190,13 @@ const Test = () => {
               {paper[currentQuestion].answerOptions.map((answerOption) => (
                 <button disabled={isDisabled} type='radio' onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
               ))}
+              {/* <button disabled={isDisabled} type='radio' onClick={() => handleAnswerOptionClick(paper[currentQuestion].answerOptions[0].isCorrect)}>{paper[currentQuestion].answerOptions[0].answerText}</button> */}
+              {/* <button disabled={isDisabled} type='radio' onClick={() => handleAnswerOptionClick(paper[currentQuestion].answerOptions[1].isCorrect)}>{paper[currentQuestion].answerOptions[1].answerText}</button> */}
+              {/* <button disabled={isDisabled} type='radio' onClick={() => handleAnswerOptionClick(paper[currentQuestion].answerOptions[2].isCorrect)}>{paper[currentQuestion].answerOptions[2].answerText}</button> */}
+              {/* <button disabled={isDisabled} type='radio' onClick={() => handleAnswerOptionClick(paper[currentQuestion].answerOptions[3].isCorrect)}>{paper[currentQuestion].answerOptions[3].answerText}</button> */}
             </div>
-            <button className='nextbutton' onClick={() => goNext()}>Next</button>
             <button className='prevbutton' onClick={() => goPrev()}>Previous</button>
+            <button className='nextbutton' onClick={() => goNext()}>Next</button>
           </>
         )}
       </div>
@@ -204,6 +211,7 @@ const Test = () => {
       </CountdownCircleTimer>
       <div className="image-capture">
         <Ml />
+        {/* {console.log(count)} */}
         {/* <Speech/> */}
       </div>
     </div >

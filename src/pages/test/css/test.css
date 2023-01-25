@@ -38,6 +38,23 @@
     padding: 10px;
     color: black;
 }
+
+.question-diff1{
+    position:absolute;
+    text-decoration: none;
+    font-weight: bolder;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: fit-content;
+    background-color: aliceblue;
+    left: 453px;
+    border-radius: 25px;
+    padding: 10px;
+    color: black;
+    top:50px;
+}
+
 .quizz-app {
     background-color: black;
     color: white;
@@ -119,7 +136,7 @@
 }
 
 .quizz-app button {
-    width: 100%;
+    width: 50%;
     font-size: 16px;
     color: white;
     background-color: #201e1e;
@@ -167,5 +184,5 @@ button svg {
 
 .prevbutton {
     position: relative;
-    top: 255px;
+    top: 250px;
 }

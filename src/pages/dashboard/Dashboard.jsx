@@ -7,128 +7,9 @@ import './css/search.css'
 import './css/table.css'
 import './css/sidebar.css'
 import './css/calendar.css'
-import Popup from 'reactjs-popup';
 import { render } from 'react-dom';
 import axios from 'axios';
 import logo from '../../Images/logo-no-background.png'
-// import { flag } from '../landing/Landing';
-function Tabs() {
-	const [toggleState, setToggleState] = useState(1);
-	const toggleTab = (index) => {
-		setToggleState(index);
-	};
-
-	return (
-		<div className="container1">
-			<div className="bloc-tabs">
-				<button
-					className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-					onClick={() => toggleTab(1)}
-				>
-					UnAttempted
-				</button>
-				<button
-					className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-					onClick={() => toggleTab(2)}
-				>
-					Attempted
-				</button>
-				<button
-					className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
-					onClick={() => toggleTab(3)}
-				>
-					All
-				</button>
-			</div>
-
-			<div className="content-tabs">
-				<div className={toggleState === 1 ? "content  active-content" : "content"} >
-					<p>
-						<table>
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Time</th>
-									<th>Link</th>
-								</tr>
-							</thead>
-							{mockTests.map((test) => {
-								if (test.status == "unattempted") {
-									return <tbody>
-										<tr>
-
-											<td>{test.name}</td>
-											<td>{test.time}</td>
-											<td>
-												<a href={test.link}>{test.link}</a>
-											</td>
-										</tr>
-									</tbody>
-								}
-							})}
-						</table>
-					</p>
-				</div>
-
-				<div className={toggleState === 2 ? "content  active-content" : "content"} >
-					<p>
-						<table>
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Time</th>
-									<th>Link</th>
-								</tr>
-							</thead>
-
-							{mockTests.map((test) => {
-								if (test.status == "attempted") {
-									return <tbody>
-										<tr>
-
-											<td>{test.name}</td>
-											<td>{test.time}</td>
-											<td>
-												<a href={test.link}>{test.link}</a>
-											</td>
-										</tr>
-									</tbody>
-								}
-							})}
-						</table>
-					</p>
-				</div>
-
-				<div className={toggleState === 3 ? "content  active-content" : "content"} >
-					<p>
-						<table>
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Time</th>
-									<th>Link</th>
-								</tr>
-							</thead>
-
-							{mockTests.map((test) => {
-								return <tbody>
-									<tr>
-
-										<td>{test.name}</td>
-										<td>{test.time}</td>
-										<td>
-											<a href={test.link}>{test.link}</a>
-										</td>
-									</tr>
-								</tbody>
-							})}
-						</table>
-					</p>
-				</div>
-			</div>
-		</div>
-	);
-}
 
 const mockTests = [
 	{
@@ -150,6 +31,20 @@ const mockTests = [
 		status: 'attempted'
 	}
 ];
+
+const obj = [
+	{
+		TestName: "trialtestname",
+		CourseName: "FrontEnd",
+		CourseCode: 1,
+		Date: "2023-10-14T00:00:00.000Z",
+		StartTime: "2023-01-01T08:00:00.000Z",
+		EndTime: "2023-01-01T11:00:00.000Z",
+		Duration: 3,
+		Link: "dfd-dfd-dfd",
+		status: "attempted"
+	}
+]
 
 const NavLinks = () => (
 	<React.Fragment>
@@ -196,41 +91,49 @@ const Navbar = () => {
 const Dashboard = () => {
 	const [date, setDate] = useState(new Date());
 	const [calendarText, setCalendarText] = useState();
-	const [testName, setTestName] = useState('');
-	const [courseName, setCourseName] = useState('');
-	const [courseCode, setCourseCode] = useState(0);
-	const [date1, setDate1] = useState("000000000000000000");
-	const [startTime, setStartTime] = useState("");
-	const [endTime, setEndTime] = useState("");
-	const [duration, setDuration] = useState(0);
-	const [link, setLink] = useState("");
+	const [tests, setObj] = useState(obj)
 
 	let fullstamp = new Date().toJSON();
 	let fulldate = new Date().toJSON().slice(0, 10);
 	let fulltime = new Date().toJSON().slice(11, 16);
 	var d1 = Date.parse(fullstamp)
 
+	useEffect(() => {
+		const url4 = "https://lmsapiv01.azurewebsites.net/api/studentschedule/4";
+		axios
+			.get(url4)
+			.then((response) => {
+				for (let i = 0; i < response.data[0].length; i++) {
+					setObj(response.data[0])
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, [])
+
+	tests.map((test) => {
+		if (test.StartTime > d1) {
+			test["status"] = "unattempted";
+		}
+		else {
+			test["status"] = "attempted";
+		}
+	})
 
 	// const [authenticated, setauthenticated] = useState(null);
-	useEffect(() => {
-		const loggedInUser = localStorage.getItem("authenticated");
-		if (loggedInUser == true) {
-			//    setauthenticated(loggedInUser);
-		}
-	}, []);
+	// useEffect(() => {
+	// 	const loggedInUser = localStorage.getItem("authenticated");
+	// 	if (loggedInUser == true) {
+	// 		//    setauthenticated(loggedInUser);
+	// 	}
+	// }, []);
+
 	function Tabs() {
 		const [toggleState, setToggleState] = useState(1);
 		const toggleTab = (index) => {
 			setToggleState(index);
 		};
-
-		// console.log(date1)
-		let d2 = Date.parse(date1)
-
-		if (d1 < d2) {
-			console.log(date1);
-			console.log(fullstamp);
-		}
 
 		return (
 			<div className="container1">
@@ -268,17 +171,17 @@ const Dashboard = () => {
 										<th>Link</th>
 									</tr>
 								</thead>
-								{mockTests.map((test) => {
+								{tests.map((test) => {
 									if (test.status == "unattempted") {
 										return <tbody>
 											<tr>
 
-												<td>{testName}</td>
-												<td>{courseName}</td>
-												<td>{date1.slice(0, 10)}</td>
-												<td>{date1.slice(11, 16)}</td>
+												<td>{test.TestName}</td>
+												<td>{test.CourseName}</td>
+												<td>{test.StartTime.slice(0, 10)}</td>
+												<td>{test.StartTime.slice(11, 16)}</td>
 												<td>
-													<a href="/test">{link}</a>
+													<a href="/test">{test.Link}</a>
 												</td>
 											</tr>
 										</tbody>
@@ -301,17 +204,17 @@ const Dashboard = () => {
 									</tr>
 								</thead>
 
-								{mockTests.map((test) => {
+								{tests.map((test) => {
 									if (test.status == "attempted") {
 										return <tbody>
 											<tr>
 
-												<td>{testName}</td>
-												<td>{courseName}</td>
-												<td>{date1.slice(0, 10)}</td>
-												<td>{date1.slice(11, 16)}</td>
+												<td>{test.TestName}</td>
+												<td>{test.CourseName}</td>
+												<td>{test.StartTime.slice(0, 10)}</td>
+												<td>{test.StartTime.slice(11, 16)}</td>
 												<td>
-													<a href="/test">{link}</a>
+													<a href="/profile">{test.Link}</a>
 												</td>
 											</tr>
 										</tbody>
@@ -334,16 +237,17 @@ const Dashboard = () => {
 									</tr>
 								</thead>
 
-								{mockTests.map((test) => {
+								{tests.map((test) => {
 									return <tbody>
 										<tr>
 
-											<td>{testName}</td>
-											<td>{courseName}</td>
-											<td>{date1.slice(0, 10)}</td>												<td>{date1.slice(11, 16)}</td>
-											{/* <td>{date1.slice(11, 16)}</td> */}
-											<td>
-												<a href="/test">{link}</a>
+											<td>{test.TestName}</td>
+											<td>{test.CourseName}</td>
+											<td>{test.StartTime.slice(0, 10)}</td>
+											<td>{test.StartTime.slice(11, 16)}</td>
+											<td>{test.status === "unattempted"
+												? (<a href="/test">{test.Link}</a>)
+												: (<a href="/profile">{test.Link}</a>)}
 											</td>
 										</tr>
 									</tbody>
@@ -355,32 +259,14 @@ const Dashboard = () => {
 			</div>
 		);
 	}
-	const url4 = "https://lmsapiv01.azurewebsites.net/api/studentschedule/4";
-	axios
-		.get(url4)
-		.then((response) => {
-			//   console.log(response.data[0][0].Answer)
-			for (let i = 0; i < response.data[0].length; i++) {
-				setTestName(response.data[0][0].TestName);
-				setCourseName(response.data[0][0].CourseName);
-				setCourseCode(response.data[0][0].CourseCode);
-				setDate1(response.data[0][0].Date);
-				setStartTime(response.data[0][0].StartTime);
-				setEndTime(response.data[0][0].EndTime);
-				setDuration(response.data[0][0].Duration);
-				setLink(response.data[0][0].Link);
-			}
 
-		})
-		.catch((err) => {
-			console.log(err);
-		});
 	const handleDateChange = (value) => {
 		setCalendarText(`${value.toDateString()}`);
 	};
 	// if (!authenticated) {
 	//abc
 	// } else {
+	console.log((parseInt(tests[0].StartTime.slice(0, 4))))
 	return (
 		<React.Fragment>
 			<Navbar />
@@ -389,8 +275,9 @@ const Dashboard = () => {
 				<div className="calendar">
 					<Calendar onChange={setDate} value={date} onClickDay={handleDateChange} tileContent={
 						({ activeStartDate, date, view }) => {
-							return mockTests.map((test) => (
-								(view === 'month' && date.getDate() === parseInt(test.time.slice(0, 2)) && date.getMonth() === (parseInt(test.time.slice(3, 5)) - 1) && date.getYear() === (parseInt(test.time.slice(6, 10)) - 1900)) ? <p className='DateContent' >{date.getDate()} Test Day {(test.time.slice(11, 16))}</p> : null))
+							// console.log(date.getYear())
+							return tests.map((test) => (
+								(view === 'month' && date.getDate() === parseInt(test.StartTime.slice(8, 10)) && date.getMonth() === (parseInt(test.StartTime.slice(5, 7)) - 1) && date.getYear() === (parseInt(test.StartTime.slice(0, 4)) - 1900)) ? <p className='DateContent' >{date.getDate()} <br /> Test Day <br />{(test.TestName)}</p> : null))
 						}} />
 				</div>
 			</div >

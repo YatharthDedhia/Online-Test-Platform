@@ -47,9 +47,13 @@ function Ml() {
       // Make Detections
 
       const obj = await net.detect(video);
-      // console.log(obj.length)
-
-      if (obj.length > 1 || obj.length == 0) {
+      console.log(obj)
+      obj.map((e, index) => {
+        if ((e.class == "person" && index > 0) || e.class == "cell phone") {
+          count++;
+        }
+      })
+      if (obj.length == 0) {
         setFlag(1)
         count++;
       }
@@ -72,7 +76,7 @@ function Ml() {
       <header className="Ml-header">
         <div className="Copy">
           <h1>{flag === 1 ? "Dont Copy." : null}</h1>
-          <h1>{count}</h1>
+          {/* <h1>Copied {count} many times</h1> */}
         </div>
 
         <Webcam

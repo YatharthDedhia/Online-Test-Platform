@@ -1,13 +1,13 @@
 .react-calendar {
   display: block;
   position: absolute;
-  top: 18%;
+  top: 15%;
   right: 3%;
   width: 400px;
   max-width: 100%;
   background: #201e1e;
   border: 1px solid white;
-  border-radius: 10px;
+  border-radius: 5px;
   font-family: inherit;
   line-height: 1.125em;
   color: white;
@@ -69,8 +69,6 @@
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
   background-color: #e6e6e6;
-  /* border-radius: 10px; */
-  /* background-color: black; */
   color: black;
 }
 
@@ -115,7 +113,6 @@
   background: none;
   text-align: center;
   line-height: 16px;
-  /* color: #7E7F9A; */
 }
 
 .react-calendar__tile:disabled {
@@ -144,6 +141,7 @@
 .react-calendar__tile--hasActive {
   background: #76baff;
   border-radius: 5px;
+  color: red;
 }
 
 .react-calendar__tile--hasActive:enabled:hover,
@@ -161,9 +159,9 @@
 
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
-  background: #201e1e;
+  background: white;
   border-radius: 5px;
-  color: white;
+  color: white;  ;
 }
 
 .react-calendar--selectRange .react-calendar__tile--hover {
@@ -177,11 +175,12 @@
   top: -35%;
   right: 15%;
   width: 130%;
-  background-color: #76baff;
+  background-color: red;
   height: 126%;
   border-radius: 3px;
   /* filter: blur(5px); */
   padding-top: 10px;
+  color: white;
 }
 
 .DateContent p {

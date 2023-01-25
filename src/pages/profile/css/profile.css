@@ -35,7 +35,7 @@
 [class^="icon-"],
 [class*=" icon-"] {
 	font-family: 'icomoon';
-	speak: none;
+	/* speak: none; */
 	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;
@@ -76,7 +76,7 @@
 	border: none;
 	cursor: pointer;
 	position: relative;
-	top: 50px;
+	top: 25px;
 	right: -80px;
 	height: 35px;
 	width: auto;
@@ -309,87 +309,7 @@ a:hover {
 }
 
 /*********************************************** HEADER ***********************************************/
-header {
-	height: 80px;
-}
 
-.header-menu {
-	font-size: 17px;
-	line-height: 80px;
-}
-
-.header-menu li {
-	position: relative;
-	-webkit-transform: translateZ(0);
-	/** To avoid a flash when hover messages **/
-}
-
-.header-menu-tab {
-	padding: 0 27px;
-	display: block;
-	line-height: 74px;
-	font-size: 17px;
-	-webkit-transition: background .3s;
-	transition: background .3s;
-}
-
-.header-menu-tab:hover {
-	background: #50597b;
-	border-bottom: 4px solid #11a8ab;
-	text-decoration: none;
-}
-
-.header-menu-tab .icon {
-	padding-right: 15px;
-}
-
-.header-menu-number {
-	position: absolute;
-	line-height: 22px;
-	padding: 0 6px;
-	font-weight: 700;
-	background: #e64c65;
-	border-radius: 100%;
-	top: 15px;
-	right: 2px;
-	-webkit-transition: all .3s linear;
-	transition: all .3s linear;
-}
-
-.header-menu li:hover .header-menu-number {
-	text-decoration: none;
-	-webkit-transform: rotate(360deg);
-	transform: rotate(360deg);
-
-}
-
-.profile-menu {
-	float: right;
-	height: 80px;
-	padding-right: 20px;
-	background-color: black;
-}
-
-.profile-menu p {
-	font-size: 17px;
-	display: inline-block;
-	line-height: 76px;
-	margin: 0;
-	padding-right: 10px;
-}
-
-.profile-menu a {
-	padding-left: 5px;
-}
-
-.profile-menu a:hover {
-	text-decoration: none;
-}
-
-.small-profile-picture {
-	display: inline-block;
-	vertical-align: middle;
-}
 
 /** CONTAINERS **/
 /* .container {
@@ -405,339 +325,17 @@ header {
 }
 
 /******************************************** LEFT CONTAINER *****************************************/
-.left-container {}
 
-.menu-box {
-	height: 360px;
-	position: relative;
-	right: -20px;
-	top: -450px;
-	border-radius: 5px;
-}
-
-.menu-box .titular {
-	background: black;
-}
-
-.menu-box-menu .icon {
-	display: inline-block;
-	vertical-align: top;
-	width: 28px;
-	margin-left: 20px;
-	margin-right: 15px;
-}
-
-.menu-box-number {
-	width: 36px;
-	line-height: 22px;
-	background: black;
-	text-align: center;
-	border-radius: 15px;
-	position: absolute;
-	top: 15px;
-	right: 15px;
-	-webkit-transition: all .3s;
-	transition: all .3s;
-}
-
-.menu-box-menu li {
-	height: 60px;
-	position: relative;
-}
-
-.menu-box-tab {
-	line-height: 60px;
-	display: block;
-	border-bottom: 1px solid #1f253d;
-	-webkit-transition: background .2s;
-	transition: background .2s;
-}
-
-.menu-box-tab:hover {
-	background: #50597b;
-	border-top: 1px solid #1f253d;
-	text-decoration: none;
-}
-
-.menu-box-tab:hover .icon {
-	color: #fff;
-}
-
-.menu-box-tab:hover .menu-box-number {
-	background: #e64c65;
-}
-
-.donut-chart-block {
-	height: 434px;
-}
-
-.donut-chart-block .titular {
-	padding: 10px 0;
-}
-
-.donut-chart {
-	height: 270px;
-}
 
 /******************************************
 				DONUT-CHART by @kseso https://codepen.io/Kseso/pen/phiyL
 				******************************************/
-.donut-chart {
-	position: relative;
-	width: 200px;
-	height: 200px;
-	margin: 0 auto 2rem;
-	border-radius: 100%
-}
 
-p.center-date {
-	background: #394264;
-	position: absolute;
-	text-align: center;
-	font-size: 28px;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	width: 130px;
-	height: 130px;
-	margin: auto;
-	border-radius: 50%;
-	line-height: 35px;
-	padding: 15% 0 0;
-}
-
-.center-date span.scnd-font-color {
-	line-height: 0;
-}
-
-.recorte {
-	border-radius: 50%;
-	clip: rect(0px, 200px, 200px, 100px);
-	height: 100%;
-	position: absolute;
-	width: 100%;
-}
-
-.quesito {
-	border-radius: 50%;
-	clip: rect(0px, 100px, 200px, 0px);
-	height: 100%;
-	position: absolute;
-	width: 100%;
-	font-family: monospace;
-	font-size: 1.5rem;
-}
-
-#porcion1 {
-	-webkit-transform: rotate(0deg);
-	transform: rotate(0deg);
-}
-
-#porcion1 .quesito {
-	background-color: #E64C65;
-	-webkit-transform: rotate(76deg);
-	transform: rotate(76deg);
-}
-
-#porcion2 {
-	-webkit-transform: rotate(76deg);
-	transform: rotate(76deg);
-}
-
-#porcion2 .quesito {
-	background-color: #11A8AB;
-	-webkit-transform: rotate(140deg);
-	transform: rotate(140deg);
-}
-
-#porcion3 {
-	-webkit-transform: rotate(215deg);
-	transform: rotate(215deg);
-}
-
-#porcion3 .quesito {
-	background-color: #4FC4F6;
-	-webkit-transform: rotate(113deg);
-	transform: rotate(113deg);
-}
-
-#porcionFin {
-	-webkit-transform: rotate(-32deg);
-	transform: rotate(-32deg);
-}
-
-#porcionFin .quesito {
-	background-color: #FCB150;
-	-webkit-transform: rotate(32deg);
-	transform: rotate(32deg);
-}
 
 /******************************************
 				END DONUT-CHART by @kseso https://codepen.io/Kseso/pen/phiyL
 				******************************************/
-.os-percentages {
-	padding-top: 36px;
-}
 
-.os-percentages li {
-	width: 75px;
-	border-left: 1px solid #394264;
-	text-align: center;
-	background: #50597b;
-}
-
-.os {
-	margin: 0;
-	padding: 10px 0 5px;
-	font-size: 15px;
-}
-
-.os.ios {
-	border-top: 4px solid #e64c65;
-}
-
-.os.mac {
-	border-top: 4px solid #11a8ab;
-}
-
-.os.linux {
-	border-top: 4px solid #fcb150;
-}
-
-.os.win {
-	border-top: 4px solid #4fc4f6;
-}
-
-.os-percentage {
-	margin: 0;
-	padding: 0 0 15px 10px;
-	font-size: 25px;
-}
-
-
-.increment {
-	color: #e64c65;
-}
-
-.media {
-	height: 216px;
-}
-
-#media-display {
-	position: relative;
-	height: 180px;
-	background: #787878 url('https://www.fancinema.com.ar/wp-content/uploads/catwoman1.jpg') center top;
-}
-
-#media-display .play {
-	position: absolute;
-	top: 75px;
-	right: 32px;
-	border: 2px solid #fff;
-	border-radius: 100%;
-	padding: 2px 5px 2px 9px;
-}
-
-#media-display .play:hover {
-	border: 2px solid #e64c65;
-}
-
-.media-control-bar {
-	padding: 6px 0 0 15px;
-}
-
-.media-btn,
-.time-passed {
-	display: inline-block;
-	margin: 0;
-}
-
-.media-btn {
-	font-size: 19px;
-}
-
-.media-btn:hover,
-.media-btn:hover span {
-	text-decoration: none;
-	color: #e64c65;
-}
-
-.play {
-	margin-right: 100px
-}
-
-.volume {
-	margin-left: 30px;
-}
-
-.resize {
-	margin-left: 12px;
-}
-
-.left-container .social {
-	height: 110px;
-}
-
-.left-container .social li {
-	width: 75px;
-	height: 110px;
-}
-
-.left-container .social li .icon {
-	text-align: center;
-	font-size: 20px;
-	margin: 0;
-	line-height: 75px;
-}
-
-.left-container .social li .number {
-	text-align: center;
-	margin: 0;
-	line-height: 34px;
-}
-
-.left-container .social .facebook {
-	background: #3468af;
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-}
-
-.left-container .social .facebook .number {
-	background: #1a4e95;
-	border-bottom-left-radius: 5px;
-}
-
-.left-container .social .twitter {
-	background: #4fc4f6;
-}
-
-.left-container .social .twitter .icon {
-	font-size: 18px;
-}
-
-.left-container .social .twitter .number {
-	background: #35aadc;
-}
-
-.left-container .social .googleplus {
-	background: #e64c65;
-}
-
-.left-container .social .googleplus .number {
-	background: #cc324b;
-}
-
-.left-container .social .mailbox {
-	background: #50597b;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-.left-container .social .mailbox .number {
-	background: #363f61;
-	border-bottom-right-radius: 5px;
-}
 
 /************************************************** MIDDLE CONTAINER **********************************/
 .middle-container {
@@ -746,7 +344,7 @@ p.center-date {
 
 .profile {
 	height: 410px;
-	top: +15px;
+	top: +35px;
 	border-radius: 6px;
 	position: relative;
 	right: -1100px;

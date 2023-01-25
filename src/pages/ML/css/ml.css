@@ -6,7 +6,10 @@
 
 .Copy{
     position: absolute;
-    top: -30px;
-    right: -750px;
+    top: 280px;
+    right:-210px;
     color: red;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

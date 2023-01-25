@@ -10,34 +10,6 @@ const check=(e)=>
 {
   console.log("Hello");
 }
-const Header_Menu = () => {
-  return (
-      <header class="block">
-          <ul class="header-menu horizontal-list">
-              <li>
-                  <a class="header-menu-tab" href="#1"><span class="icon fontawesome-calendar scnd-font-color"></span>Schedule Test</a>
-              </li>
-              <li>
-                  <a class="header-menu-tab" href="#2"><span class="icon fontawesome-trophy scnd-font-color"></span>Rank List</a>
-              </li>
-              <li>
-                  <a class="header-menu-tab" href="#3"><span class="icon fontawesome-envelope scnd-font-color"></span>Make Question Paper</a>
-                  <a class="header-menu-number" href="#4">5</a>
-              </li>
-              <li>
-                  <a class="header-menu-tab" href="#5"><span class="icon fontawesome-check scnd-font-color"></span>Asseignments Submitted</a>
-              </li>
-          </ul>
-          <div class="profile-menu">
-              <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
-              <div class="profile-picture small-profile-picture">
-                  <img width="40px" src="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg" />
-              </div>
-          </div>
-      </header>
-
-  );
-};
 
     const Institute = () => {
     const [Questionnumber, setQuestionnumber] = useState(0);
@@ -55,7 +27,6 @@ const [weightage2, setWeightage2] = useState(0);
 const [weightage3, setWeightage3] = useState(0);
 const [weightage4, setWeightage4] = useState(0);
 const [totalMarks, setTotalMarks] = useState(0);
-
 const [testName, setTestName] = useState('');
 const [courseName, setCourseName] = useState('');
 const [courseCode, setCourseCode] = useState(0);
@@ -64,6 +35,36 @@ const [startTime, setStartTime] = useState("");
 const [endTime, setEndTime] = useState("");
 const [duration, setDuration] = useState(0);
 const [link, setLink] = useState("");
+
+const Header_Menu = () => {
+  return (
+      <header class="block">
+          <ul class="header-menu horizontal-list">
+              <li>
+                  <a class="header-menu-tab"  onClick={scheduleExam}><span class="icon fontawesome-calendar scnd-font-color"></span>Schedule Test</a>
+              </li>
+              <li>
+                  <a class="header-menu-tab" href="#2"><span class="icon fontawesome-trophy scnd-font-color"></span>Rank List</a>
+              </li>
+              <li>
+                  <a class="header-menu-tab" onClick={makeExam}><span class="icon fontawesome-envelope scnd-font-color"></span>Make Question Paper</a>
+                  <a class="header-menu-number" href="#4">5</a>
+              </li>
+              <li>
+                  <a class="header-menu-tab" href="#5"><span class="icon fontawesome-check scnd-font-color"></span>Assignments Submitted</a>
+              </li>
+          </ul>
+          <div class="profile-menu">
+              <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
+              <div class="profile-picture small-profile-picture">
+                  <img width="40px" src="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg" />
+              </div>
+          </div>
+      </header>
+
+  );
+};
+
 
 const postData = (e) => {
   e.preventDefault();
@@ -123,10 +124,96 @@ const postExam = (e) => {
     // setConfirm(1);
   // }
 }
-      return (
-        <div>
-          <Header_Menu/>
-        <form onSubmit={postData} className="container4">
+const scheduleExam=(e)=>{
+  return(
+  <form onSubmit={postExam} className="container4">
+        <label>
+            Test Name:
+            <input
+            className="TestName"
+              name="tname"
+              type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setTestName(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Course Name:
+            <input
+            className="Course_Name"
+              name="course_name"
+              type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setCourseName(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Course Code:
+            <input
+            className="Course_Code"
+              name="course_code"
+              type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setCourseCode(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Date:
+            <input
+            className="Date"
+              name="date"
+              type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setDate(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Start Time:
+            <input
+            className="Start"
+              name="start"
+              type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setStartTime(e.target.value)}
+            required/>
+          </label>
+          <label>
+            End Time:
+            <input
+            className="End"
+              name="end"
+              type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setEndTime(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Duration in Hourss:
+            <input
+            className="TestName"
+              name="tname"
+              type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setDuration(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Link:
+            <input
+            className="Link"
+              name="link"
+              type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setLink(e.target.value)}
+            required/>
+          </label>
+          <button className='bubbly-button2' type="submit">Submit</button>
+        </form>
+  );
+};
+const makeExam=(e)=>{
+  return(
+  <form onSubmit={postData} className="container4">
         <label>
             Course ID:
             <input
@@ -311,14 +398,173 @@ const postExam = (e) => {
           
           <button className='bubbly-button2' type="submit">Submit</button>
         </form>
-        <form onSubmit={postExam} className="container4">
+  )
+}
+      return (
+        <div>
+          <Header_Menu/>
+        {/* <form onSubmit={postData} className="container4">
+        <label>
+            Course ID:
+            <input
+            className="Course_Code"
+              name="course_code"
+              type="text"
+            onChange={e => setCourseCode(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Question
+            <input
+            className="Question"
+              name="question"
+              type="text"
+            onChange={e => setQuestion(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Total Marks for this Question:
+            <input
+            className="tmarks"
+              name="Tm"
+              type="text"
+            onChange={e => setTotalMarks(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Option 1:
+            <input
+            className="opt1"
+              name="opt1"
+              type="text"
+            onChange={e => setOption1(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Option 2:
+            <input
+            className="opt2"
+              name="opt2"
+              type="text"
+            onChange={e => setOption2(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Option 3:
+            <input
+            className="opt3"
+              name="opt3"
+              type="text"
+            onChange={e => setOption3(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Option 4:
+            <input
+            className="opt4"
+              name="opt4"
+              type="text"
+            onChange={e => setOption4(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Weightage 1:
+            <input
+            className="weightage1"
+              name="weightage1"
+              type="number"
+            onChange={e => setWeightage1(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Weightage 2:
+            <input
+            className="weightage2"
+              name="weightage2"
+              type="number"
+            onChange={e => setWeightage2(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Weightage 3:
+            <input
+            className="weightage3"
+              name="weightage3"
+              type="number"
+            onChange={e => setWeightage3(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Weightage 4:
+            <input
+            className="weightage4"
+              name="weightage4"
+              type="number"
+            onChange={e => setWeightage4(e.target.value)}
+            required/>
+          </label>
+          <label>
+            Option 1 is:
+          <div class="container6">
+    <div class="radio_container">
+        <input className="correct1" type="radio" name="radio1"  id="true" value="true"  onClick={e => setisCorrect1(true)} checked required/>
+        <label className="label1" for="true">True</label>
+        <input className="correct1" type="radio" name="radio1"  id="false" value="false"  onClick={e => setisCorrect1(false)} required/>
+        <label className="label1" for="false">False</label>
+        
+    </div>
+</div>
+</label>
+          <br/>
+          <label>
+            Option 2 is:
+          <div class="container6">
+    <div class="radio_container">
+        <input className="correct2" type="radio" name="radio2" id="true1" value="true"  onClick={e => setisCorrect2(true)} checked required/>
+        <label className="label2" for="true1">True</label>
+        <input className="correct2" type="radio" name="radio2" id="false1" value="false"  onClick={e => setisCorrect2(false)} required/>
+        <label className="label2" for="false1">False</label>
+        
+    </div>
+</div>
+</label>
+          <br/>
+          <label>
+            Option 3 is:
+          <div class="container6">
+    <div class="radio_container">
+        <input className="correct3" type="radio" name="radio3" id="true2" value="true"  onClick={e => setisCorrect3(true)} checked required/>
+        <label className="label3" for="true2">True</label>
+        <input className="correct3" type="radio" name="radio3" id="false2" value="false"  onClick={e => setisCorrect3(false)} required/>
+        <label className="label3" for="false2">False</label>
+        
+    </div>
+</div>
+</label>
+          <br/>
+          <label>
+            Option 4 is:
+          <div class="container6">
+    <div class="radio_container">
+        <input className="correct4" type="radio" name="radio4" id="true3" value="true"  onClick={e => setisCorrect4(true)} checked required/>
+        <label className="label4" for="true3">True</label>
+        <input className="correct4" type="radio" name="radio4" id="false3" value="false"  onClick={e => setisCorrect4(false)} required/>
+        <label className="label4" for="false3">False</label>
+        
+    </div>
+</div>
+</label>
+          <br/>
+          
+          <button className='bubbly-button2' type="submit">Submit</button>
+        </form> */}
+        {/* <form onSubmit={postExam} className="container4">
         <label>
             Test Name:
             <input
             className="TestName"
               name="tname"
               type="text"
-            //   value={this.state.numberOfGuests}
             onChange={e => setTestName(e.target.value)}
             required/>
           </label>
@@ -328,7 +574,6 @@ const postExam = (e) => {
             className="Course_Name"
               name="course_name"
               type="text"
-            //   value={this.state.numberOfGuests}
             onChange={e => setCourseName(e.target.value)}
             required/>
           </label>
@@ -338,7 +583,6 @@ const postExam = (e) => {
             className="Course_Code"
               name="course_code"
               type="text"
-            //   value={this.state.numberOfGuests}
             onChange={e => setCourseCode(e.target.value)}
             required/>
           </label>
@@ -348,7 +592,6 @@ const postExam = (e) => {
             className="Date"
               name="date"
               type="text"
-            //   value={this.state.numberOfGuests}
             onChange={e => setDate(e.target.value)}
             required/>
           </label>
@@ -358,7 +601,6 @@ const postExam = (e) => {
             className="Start"
               name="start"
               type="text"
-            //   value={this.state.numberOfGuests}
             onChange={e => setStartTime(e.target.value)}
             required/>
           </label>
@@ -368,7 +610,6 @@ const postExam = (e) => {
             className="End"
               name="end"
               type="text"
-            //   value={this.state.numberOfGuests}
             onChange={e => setEndTime(e.target.value)}
             required/>
           </label>
@@ -378,7 +619,6 @@ const postExam = (e) => {
             className="TestName"
               name="tname"
               type="text"
-            //   value={this.state.numberOfGuests}
             onChange={e => setDuration(e.target.value)}
             required/>
           </label>
@@ -388,12 +628,11 @@ const postExam = (e) => {
             className="Link"
               name="link"
               type="text"
-            //   value={this.state.numberOfGuests}
             onChange={e => setLink(e.target.value)}
             required/>
           </label>
           <button className='bubbly-button2' type="submit">Submit</button>
-        </form>
+        </form> */}
         </div>
       );
       }

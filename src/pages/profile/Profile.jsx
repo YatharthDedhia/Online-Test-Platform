@@ -12,6 +12,7 @@ import {
 } from 'recharts';
 import Popup from 'reactjs-popup';
 import './css/profile.css'
+import './css/navbar.css'
 import './css/line-chart.css'
 import './css/ranklist.css'
 import './css/graph.css'
@@ -20,7 +21,42 @@ import line from "simple-line-chart";
 import { Chart, ChartSeries, ChartSeriesItem, ChartCategoryAxis, ChartCategoryAxisItem } from '@progress/kendo-react-charts';
 import 'hammerjs';
 import { useEffect } from 'react';
+import logo from '../../Images/logo-no-background.png'
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+
+const NavLinks = () => (
+    <React.Fragment>
+        <p>
+            <a href="/">Pricing</a>
+        </p>
+        <p>
+            <li class="nav-link dropdown"><a href="" class="dropdown">Contact<i
+                class="bi bi-chevron-compact-down"></i></a>
+                <ul class="dropdown-list">
+                    <li class="nav-link">
+                        <a href="mailto:cod.callofduty@gmail.com" target="_blank">&nbsp;&nbsp;E-Mail</a>
+                        <li class="nav-link">
+                            <a href="">Phone</a>
+                        </li>
+                    </li>
+                </ul>
+            </li>
+        </p>
+    </React.Fragment>
+);
+
+const Navbar = () => {
+    return (
+        <div className="landing-navbar">
+            <div className="landing-navbar-logo">
+                <img src={logo}></img>
+            </div>
+            <div className="landing-navbar-links">
+                <NavLinks />
+            </div>
+        </div>
+    );
+};
 
 const Profile_Block = () => {
     const [firstName, setFirstName] = useState('');
@@ -343,6 +379,7 @@ const Profile = () => {
     return (
         <div className='main-container'>
             <div className='container3'>
+                <Navbar />
                 <Profile_Block />
                 <Graph />
                 <RankList />

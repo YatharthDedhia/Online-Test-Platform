@@ -1,16 +1,20 @@
-.ranklist-container{
+.ranklist-container {
     position: relative;
-    top: -700px;
-    right:-550px;
+    top: -630px;
+    right: -550px;
     width: 500px;
-    background-color: black;
+    /* background-color: black; */
+    background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+    background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+    background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
     justify-content: center;
     text-align: center;
     align-items: center;
     color: white;
+    border-radius: 8px;
 }
 
-.ranklist-wrapper th{
+.ranklist-wrapper th {
     width: 150px;
     color: white;
 }

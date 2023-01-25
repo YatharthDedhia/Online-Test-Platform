@@ -34,7 +34,17 @@ const NavLinks = () => (
 			<a href="/">Pricing</a>
 		</p>
 		<p>
-			<a href="/landing">Contact</a>
+			<li class="nav-link dropdown"><a href="" class="dropdown">Contact<i
+				class="bi bi-chevron-compact-down"></i></a>
+				<ul class="dropdown-list">
+					<li class="nav-link">
+						<a href="mailto:cod.callofduty@gmail.com" target="_blank">&nbsp;&nbsp;E-Mail</a>
+						<li class="nav-link">
+							<a href="">Phone</a>
+						</li>
+					</li>
+				</ul>
+			</li>
 		</p>
 	</React.Fragment>
 );
@@ -100,7 +110,7 @@ const Landing = () => {
 				"Age": 26,
 				"TypeId": String(parseInt(type)),
 				// "ActivationStatus": '0',
-				"Photo":"https://www.nicepng.com/maxp/u2q8i1a9e6i1o0o0/"
+				"Photo": "https://www.nicepng.com/maxp/u2q8i1a9e6i1o0o0/"
 			};
 
 			console.log(sendData);
@@ -173,18 +183,18 @@ const Landing = () => {
 					</div>
 				</div>
 				<Components.Container>
-              <Components.SignUpContainer signinIn={signIn}>
-                  <Components.Form onSubmit={postData}>
-                      <Components.Title>Create Account</Components.Title>
-                      <Components.Input type='text' placeholder='First Name' value={firstname} onChange={(e) => setFirstName(e.target.value)} required/>
-					  <Components.Input type='text' placeholder='Last Name' value={lastname} onChange={(e) => setLastName(e.target.value)}  required/>
-                      <Components.Input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}  required/>
-					  <Components.Input type='number' placeholder='Mobile No.' value={mobile} onChange={(e) => setMobile(e.target.value)}  required/>
-					  <Components.Input type='text' placeholder='User Name' value={username} onChange={(e) => setUsername(e.target.value)}  required/>
-					  
-                      <Components.Input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required/>
-					  <Components.Input type='password' placeholder='Confirm Password' value={confpassword} onChange={(e) => setConfPassword(e.target.value)}  required/>
-					  <div class="selector">
+					<Components.SignUpContainer signinIn={signIn}>
+						<Components.Form onSubmit={postData}>
+							<Components.Title>Create Account</Components.Title>
+							<Components.Input type='text' placeholder='First Name' value={firstname} onChange={(e) => setFirstName(e.target.value)} required />
+							<Components.Input type='text' placeholder='Last Name' value={lastname} onChange={(e) => setLastName(e.target.value)} required />
+							<Components.Input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+							<Components.Input type='number' placeholder='Mobile No.' value={mobile} onChange={(e) => setMobile(e.target.value)} required />
+							<Components.Input type='text' placeholder='User Name' value={username} onChange={(e) => setUsername(e.target.value)} required />
+
+							<Components.Input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
+							<Components.Input type='password' placeholder='Confirm Password' value={confpassword} onChange={(e) => setConfPassword(e.target.value)} required />
+							<div class="selector">
 								<div class="selector-item">
 									<input type="radio" id="radio1" name="selector" value="2" class="selector-item_radio" onClick={(e) => setType(e.target.value)} />
 									<label for="radio1" class="selector-item_label">Student</label>
@@ -194,16 +204,16 @@ const Landing = () => {
 									<label for="radio2" class="selector-item_label">Institute</label>
 								</div>
 							</div>
-                      <Components.Button type="submit" >Sign Up</Components.Button>
-                  </Components.Form>
-              </Components.SignUpContainer>
+							<Components.Button type="submit" >Sign Up</Components.Button>
+						</Components.Form>
+					</Components.SignUpContainer>
 
-              <Components.SignInContainer signinIn={signIn}>
-                   <Components.Form onSubmit={StudentsInfo}>
-                       <Components.Title>Sign in</Components.Title>
-                       <Components.Input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}  required/>
-                       <Components.Input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}  required/>
-					   <div class="selector1">
+					<Components.SignInContainer signinIn={signIn}>
+						<Components.Form onSubmit={StudentsInfo}>
+							<Components.Title>Sign in</Components.Title>
+							<Components.Input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+							<Components.Input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
+							<div class="selector1">
 								<div class="selector-item1">
 									<input type="radio" id="radio3" name="selector" value="2" class="selector-item_radio1" onClick={(e) => setType(e.target.value)} />
 									<label for="radio1" class="selector-item_label1">Student</label>
@@ -213,38 +223,38 @@ const Landing = () => {
 									<label for="radio2" class="selector-item_label1">Institute</label>
 								</div>
 							</div>
-                       {/* <Components.Anchor href='#'>Forgot your password?</Components.Anchor> */}
-                       <Components.Button type="submit">Sign In</Components.Button>
-                   </Components.Form>
-              </Components.SignInContainer>
+							{/* <Components.Anchor href='#'>Forgot your password?</Components.Anchor> */}
+							<Components.Button type="submit">Sign In</Components.Button>
+						</Components.Form>
+					</Components.SignInContainer>
 
-              <Components.OverlayContainer signinIn={signIn}>
-                  <Components.Overlay signinIn={signIn}>
+					<Components.OverlayContainer signinIn={signIn}>
+						<Components.Overlay signinIn={signIn}>
 
-                  <Components.LeftOverlayPanel signinIn={signIn}>
-                      <Components.Title>Welcome Back!</Components.Title>
-                      <Components.Paragraph>
-                          To keep connected with us please login with your personal info
-                      </Components.Paragraph>
-                      <Components.GhostButton onClick={() => toggle(true)} >
-                          Sign In
-                      </Components.GhostButton>
-                      </Components.LeftOverlayPanel>
+							<Components.LeftOverlayPanel signinIn={signIn}>
+								<Components.Title>Welcome Back!</Components.Title>
+								<Components.Paragraph>
+									To keep connected with us please login with your personal info
+								</Components.Paragraph>
+								<Components.GhostButton onClick={() => toggle(true)} >
+									Sign In
+								</Components.GhostButton>
+							</Components.LeftOverlayPanel>
 
-                      <Components.RightOverlayPanel signinIn={signIn}>
-                        <Components.Title>Hello!</Components.Title>
-                        <Components.Paragraph>
-                            Enter Your personal details and start journey with us
-                        </Components.Paragraph>
-                            <Components.GhostButton onClick={() => toggle(false)}>
-                                Sign Up
-                            </Components.GhostButton> 
-                      </Components.RightOverlayPanel>
-  
-                  </Components.Overlay>
-              </Components.OverlayContainer>
+							<Components.RightOverlayPanel signinIn={signIn}>
+								<Components.Title>Hello!</Components.Title>
+								<Components.Paragraph>
+									Enter Your personal details and start journey with us
+								</Components.Paragraph>
+								<Components.GhostButton onClick={() => toggle(false)}>
+									Sign Up
+								</Components.GhostButton>
+							</Components.RightOverlayPanel>
 
-          </Components.Container>
+						</Components.Overlay>
+					</Components.OverlayContainer>
+
+				</Components.Container>
 				{/* <div className='container'>
 					<div className='SignUpBox'>
 						<form onSubmit={postData}>

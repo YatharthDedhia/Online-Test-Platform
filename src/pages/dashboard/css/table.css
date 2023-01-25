@@ -4,15 +4,16 @@
   margin: 0;
   padding: 0;
 }
+
 .container1 {
   position: absolute;
-  
+
   display: flex;
   flex-direction: column;
   /* position: relative; */
   width: 60%;
   height: 75%;
-  background: #F9F8F8;
+  /* background: #F9F8F8; */
   /* margin: 100px auto 0; */
   top: 15%;
   left: 10%;
@@ -22,12 +23,12 @@
   /* border: 1px solid rgba(0, 0, 0, 0.274); */
 }
 
-.container1 a{
+.container1 a {
   text-decoration: none;
   color: white;
 }
 
-.container1 a:hover{
+.container1 a:hover {
   text-decoration: none;
   color: blue;
 }
@@ -36,10 +37,10 @@
   display: flex;
   /* background-color: #EB9486; */
   border-radius: 50px;
+  width: auto;
 }
 
 .tabs {
-
   padding: 15px;
   text-align: center;
   width: 50%;
@@ -52,7 +53,7 @@
   font-size: 18px;
   /* color: #7E7F9A; */
   color: white;
-
+  border-radius: 5px;
 }
 
 .tabs:not(:last-child) {
@@ -60,7 +61,10 @@
 }
 
 .active-tabs {
-  background: black;
+  /* background: black; */
+  background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+  background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+  background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
   /* border-bottom: 1px solid transparent; */
   font-size: 18px;
   color: white;
@@ -75,7 +79,10 @@
   transform: translateX(-50%);
   width: calc(100% + 2px);
   height: 5px;
-  background: black;
+  background: red;
+  /* background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+  background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+  background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%); */
   border-radius: 5px;
 }
 
@@ -132,7 +139,10 @@ button {
 
 .content tr {
   /* border:10px #222 ; */
-  background-color: black;
+  /* background-color: black; */
+  background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+  background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+  background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
   /* border-radius: 5px; */
   color: white;
 }
@@ -141,11 +151,20 @@ tbody tr:nth-child(odd) {
   background-color: #222;
 }
 
-th,
+th {
+  background-color: #1C1C1C;
+  padding: 0.75rem;
+  font-size: 0.9375rem;
+  border-radius: 5px;
+}
+
 td {
   /* cell */
   padding: 0.75rem;
   font-size: 0.9375rem;
+  /* background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+  background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+  background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%); */
 }
 
 td {

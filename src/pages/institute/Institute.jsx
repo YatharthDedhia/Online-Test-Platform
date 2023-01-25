@@ -39,7 +39,7 @@ const Institute = () => {
 
   const Header_Menu = () => {
     return (
-      <header class="block">
+      <header class="block-institute">
         <ul class="header-menu horizontal-list">
           <li>
             <button className="header-menu-tab" onClick={() => setlabel(1)}><span className="icon fontawesome-calendar scnd-font-color"></span>Schedule Test</button>

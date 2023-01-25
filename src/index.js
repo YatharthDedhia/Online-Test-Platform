@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import './pages/instruction/styles.scss'
+// import './pages/instruction/styles.scss'
 import App from './App';
 import '../node_modules/@mdi/font/css/materialdesignicons.min.css';
 // import '../node_modules/materialize-css/dist/css/materialize.min.css';

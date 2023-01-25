@@ -161,7 +161,7 @@ const Dashboard = () => {
 				</div>
 
 				<div className="content-tabs">
-					<div className={toggleState === 1 ? "content  active-content" : "content"} >
+					<div className={toggleState === 1 ? "content  active-content " : "content"} >
 						<p>
 							<table>
 								<thead>

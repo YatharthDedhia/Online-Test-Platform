@@ -352,7 +352,10 @@ a:hover {
 	} */
 .block {
 	margin-bottom: 25px;
-	background: black;
+	/* background: black; */
+	background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+	background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+	background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
 	/* border-radius: 5px; */
 	width: 125% !important;
 	color: white;
@@ -378,7 +381,7 @@ a:hover {
 
 .profile {
 	height: 410px;
-	top: +35px;
+	top: +110px;
 	border-radius: 6px;
 	position: relative;
 	right: -1100px;

@@ -170,37 +170,39 @@ const Test = () => {
     setIsDisabled(true)
   }
 
+  // setCurrentQuestion(1)
   return (
     <div className="timer-wrapper">
-      <div className='quizz-app'>
-        {showScore ? (
-          <div className='score-section'>
-            You scored {score} out of {quizLength + 1}
-          </div>
-        ) : (
-          <>
-            <div className='question-section'>
-              <div className='question-diff'>Difficulty:{paper[currentQuestion].Difficulty}</div>
-              <div className='question-diff1'>Marks: {paper[currentQuestion].Marks}</div>
-              <div className='question-count'>
-                <span>Question {currentQuestion + 1}</span>/{quizLength + 1}
+      {quizLength > 2 ? (
+        <div className='quizz-app'>
+          {showScore ? (
+            <div className='score-section'>
+              You scored {score} out of {quizLength + 1}
+            </div>
+          ) : (
+            <>
+
+              <div>
+                <div className='question-section'>
+                  <div className='question-diff'>Difficulty:{paper[currentQuestion].Difficulty}</div>
+                  <div className='question-diff1'>Marks: {paper[currentQuestion].Marks}</div>
+                  <div className='question-count'>
+                    <span>Question {currentQuestion + 1}</span>/{quizLength + 1}
+                  </div>
+                  <div className='question-text'>{paper[currentQuestion].questionText}</div>
+                </div>
+                <div className='answer-section'>
+                  {paper[currentQuestion].answerOptions.map((answerOption) => (
+                    <button disabled={isDisabled} onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+                  ))}
+                </div>
+                <button className='prevbutton' onClick={() => goPrev()}>Previous</button>
+                <button className='nextbutton' onClick={() => goNext()}>Next</button>
               </div>
-              <div className='question-text'>{paper[currentQuestion].questionText}</div>
-            </div>
-            <div className='answer-section'>
-              {paper[currentQuestion].answerOptions.map((answerOption) => (
-                <button disabled={isDisabled} type='radio' onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
-              ))}
-              {/* <button disabled={isDisabled} type='radio' onClick={() => handleAnswerOptionClick(paper[currentQuestion].answerOptions[0].isCorrect)}>{paper[currentQuestion].answerOptions[0].answerText}</button> */}
-              {/* <button disabled={isDisabled} type='radio' onClick={() => handleAnswerOptionClick(paper[currentQuestion].answerOptions[1].isCorrect)}>{paper[currentQuestion].answerOptions[1].answerText}</button> */}
-              {/* <button disabled={isDisabled} type='radio' onClick={() => handleAnswerOptionClick(paper[currentQuestion].answerOptions[2].isCorrect)}>{paper[currentQuestion].answerOptions[2].answerText}</button> */}
-              {/* <button disabled={isDisabled} type='radio' onClick={() => handleAnswerOptionClick(paper[currentQuestion].answerOptions[3].isCorrect)}>{paper[currentQuestion].answerOptions[3].answerText}</button> */}
-            </div>
-            <button className='prevbutton' onClick={() => goPrev()}>Previous</button>
-            <button className='nextbutton' onClick={() => goNext()}>Next</button>
-          </>
-        )}
-      </div>
+            </>
+          )}
+        </div>
+      ) : null}
       <CountdownCircleTimer
         isPlaying
         duration={getduration}

@@ -31,29 +31,29 @@ const Institute = () => {
   const [link, setLink] = useState("");
   const [label, setlabel] = useState(0)
 
-  // const Header_Menu = () => {
-  //   return (
-  //     <header class="block-institute">
-  //       <ul class="header-menu horizontal-list">
-  //         <li>
-  //           <button className="header-menu-tab" onClick={() => setlabel(1)}><span className="icon fontawesome-calendar scnd-font-color"></span>Schedule Test</button>
-  //         </li>
-  //         <li>
-  //           <button className="header-menu-tab" onClick={() => { setlabel(3) }} href="#2"><span className="icon fontawesome-trophy scnd-font-color"></span>Rank List</button>
-  //         </li>
-  //         <li>
-  //           <button className="header-menu-tab" onClick={() => { setlabel(0) }}><span className="icon fontawesome-envelope scnd-font-color"></span>Make Question Paper</button>
-  //         </li>
-  //       </ul>
-  //       <div className="profile-menu">
-  //         <p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>
-  //         <div className="profile-picture small-profile-picture">
-  //           <img width="40px" src="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg" />
-  //         </div>
-  //       </div>
-  //     </header>
-  //   );
-  // };
+  const Header_Menu = () => {
+    return (
+      <header class="block-institute">
+        <ul class="header-menu horizontal-list">
+          <li>
+            <button className="header-menu-tab" onClick={() => setlabel(1)}><span className="icon fontawesome-calendar scnd-font-color"></span>Schedule Test</button>
+          </li>
+          <li>
+            <button className="header-menu-tab" onClick={() => { setlabel(3) }} href="#2"><span className="icon fontawesome-trophy scnd-font-color"></span>Rank List</button>
+          </li>
+          <li>
+            <button className="header-menu-tab" onClick={() => { setlabel(0) }}><span className="icon fontawesome-envelope scnd-font-color"></span>Make Question Paper</button>
+          </li>
+        </ul>
+        <div className="profile-menu">
+          <p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>
+          <div className="profile-picture small-profile-picture">
+            <img width="40px" src="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg" />
+          </div>
+        </div>
+      </header>
+    );
+  };
 
   const NavLinks = () => (
     <React.Fragment>
@@ -74,7 +74,7 @@ const Institute = () => {
           <button className="institute-navbar-button" onClick={() => { setlabel(0) }}><span></span>Make Paper</button>
         </a>
       </p>
-      {/* <p>
+      <p>
         <a href="/">Pricing</a>
       </p>
 
@@ -90,7 +90,7 @@ const Institute = () => {
             </li>
           </ul>
         </li>
-      </p> */}
+      </p> }
     </React.Fragment>
   );
 
@@ -256,16 +256,265 @@ const Institute = () => {
     );
   };
 
-  const MakeExam = (e) => {
+  // const MakeExam = (e) => {
+  //   return (
+  //     <form onSubmit={postData} className="container4">
+  //       <label>
+  //         Course ID:
+  //         <input
+  //           className="Course_Code"
+  //           name="course_code"
+  //           // type="number"
+  //           onChange={e => setCourseCode(e.target.value)}
+  //           required />
+  //       </label>
+  //       <label>
+  //         Question
+  //         <input
+  //           className="Question"
+  //           name="question"
+  //           // type="text"
+  //           onChange={e => setQuestion(e.target.value)}
+  //           required />
+  //       </label>
+  //       <label>
+  //         Total Marks for this Question:
+  //         <input
+  //           className="tmarks"
+  //           name="Tm"
+  //           type="number"
+  //           onChange={e => setTotalMarks(e.target.value)}
+  //           required />
+  //       </label>
+  //       <label>
+  //         Option 1:
+  //         <input
+  //           className="opt"
+  //           name="opt1"
+  //           type="text"
+  //           onChange={e => setOption1(e.target.value)}
+  //           required />
+  //       </label>
+  //       <label>
+  //         Option 2:
+  //         <input
+  //           className="opt"
+  //           name="opt2"
+  //           type="text"
+  //           onChange={e => setOption2(e.target.value)}
+  //           required />
+  //       </label>
+  //       <label>
+  //         Option 3:
+  //         <input
+  //           className="opt"
+  //           name="opt3"
+  //           type="text"
+  //           onChange={e => setOption3(e.target.value)}
+  //           required />
+  //       </label>
+  //       <label>
+  //         Option 4:
+  //         <input
+  //           className="opt"
+  //           name="opt4"
+  //           type="text"
+  //           onChange={e => setOption4(e.target.value)}
+  //           required />
+  //       </label>
+  //       <label>
+  //         Weightage 1:
+  //         <input
+  //           className="weightage"
+  //           name="weightage1"
+  //           type="number"
+    
+  //           onChange={e => setWeightage1(e.target.value)}
+  //           required />
+  //       </label>
+  //       <label>
+  //         Weightage 2:
+  //         <input
+  //           className="weightage"
+  //           name="weightage2"
+  //           type="number"
+  //           onChange={e => setWeightage2(e.target.value)}
+  //           required />
+  //       </label>
+  //       <label>
+  //         Weightage 3:
+  //         <input
+  //           className="weightage"
+  //           name="weightage3"
+  //           type="number"
+  //           onChange={e => setWeightage3(e.target.value)}
+  //           required />
+  //       </label>
+  //       <label>
+  //         Weightage 4:
+  //         <input
+  //           className="weightage"
+  //           name="weightage4"
+  //           type="number"
+  //           onChange={e => setWeightage4(e.target.value)}
+  //           required />
+  //       </label>
+  //       <label>
+  //         Option 1 is:
+  //         <div class="container6">
+  //           <div class="radio_container">
+  //             <input className="correct1" type="radio" name="radio1" id="true" value="true" onClick={e => setisCorrect1(true)} checked required />
+  //             <label className="label1" for="true">True</label>
+  //             <input className="correct1" type="radio" name="radio1" id="false" value="false" onClick={e => setisCorrect1(false)} required />
+  //             <label className="label1" for="false">False</label>
+
+  //           </div>
+  //         </div>
+  //       </label>
+  //       <br />
+  //       <label>
+  //         Option 2 is:
+  //         <div class="container6">
+  //           <div class="radio_container">
+  //             <input className="correct2" type="radio" name="radio2" id="true1" value="true" onClick={e => setisCorrect2(true)} checked required />
+  //             <label className="label2" for="true1">True</label>
+  //             <input className="correct2" type="radio" name="radio2" id="false1" value="false" onClick={e => setisCorrect2(false)} required />
+  //             <label className="label2" for="false1">False</label>
+
+  //           </div>
+  //         </div>
+  //       </label>
+  //       <br />
+  //       <label>
+  //         Option 3 is:
+  //         <div class="container6">
+  //           <div class="radio_container">
+  //             <input className="correct3" type="radio" name="radio3" id="true2" value="true" onClick={e => setisCorrect3(true)} checked required />
+  //             <label className="label3" for="true2">True</label>
+  //             <input className="correct3" type="radio" name="radio3" id="false2" value="false" onClick={e => setisCorrect3(false)} required />
+  //             <label className="label3" for="false2">False</label>
+
+  //           </div>
+  //         </div>
+  //       </label>
+  //       <br />
+  //       <label>
+  //         Option 4 is:
+  //         <div class="container6">
+  //           <div class="radio_container">
+  //             <input className="correct4" type="radio" name="radio4" id="true3" value="true" onClick={e => setisCorrect4(true)} checked required />
+  //             <label className="label4" for="true3">True</label>
+  //             <input className="correct4" type="radio" name="radio4" id="false3" value="false" onClick={e => setisCorrect4(false)} required />
+  //             <label className="label4" for="false3">False</label>
+
+  //           </div>
+  //         </div>
+  //       </label>
+  //       <br />
+
+  //       <button className='bubbly-button2' type="submit">Submit</button>
+  //     </form>
+  //   )
+  // };
+
+  const RankList = () => {
+
+    const testObj = [
+      {
+        "UserID": 4,
+        "paperCode": 103,
+        "TestName": "Express",
+        "FirstName": "Manav",
+        "LastName": "Shah",
+        "MarksScored": 5
+      }
+    ];
+
+    const [obj, setObj] = useState([])
+    let temparr = []
+
+    useEffect(async () => {
+      axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
+        .then((response) => {
+
+          response.data[0].map((f) => {
+            var num = f.PaperCode
+            var str = num.toString()
+
+            axios
+              .get("https://lmsapiv01.azurewebsites.net/api/totalmarksallstuds/" + str)
+              .then((response2) => {
+                response2.data[0].map((res) => {
+                  setObj(current => [...current, res])
+                })
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          })
+        })
+    }, [])
+
     return (
-      <form onSubmit={postData} className="container4">
+      <div class="ranklist-container-institute">
+        <header>
+          <br />
+          <h1>Rankings</h1>
+          <br />
+        </header>
+        <div class="ranklist-wrapper-institute">
+          <table>
+            <thead>
+              <tr>
+                <th>UserID</th>
+                <th>Name</th>
+                <th>Test</th>
+                <th>Marks</th>
+              </tr>
+            </thead>
+            {/* <tbody> */}
+            {/* {console.log(obj)} */}
+            {obj.map((e) => {
+              // { console.log(e) }
+              return (
+                <tbody>
+                  <tr>
+                    <td class="ranklist-rank">{e.UserID}</td>
+                    <td class="ranklist-team">{e.FirstName + ' ' + e.LastName}</td>
+                    <td class="ranklist-points">{e.TestName}</td>
+                    <td class="ranklist-up-down">{e.MarksScored}</td>
+                  </tr>
+                </tbody>
+              )
+
+            })}
+          </table>
+        </div>
+      </div>
+    )
+  }
+
+  // return (
+  //   <div>
+  //     <Header_Menu />
+  //     <Navbar />
+  //     {label === 0 && <MakeExam />}
+  //     {label === 1 && <ScheduleExam />}
+  //     {label === 3 && <RankList />}
+  //   </div>
+  // );
+  return(
+    <div>
+    <Header_Menu />
+      {label===0 ?(
+        <div>
+    <form onSubmit={postData} className="container4">
         <label>
           Course ID:
           <input
             className="Course_Code"
             name="course_code"
-            type="text"
-            //   value={this.state.numberOfGuests}
+            // type="number"
             onChange={e => setCourseCode(e.target.value)}
             required />
         </label>
@@ -274,8 +523,7 @@ const Institute = () => {
           <input
             className="Question"
             name="question"
-            type="text"
-            //   value={this.state.numberOfGuests}
+            // type="text"
             onChange={e => setQuestion(e.target.value)}
             required />
         </label>
@@ -284,8 +532,7 @@ const Institute = () => {
           <input
             className="tmarks"
             name="Tm"
-            type="text"
-            //   value={this.state.numberOfGuests}
+            type="number"
             onChange={e => setTotalMarks(e.target.value)}
             required />
         </label>
@@ -295,7 +542,6 @@ const Institute = () => {
             className="opt"
             name="opt1"
             type="text"
-            //   value={this.state.numberOfGuests}
             onChange={e => setOption1(e.target.value)}
             required />
         </label>
@@ -305,7 +551,6 @@ const Institute = () => {
             className="opt"
             name="opt2"
             type="text"
-            //   value={this.state.numberOfGuests}
             onChange={e => setOption2(e.target.value)}
             required />
         </label>
@@ -315,7 +560,6 @@ const Institute = () => {
             className="opt"
             name="opt3"
             type="text"
-            //   value={this.state.numberOfGuests}
             onChange={e => setOption3(e.target.value)}
             required />
         </label>
@@ -325,7 +569,6 @@ const Institute = () => {
             className="opt"
             name="opt4"
             type="text"
-            //   value={this.state.numberOfGuests}
             onChange={e => setOption4(e.target.value)}
             required />
         </label>
@@ -335,7 +578,7 @@ const Institute = () => {
             className="weightage"
             name="weightage1"
             type="number"
-            //   value={this.state.numberOfGuests}
+    
             onChange={e => setWeightage1(e.target.value)}
             required />
         </label>
@@ -345,7 +588,6 @@ const Institute = () => {
             className="weightage"
             name="weightage2"
             type="number"
-            //   value={this.state.numberOfGuests}
             onChange={e => setWeightage2(e.target.value)}
             required />
         </label>
@@ -355,7 +597,6 @@ const Institute = () => {
             className="weightage"
             name="weightage3"
             type="number"
-            //   value={this.state.numberOfGuests}
             onChange={e => setWeightage3(e.target.value)}
             required />
         </label>
@@ -365,7 +606,6 @@ const Institute = () => {
             className="weightage"
             name="weightage4"
             type="number"
-            //   value={this.state.numberOfGuests}
             onChange={e => setWeightage4(e.target.value)}
             required />
         </label>
@@ -424,104 +664,100 @@ const Institute = () => {
 
         <button className='bubbly-button2' type="submit">Submit</button>
       </form>
-    )
-  };
-
-  const RankList = () => {
-
-    const testObj = [
-      {
-        "UserID": 4,
-        "paperCode": 103,
-        "TestName": "Express",
-        "FirstName": "Manav",
-        "LastName": "Shah",
-        "MarksScored": 5
-      }
-    ];
-
-    const [obj, setObj] = useState([])
-    let temparr = []
-
-    useEffect(async () => {
-      axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
-        .then((response) => {
-
-          response.data[0].map((f) => {
-            var num = f.PaperCode
-            var str = num.toString()
-
-            axios
-              .get("https://lmsapiv01.azurewebsites.net/api/totalmarksallstuds/" + str)
-              .then((response2) => {
-                // console.log(response2.data[0])
-                response2.data[0].map((res) => {
-                  // temparr.push(res)
-                  setObj(current => [...current, res])
-                  // console.log(obj);
-                })
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          })
-          // console.log(temparr);
-        })
-      // setObj(temparr);
-    }, [])
-
-    return (
-      <div class="ranklist-container-institute">
-        <header>
-          <br />
-          <h1>Rankings</h1>
-          <br />
-        </header>
-        <div class="ranklist-wrapper-institute">
-          <table>
-            <thead>
-              <tr>
-                <th>UserID</th>
-                <th>Name</th>
-                <th>Test</th>
-                <th>Marks</th>
-              </tr>
-            </thead>
-            {/* <tbody> */}
-            {/* {console.log(obj)} */}
-            {obj.map((e) => {
-              // { console.log(e) }
-              return (
-                <tbody>
-                  <tr>
-                    <td class="ranklist-rank">{e.UserID}</td>
-                    <td class="ranklist-team">{e.FirstName + ' ' + e.LastName}</td>
-                    <td class="ranklist-points">{e.TestName}</td>
-                    <td class="ranklist-up-down">{e.MarksScored}</td>
-                  </tr>
-                </tbody>
-              )
-
-            })}
-            {/* </tbody> */}
-          </table>
-        </div>
       </div>
-    )
-  }
-
-  return (
-    <div>
-      {/* <Header_Menu /> */}
-      <Navbar />
-      {label === 0 ? (
-        <div>
-          //makexam
-        </div>
       ):null}
-      {label === 1 && <ScheduleExam />}
-      {label === 3 && <RankList />}
-    </div>
-  );
+
+{label===1 ?(
+        <div>
+    <form onSubmit={postExam} className="container4">
+        <label>
+          Test Name:
+          <input
+            className="TestName"
+            name="tname"
+            type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setTestName(e.target.value)}
+            required />
+        </label>
+        <label>
+          Course Name:
+          <input
+            className="Course_Name"
+            name="course_name"
+            type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setCourseName(e.target.value)}
+            required />
+        </label>
+        <label>
+          Course Code:
+          <input
+            className="Course_Code"
+            name="course_code"
+            type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setCourseCode(e.target.value)}
+            required />
+        </label>
+        <label>
+          Date:
+          <input
+            className="Date"
+            name="date"
+            type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setDate(e.target.value)}
+            required />
+        </label>
+        <label>
+          Start Time:
+          <input
+            className="Start"
+            name="start"
+            type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setStartTime(e.target.value)}
+            required />
+        </label>
+        <label>
+          End Time:
+          <input
+            className="End"
+            name="end"
+            type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setEndTime(e.target.value)}
+            required />
+        </label>
+        <label>
+          Duration in Hourss:
+          <input
+            className="TestName"
+            name="tname"
+            type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setDuration(e.target.value)}
+            required />
+        </label>
+        <label>
+          Link:
+          <input
+            className="Link"
+            name="link"
+            type="text"
+            //   value={this.state.numberOfGuests}
+            onChange={e => setLink(e.target.value)}
+            required />
+        </label>
+        <button className='bubbly-button2' type="submit">Submit</button>
+      </form>
+      </div>
+      ):null}
+      {label===3 ?(
+        <RankList/>
+        ):null}
+      </div>
+  )
 }
 export default Institute;

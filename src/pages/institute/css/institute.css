@@ -155,7 +155,7 @@ header {
 	display: inline-block;
 	flex-direction: row;
 	flex: 1 1 1;
-	width: 150px;
+	width: 171px;
 }
 
 .weightage {
@@ -163,7 +163,7 @@ header {
 	display: inline-block;
 	flex-direction: row;
 	flex: 1 1 1;
-	width: 130px;
+	width: 145px;
 }
 
 /* .correct1 {

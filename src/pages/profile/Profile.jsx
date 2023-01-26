@@ -60,11 +60,14 @@ const Navbar = () => {
 
 const Profile_Block = () => {
     const [firstName, setFirstName] = useState('');
+    const [password, setPassword]=useState('');
     const [lastName, setLastName] = useState('');
     const [emailID, setemailID] = useState('');
     const [userName, setUsername] = useState('');
     const [image, setImage] = useState("");
+    const [mobileNo, setmobileNo] = useState("");
     const [url, setUrl] = useState("");
+    let a;
     const url3 = "https://lmsapiv01.azurewebsites.net/api/user";
     axios
         .get(url3)
@@ -75,6 +78,9 @@ const Profile_Block = () => {
                 setLastName(response.data[0][0].LastName);
                 setemailID(response.data[0][0].EmailId);
                 setUsername(response.data[0][0].UserName);
+                setPassword(response.data[0][0].Password);
+                setmobileNo(response.data[0][0].MobileNo);
+                setUrl(response.data[0][0].Photo)
             }
 
         })
@@ -96,10 +102,56 @@ const Profile_Block = () => {
             .then((res) => res.json())
             .then((data) => {
                 setUrl(data.url)
-                console.log(data);
+                console.log(data.url);
+                const sendData = {
+                            "UserId": 4,
+                            "UserName": "Manav_Shah",
+                            "Password": password,
+                            "FirstName": firstName,
+                            "LastName": lastName,
+                            "EmailId": emailID,
+                            "MobileNo": parseInt(mobileNo),
+                            "LastLoginDateTime": "2022-11-27T00:00:00.000Z",
+                            "DateOfBirth": "1974-07-13T00:00:00.000Z",
+                            "Age": 26,
+                            "TypeId": 1,
+                            "ActivationStatus": '0',
+                            "Photo": data.url,
+                         };
+                    
+                         console.log(sendData.Photo);
+                    
+                        axios.post('https://lmsapiv01.azurewebsites.net/api/update/user', sendData).then(result => { console.log(result.data) });
+                
+                
             }).catch((err) => {
                 console.log(err);
             })
+    
+    // const updateImage = (e) => {
+    //     e.preventDefault();
+        // if (password == confpassword) {
+        // setConfirm(1);
+        // console.log({url});
+    //     const sendData = {
+    //         "UserId": 4,
+    //         "UserName": "Manav_Shah",
+    //         "Password": password,
+    //         "FirstName": firstName,
+    //         "LastName": lastName,
+    //         "EmailId": emailID,
+    //         "MobileNo": parseInt(mobileNo),
+    //         "LastLoginDateTime": "2022-11-27T00:00:00.000Z",
+    //         "DateOfBirth": "1974-07-13T00:00:00.000Z",
+    //         "Age": 26,
+    //         "TypeId": 1,
+    //         "ActivationStatus": '0',
+    //         "Photo": "https://www.nicepng.com/maxp/u2q8i1a9e6i1o0o0/",
+    //     };
+    
+    //     console.log(sendData.Photo);
+    
+    //     axios.post('https://lmsapiv01.azurewebsites.net/api/update/user', sendData).then(result => { console.log(result.data) });
     }
 
     return (

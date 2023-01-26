@@ -96,6 +96,8 @@ const Dashboard = () => {
 	let fulldate = new Date().toJSON().slice(0, 10);
 	let fulltime = new Date().toJSON().slice(11, 16);
 	var d1 = Date.parse(fullstamp)
+	// var userid_storage = (JSON.parse(localStorage.getItem('login'))["UserID"]).toString()
+    var userid_storage = "4"
 
 	useEffect(() => {
 		const url4 = "https://lmsapiv01.azurewebsites.net/api/studentschedule/4";

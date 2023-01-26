@@ -139,7 +139,7 @@ body {
     width: 100%;
 }
 
-.answer-section button:focus{
+.answer-section button:focus {
     background-color: black;
 }
 
@@ -161,11 +161,11 @@ body {
     /* flex-direction: column; */
 }
 
-.quizz-app button:hover{
+.quizz-app button:hover {
     background: black;
 }
 
-.answer-section button:focus{
+.answer-section button:focus {
     background: black;
 }
 

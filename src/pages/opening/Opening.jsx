@@ -11,7 +11,7 @@ const Opening = () => {
 					<div className="untitled__slideContent">
 						<span>Good</span>
 						<span>Luck</span>
-						<a className="button" href="/" target="/black">Sign Up</a>
+						<a className="button" href="/landing" target="/black">Sign Up</a>
 					</div>
 				</div>
 				<div className="untitled__slide">

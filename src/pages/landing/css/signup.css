@@ -181,11 +181,13 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,64,121,1) 7%, rgba(
 	transition-duration: .2s;
 	transition-property: transform, color, box-shadow;
 	transform: none;
+	background-color: black;
+	color: white;
 }
 
 .selector-item_radio:checked+.selector-item_label {
-	background-color: black;
-	color: white;
+	background-color: white;
+	color: black;
 }
 
 @media (max-width:480px) {

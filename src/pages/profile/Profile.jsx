@@ -29,6 +29,7 @@ const NavLinks = () => (
         <p>
             <a href="/">Pricing</a>
         </p>
+
         <p>
             <li class="nav-link dropdown"><a href="" class="dropdown">Contact<i
                 class="bi bi-chevron-compact-down"></i></a>
@@ -41,6 +42,15 @@ const NavLinks = () => (
                     </li>
                 </ul>
             </li>
+        </p>
+
+        <p>
+            <a>LogOut</a>
+            <button onClick={() => {
+                localStorage.removeItem("login");
+                window.location.reload();
+                // console.log("loggedout")
+            }}></button>
         </p>
     </React.Fragment>
 );
@@ -229,6 +239,10 @@ const Graph = () => {
     pdata.map((f) => {
         f["StartTime"] = (parseInt(f.StartTime.slice(8, 10))).toString() + "/" + (parseInt(f.StartTime.slice(5, 7))).toString();
     })
+	// var userid_storage = (JSON.parse(localStorage.getItem('login'))["UserID"]).toString()
+    // var userid_storage = (4).toString()
+    var userid_storage = "4"
+
 
     useEffect(async () => {
         setGraphData([])
@@ -295,6 +309,10 @@ const RankList = () => {
     ];
 
     const [obj, setObj] = useState([])
+	// var userid_storage = (JSON.parse(localStorage.getItem('login'))["UserID"]).toString()
+    // var userid_storage = (4).toString()
+    var userid_storage = "4"
+
 
     useEffect(async () => {
         setObj([])
@@ -360,6 +378,8 @@ const RankList = () => {
 }
 
 const Profile = () => {
+    let login = JSON.parse(localStorage.getItem('login'));
+    console.log(login)
     return (
         <div className='main-container'>
             <div className='container3'>

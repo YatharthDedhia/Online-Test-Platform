@@ -1,6 +1,6 @@
 .landing-navbar {
 	display: flex;
-	position:fixed;
+	position: fixed;
 	justify-content: space-between;
 	align-items: center;
 	padding: 0.8rem 3rem;
@@ -15,7 +15,7 @@
 }
 
 .landing-navbar .landing-navbar-links {
-	gap: 5rem;
+	gap: 0rem;
 	display: flex;
 	font-weight: 500;
 	font-size: 1.1rem;
@@ -27,7 +27,8 @@
 	transition: 0.2s all ease;
 	padding-right: 23px;
 	padding-left: 25px;
-	padding-top: 5px;;
+	padding-top: 5px;
+	;
 	border-radius: 10px;
 }
 
@@ -40,36 +41,48 @@
 	width: 75%;
 }
 
-.dropdown{
-    cursor:default;
+.dropdown {
+	cursor: default;
 	position: relative;
 	top: -9px;
 }
-.dropdown ul{
-    display:none;
-    background-color: black;
+
+.dropdown ul {
+	display: none;
+	background-color: black;
 	color: white;
-    padding:16px;
-    list-style: none;
-    transition: all 15s ease;
+	padding: 16px;
+	list-style: none;
+	transition: all 15s ease;
 	position: relative;
 	left: -25px;
 	border-radius: 10px;
 }
-.dropdown ul li a{
-    color:var(--grey);
+
+.dropdown ul li a {
+	color: var(--grey);
 	/* position: relative; */
 }
-.dropdown ul li a:hover{
-    color:var(--black);
-}
-.dropdown ul li{
-    margin:8px;
+
+.dropdown ul li a:hover {
+	color: var(--black);
 }
 
-.dropdown:hover>ul{
-    display:list-item;
-    position:absolute;
-    list-style: none;
-    transition: all 0.5s ease;
+.dropdown ul li {
+	margin: 8px;
+}
+
+.dropdown:hover>ul {
+	display: list-item;
+	position: absolute;
+	list-style: none;
+	transition: all 0.5s ease;
+}
+
+.landing-navbar-links button {
+    width: 75px;
+    height: 50px;
+    position: relative;
+    top: -35px;
+    background: transparent;
 }

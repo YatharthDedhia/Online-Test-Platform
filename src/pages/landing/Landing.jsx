@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Popup from 'reactjs-popup';
-import Login from './Login';
-import LoginHooks from './LoginHooks';
+// import Popup from 'reactjs-popup';
+// import Login from './Login';
+// import LoginHooks from './LoginHooks';
 import * as Components from './Components';
 import './css/landing.css';
 import './css/features.css';
@@ -14,8 +14,8 @@ import improve from '../../Images/improve.png';
 import lecture from '../../Images/lecture.jpg';
 import proctor1 from '../../Images/proctor1.jpg';
 import logo from '../../Images/logo-no-background.png'
-import { Navigate, useNavigate } from 'react-router';
-
+import { useNavigate } from 'react-router-dom';
+// import authService from '../../services/auth.service';
 const featureList = [
 	'Face Verification',
 	'Multiple People Detection',
@@ -27,7 +27,6 @@ const featureList = [
 
 //STUDENT TYPE 2
 //INSTITUTE TYPE 1
-
 const NavLinks = () => (
 	<React.Fragment>
 		<p>
@@ -66,34 +65,104 @@ const Landing = () => {
 	const [flag, setFlag] = useState(0);
 	const [signIn, toggle] = React.useState(true);
 	// const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated") || false));
-	const StudentsInfo = (e) => {
-		e.preventDefault();
-		const url = "http://lmsapiv01.azurewebsites.net/api/user";
-		axios
-			.get(url)
+	const navigate = useNavigate();
+
+	const login = (usrname, passwd) => {
+		return axios
+			.post("http://lmsapiv01.azurewebsites.net/login", {
+				"UserName:": usrname,
+				"Password": passwd
+			})
 			.then((response) => {
+				if (response.data.accessToken) {
+					localStorage.setItem("login", JSON.stringify(response.data));
+				}
+				if (type == 2) {
+					navigate("/dashboard");
+					window.location.reload();
+				}
+				else {
+					navigate("/institute");
+					window.location.reload();
+				}
+				return response.data;
+			});
+	};
 
-				for (let i = 0; i < response.data[0].length; i++) {
-					if (email == response.data[0][i].EmailId && password == response.data[0][i].Password) {
-						console.log("UserId" + response.data[0][i].UserId);
-						// setauthenticated(true)
-						// localStorage.setItem("authenticated", true);
-						// console.log("AUTHENTICATED: " + authenticated)
+	const signInFunc = (e) => {
+		e.preventDefault();
+		const senddata = {
 
-						window.location.replace("dashboard")
+			"UserName": username,
+			"Password": password,
+
+		}
+		console.log(senddata);
+
+		axios
+			.post('http://lmsapiv01.azurewebsites.net/login', senddata)
+			.then((response) => {
+				if (response.data.token) {
+					console.log(response.data)
+					localStorage.setItem("login", JSON.stringify(response.data));
+					if (type == 2) {
+						navigate("/dashboard");
+						window.location.reload();
 					}
 					else {
-						setFlag(1);
+						navigate("/institute");
+						window.location.reload();
 					}
 				}
 
-			})
-			.catch((err) => {
-				console.log(err);
+				return response.data;
 			});
+		// axios
+		// 	.post("http://lmsapiv01.azurewebsites.net/login", senddata)
+		// 	.then((response) => {
+		// 		console.log(response.data)
+		// 		if (response.data.token) {
+		// 			localStorage.setItem("login", JSON.stringify(response.data));
+		// 		}
+		// 		if (type == 2) {
+		// 			navigate("/dashboard");
+		// 			window.location.reload();
+		// 		}
+		// 		else {
+		// 			navigate("/institute");
+		// 			window.location.reload();
+		// 		}
+		// 		// return response.data;
+		// 	});
+		// const url = "http://lmsapiv01.azurewebsites.net/api/user";
+		// axios
+		// 	.get(url)
+		// 	.then((response) => {
+
+		// 		for (let i = 0; i < response.data[0].length; i++) {
+		// 			if ((email == response.data[0][i].EmailId && password == response.data[0][i].Password && type == response.data[0][i].TypeId)) {
+		// 				console.log("UserId " + response.data[0][i].UserId);
+
+		// 				if (response.data.TypeId == 2) {
+		// 					window.location.replace("dashboard")
+		// 				}
+		// 				else {
+		// 					window.location.replace("institute")
+		// 				}
+		// 			}
+		// 			else {
+		// 				setFlag(1);
+		// 			}
+		// 		}
+
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 	});
+
 	}
 
-	const postData = (e) => {
+	const signUpFunc = (e) => {
 		e.preventDefault();
 		if (password == confpassword) {
 			// setConfirm(1);
@@ -115,7 +184,17 @@ const Landing = () => {
 
 			console.log(sendData);
 
-			axios.post('http://lmsapiv01.azurewebsites.net/api/user', sendData).then(result => { console.log(result.data) });
+			axios
+				.post('http://lmsapiv01.azurewebsites.net/signup', sendData)
+				.then((response) => {
+					if (response.data.accessToken) {
+						console.log(response.data)
+						localStorage.setItem("login", JSON.stringify(response.data));
+					}
+
+					return response.data;
+				});
+
 		}
 		else {
 			setConfirm(1);
@@ -184,7 +263,7 @@ const Landing = () => {
 				</div>
 				<Components.Container>
 					<Components.SignUpContainer signinIn={signIn}>
-						<Components.Form onSubmit={postData}>
+						<Components.Form onSubmit={signUpFunc}>
 							<Components.Title>Create Account</Components.Title>
 							<Components.Input type='text' placeholder='First Name' value={firstname} onChange={(e) => setFirstName(e.target.value)} required />
 							<Components.Input type='text' placeholder='Last Name' value={lastname} onChange={(e) => setLastName(e.target.value)} required />
@@ -209,18 +288,19 @@ const Landing = () => {
 					</Components.SignUpContainer>
 
 					<Components.SignInContainer signinIn={signIn}>
-						<Components.Form onSubmit={StudentsInfo}>
+						<Components.Form onSubmit={signInFunc}>
 							<Components.Title>Sign in</Components.Title>
-							<Components.Input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+							{/* <Components.Input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required /> */}
+							<Components.Input type='text' placeholder='User Name' value={username} onChange={(e) => setUsername(e.target.value)} required />
 							<Components.Input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
 							<div class="selector1">
 								<div class="selector-item1">
 									<input type="radio" id="radio3" name="selector" value="2" class="selector-item_radio1" onClick={(e) => setType(e.target.value)} />
-									<label for="radio1" class="selector-item_label1">Student</label>
+									<label for="radio3" class="selector-item_label1">Student</label>
 								</div>
 								<div class="selector-item1">
 									<input type="radio" id="radio4" name="selector" value="1" class="selector-item_radio1" onClick={(e) => setType(e.target.value)} />
-									<label for="radio2" class="selector-item_label1">Institute</label>
+									<label for="radio4" class="selector-item_label1">Institute</label>
 								</div>
 							</div>
 							{/* <Components.Anchor href='#'>Forgot your password?</Components.Anchor> */}
@@ -255,69 +335,6 @@ const Landing = () => {
 					</Components.OverlayContainer>
 
 				</Components.Container>
-				{/* <div className='container'>
-					<div className='SignUpBox'>
-						<form onSubmit={postData}>
-							<h1 className="Heading">Sign-Up</h1>
-							<div className='FirstLast'>
-								<input className='FirstName' value={firstname} onChange={(e) => setFirstName(e.target.value)} placeholder='First Name' />
-								<input className='LastName' value={lastname} onChange={(e) => setLastName(e.target.value)} placeholder='Last Name' />
-							</div>
-
-							<input className='EMail' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='E-Mail ID' />
-							<input className='mobile' value={mobile} onChange={(e) => setMobile(e.target.value)} placeholder='Mobile No.' />
-							<input className='Username' value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Username' />
-							<input className='Password' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
-							<input className='ConfirmPassword' value={confpassword} onChange={(e) => setConfPassword(e.target.value)} type="password" placeholder='Confirm Password' />
-
-
-							<div class="selector">
-								<div class="selector-item">
-									<input type="radio" id="radio1" name="selector" value="2" class="selector-item_radio" onClick={(e) => setType(e.target.value)} />
-									<label for="radio1" class="selector-item_label">Student</label>
-								</div>
-								<div class="selector-item">
-									<input type="radio" id="radio2" name="selector" value="1" class="selector-item_radio" onClick={(e) => setType(e.target.value)} />
-									<label for="radio2" class="selector-item_label">Institute</label>
-								</div>
-							</div>
-							{confirm ? <div className='ReEnter'>Confirm same password</div> : null}
-							<button type='submit' className='bubbly-button'>Sign Up</button>
-						</form>
-
-						<div className='AskLogin'>
-							<Popup trigger={<button className='LoginButton' className='AskLogin' >Already Registered? Login </button>}
-								position="center">
-								<div className='Logincontainer'>
-									<div className='Login'>
-										<h1 className='LoginH1'>Login</h1>
-										<form onSubmit={StudentsInfo}>
-
-											<input className='EMailLogin' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='E-Mail ID' />
-
-											<input className='PasswordLogin' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' />
-
-											<div class="selector">
-												<div class="selector-item">
-													<input type="radio" id="radio1" name="selector" value="2" class="selector-item_radio" onClick={(e) => setType(e.target.value)} />
-													<label for="radio1" class="selector-item_label">Student</label>
-												</div>
-												<div class="selector-item">
-													<input type="radio" id="radio2" name="selector" value="1" class="selector-item_radio" onClick={(e) => setType(e.target.value)} />
-													<label for="radio2" class="selector-item_label">Institute</label>
-												</div>
-											</div>
-											<div className="Alert"><h1>{flag===1? "Email or Password is incorrect.Please try again.":null}</h1></div>
-											<button type='submit' className='bubbly-button-login'>Confirm</button>
-											<Login />
-										</form>
-									</div>
-								</div>
-							</Popup>
-						</div>
-						<h2 className="title-heading">Key Features of our website</h2>
-					</div>
-				</div> */}
 			</div>
 
 			<footer className="Footer">Copyright © 2022 All rights reserved.</footer>

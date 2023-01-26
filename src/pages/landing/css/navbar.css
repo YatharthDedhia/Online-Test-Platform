@@ -15,7 +15,7 @@
 }
 
 .landing-navbar .landing-navbar-links {
-	gap: 5rem;
+	gap: 0rem;
 	display: flex;
 	font-weight: 500;
 	font-size: 1.1rem;
@@ -73,3 +73,18 @@
     list-style: none;
     transition: all 0.5s ease;
 }
+
+.landing-navbar-links button {
+    width: 75px;
+    height: 50px;
+    position: relative;
+    top: -35px;
+    background: transparent;
+}
+/* .landing-navbar-links button:hover {
+	width: 150px;
+	height: 50px;
+	position: relative;
+	top: -5px;
+	background: transparent;
+} */

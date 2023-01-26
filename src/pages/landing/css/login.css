@@ -82,6 +82,7 @@
 	border-radius: 9999px;
 	top: 50px;
 }
+
 .selector1 {
 	position: relative;
 	display: flex;
@@ -101,6 +102,7 @@
 .selector-item_radio1 {
 	appearance: none;
 	display: none;
+
 }
 
 .selector-item_label1 {
@@ -113,9 +115,12 @@
 	transition-duration: .2s;
 	transition-property: transform, color, box-shadow;
 	transform: none;
-}
-
-.selector-item_radio1:checked+.selector-item_label1 {
 	background-color: black;
 	color: white;
+}
+
+
+.selector-item_radio1:checked+.selector-item_label1 {
+	background-color: white;
+	color: black;
 }

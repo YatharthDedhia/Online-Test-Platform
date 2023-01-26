@@ -83,9 +83,9 @@ const Test = () => {
   console.log(paper)
 
   useEffect(() => {
-
+    var papercode = "101"
     const getPaper = async () => {
-      const url2 = "https://lmsapiv01.azurewebsites.net/api/qbaf/1";
+      const url2 = "https://lmsapiv01.azurewebsites.net/api/questionpaper/101";
       await axios
         .get(url2)
         .then((response) => {

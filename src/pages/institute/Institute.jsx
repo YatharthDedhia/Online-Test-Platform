@@ -514,7 +514,11 @@ const Institute = () => {
     <div>
       {/* <Header_Menu /> */}
       <Navbar />
-      {label === 0 && <MakeExam />}
+      {label === 0 ? (
+        <div>
+          //makexam
+        </div>
+      ):null}
       {label === 1 && <ScheduleExam />}
       {label === 3 && <RankList />}
     </div>

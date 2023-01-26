@@ -230,16 +230,16 @@ const Graph = () => {
         f["StartTime"] = (parseInt(f.StartTime.slice(8, 10))).toString() + "/" + (parseInt(f.StartTime.slice(5, 7))).toString();
     })
 
-    useEffect(() => {
-        // setGraphData([])
-        axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
+    useEffect(async () => {
+        setGraphData([])
+        await axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
             .then((response) => {
 
-                response.data[0].map((f) => {
+                response.data[0].map(async (f) => {
                     var num = f.PaperCode
                     var str = num.toString()
 
-                    axios
+                    await axios
                         .get("https://lmsapiv01.azurewebsites.net/api/totalmarksallstuds/" + str)
                         .then((response2) => {
                             response2.data[0].map((res) => {
@@ -254,13 +254,14 @@ const Graph = () => {
                             console.log(err);
                         });
                     setGraphData(current => [...current, f])
+                    // setGraphData(current => [...current, {}])
                 })
             })
     }, [])
     return (
         <div className='graph-head'>
             <h1 className="text-heading">
-                Performance Grap
+                Performance Graph
             </h1>
             <div>
                 {console.log(graph_data)}
@@ -294,9 +295,9 @@ const RankList = () => {
     ];
 
     const [obj, setObj] = useState([])
-    let temparr = []
 
     useEffect(async () => {
+        setObj([])
         axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
             .then((response) => {
 
@@ -311,7 +312,6 @@ const RankList = () => {
                             response2.data[0].map((res) => {
                                 // temparr.push(res)
                                 setObj(current => [...current, res])
-                                // console.log(obj);
                             })
                         })
                         .catch((err) => {
@@ -340,10 +340,7 @@ const RankList = () => {
                             <th>Marks</th>
                         </tr>
                     </thead>
-                    {/* <tbody> */}
-                    {/* {console.log(obj)} */}
                     {obj.map((e) => {
-                        // { console.log(e) }
                         return (
                             <tbody>
                                 <tr>
@@ -356,7 +353,6 @@ const RankList = () => {
                         )
 
                     })}
-                    {/* </tbody> */}
                 </table>
             </div>
         </div>

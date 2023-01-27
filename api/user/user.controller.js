@@ -25,7 +25,8 @@
           return res.json({
             success: 1,
             message: "login successfully",
-            token: jsontoken
+            token: jsontoken,
+            user: result[0][0]
           });
         } else {
           return res.json({

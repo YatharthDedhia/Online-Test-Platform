@@ -18,7 +18,7 @@
 }
 
 #menuToggle a:hover {
-    color: tomato;
+    color: grey;
 }
 
 
@@ -121,6 +121,9 @@
     padding: 10px 0;
     font-size: 20px;
     color: white;
+}
+#menu li:hover {
+    color: grey;
 }
 
 /*

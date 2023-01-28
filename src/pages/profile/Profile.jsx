@@ -115,7 +115,7 @@ const Profile_Block = () => {
                 console.log(data.url);
                 const sendData = {
                             "UserId": 4,
-                            "UserName": "Manav_Shah",
+                            "UserName": userName,
                             "Password": password,
                             "FirstName": firstName,
                             "LastName": lastName,

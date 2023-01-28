@@ -66,7 +66,7 @@ const Sidebar = () => {
 					<a href="#"><li>Announcements</li></a>
 					<a href="#"><li>Timetable</li></a>
 					<a href="#"><li>Test Schedule</li></a>
-					<a href="#"><li>Homework</li></a>
+					<a href="/homework"><li>Homework</li></a>
 				</ul>
 			</div>
 		</nav>

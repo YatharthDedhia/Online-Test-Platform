@@ -44,6 +44,9 @@ const Institute = () => {
           <li>
             <button className="header-menu-tab" onClick={() => { setlabel(0) }}><span className="icon fontawesome-envelope scnd-font-color"></span>Make Question Paper</button>
           </li>
+          <li>
+            <button className="header-menu-tab" onClick={() => { setlabel(2) }}><span className="icon fontawesome-text scnd-font-color"></span>Assign Notes</button>
+          </li>
         </ul>
         <div className="profile-menu">
           <p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>

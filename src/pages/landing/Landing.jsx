@@ -33,7 +33,7 @@ const NavLinks = () => (
 			<a href="/">Pricing</a>
 		</p>
 		<p>
-			<li class="nav-link dropdown"><a href="" class="dropdown">Contact<i
+			<li class="nav-link dropdown"><a href="" class="dropdown-landing">Contact<i
 				class="bi bi-chevron-compact-down"></i></a>
 				<ul class="dropdown-list">
 					<li class="nav-link">
@@ -51,7 +51,7 @@ const NavLinks = () => (
 const Navbar = () => {
 	return (
 		<div className="landing-navbar">
-			<div className="landing-navbar-logo">
+			<div className="landing-navbar-logo-landing">
 				<img src={logo}></img>
 			</div>
 			<div className="landing-navbar-links">
@@ -62,32 +62,8 @@ const Navbar = () => {
 };
 
 const Landing = () => {
-	const [flag, setFlag] = useState(0);
 	const [signIn, toggle] = React.useState(true);
-	// const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated") || false));
 	const navigate = useNavigate();
-
-	const login = (usrname, passwd) => {
-		return axios
-			.post("http://lmsapiv01.azurewebsites.net/login", {
-				"UserName:": usrname,
-				"Password": passwd
-			})
-			.then((response) => {
-				if (response.data.accessToken) {
-					localStorage.setItem("login", JSON.stringify(response.data));
-				}
-				if (type == 2) {
-					navigate("/dashboard");
-					window.location.reload();
-				}
-				else {
-					navigate("/institute");
-					window.location.reload();
-				}
-				return response.data;
-			});
-	};
 
 	const signInFunc = (e) => {
 		e.preventDefault();
@@ -105,68 +81,23 @@ const Landing = () => {
 				if (response.data.token) {
 					console.log(response.data)
 					localStorage.setItem("login", JSON.stringify(response.data));
-					if (type == 2) {
-						navigate("/dashboard");
+					// if (type == 2) {
+					// 	navigate("/dashboard");
 						window.location.reload();
-					}
-					else {
-						navigate("/institute");
-						window.location.reload();
-					}
+					// }
+					// else {
+					// 	navigate("/institute");
+					// 	window.location.reload();
+					// }
 				}
 
 				return response.data;
 			});
-		// axios
-		// 	.post("http://lmsapiv01.azurewebsites.net/login", senddata)
-		// 	.then((response) => {
-		// 		console.log(response.data)
-		// 		if (response.data.token) {
-		// 			localStorage.setItem("login", JSON.stringify(response.data));
-		// 		}
-		// 		if (type == 2) {
-		// 			navigate("/dashboard");
-		// 			window.location.reload();
-		// 		}
-		// 		else {
-		// 			navigate("/institute");
-		// 			window.location.reload();
-		// 		}
-		// 		// return response.data;
-		// 	});
-		// const url = "http://lmsapiv01.azurewebsites.net/api/user";
-		// axios
-		// 	.get(url)
-		// 	.then((response) => {
-
-		// 		for (let i = 0; i < response.data[0].length; i++) {
-		// 			if ((email == response.data[0][i].EmailId && password == response.data[0][i].Password && type == response.data[0][i].TypeId)) {
-		// 				console.log("UserId " + response.data[0][i].UserId);
-
-		// 				if (response.data.TypeId == 2) {
-		// 					window.location.replace("dashboard")
-		// 				}
-		// 				else {
-		// 					window.location.replace("institute")
-		// 				}
-		// 			}
-		// 			else {
-		// 				setFlag(1);
-		// 			}
-		// 		}
-
-		// 	})
-		// 	.catch((err) => {
-		// 		console.log(err);
-		// 	});
-
 	}
 
 	const signUpFunc = (e) => {
 		e.preventDefault();
 		if (password == confpassword) {
-			// setConfirm(1);
-
 			const sendData = {
 				"UserName": username,
 				"Password": password,
@@ -191,7 +122,6 @@ const Landing = () => {
 						console.log(response.data)
 						localStorage.setItem("login", JSON.stringify(response.data));
 					}
-
 					return response.data;
 				});
 
@@ -208,8 +138,6 @@ const Landing = () => {
 	const [lastname, setLastName] = useState('');
 	const [email, setEmail] = useState('');
 	const [mobile, setMobile] = useState('');
-	const [dob, setDOB] = useState('');
-	const [age, setAge] = useState('');
 	const [type, setType] = useState("2");
 	const [confirm, setConfirm] = useState(0);
 	return (
@@ -290,7 +218,6 @@ const Landing = () => {
 					<Components.SignInContainer signinIn={signIn}>
 						<Components.Form onSubmit={signInFunc}>
 							<Components.Title>Sign in</Components.Title>
-							{/* <Components.Input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required /> */}
 							<Components.Input type='text' placeholder='User Name' value={username} onChange={(e) => setUsername(e.target.value)} required />
 							<Components.Input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
 							<div class="selector1">
@@ -303,7 +230,6 @@ const Landing = () => {
 									<label for="radio4" class="selector-item_label1">Institute</label>
 								</div>
 							</div>
-							{/* <Components.Anchor href='#'>Forgot your password?</Components.Anchor> */}
 							<Components.Button type="submit">Sign In</Components.Button>
 						</Components.Form>
 					</Components.SignInContainer>
@@ -342,5 +268,5 @@ const Landing = () => {
 
 	);
 };
-//  export  const flag=flag;
+
 export default Landing;

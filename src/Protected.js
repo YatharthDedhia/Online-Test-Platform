@@ -19,5 +19,3 @@ function Protected(props){
         </div>
     )
 }
-
-export default Protected;

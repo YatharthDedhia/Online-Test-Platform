@@ -36,14 +36,14 @@
 	background-color: black;
 }
 
-.landing-navbar-logo img {
-	width: 75%;
+.landing-navbar-logo-landing img {
+	width: 8%;
 }
 
-.dropdown{
+.dropdown-landing a{
     cursor:default;
 	position: relative;
-	top: -9px;
+	top: 0px;
 }
 .dropdown ul{
     display:none;

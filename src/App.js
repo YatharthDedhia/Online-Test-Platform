@@ -9,13 +9,14 @@ import {
 	Institute,
 } from './pages';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
-import Protected from "./Protected";
+// import './App.css';
+import ProtectedStudent from './Protected Routes/ProtectedStudent';
+import ProtectedAdmin from './Protected Routes/ProtectedAdmin';
+import ProtectedLanding from './Protected Routes/ProtectedLanding';
 
 const App = () => {
 	return (
 		<div className="App">
-			{/* <React.StrictMode> */}
 			<BrowserRouter>
 				<Routes>
 					{/* <Route exact path="/" element={<Opening />} />
@@ -26,15 +27,14 @@ const App = () => {
 					<Route exact path="/admin" element={<Admin />} />
 					<Route exact path="/institute" element={<Institute />} /> */}
 
-					<Route exact path="/" element={<Opening />} />
-					<Route exact path="/landing" element={<Landing />} />
-					<Route exact path="/dashboard" element={<Protected Component={Dashboard} />} />
-					<Route exact path="/profile" element={<Protected Component={Profile} />} />
-					<Route exact path="/test" element={<Protected Component={Test} />} />
-					<Route exact path="/institute" element={<Institute />} />
+					<Route exact path="/" element={< ProtectedLanding Component={Opening} />} />
+					<Route exact path="/landing" element={<ProtectedLanding Component={Landing} />} />
+					<Route exact path="/dashboard" element={<ProtectedStudent Component={Dashboard} />} />
+					<Route exact path="/profile" element={<ProtectedStudent Component={Profile} />} />
+					<Route exact path="/test" element={<ProtectedStudent Component={Test} />} />
+					<Route exact path="/institute" element={<ProtectedAdmin Component={Institute} />} />
 				</Routes>
 			</BrowserRouter>
-			{/* </React.StrictMode> */}
 		</div>
 	);
 };

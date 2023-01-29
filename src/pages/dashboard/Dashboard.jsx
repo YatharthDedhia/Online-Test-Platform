@@ -10,6 +10,8 @@ import './css/calendar.css'
 import { render } from 'react-dom';
 import axios from 'axios';
 import logo from '../../Images/logo-no-background.png'
+import { useNavigate } from 'react-router-dom';
+
 
 const mockTests = [
 	{
@@ -34,14 +36,15 @@ const mockTests = [
 
 const obj = [
 	{
-		TestName: "trialtestname",
+		PaperCode: 102,
+		TestName: "Node",
 		CourseName: "FrontEnd",
 		CourseCode: 1,
-		Date: "2023-10-14T00:00:00.000Z",
-		StartTime: "2023-01-26T08:00:00.000Z",
-		EndTime: "2023-01-01T11:00:00.000Z",
+		Date: "2022-02-14T00:00:00.000Z",
+		StartTime: "2022-01-31T06:00:00.000Z",
+		EndTime: "1970-01-01T06:30:00.000Z",
 		Duration: 3,
-		Link: "dfd-dfd-dfd",
+		Link: "link"
 	}
 ]
 
@@ -64,8 +67,6 @@ const Sidebar = () => {
 				<span></span>
 				<ul id="menu">
 					<a href="#"><li>Announcements</li></a>
-					<a href="#"><li>Timetable</li></a>
-					<a href="#"><li>Test Schedule</li></a>
 					<a href="#"><li>Homework</li></a>
 				</ul>
 			</div>
@@ -90,31 +91,42 @@ const Navbar = () => {
 const Dashboard = () => {
 	const [date, setDate] = useState(new Date());
 	const [calendarText, setCalendarText] = useState();
-	const [tests, setObj] = useState(obj)
+	const [upcoming, setupcoming] = useState(obj)
+	const [previous, setprevious] = useState(obj)
+	const navigate = useNavigate();
 
 	let fullstamp = new Date().toJSON();
-	let fulldate = new Date().toJSON().slice(0, 10);
-	let fulltime = new Date().toJSON().slice(11, 16);
 	var d1 = Date.parse(fullstamp)
-	// var userid_storage = (JSON.parse(localStorage.getItem('login'))["UserID"]).toString()
-    var userid_storage = "4"
 
 	useEffect(() => {
-		const url4 = "https://lmsapiv01.azurewebsites.net/api/studentschedule/4";
+		let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
+		console.log(userid);
+		const url4 = "https://lmsapiv01.azurewebsites.net/api/studentschedule/" + userid;
+
 		axios
 			.get(url4)
 			.then((response) => {
-				for (let i = 0; i < response.data[0].length; i++) {
-					setObj(response.data[0])
-				}
+				setupcoming(response.data[0])
+				setprevious(response.data[1]);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	}, [])
 
-	tests.map((test) => {
-		if (Date.parse(test.StartTime) > d1) {
+	upcoming.map((test) => {
+		let test_date = test.Date.slice(0, 10);
+		let start = test.StartTime;
+		let end = test.EndTime;
+
+		let start_time = test_date + "T" + start;
+		let end_time = test_date + "T" + end;
+
+		test["mode"] = "inactive";
+		if (Date.parse(start_time) < d1 && Date.parse(end_time) > d1) {
+			test["mode"] = "active";
+		}
+		if (Date.parse(test.Date) > d1) {
 
 			test["status"] = "unattempted";
 			console.log("unattempted")
@@ -125,13 +137,29 @@ const Dashboard = () => {
 		}
 	})
 
-	// const [authenticated, setauthenticated] = useState(null);
-	// useEffect(() => {
-	// 	const loggedInUser = localStorage.getItem("authenticated");
-	// 	if (loggedInUser == true) {
-	// 		//    setauthenticated(loggedInUser);
-	// 	}
-	// }, []);
+
+	previous.map((test) => {
+		let test_date = test.Date.slice(0, 10);
+		let start = test.StartTime;
+		let end = test.EndTime;
+
+		let start_time = test_date + "T" + start;
+		let end_time = test_date + "T" + end;
+
+		test["mode"] = "inactive";
+		if (Date.parse(start_time) < d1 && Date.parse(end_time) > d1) {
+			test["mode"] = "active";
+		}
+		if (Date.parse(test.Date) > d1) {
+
+			test["status"] = "unattempted";
+			console.log("unattempted")
+		}
+		else {
+			test["status"] = "attempted";
+			console.log("attempted")
+		}
+	})
 
 	function Tabs() {
 		const [toggleState, setToggleState] = useState(1);
@@ -146,13 +174,13 @@ const Dashboard = () => {
 						className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
 						onClick={() => toggleTab(1)}
 					>
-						UnAttempted
+						Upcoming
 					</button>
 					<button
 						className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
 						onClick={() => toggleTab(2)}
 					>
-						Attempted
+						Previous
 					</button>
 					<button
 						className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
@@ -175,21 +203,34 @@ const Dashboard = () => {
 										<th>Link</th>
 									</tr>
 								</thead>
-								{tests.map((test) => {
-									if (test.status == "unattempted") {
-										return <tbody>
-											<tr>
 
-												<td>{test.TestName}</td>
-												<td>{test.CourseName}</td>
-												<td>{test.StartTime.slice(0, 10)}</td>
-												<td>{test.StartTime.slice(11, 16)}</td>
-												<td>
-													<a href="/test">{test.Link}</a>
-												</td>
-											</tr>
-										</tbody>
-									}
+								{upcoming.map((test) => {
+									return <tbody>
+										<tr>
+											<td>{test.TestName}</td>
+											<td>{test.CourseName}</td>
+											<td>{test.Date.slice(0, 10)}</td>
+											<td>{test.StartTime.slice(0, 5)}</td>
+											<td>
+												<a>
+													{(test.mode == "active" && test.Attempted === 0) ? (
+														<button className='linkselect' onClick={() => {
+															localStorage.setItem("papercode", test.PaperCode);
+															localStorage.setItem("duration", test.Duration);
+															// if () {
+															// 	navigate("/test");
+															// }
+															// else {
+															// 	console.log("inactive");
+															// }
+														}}>
+															{test.Link}
+														</button>
+													) : <div>{test.Link}</div>}
+												</a>
+											</td>
+										</tr>
+									</tbody>
 								})}
 							</table>
 						</p>
@@ -208,21 +249,19 @@ const Dashboard = () => {
 									</tr>
 								</thead>
 
-								{tests.map((test) => {
-									if (test.status == "attempted") {
-										return <tbody>
-											<tr>
+								{previous.map((test) => {
+									return <tbody>
+										<tr>
 
-												<td>{test.TestName}</td>
-												<td>{test.CourseName}</td>
-												<td>{test.StartTime.slice(0, 10)}</td>
-												<td>{test.StartTime.slice(11, 16)}</td>
-												<td>
-													<a href="/profile">{test.Link}</a>
-												</td>
-											</tr>
-										</tbody>
-									}
+											<td>{test.TestName}</td>
+											<td>{test.CourseName}</td>
+											<td>{test.Date.slice(0, 10)}</td>
+											<td>{test.StartTime.slice(0, 5)}</td>
+											<td>
+												<a href="/profile">{test.Link}</a>
+											</td>
+										</tr>
+									</tbody>
 								})}
 							</table>
 						</p>
@@ -241,16 +280,46 @@ const Dashboard = () => {
 									</tr>
 								</thead>
 
-								{tests.map((test) => {
+								{upcoming.map((test) => {
 									return <tbody>
 										<tr>
 
 											<td>{test.TestName}</td>
 											<td>{test.CourseName}</td>
-											<td>{test.StartTime.slice(0, 10)}</td>
-											<td>{test.StartTime.slice(11, 16)}</td>
-											<td>{test.status === "unattempted"
-												? (<a href="/test">{test.Link}</a>)
+											<td>{test.Date.slice(0, 10)}</td>
+											<td>{test.StartTime.slice(0, 5)}</td>
+											<td>{test.Attempted === 0 && test.mode === "active"
+												? (<a>
+													<button className='linkselect' onClick={() => {
+														localStorage.setItem("papercode", test.PaperCode);
+														navigate("/test");
+													}}>
+														{test.Link}
+													</button>
+												</a>)
+												: (<a href="/profile">{test.Link}</a>)}
+											</td>
+										</tr>
+									</tbody>
+								})}
+
+								{previous.map((test) => {
+									return <tbody>
+										<tr>
+
+											<td>{test.TestName}</td>
+											<td>{test.CourseName}</td>
+											<td>{test.Date.slice(0, 10)}</td>
+											<td>{test.StartTime.slice(0, 5)}</td>
+											<td>{test.Attempted === 0 && test.mode === "active"
+												? (<a>
+													<button className='linkselect' onClick={() => {
+														localStorage.setItem("papercode", test.PaperCode);
+														navigate("/test");
+													}}>
+														{test.Link}
+													</button>
+												</a>)
 												: (<a href="/profile">{test.Link}</a>)}
 											</td>
 										</tr>
@@ -267,10 +336,7 @@ const Dashboard = () => {
 	const handleDateChange = (value) => {
 		setCalendarText(`${value.toDateString()}`);
 	};
-	// if (!authenticated) {
-	//abc
-	// } else {
-	console.log((parseInt(tests[0].StartTime.slice(0, 4))))
+
 	return (
 		<React.Fragment>
 			<Navbar />
@@ -280,8 +346,9 @@ const Dashboard = () => {
 					<Calendar onChange={setDate} value={date} onClickDay={handleDateChange} tileContent={
 						({ activeStartDate, date, view }) => {
 							// console.log(date.getYear())
-							return tests.map((test) => (
-								(view === 'month' && date.getDate() === parseInt(test.StartTime.slice(8, 10)) && date.getMonth() === (parseInt(test.StartTime.slice(5, 7)) - 1) && date.getYear() === (parseInt(test.StartTime.slice(0, 4)) - 1900)) ? <p className='DateContent' >{date.getDate()} <br /> Test Day <br />{(test.TestName)}</p> : null))
+							// console.log(parseInt(tests[0].Date.slice(0, 4)) - 1900);
+							return upcoming.map((test) => (
+								(view === 'month' && date.getDate() === parseInt(test.Date.slice(8, 10)) && date.getMonth() === (parseInt(test.Date.slice(5, 7)) - 1) && date.getYear() === (parseInt(test.Date.slice(0, 4)) - 1900)) ? <p className='DateContent' >{date.getDate()} <br /> Test Day <br />{(test.TestName)}</p> : null))
 						}} />
 				</div>
 			</div >
@@ -289,7 +356,6 @@ const Dashboard = () => {
 		</React.Fragment>
 
 	);
-	// }
 };
 
 export default Dashboard;

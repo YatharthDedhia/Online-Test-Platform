@@ -47,7 +47,7 @@ function Ml() {
       // Make Detections
 
       const obj = await net.detect(video);
-      console.log(obj)
+      // console.log(obj)
       obj.map((e, index) => {
         if ((e.class == "person" && index > 0) || e.class == "cell phone") {
           count++;

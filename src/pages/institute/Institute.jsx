@@ -91,6 +91,17 @@ const Institute = () => {
           </ul>
         </li>
       </p>
+      <p>
+        <a>LogOut</a>
+        <button onClick={() => {
+          localStorage.removeItem("login");
+          localStorage.removeItem("duration");
+          localStorage.removeItem("papercode");
+
+          window.location.reload();
+          // console.log("loggedout")
+        }}></button>
+      </p>
     </React.Fragment>
   );
 
@@ -162,10 +173,7 @@ const Institute = () => {
     console.log(sendData1);
 
     axios.post('https://lmsapiv01.azurewebsites.net/api/questionpaper', sendData1).then(result => { console.log(result.data) });
-    // }
-    // else {
-    // setConfirm(1);
-    // }
+
   };
 
   const ScheduleExam = (e) => {
@@ -256,167 +264,6 @@ const Institute = () => {
     );
   };
 
-  // const MakeExam = (e) => {
-  //   return (
-  //     <form onSubmit={postData} className="container4">
-  //       <label>
-  //         Course ID:
-  //         <input
-  //           className="Course_Code"
-  //           name="course_code"
-  //           // type="number"
-  //           onChange={e => setCourseCode(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Question
-  //         <input
-  //           className="Question"
-  //           name="question"
-  //           // type="text"
-  //           onChange={e => setQuestion(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Total Marks for this Question:
-  //         <input
-  //           className="tmarks"
-  //           name="Tm"
-  //           type="number"
-  //           onChange={e => setTotalMarks(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Option 1:
-  //         <input
-  //           className="opt"
-  //           name="opt1"
-  //           type="text"
-  //           onChange={e => setOption1(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Option 2:
-  //         <input
-  //           className="opt"
-  //           name="opt2"
-  //           type="text"
-  //           onChange={e => setOption2(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Option 3:
-  //         <input
-  //           className="opt"
-  //           name="opt3"
-  //           type="text"
-  //           onChange={e => setOption3(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Option 4:
-  //         <input
-  //           className="opt"
-  //           name="opt4"
-  //           type="text"
-  //           onChange={e => setOption4(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Weightage 1:
-  //         <input
-  //           className="weightage"
-  //           name="weightage1"
-  //           type="number"
-
-  //           onChange={e => setWeightage1(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Weightage 2:
-  //         <input
-  //           className="weightage"
-  //           name="weightage2"
-  //           type="number"
-  //           onChange={e => setWeightage2(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Weightage 3:
-  //         <input
-  //           className="weightage"
-  //           name="weightage3"
-  //           type="number"
-  //           onChange={e => setWeightage3(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Weightage 4:
-  //         <input
-  //           className="weightage"
-  //           name="weightage4"
-  //           type="number"
-  //           onChange={e => setWeightage4(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Option 1 is:
-  //         <div class="container6">
-  //           <div class="radio_container">
-  //             <input className="correct1" type="radio" name="radio1" id="true" value="true" onClick={e => setisCorrect1(true)} checked required />
-  //             <label className="label1" for="true">True</label>
-  //             <input className="correct1" type="radio" name="radio1" id="false" value="false" onClick={e => setisCorrect1(false)} required />
-  //             <label className="label1" for="false">False</label>
-
-  //           </div>
-  //         </div>
-  //       </label>
-  //       <br />
-  //       <label>
-  //         Option 2 is:
-  //         <div class="container6">
-  //           <div class="radio_container">
-  //             <input className="correct2" type="radio" name="radio2" id="true1" value="true" onClick={e => setisCorrect2(true)} checked required />
-  //             <label className="label2" for="true1">True</label>
-  //             <input className="correct2" type="radio" name="radio2" id="false1" value="false" onClick={e => setisCorrect2(false)} required />
-  //             <label className="label2" for="false1">False</label>
-
-  //           </div>
-  //         </div>
-  //       </label>
-  //       <br />
-  //       <label>
-  //         Option 3 is:
-  //         <div class="container6">
-  //           <div class="radio_container">
-  //             <input className="correct3" type="radio" name="radio3" id="true2" value="true" onClick={e => setisCorrect3(true)} checked required />
-  //             <label className="label3" for="true2">True</label>
-  //             <input className="correct3" type="radio" name="radio3" id="false2" value="false" onClick={e => setisCorrect3(false)} required />
-  //             <label className="label3" for="false2">False</label>
-
-  //           </div>
-  //         </div>
-  //       </label>
-  //       <br />
-  //       <label>
-  //         Option 4 is:
-  //         <div class="container6">
-  //           <div class="radio_container">
-  //             <input className="correct4" type="radio" name="radio4" id="true3" value="true" onClick={e => setisCorrect4(true)} checked required />
-  //             <label className="label4" for="true3">True</label>
-  //             <input className="correct4" type="radio" name="radio4" id="false3" value="false" onClick={e => setisCorrect4(false)} required />
-  //             <label className="label4" for="false3">False</label>
-
-  //           </div>
-  //         </div>
-  //       </label>
-  //       <br />
-
-  //       <button className='bubbly-button2' type="submit">Submit</button>
-  //     </form>
-  //   )
-  // };
-
   const RankList = () => {
 
     const testObj = [
@@ -433,10 +280,12 @@ const Institute = () => {
     const [obj, setObj] = useState([])
     let temparr = []
     // var userid_storage = (JSON.parse(localStorage.getItem('login'))["UserID"]).toString()
-    var userid_storage = "4"
+    // var userid_storage = "4"
 
     useEffect(async () => {
-      axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
+      let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
+      console.log(userid);
+      axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/" + userid)
         .then((response) => {
 
           response.data[0].map((f) => {
@@ -496,18 +345,10 @@ const Institute = () => {
     )
   }
 
-  // return (
-  //   <div>
-  //     <Header_Menu />
-  //     <Navbar />
-  //     {label === 0 && <MakeExam />}
-  //     {label === 1 && <ScheduleExam />}
-  //     {label === 3 && <RankList />}
-  //   </div>
-  // );
   return (
     <div>
       <Header_Menu />
+      {/* <Navbar /> */}
       {label === 0 ? (
         <div>
           <form onSubmit={postData} className="container4">

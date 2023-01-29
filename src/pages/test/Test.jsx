@@ -75,21 +75,21 @@ const Test = () => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [active, setActive] = useState(false);
   const [getduration, setduration] = useState(60);
-
-  let questionobj = []
-  let obj = {}
-
+  const [response, setResponse] = useState([])
 
   console.log(paper)
 
   useEffect(() => {
-    var papercode = "101"
+    let papercode = localStorage.getItem('papercode').toString();
+    // console.log(papercode);
     const getPaper = async () => {
-      const url2 = "https://lmsapiv01.azurewebsites.net/api/questionpaper/101";
+      // setPaper(test)
+      const url2 = "https://lmsapiv01.azurewebsites.net/api/questionpaper/" + papercode;
       await axios
         .get(url2)
         .then((response) => {
           // console.log(response.data[0])
+
           setquizLength(response.data[0].length / 4)
 
           for (let i = 0; i < response.data[0].length; i += 4) {
@@ -120,6 +120,11 @@ const Test = () => {
             tempobj23["isCorrect"] = response.data[0][i + 2].isCorrect;
             tempobj24["isCorrect"] = response.data[0][i + 3].isCorrect;
 
+            tempobj21["selected"] = false
+            tempobj22["selected"] = false
+            tempobj23["selected"] = false
+            tempobj24["selected"] = false
+
             temparr.push(tempobj21)
             temparr.push(tempobj22)
             temparr.push(tempobj23)
@@ -138,10 +143,46 @@ const Test = () => {
     }
 
     getPaper();
+    // console.log(paper)
   }, []);
 
-  const handleAnswerOptionClick = (isCorrect) => {
-    if (isCorrect) {
+  const submitscore = () => {
+    let student_response = "";
+
+    for (let i = 1; i < paper.length; i++) {
+      let ans_code_common = paper[i].AnswerId;
+      for (let j = 0; j < 4; j++) {
+        if (paper[i].answerOptions[j].selected === true) {
+          // student_response + String(paper[i].QuestNo) + "=" + String(ans_code_common + j) + "&";
+          let str = String(paper[i].QuestNo) + "=" + String(ans_code_common + j) + "&";
+          console.log(str);
+          student_response += str;
+        }
+      }
+    }
+    student_response = student_response.slice(0, -1);
+    console.log(student_response);
+    const sendData2 = {
+      UserId: JSON.parse(localStorage.getItem('login')).user.UserId,
+      PaperCode: localStorage.getItem('papercode'),
+      StudentResponse: student_response
+    }
+    console.log(sendData2);
+    axios.post("https://lmsapiv01.azurewebsites.net/api/studentresponse/", sendData2).then(result => { console.log(result.data) });
+  }
+
+  let tempobj = {};
+  const handleAnswerOptionClick = (answerOption, index) => {
+    for (let i = 0; i < 4; i++) {
+      if (i === index) {
+        paper[currentQuestion].answerOptions[i].selected = true;
+      }
+      else {
+        paper[currentQuestion].answerOptions[i].selected = false;
+      }
+    }
+
+    if (answerOption.isCorrect) {
       setScore(score + 1);
       setIsDisabled(true)
     }
@@ -157,9 +198,11 @@ const Test = () => {
     if (currentQuestion + 1 < paper.length) {
       setCurrentQuestion(currentQuestion + 1);
       setIsDisabled(false)
+      // student_response + currentQuestion.toString() + "&";
     }
     else {
       setShowScore(true);
+      submitscore();
     }
   }
 
@@ -167,13 +210,13 @@ const Test = () => {
     if (currentQuestion - 1 >= 0) {
       setCurrentQuestion(currentQuestion - 1);
     }
-    setIsDisabled(true)
+    setIsDisabled(false)
   }
 
-  // setCurrentQuestion(1)
   return (
     <div className="timer-wrapper">
-      {quizLength > 2 ? (
+      {console.log(paper)};
+      {quizLength >= 0 ? (
         <div className='quizz-app'>
           {showScore ? (
             <div className='score-section'>
@@ -184,6 +227,7 @@ const Test = () => {
 
               <div>
                 <div className='question-section'>
+
                   <div className='question-diff'>Difficulty:{paper[currentQuestion].Difficulty}</div>
                   <div className='question-diff1'>Marks: {paper[currentQuestion].Marks}</div>
                   <div className='question-count'>
@@ -192,8 +236,8 @@ const Test = () => {
                   <div className='question-text'>{paper[currentQuestion].questionText}</div>
                 </div>
                 <div className='answer-section'>
-                  {paper[currentQuestion].answerOptions.map((answerOption) => (
-                    <button disabled={isDisabled} onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+                  {paper[currentQuestion].answerOptions.map((answerOption, ind) => (
+                    <button disabled={isDisabled} onClick={() => handleAnswerOptionClick(answerOption, ind)}>{answerOption.answerText}</button>
                   ))}
                 </div>
                 <button className='prevbutton' onClick={() => goPrev()}>Previous</button>
@@ -203,21 +247,26 @@ const Test = () => {
           )}
         </div>
       ) : null}
-      <CountdownCircleTimer
-        isPlaying
-        duration={getduration}
-        colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
-        colorsTime={[60, 0.6 * 60, 0.3 * 60, 0]}
-        onComplete={() => setShowScore(true)}
-      >
-        {children}
-      </CountdownCircleTimer>
-      <div className="image-capture">
-        <Ml />
-        {/* {console.log(count)} */}
-        {/* <Speech/> */}
-      </div>
-    </div >
+
+      <div>
+        {!showScore ? (
+          <div>
+            <CountdownCircleTimer
+              isPlaying
+              duration={localStorage.getItem('duration')*60}
+              colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
+              colorsTime={[60, 0.6 * 60, 0.3 * 60, 0]}
+              onComplete={() => setShowScore(true)}
+            >
+              {children}
+            </CountdownCircleTimer>
+            <div className="image-capture">
+              <Ml />
+            </div>
+          </div>
+        ) : null}
+      </div >
+    </div>
   );
 };
 export default Test;

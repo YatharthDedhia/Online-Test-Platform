@@ -130,11 +130,13 @@
 .react-calendar__tile--now {
   background: #ffff76;
   border-radius: 5px;
+  color: #201e1e;
 }
 
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
   background: #ffffa9;
+  color: #201e1e;
   border-radius: 5px;
 }
 
@@ -176,7 +178,7 @@
   right: 15%;
   width: 130%;
   background-color: red;
-  height: 126%;
+  height: auto;
   border-radius: 3px;
   /* filter: blur(5px); */
   padding-top: 10px;
@@ -188,3 +190,7 @@
   text-align: center;
   justify-content: center;
 }
+
+/* .DateContent:hover{
+  background-color: black;
+} */

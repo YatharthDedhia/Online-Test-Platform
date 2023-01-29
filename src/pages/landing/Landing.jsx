@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import Popup from 'reactjs-popup';
-// import Login from './Login';
-// import LoginHooks from './LoginHooks';
 import * as Components from './Components';
 import './css/landing.css';
 import './css/features.css';
@@ -15,7 +12,8 @@ import lecture from '../../Images/lecture.jpg';
 import proctor1 from '../../Images/proctor1.jpg';
 import logo from '../../Images/logo-no-background.png'
 import { useNavigate } from 'react-router-dom';
-// import authService from '../../services/auth.service';
+import { ProgressBar } from 'react-loader-spinner'
+
 const featureList = [
 	'Face Verification',
 	'Multiple People Detection',
@@ -63,7 +61,7 @@ const Navbar = () => {
 
 const Landing = () => {
 	const [signIn, toggle] = React.useState(true);
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 
 	const signInFunc = (e) => {
 		e.preventDefault();
@@ -81,16 +79,8 @@ const Landing = () => {
 				if (response.data.token) {
 					console.log(response.data)
 					localStorage.setItem("login", JSON.stringify(response.data));
-					// if (type == 2) {
-					// 	navigate("/dashboard");
-						window.location.reload();
-					// }
-					// else {
-					// 	navigate("/institute");
-					// 	window.location.reload();
-					// }
+					window.location.reload();
 				}
-
 				return response.data;
 			});
 	}
@@ -122,6 +112,26 @@ const Landing = () => {
 						console.log(response.data)
 						localStorage.setItem("login", JSON.stringify(response.data));
 					}
+
+					const senddata = {
+
+						"UserName": username,
+						"Password": password,
+
+					}
+					console.log(senddata);
+
+					axios
+						.post('http://lmsapiv01.azurewebsites.net/login', senddata)
+						.then((response) => {
+							if (response.data.token) {
+								console.log(response.data)
+								localStorage.setItem("login", JSON.stringify(response.data));
+								window.location.reload();
+							}
+							return response.data;
+						});
+
 					return response.data;
 				});
 
@@ -143,6 +153,17 @@ const Landing = () => {
 	return (
 		<React.Fragment>
 			<Navbar />
+			{/* <div className="loading-screen">
+				<ProgressBar
+					height="80"
+					width="80"
+					ariaLabel="progress-bar-loading"
+					wrapperStyle={{}}
+					wrapperClass="progress-bar-wrapper"
+					borderColor='#F4442E'
+					barColor='#51E5FF'
+				/>
+			</div> */}
 			<div className="section-type-landing-page">
 
 				<div className="section-fluid-main">

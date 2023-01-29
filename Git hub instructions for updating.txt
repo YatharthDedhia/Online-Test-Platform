@@ -1,4 +1,0 @@
-After changes
-git add . 
-git commit -m "Comment"
-git push

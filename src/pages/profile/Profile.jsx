@@ -1,5 +1,3 @@
-
-// import React from "react";
 import React, { useState } from 'react';
 import {
     LineChart,
@@ -22,7 +20,7 @@ import { Chart, ChartSeries, ChartSeriesItem, ChartCategoryAxis, ChartCategoryAx
 import 'hammerjs';
 import { useEffect } from 'react';
 import logo from '../../Images/logo-no-background.png'
-{/* <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link> */ }
+
 
 const NavLinks = () => (
     <React.Fragment>
@@ -48,6 +46,9 @@ const NavLinks = () => (
             <a>LogOut</a>
             <button onClick={() => {
                 localStorage.removeItem("login");
+                localStorage.removeItem("duration");
+                localStorage.removeItem("papercode");
+                
                 window.location.reload();
                 // console.log("loggedout")
             }}></button>
@@ -70,35 +71,18 @@ const Navbar = () => {
 
 const Profile_Block = () => {
     const [firstName, setFirstName] = useState('');
-    const [password, setPassword]=useState('');
+    const [password, setPassword] = useState('');
     const [lastName, setLastName] = useState('');
     const [emailID, setemailID] = useState('');
     const [userName, setUsername] = useState('');
     const [image, setImage] = useState("");
     const [mobileNo, setmobileNo] = useState("");
     const [url, setUrl] = useState("");
-    let a;
-    const url3 = "https://lmsapiv01.azurewebsites.net/api/user";
-    axios
-        .get(url3)
-        .then((response) => {
-            //   console.log(response.data[0][0].Answer)
-            for (let i = 0; i < response.data[0].length; i++) {
-                setFirstName(response.data[0][0].FirstName);
-                setLastName(response.data[0][0].LastName);
-                setemailID(response.data[0][0].EmailId);
-                setUsername(response.data[0][0].UserName);
-                setPassword(response.data[0][0].Password);
-                setmobileNo(response.data[0][0].MobileNo);
-                setUrl(response.data[0][0].Photo)
-            }
-
-        })
-        .catch((err) => {
-            console.log(err);
-        });
 
     const submitImage = () => {
+        let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
+        console.log(userid);
+        let typeid = (JSON.parse(localStorage.getItem('login')).user.TypeId)
         const data = new FormData()
         data.append("file", image)
         data.append("upload_preset", "Inheritance")
@@ -112,57 +96,57 @@ const Profile_Block = () => {
             .then((res) => res.json())
             .then((data) => {
                 setUrl(data.url)
-                console.log(data.url);
+                // console.log(data.url);
                 const sendData = {
-                            "UserId": 4,
-                            "UserName": userName,
-                            "Password": password,
-                            "FirstName": firstName,
-                            "LastName": lastName,
-                            "EmailId": emailID,
-                            "MobileNo": parseInt(mobileNo),
-                            "LastLoginDateTime": "2022-11-27T00:00:00.000Z",
-                            "DateOfBirth": "1974-07-13T00:00:00.000Z",
-                            "Age": 26,
-                            "TypeId": 1,
-                            "ActivationStatus": '0',
-                            "Photo": data.url,
-                         };
-                    
-                         console.log(sendData.Photo);
-                    
-                        axios.post('https://lmsapiv01.azurewebsites.net/api/update/user', sendData).then(result => { console.log(result.data) });
-                
-                
+                    "UserId": userid,
+                    "UserName": userName,
+                    "Password": password,
+                    "FirstName": firstName,
+                    "LastName": lastName,
+                    "EmailId": emailID,
+                    "MobileNo": parseInt(mobileNo),
+                    "LastLoginDateTime": "2022-11-27T00:00:00.000Z",
+                    "DateOfBirth": "1974-07-13T00:00:00.000Z",
+                    "Age": 26,
+                    "TypeId": typeid,
+                    "ActivationStatus": '0',
+                    "Photo": data.url,
+                };
+
+                // console.log(sendData.Photo);
+
+                axios.post('https://lmsapiv01.azurewebsites.net/api/update/user', sendData).then(result => { console.log(result.data) });
+
+
             }).catch((err) => {
                 console.log(err);
             })
-    
-    // const updateImage = (e) => {
-    //     e.preventDefault();
-        // if (password == confpassword) {
-        // setConfirm(1);
-        // console.log({url});
-    //     const sendData = {
-    //         "UserId": 4,
-    //         "UserName": "Manav_Shah",
-    //         "Password": password,
-    //         "FirstName": firstName,
-    //         "LastName": lastName,
-    //         "EmailId": emailID,
-    //         "MobileNo": parseInt(mobileNo),
-    //         "LastLoginDateTime": "2022-11-27T00:00:00.000Z",
-    //         "DateOfBirth": "1974-07-13T00:00:00.000Z",
-    //         "Age": 26,
-    //         "TypeId": 1,
-    //         "ActivationStatus": '0',
-    //         "Photo": "https://www.nicepng.com/maxp/u2q8i1a9e6i1o0o0/",
-    //     };
-    
-    //     console.log(sendData.Photo);
-    
-    //     axios.post('https://lmsapiv01.azurewebsites.net/api/update/user', sendData).then(result => { console.log(result.data) });
     }
+
+    useEffect(async () => {
+        let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
+        console.log(userid);
+        // userid = "4";
+        const url3 = "https://lmsapiv01.azurewebsites.net/api/user/" + userid;
+        axios
+            .get(url3)
+            .then((response) => {
+                console.log(response.data[0][0])
+                // for (let i = 0; i < response.data[0].length; i++) {
+                setFirstName(response.data[0][0].FirstName);
+                setLastName(response.data[0][0].LastName);
+                setemailID(response.data[0][0].EmailId);
+                setUsername(response.data[0][0].UserName);
+                setPassword(response.data[0][0].Password);
+                setmobileNo(response.data[0][0].MobileNo);
+                setUrl(response.data[0][0].Photo)
+                // }
+
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [])
 
     return (
         <div class="profile block">
@@ -178,7 +162,7 @@ const Profile_Block = () => {
             <h1 class="user-name">{firstName} {lastName}</h1>
             <div class="profile-description">
                 <p class="scnd-font-color">Email ID : {emailID}</p>
-                <p class="scnd-font-color">UserName : {userName}</p>
+                <p class="scnd-font-color">Username : {userName}</p>
             </div>
 
             <div class="upload-btn-wrapper">
@@ -286,19 +270,17 @@ const Graph = () => {
     ]
 
     const [graph_data, setGraphData] = useState([])
-    // const [finished, setFinished] = useState(false)
 
     pdata.map((f) => {
         f["StartTime"] = (parseInt(f.StartTime.slice(8, 10))).toString() + "/" + (parseInt(f.StartTime.slice(5, 7))).toString();
     })
-	// var userid_storage = (JSON.parse(localStorage.getItem('login'))["UserID"]).toString()
-    // var userid_storage = (4).toString()
-    var userid_storage = "4"
-
 
     useEffect(async () => {
+        let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
+        // console.log(userid);
+
         setGraphData([])
-        await axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
+        await axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/" + userid)
             .then((response) => {
 
                 response.data[0].map(async (f) => {
@@ -309,10 +291,10 @@ const Graph = () => {
                         .get("https://lmsapiv01.azurewebsites.net/api/totalmarksallstuds/" + str)
                         .then((response2) => {
                             response2.data[0].map((res) => {
-                                if (res.UserID === 4) {
+                                if (res.UserID.toString() === userid) {
                                     f["marks"] = res.MarksScored;
-                                    f["StartTime"] = f.StartTime.slice(0, 10);
-                                    f["StartTime"] = f.StartTime.slice(8, 10) + "/" + f.StartTime.slice(5, 7);
+                                    // f["StartTime"] = f.StartTime.slice(0, 10);
+                                    // f["StartTime"] = f.StartTime.slice(8, 10) + "/" + f.StartTime.slice(5, 7);
                                 }
                             })
                         })
@@ -320,17 +302,19 @@ const Graph = () => {
                             console.log(err);
                         });
                     setGraphData(current => [...current, f])
+                    // console.log(graph_data)
                     // setGraphData(current => [...current, {}])
                 })
             })
     }, [])
+
     return (
         <div className='graph-head'>
             <h1 className="text-heading">
                 Performance Graph
             </h1>
             <div>
-                {console.log(graph_data)}
+                {/* {console.log(graph_data)} */}
                 <ResponsiveContainer width="100%" aspect={3}>
                     <LineChart data={graph_data} margin={{ right: 300 }}>
                         <Line type="monotone" dataKey="marks" stroke="#8884d8" activeDot={{ r: 8 }} />
@@ -361,14 +345,11 @@ const RankList = () => {
     ];
 
     const [obj, setObj] = useState([])
-	// var userid_storage = (JSON.parse(localStorage.getItem('login'))["UserID"]).toString()
-    // var userid_storage = (4).toString()
-    var userid_storage = "4"
-
-
     useEffect(async () => {
+        let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
+        // console.log(userid);
         setObj([])
-        axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
+        axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/" + userid)
             .then((response) => {
 
                 response.data[0].map((f) => {
@@ -430,8 +411,8 @@ const RankList = () => {
 }
 
 const Profile = () => {
-    let login = JSON.parse(localStorage.getItem('login'));
-    console.log(login)
+    // let login = JSON.parse(localStorage.getItem('login'));
+    // console.log(login)
     return (
         <div className='main-container'>
             <div className='container3'>

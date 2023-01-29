@@ -23,12 +23,24 @@ const Institute = () => {
   const [totalMarks, setTotalMarks] = useState(0);
   const [testName, setTestName] = useState('');
   const [courseName, setCourseName] = useState('');
+  const [courseName1, setCourseName1] = useState('');
+  const [courseName2, setCourseName2] = useState('');
+  const [courseName3, setCourseName3] = useState('');
+  const [courseName4, setCourseName4] = useState('');
   const [courseCode, setCourseCode] = useState(0);
+  const [courseCode1, setCourseCode1] = useState(0);
+  const [courseCode2, setCourseCode2] = useState(0);
+  const [courseCode3, setCourseCode3] = useState(0);
+  const [courseCode4, setCourseCode4] = useState(0);
   const [date, setDate] = useState(null);
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [duration, setDuration] = useState(0);
   const [link, setLink] = useState("");
+  const [link1, setLink1] = useState("");
+  const [link2, setLink2] = useState("");
+  const [link3, setLink3] = useState("");
+  const [link4, setLink4] = useState("");
   const [label, setlabel] = useState(3)
 
   const Header_Menu = () => {
@@ -45,7 +57,7 @@ const Institute = () => {
             <button className="header-menu-tab" onClick={() => { setlabel(0) }}><span className="icon fontawesome-envelope scnd-font-color"></span>Make Question Paper</button>
           </li>
           <li>
-            <button className="header-menu-tab" onClick={() => { setlabel(2) }}><span className="icon fontawesome-text scnd-font-color"></span>Assign Notes</button>
+            <button className="header-menu-tab" onClick={() => { setlabel(2) }}><span className="icon fontawesome-pencil scnd-font-color"></span>Assign Notes</button>
           </li>
         </ul>
         <div className="profile-menu">
@@ -93,6 +105,17 @@ const Institute = () => {
             </li>
           </ul>
         </li>
+      </p>
+      <p>
+        <a>LogOut</a>
+        <button onClick={() => {
+          localStorage.removeItem("login");
+          localStorage.removeItem("duration");
+          localStorage.removeItem("papercode");
+
+          window.location.reload();
+          // console.log("loggedout")
+        }}></button>
       </p>
     </React.Fragment>
   );
@@ -165,10 +188,71 @@ const Institute = () => {
     console.log(sendData1);
 
     axios.post('https://lmsapiv01.azurewebsites.net/api/questionpaper', sendData1).then(result => { console.log(result.data) });
-    // }
-    // else {
+
+  };
+  const postCourse1 = (e) => {
+    e.preventDefault();
+    // if (password == confpassword) {
     // setConfirm(1);
-    // }
+
+    const sendData1 = {
+      "CourseName": courseName1,
+      "CourseCode": courseCode1,
+      "Notes": link1,
+    };
+
+    console.log(sendData1);
+
+    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => { console.log(result.data) });
+
+  };
+  const postCourse2 = (e) => {
+    e.preventDefault();
+    // if (password == confpassword) {
+    // setConfirm(1);
+
+    const sendData1 = {
+      "CourseName": courseName2,
+      "CourseCode": courseCode2,
+      "Notes": link2,
+    };
+
+    console.log(sendData1);
+
+    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => { console.log(result.data) });
+
+  };
+  const postCourse3 = (e) => {
+    e.preventDefault();
+    // if (password == confpassword) {
+    // setConfirm(1);
+
+    const sendData1 = {
+      "CourseName": courseName3,
+      "CourseCode": courseCode3,
+      "Notes": link3,
+    };
+
+    console.log(sendData1);
+
+    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => { console.log(result.data) });
+
+  };
+  const postCourse4 = (e) => {
+    e.preventDefault();
+    // if (password == confpassword) {
+    // setConfirm(1);
+
+    const sendData1 = {
+      "CourseName": courseName4,
+      "CourseCode": courseCode4,
+      "Notes": link4,
+    };
+
+    console.log(sendData1);
+
+    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => { console.log(result.data) });
+
   };
 
   const ScheduleExam = (e) => {
@@ -259,167 +343,6 @@ const Institute = () => {
     );
   };
 
-  // const MakeExam = (e) => {
-  //   return (
-  //     <form onSubmit={postData} className="container4">
-  //       <label>
-  //         Course ID:
-  //         <input
-  //           className="Course_Code"
-  //           name="course_code"
-  //           // type="number"
-  //           onChange={e => setCourseCode(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Question
-  //         <input
-  //           className="Question"
-  //           name="question"
-  //           // type="text"
-  //           onChange={e => setQuestion(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Total Marks for this Question:
-  //         <input
-  //           className="tmarks"
-  //           name="Tm"
-  //           type="number"
-  //           onChange={e => setTotalMarks(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Option 1:
-  //         <input
-  //           className="opt"
-  //           name="opt1"
-  //           type="text"
-  //           onChange={e => setOption1(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Option 2:
-  //         <input
-  //           className="opt"
-  //           name="opt2"
-  //           type="text"
-  //           onChange={e => setOption2(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Option 3:
-  //         <input
-  //           className="opt"
-  //           name="opt3"
-  //           type="text"
-  //           onChange={e => setOption3(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Option 4:
-  //         <input
-  //           className="opt"
-  //           name="opt4"
-  //           type="text"
-  //           onChange={e => setOption4(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Weightage 1:
-  //         <input
-  //           className="weightage"
-  //           name="weightage1"
-  //           type="number"
-
-  //           onChange={e => setWeightage1(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Weightage 2:
-  //         <input
-  //           className="weightage"
-  //           name="weightage2"
-  //           type="number"
-  //           onChange={e => setWeightage2(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Weightage 3:
-  //         <input
-  //           className="weightage"
-  //           name="weightage3"
-  //           type="number"
-  //           onChange={e => setWeightage3(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Weightage 4:
-  //         <input
-  //           className="weightage"
-  //           name="weightage4"
-  //           type="number"
-  //           onChange={e => setWeightage4(e.target.value)}
-  //           required />
-  //       </label>
-  //       <label>
-  //         Option 1 is:
-  //         <div class="container6">
-  //           <div class="radio_container">
-  //             <input className="correct1" type="radio" name="radio1" id="true" value="true" onClick={e => setisCorrect1(true)} checked required />
-  //             <label className="label1" for="true">True</label>
-  //             <input className="correct1" type="radio" name="radio1" id="false" value="false" onClick={e => setisCorrect1(false)} required />
-  //             <label className="label1" for="false">False</label>
-
-  //           </div>
-  //         </div>
-  //       </label>
-  //       <br />
-  //       <label>
-  //         Option 2 is:
-  //         <div class="container6">
-  //           <div class="radio_container">
-  //             <input className="correct2" type="radio" name="radio2" id="true1" value="true" onClick={e => setisCorrect2(true)} checked required />
-  //             <label className="label2" for="true1">True</label>
-  //             <input className="correct2" type="radio" name="radio2" id="false1" value="false" onClick={e => setisCorrect2(false)} required />
-  //             <label className="label2" for="false1">False</label>
-
-  //           </div>
-  //         </div>
-  //       </label>
-  //       <br />
-  //       <label>
-  //         Option 3 is:
-  //         <div class="container6">
-  //           <div class="radio_container">
-  //             <input className="correct3" type="radio" name="radio3" id="true2" value="true" onClick={e => setisCorrect3(true)} checked required />
-  //             <label className="label3" for="true2">True</label>
-  //             <input className="correct3" type="radio" name="radio3" id="false2" value="false" onClick={e => setisCorrect3(false)} required />
-  //             <label className="label3" for="false2">False</label>
-
-  //           </div>
-  //         </div>
-  //       </label>
-  //       <br />
-  //       <label>
-  //         Option 4 is:
-  //         <div class="container6">
-  //           <div class="radio_container">
-  //             <input className="correct4" type="radio" name="radio4" id="true3" value="true" onClick={e => setisCorrect4(true)} checked required />
-  //             <label className="label4" for="true3">True</label>
-  //             <input className="correct4" type="radio" name="radio4" id="false3" value="false" onClick={e => setisCorrect4(false)} required />
-  //             <label className="label4" for="false3">False</label>
-
-  //           </div>
-  //         </div>
-  //       </label>
-  //       <br />
-
-  //       <button className='bubbly-button2' type="submit">Submit</button>
-  //     </form>
-  //   )
-  // };
-
   const RankList = () => {
 
     const testObj = [
@@ -436,10 +359,12 @@ const Institute = () => {
     const [obj, setObj] = useState([])
     let temparr = []
     // var userid_storage = (JSON.parse(localStorage.getItem('login'))["UserID"]).toString()
-    var userid_storage = "4"
+    // var userid_storage = "4"
 
     useEffect(async () => {
-      axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/4")
+      let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
+      console.log(userid);
+      axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/" + userid)
         .then((response) => {
 
           response.data[0].map((f) => {
@@ -499,18 +424,10 @@ const Institute = () => {
     )
   }
 
-  // return (
-  //   <div>
-  //     <Header_Menu />
-  //     <Navbar />
-  //     {label === 0 && <MakeExam />}
-  //     {label === 1 && <ScheduleExam />}
-  //     {label === 3 && <RankList />}
-  //   </div>
-  // );
   return (
     <div>
       <Header_Menu />
+      {/* <Navbar /> */}
       {label === 0 ? (
         <div>
           <form onSubmit={postData} className="container4">
@@ -667,7 +584,7 @@ const Institute = () => {
             </label>
             <br />
 
-            <button className='bubbly-button2' type="submit">Submit</button>
+            <button className='bubbly-button3' type="submit">Submit</button>
           </form>
         </div>
       ) : null}
@@ -736,7 +653,7 @@ const Institute = () => {
                 required />
             </label>
             <label>
-              Duration in Hourss:
+              Duration in Hours:
               <input
                 className="TestName"
                 name="tname"
@@ -755,12 +672,152 @@ const Institute = () => {
                 onChange={e => setLink(e.target.value)}
                 required />
             </label>
-            <button className='bubbly-button2' type="submit">Submit</button>
+            <button className='bubbly-button3' type="submit">Submit</button>
           </form>
         </div>
       ) : null}
       {label === 3 ? (
         <RankList />
+      ) : null}
+      {label === 2 ? (
+        <div className="container7">
+          <form onSubmit={postCourse1} className="container5">
+            <label>
+              Course Name 1:
+              <input
+                className="Course_Name"
+                name="course_name"
+                type="text"
+                //   value={this.state.numberOfGuests}
+                onChange={e => setCourseName1(e.target.value)}
+                required />
+            </label>
+            <label>
+              Course Code 1:
+              <input
+                className="Course_Code"
+                name="course_code"
+                type="text"
+                //   value={this.state.numberOfGuests}
+                onChange={e => setCourseCode1(e.target.value)}
+                required />
+            </label>
+            
+            <label>
+              Link 1:
+              <input
+                className="Link1"
+                name="link1"
+                type="text"
+                //   value={this.state.numberOfGuests}
+                onChange={e => setLink1(e.target.value)}
+                required />
+            </label>
+            <button className='bubbly-button2' type="submit">Submit</button>
+          </form>
+          <form onSubmit={postCourse2} className="container5">
+            <label>
+              Course Name 2:
+              <input
+                className="Course_Name"
+                name="course_name"
+                type="text"
+                //   value={this.state.numberOfGuests}
+                onChange={e => setCourseName2(e.target.value)}
+                required />
+            </label>
+            <label>
+              Course Code 2:
+              <input
+                className="Course_Code"
+                name="course_code"
+                type="text"
+                //   value={this.state.numberOfGuests}
+                onChange={e => setCourseCode2(e.target.value)}
+                required />
+            </label>
+            
+            <label>
+              Link 2:
+              <input
+                className="Link1"
+                name="link1"
+                type="text"
+                //   value={this.state.numberOfGuests}
+                onChange={e => setLink2(e.target.value)}
+                required />
+            </label>
+            <button className='bubbly-button2' type="submit">Submit</button>
+          </form>
+          <form onSubmit={postCourse3} className="container5">
+            <label>
+              Course Name 3:
+              <input
+                className="Course_Name"
+                name="course_name"
+                type="text"
+                //   value={this.state.numberOfGuests}
+                onChange={e => setCourseName3(e.target.value)}
+                required />
+            </label>
+            <label>
+              Course Code 3:
+              <input
+                className="Course_Code"
+                name="course_code"
+                type="text"
+                //   value={this.state.numberOfGuests}
+                onChange={e => setCourseCode3(e.target.value)}
+                required />
+            </label>
+            
+            <label>
+              Link 3:
+              <input
+                className="Link1"
+                name="link1"
+                type="text"
+                //   value={this.state.numberOfGuests}
+                onChange={e => setLink3(e.target.value)}
+                required />
+            </label>
+            <button className='bubbly-button2' type="submit">Submit</button>
+          </form>
+          <form onSubmit={postCourse4} className="container5">
+            <label>
+              Course Name 4:
+              <input
+                className="Course_Name"
+                name="course_name"
+                type="text"
+                //   value={this.state.numberOfGuests}
+                onChange={e => setCourseName4(e.target.value)}
+                required />
+            </label>
+            <label>
+              Course Code 4:
+              <input
+                className="Course_Code"
+                name="course_code"
+                type="text"
+                //   value={this.state.numberOfGuests}
+                onChange={e => setCourseCode4(e.target.value)}
+                required />
+            </label>
+            
+            <label>
+              Link 4:
+              <input
+                className="Link1"
+                name="link1"
+                type="text"
+                //   value={this.state.numberOfGuests}
+                onChange={e => setLink4(e.target.value)}
+                required />
+            </label>
+            <button className='bubbly-button2' type="submit">Submit</button>
+          </form>
+        </div>
       ) : null}
     </div>
   )

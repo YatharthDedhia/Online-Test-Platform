@@ -14,7 +14,33 @@ input {
 	margin-top: 10px;
     margin-bottom: 22px;
 }
+.container5{
+	position: relative;
+	/* top: 100px;
+	left: 0%; */
+	/* display:flex; */
+	/* flex-direction: row; */
+	z-index: 0;
+	width: 300px;
+	height: 375px;
+	color: white;
+	margin: auto;
+	padding: 30px;
+	/* background: transparent; */
+	background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+	background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+	background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+	box-sizing: border-box;
+	/* box-shadow: 0 15px 25px grey; */
+	box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
 
+}
+.container7{
+	margin-top: 90px;
+	 display:flex;
+	/* background-color: red; */
+	flex: 1 1 1 1;
+}
 .container4 {
 	position: relative;
 	top: 100px;
@@ -204,10 +230,30 @@ header {
 	display: block;
 	font-size: 1em;
 	padding: 1em 2em;
+	/* margin-top: -10px;
+	margin-bottom: 60px;
+	margin-left: auto;
+	margin-right: auto; */
+	margin-left:60px;
+	align-items: center;
+	background-color: #00008b;
+	color: #fff;
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+	position: absolute;
+	/* top: 700px;
+	right: 450px; */
+}
+.bubbly-button3 {
+	display: block;
+	font-size: 1em;
+	padding: 1em 2em;
 	margin-top: -10px;
 	margin-bottom: 60px;
 	margin-left: auto;
 	margin-right: auto;
+	align-items: center;
 	background-color: #00008b;
 	color: #fff;
 	border-radius: 4px;
@@ -217,7 +263,6 @@ header {
 	top: 700px;
 	right: 450px;
 }
-
 .container6 {
 	/* width: 100%; */
 	/* width:100px; */
@@ -285,11 +330,11 @@ input[type="radio"]:checked+label {
 	transition: 0.3s;
 }
 
-input[type="text"] {
+/* input[type="text"] {
     background: black;
     border: none;
 	color: white;
 	max-width:10em;
 	margin-right: 16px;
 	margin-bottom: 16px;
-} 
+}  */

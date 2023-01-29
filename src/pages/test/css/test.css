@@ -166,7 +166,9 @@ body {
 }
 
 .answer-section button:focus {
-    background: black;
+    background: white;
+    color: black;
+    /* border-color: red; */
 }
 
 .correct {
@@ -181,9 +183,9 @@ button:hover {
     background-color: #555e7d;
 }
 
-button:focus {
+/* button:focus {
     outline: none;
-}
+} */
 
 button svg {
     margin-right: 5px;

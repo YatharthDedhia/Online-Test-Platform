@@ -171,3 +171,15 @@ td {
   /* body cell */
   color: white;
 }
+
+.linkselect{
+  background: transparent;
+  color: white;
+  border-radius: 5px;
+}
+
+.linkselect:hover{
+  background: white;
+  color: black;
+  border-radius: 5px;
+}

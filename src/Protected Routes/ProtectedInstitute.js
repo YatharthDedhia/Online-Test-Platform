@@ -12,6 +12,12 @@ function ProtectedInstitute(props) {
             if (loginType === 2) {
                 navigate('/dashboard');
             }
+            else if (loginType === 1) {
+                navigate('/institute');
+            }
+            else if (loginType === 0) {
+                navigate('/admin');
+            }
         }
         if (!login) {
             navigate('/landing')

@@ -246,7 +246,7 @@ const Landing = () => {
 								</div>
 								<div class="selector-item">
 									<input type="radio" id="radio2" name="selector" value="1" class="selector-item_radio" onClick={(e) => setType(e.target.value)}/>
-									<label for="radio2" class="selector-item_label">Institute</label>
+									<label for="radio2" class="selector-item_label">Teacher</label>
 								</div>
 							</div>
 							<Components.Button type="submit">Sign Up</Components.Button>
@@ -265,7 +265,7 @@ const Landing = () => {
 								</div>
 								<div class="selector-item1">
 									<input type="radio" id="radio4" name="selector" value="1" class="selector-item_radio1" onClick={(e) => setType(e.target.value)} />
-									<label for="radio4" class="selector-item_label1">Institute</label>
+									<label for="radio4" class="selector-item_label1">Teacher</label>
 								</div>
 							</div>
 							<Components.Button type="submit">Sign In</Components.Button>

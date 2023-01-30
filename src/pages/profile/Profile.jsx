@@ -48,6 +48,7 @@ const NavLinks = () => (
                 localStorage.removeItem("login");
                 localStorage.removeItem("duration");
                 localStorage.removeItem("papercode");
+                localStorage.removeItem("bankcode");
                 
                 window.location.reload();
                 // console.log("loggedout")

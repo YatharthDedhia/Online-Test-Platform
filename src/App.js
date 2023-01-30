@@ -12,6 +12,7 @@ import {
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import ProtectedStudent from './Protected Routes/ProtectedStudent';
+import ProtectedInstitute from './Protected Routes/ProtectedInstitute';
 import ProtectedAdmin from './Protected Routes/ProtectedAdmin';
 import ProtectedLanding from './Protected Routes/ProtectedLanding';
 

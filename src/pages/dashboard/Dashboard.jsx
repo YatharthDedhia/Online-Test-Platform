@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import './css/dashboard.css';
-import './css/copylink.css';
-import './css/commoninput.css';
-import './css/search.css'
 import './css/table.css'
 import './css/sidebar.css'
 import './css/calendar.css'
@@ -12,16 +9,17 @@ import axios from 'axios';
 import logo from '../../Images/logo-no-background.png'
 import { useNavigate } from 'react-router-dom';
 import { Oval } from 'react-loader-spinner';
+
 const Header_Menu = () => {
-	// let porfile_pic_img = localStorage.getItem('login')
 	const navigate = useNavigate();
+
 	let profile_pic = "https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg";
 	if (localStorage.getItem('login')) {
 		profile_pic = (JSON.parse(localStorage.getItem('login')).user.Photo).toString();
 	}
 	return (
-		<header class="block-institute">
-			<ul class="header-menu horizontal-list">
+		<header className="block-institute">
+			<ul className="header-menu horizontal-list">
 				<li>
 					<Sidebar />
 				</li>
@@ -88,13 +86,9 @@ const obj = [
 	}
 ]
 
-const NavLinks = () => (
-	<React.Fragment>
-		<p>
-			<a href="/profile">Profile</a>
-		</p>
-	</React.Fragment>
-);
+// const NavLinks = () => (
+
+// );
 
 const Sidebar = () => {
 	return (
@@ -115,6 +109,13 @@ const Sidebar = () => {
 };
 
 const Navbar = () => {
+	const navigate = useNavigate();
+
+	let profile_pic = "https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg";
+	if (localStorage.getItem('login')) {
+		profile_pic = (JSON.parse(localStorage.getItem('login')).user.Photo).toString();
+	}
+
 	return (
 		<div className="landing-navbar">
 			<Sidebar />
@@ -122,7 +123,31 @@ const Navbar = () => {
 				<img src={logo}></img>
 			</div>
 			<div className="landing-navbar-links">
-				<NavLinks />
+				<React.Fragment>
+					{/* <p>
+						<a href="/profile">Profile</a>
+					</p> */}
+					{/* <p>
+						<a>
+							<div className="profile-menu">
+								<button className="profile-button" onClick={() => { navigate("/profile") }}>
+									<p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>
+									<div className="profile-picture small-profile-picture">
+										<img height="40px" width="40px" src={profile_pic} />
+									</div>
+								</button >
+							</div >
+						</a>
+					</p> */}
+					<button className="profile-button" onClick={() => { navigate("/profile") }}>
+						<p>Me
+							{/* <span className="entypo-down-open scnd-font-color"></span> */}
+							<div className="profile-picture small-profile-picture">
+								<img height="40px" width="40px" src={profile_pic} />
+							</div>
+						</p>
+					</button >
+				</React.Fragment>
 			</div>
 		</div>
 	);
@@ -135,19 +160,12 @@ const Dashboard = () => {
 	const [previous, setprevious] = useState(obj)
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false)
-	let fullstamp = new Date().toJSON();
-	let ddate = new Date();
-	// console.log(fullstamp)
-	var d1 = Date.parse(fullstamp)
-	var h1 = ddate.getHours()
 
-	var d2 = Date.parse(String(ddate.getFullYear()) + "-" + String(ddate.getMonth() + 1) + "-" + String(ddate.getDate()) + "T" + String(ddate.getHours()) + ":" + String(ddate.getMinutes) + ":" + String(ddate.getSeconds))
+	let stamp = Date.parse(new Date());
 
-	// console.log(d2)
 	useEffect(() => {
 		setLoading(true)
 		let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
-		// console.log(userid);
 		const url4 = "https://lmsapiv01.azurewebsites.net/api/studentschedule/" + userid;
 
 		axios
@@ -162,53 +180,28 @@ const Dashboard = () => {
 			});
 	}, [])
 
-	
-	upcoming.map((test) => {
-		let test_date = test.Date.slice(0, 10);
-		let start = test.StartTime;
-		let end = test.EndTime;
 
-		let start_time = test_date + "T" + start;
-		// console.log(Date.parse(start_time))
-		// console.log(d1)
-		let end_time = test_date + "T" + end;
+	upcoming.map(async (test) => {
+		let test_start = Date.parse(test.Date.slice(0, 11) + test.StartTime.slice(11, -1))
+		let test_end = Date.parse(test.Date.slice(0, 11) + test.EndTime.slice(11, -1))
 
-		test["mode"] = "inactive";
-		// if (Date.parse(start_time) < d2 && Date.parse(end_time) > d2) {
-		test["mode"] = "active";
-		// }
-		if (Date.parse(test.Date) > d2) {
-
-			test["status"] = "unattempted";
-			// console.log("unattempted")
+		if (test_start < stamp && test_end > stamp) {
+			test["mode"] = "active";
 		}
 		else {
-			test["status"] = "attempted";
-			// console.log("attempted")
+			test["mode"] = "inactive";
 		}
 	})
 
-
 	previous.map((test) => {
-		let test_date = test.Date.slice(0, 10);
-		let start = test.StartTime;
-		let end = test.EndTime;
+		let test_start = Date.parse(test.Date.slice(0, 11) + test.StartTime.slice(11, -1))
+		let test_end = Date.parse(test.Date.slice(0, 11) + test.EndTime.slice(11, -1))
 
-		let start_time = test_date + "T" + start;
-		let end_time = test_date + "T" + end;
-
-		test["mode"] = "inactive";
-		if (Date.parse(start_time) < d1 && Date.parse(end_time) > d1) {
+		if (test_start < stamp && test_end > stamp) {
 			test["mode"] = "active";
 		}
-		if (Date.parse(test.Date) > d1) {
-
-			test["status"] = "unattempted";
-			// console.log("unattempted")
-		}
 		else {
-			test["status"] = "attempted";
-			// console.log("attempted")
+			test["mode"] = "inactive";
 		}
 	})
 
@@ -407,10 +400,12 @@ const Dashboard = () => {
 				<div className="calendar">
 					<Calendar onChange={setDate} value={date} onClickDay={handleDateChange} tileContent={
 						({ activeStartDate, date, view }) => {
-							// console.log(date.getYear())
-							// console.log(parseInt(tests[0].Date.slice(0, 4)) - 1900);
 							return upcoming.map((test) => (
-								(view === 'month' && date.getDate() === parseInt(test.Date.slice(8, 10)) && date.getMonth() === (parseInt(test.Date.slice(5, 7)) - 1) && date.getYear() === (parseInt(test.Date.slice(0, 4)) - 1900)) ? <p className='DateContent' >{date.getDate()} <br />{(test.TestName)}</p> : null))
+								(view === 'month' && date.getDate() === parseInt(test.Date.slice(8, 10))
+									&& date.getMonth() === (parseInt(test.Date.slice(5, 7)) - 1)
+									&& date.getYear() === (parseInt(test.Date.slice(0, 4)) - 1900))
+									? <p className='DateContent' >{date.getDate()} <br />{(test.TestName)}</p>
+									: null))
 						}} />
 				</div>
 			</div >

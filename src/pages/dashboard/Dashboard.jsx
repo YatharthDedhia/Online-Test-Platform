@@ -137,17 +137,17 @@ const Dashboard = () => {
 	const [loading, setLoading] = useState(false)
 	let fullstamp = new Date().toJSON();
 	let ddate = new Date();
-	console.log(fullstamp)
+	// console.log(fullstamp)
 	var d1 = Date.parse(fullstamp)
 	var h1 = ddate.getHours()
 
 	var d2 = Date.parse(String(ddate.getFullYear()) + "-" + String(ddate.getMonth() + 1) + "-" + String(ddate.getDate()) + "T" + String(ddate.getHours()) + ":" + String(ddate.getMinutes) + ":" + String(ddate.getSeconds))
 
-	console.log(d2)
+	// console.log(d2)
 	useEffect(() => {
 		setLoading(true)
 		let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
-		console.log(userid);
+		// console.log(userid);
 		const url4 = "https://lmsapiv01.azurewebsites.net/api/studentschedule/" + userid;
 
 		axios
@@ -168,8 +168,8 @@ const Dashboard = () => {
 		let end = test.EndTime;
 
 		let start_time = test_date + "T" + start;
-		console.log(Date.parse(start_time))
-		console.log(d1)
+		// console.log(Date.parse(start_time))
+		// console.log(d1)
 		let end_time = test_date + "T" + end;
 
 		test["mode"] = "inactive";
@@ -179,11 +179,11 @@ const Dashboard = () => {
 		if (Date.parse(test.Date) > d2) {
 
 			test["status"] = "unattempted";
-			console.log("unattempted")
+			// console.log("unattempted")
 		}
 		else {
 			test["status"] = "attempted";
-			console.log("attempted")
+			// console.log("attempted")
 		}
 	})
 
@@ -203,11 +203,11 @@ const Dashboard = () => {
 		if (Date.parse(test.Date) > d1) {
 
 			test["status"] = "unattempted";
-			console.log("unattempted")
+			// console.log("unattempted")
 		}
 		else {
 			test["status"] = "attempted";
-			console.log("attempted")
+			// console.log("attempted")
 		}
 	})
 

@@ -1,4 +1,4 @@
-.buttonedu {
+/*.buttonedu {
     position: relative;
     display: flex;
     width: 200px;
@@ -20,16 +20,32 @@
     display:flex;
     flex-direction:column;
 }
-.sumimg1{
-    display:flex;
-    width:500px;
-}
+/* .sumimg1{
+    /* display:flex;
+    width:500px; }*/
+    
+
 .subimg1 img{
     display: flex;
-    flex-direction: column;
-    margin-left: 30px;
+    align-items: center;
     border-radius: 50%;
     border:10px solid red;
     height: 250px;
+    margin-top: 1em;
     margin-bottom: 40px;
+} 
+
+.flexboxcontainer {
+    display:flex;
+    flex-wrap: wrap;
+    /* justify-content:center; */
+    /* max-width: 100%; */
+    /* flex-direction: column; */
+}
+
+.flexboxcontainer > div {
+    width: 33.33%; /* or - flex: 0 50% - or - flex-basis: 50% - */
+    /*demo*/
+    box-shadow: 0 0 0 1px black;
+    margin-bottom: 10px;
 }

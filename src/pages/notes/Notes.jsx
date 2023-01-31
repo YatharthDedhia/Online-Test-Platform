@@ -74,7 +74,7 @@ const Notes = () => {
         <h1>Courses List</h1>
         <br />
       </header>
-      <div>
+      <div className="flexboxcontainer">
           {obj.map((e) => {
               return (
                 <div className="container10">

@@ -38,8 +38,8 @@ const Institute = () => {
   const [duration, setDuration] = useState(0);
   const [link, setLink] = useState("");
   const [link1, setLink1] = useState("");
-  const [link2, setLink2] = useState("");
-  const [link3, setLink3] = useState("");
+  const [image, setImage] = useState("");
+  const [syllabus, setSyllabus] = useState("");
   const [link4, setLink4] = useState("");
   const [label, setlabel] = useState(3)
 
@@ -217,6 +217,8 @@ const Institute = () => {
       "CourseName": courseName1,
       "CourseCode": courseCode1,
       "Notes": link1,
+      "Image":image,
+      "Syllabus":syllabus,
     };
 
     console.log(sendData1);
@@ -224,55 +226,7 @@ const Institute = () => {
     axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => { console.log(result.data) });
 
   };
-  const postCourse2 = (e) => {
-    e.preventDefault();
-    // if (password == confpassword) {
-    // setConfirm(1);
-
-    const sendData1 = {
-      "CourseName": courseName2,
-      "CourseCode": courseCode2,
-      "Notes": link2,
-    };
-
-    console.log(sendData1);
-
-    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => { console.log(result.data) });
-
-  };
-  const postCourse3 = (e) => {
-    e.preventDefault();
-    // if (password == confpassword) {
-    // setConfirm(1);
-
-    const sendData1 = {
-      "CourseName": courseName3,
-      "CourseCode": courseCode3,
-      "Notes": link3,
-    };
-
-    console.log(sendData1);
-
-    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => { console.log(result.data) });
-
-  };
-  const postCourse4 = (e) => {
-    e.preventDefault();
-    // if (password == confpassword) {
-    // setConfirm(1);
-
-    const sendData1 = {
-      "CourseName": courseName4,
-      "CourseCode": courseCode4,
-      "Notes": link4,
-    };
-
-    console.log(sendData1);
-
-    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => { console.log(result.data) });
-
-  };
-
+  
   const RankList = () => {
 
     const testObj = [
@@ -822,110 +776,29 @@ const Institute = () => {
                 onChange={e => setLink1(e.target.value)}
                 required />
             </label>
-            <button className='bubbly-button2' type="submit">Submit</button>
-          </form>
-          <form onSubmit={postCourse2} className="container5">
             <label>
-              Course Name 2:
-              <input
-                className="Course_Name"
-                name="course_name"
-                type="text"
-                //   value={this.state.numberOfGuests}
-                onChange={e => setCourseName2(e.target.value)}
-                required />
-            </label>
-            <label>
-              Course Code 2:
-              <input
-                className="Course_Code"
-                name="course_code"
-                type="text"
-                //   value={this.state.numberOfGuests}
-                onChange={e => setCourseCode2(e.target.value)}
-                required />
-            </label>
-
-            <label>
-              Link 2:
+              Image Link:
               <input
                 className="Link1"
                 name="link1"
                 type="text"
                 //   value={this.state.numberOfGuests}
-                onChange={e => setLink2(e.target.value)}
-                required />
-            </label>
-            <button className='bubbly-button2' type="submit">Submit</button>
-          </form>
-          <form onSubmit={postCourse3} className="container5">
-            <label>
-              Course Name 3:
-              <input
-                className="Course_Name"
-                name="course_name"
-                type="text"
-                //   value={this.state.numberOfGuests}
-                onChange={e => setCourseName3(e.target.value)}
+                onChange={e => setImage(e.target.value)}
                 required />
             </label>
             <label>
-              Course Code 3:
-              <input
-                className="Course_Code"
-                name="course_code"
-                type="text"
-                //   value={this.state.numberOfGuests}
-                onChange={e => setCourseCode3(e.target.value)}
-                required />
-            </label>
-
-            <label>
-              Link 3:
+              Link For Book To Refer:
               <input
                 className="Link1"
                 name="link1"
                 type="text"
                 //   value={this.state.numberOfGuests}
-                onChange={e => setLink3(e.target.value)}
+                onChange={e => setSyllabus(e.target.value)}
                 required />
             </label>
             <button className='bubbly-button2' type="submit">Submit</button>
           </form>
-          <form onSubmit={postCourse4} className="container5">
-            <label>
-              Course Name 4:
-              <input
-                className="Course_Name"
-                name="course_name"
-                type="text"
-                //   value={this.state.numberOfGuests}
-                onChange={e => setCourseName4(e.target.value)}
-                required />
-            </label>
-            <label>
-              Course Code 4:
-              <input
-                className="Course_Code"
-                name="course_code"
-                type="text"
-                //   value={this.state.numberOfGuests}
-                onChange={e => setCourseCode4(e.target.value)}
-                required />
-            </label>
-
-            <label>
-              Link 4:
-              <input
-                className="Link1"
-                name="link1"
-                type="text"
-                //   value={this.state.numberOfGuests}
-                onChange={e => setLink4(e.target.value)}
-                required />
-            </label>
-            <button className='bubbly-button2' type="submit">Submit</button>
-          </form>
+          
         </div>
       ) : null}
       {label === 4 ? (<SeeSchedule />) : null}

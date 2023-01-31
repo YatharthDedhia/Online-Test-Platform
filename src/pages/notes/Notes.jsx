@@ -77,16 +77,16 @@ const Notes = () => {
       <div className="flexboxcontainer">
           {obj.map((e) => {
               return (
-                <div className="container10">
+                // <div className="container10">
                 <div className="container9">
                   <a className="subimg1" href={e.Syllabus}>
                   <img src={e.Image}/>
                   </a>
                   <a href={e.Link}>
-                  <button className="buttonedu"><span className="icon fontawesome-pencil scnd-font-color"></span>{e.CourseName}</button>
+                  <div className="buttonlink"><button className="buttonedu"><span className="icon fontawesome-pencil scnd-font-color"></span>{e.CourseName}</button></div>
                   </a>
                   </div>
-                </div>
+                // </div>
               )
 
           })}

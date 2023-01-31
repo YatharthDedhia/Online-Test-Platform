@@ -26,19 +26,23 @@
     
 
 .subimg1 img{
-    display: flex;
+    display:block;
+    margin:auto;
     align-items: center;
-    border-radius: 50%;
-    border:10px solid red;
-    height: 250px;
+    border-radius: 100%;
+    border:5px solid #2c3b4f;
+    /* height: 250px; */
     margin-top: 1em;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    max-width:90%;
+    max-height: 90%;
 } 
 
 .flexboxcontainer {
     display:flex;
     flex-wrap: wrap;
-    /* justify-content:center; */
+    align-items: center;
+    justify-content:center;
     /* max-width: 100%; */
     /* flex-direction: column; */
 }
@@ -48,4 +52,29 @@
     /*demo*/
     box-shadow: 0 0 0 1px black;
     margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
 }
+
+/* .buttonedu {
+    align-items: center;
+} */
+
+.buttonedu {
+    position: relative;
+    display: flex;
+    width: 200px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+    margin:20px;
+    letter-spacing: 1.5px;
+}
+
+.buttonlink{
+    display: flex;
+    justify-content: center;
+}
+

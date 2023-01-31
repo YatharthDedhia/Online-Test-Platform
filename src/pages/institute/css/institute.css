@@ -48,7 +48,7 @@ input {
 	/* display:flex; */
 	z-index: 0;
 	width: 1000px;
-	height: 750px;
+	height: 845px;
 	/* background: transparent; */
 	background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
 	background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
@@ -249,7 +249,7 @@ header {
 	display: block;
 	font-size: 1em;
 	padding: 1em 2em;
-	margin-top: -10px;
+	margin-top: 80px;
 	margin-bottom: 60px;
 	margin-left: auto;
 	margin-right: auto;
@@ -330,11 +330,24 @@ input[type="radio"]:checked+label {
 	transition: 0.3s;
 }
 
-/* input[type="text"] {
+input.opt{
     background: black;
     border: none;
 	color: white;
-	max-width:10em;
-	margin-right: 16px;
+	max-width:9.6em;
+	margin-right: 18px;
 	margin-bottom: 16px;
-}  */
+}  
+input.weightage{
+    background: black;
+    border: none;
+	color: white;
+	max-width:8em;
+	margin-right: 10px;
+	margin-bottom: 16px;
+}  
+
+body {
+	background: linear-gradient(150deg, #000000, #2c3b4f);
+	background-attachment: fixed;
+}

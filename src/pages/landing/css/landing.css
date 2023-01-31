@@ -84,3 +84,8 @@ input[type="email"],input[type="number"]{
 	position: relative;
 	top: 75px;
 }
+
+.section-row, .section-fluid-main {
+	background: linear-gradient(150deg, #000000, #2c3b4f);
+	background-attachment: fixed;
+}

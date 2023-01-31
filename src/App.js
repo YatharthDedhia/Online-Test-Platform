@@ -38,7 +38,9 @@ const App = () => {
 					<Route exact path="/test" element={<ProtectedStudent Component={Test} />} />
 					<Route exact path="/institute" element={<ProtectedInstitute Component={Institute} />} />
 					<Route exact path="/notes" element={<ProtectedStudent Component={Notes} />} />
-					<Route exact path="/admin" element={<ProtectedAdmin Component={Admin} />} />
+					{/* <Route exact path="/admin" element={<ProtectedAdmin Component={Admin} />} /> */}
+					<Route exact path="/admin" element={<Admin />} />
+
 				</Routes>
 			</BrowserRouter>
 		</div>

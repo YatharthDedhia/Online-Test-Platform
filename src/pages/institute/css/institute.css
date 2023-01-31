@@ -81,10 +81,12 @@ header {
 }
 
 .header-menu-tab {
-	background: #50597b;
+	/* background: #50597b;
 	border-bottom: 4px solid #11a8ab;
 	border-right: 4px solid #11a8ab;
-	padding: 0 27px;
+	padding: 0 27px; */
+	background: transparent;
+	border-radius: 10px;
 	display: block;
 	line-height: 74px;
 	font-size: 17px;
@@ -95,9 +97,11 @@ header {
 .header-menu-tab:hover {
 	/* background: #50597b; */
 	/* border-bottom: 4px solid #11a8ab; */
-	text-decoration: none;
+	/* text-decoration: none;
 	-webkit-transition: background .3s;
-	transition: background .3s;
+	transition: background .3s; */
+	background-color: white;
+	color: black;
 }
 
 .header-menu-tab .icon {
@@ -128,7 +132,7 @@ header {
 	float: right;
 	height: 80px;
 	padding-right: 20px;
-	background-color: black;
+	/* background-color: black; */
 }
 
 .profile-menu p {
@@ -150,7 +154,12 @@ header {
 .small-profile-picture {
 	display: inline-block;
 	vertical-align: middle;
+	position: relative;
+	top: -5px;
 }
+/* .small-profile-picture img{
+	pos
+} */
 
 /** CONTAINERS **/
 /* .container {
@@ -159,7 +168,7 @@ header {
 	} */
 .block-institute {
 	margin-bottom: 25px;
-	background: black;
+	background: transparent;
 	/* border-radius: 5px; */
 	width: 100%;
 	color: white;
@@ -338,3 +347,14 @@ input[type="radio"]:checked+label {
 	margin-right: 16px;
 	margin-bottom: 16px;
 }  */
+
+
+.profile-button{
+	background: transparent;
+	color: white;
+	border-radius: 10px;
+}
+.profile-button:hover{
+	background-color: white;
+	color: black;
+}

@@ -132,7 +132,7 @@ const Admin = () => {
         const [newType, setNewType] = useState(1)
         let temparr = []
 
-        useEffect(async () => {
+        useEffect(() => {
 
             axios.get("https://lmsapiv01.azurewebsites.net/api/user")
                 .then((response) => {
@@ -222,7 +222,7 @@ const Admin = () => {
         const [obj, setObj] = useState(testObj)
         const [courseList, setCourselist] = useState([])
 
-        useEffect(async () => {
+        useEffect(() => {
 
             axios.get("https://lmsapiv01.azurewebsites.net/api/student")
                 .then((response) => {
@@ -299,7 +299,7 @@ const Admin = () => {
         const [obj, setObj] = useState(testObj)
         const [courseList, setCourselist] = useState([])
 
-        useEffect(async () => {
+        useEffect(() => {
 
             axios.get("https://lmsapiv01.azurewebsites.net/api/teacher")
                 .then((response) => {

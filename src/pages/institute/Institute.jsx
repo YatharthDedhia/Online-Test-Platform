@@ -44,6 +44,11 @@ const Institute = () => {
   const [label, setlabel] = useState(3)
 
   const Header_Menu = () => {
+    // let porfile_pic_img = localStorage.getItem('login')
+    let profile_pic = "https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg";
+    if (localStorage.getItem('login')) {
+      profile_pic = (JSON.parse(localStorage.getItem('login')).user.Photo).toString();
+    }
     return (
       <header class="block-institute">
         <ul class="header-menu horizontal-list">
@@ -70,14 +75,16 @@ const Institute = () => {
               localStorage.removeItem("bankcode");
               window.location.reload();
 
-            }}><span className="icon fontawesome-pencil scnd-font-color"></span>LogOut</button>
+            }}><span className="fa-sharp fa-solid fa-right-to-bracket"></span>LogOut</button>
           </li>
         </ul>
         <div className="profile-menu">
-          <p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>
-          <div className="profile-picture small-profile-picture">
-            <img width="40px" src="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg" />
-          </div>
+          <button className="profile-button">
+            <p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>
+            <div className="profile-picture small-profile-picture">
+              <img height="40px" width="40px" src={profile_pic} />
+            </div>
+          </button>
         </div>
       </header>
     );
@@ -186,14 +193,14 @@ const Institute = () => {
     e.preventDefault();
     const sendData1 = {
       "CourseId": parseInt(courseCode),
-      "TeacherID": 5,
+      "TeacherID": 7,
       "TestName": testName,
       "CourseName": courseName,
       "Date": date,
       "StartTime": startTime,
       "EndTime": endTime,
       "Link": link,
-      "Duration": duration,
+      "Duration": parseInt(duration),
     };
 
     console.log(sendData1);

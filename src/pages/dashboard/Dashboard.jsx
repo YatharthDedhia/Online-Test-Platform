@@ -12,6 +12,43 @@ import axios from 'axios';
 import logo from '../../Images/logo-no-background.png'
 import { useNavigate } from 'react-router-dom';
 
+const Header_Menu = () => {
+	// let porfile_pic_img = localStorage.getItem('login')
+	const navigate = useNavigate();
+	let profile_pic = "https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg";
+	if (localStorage.getItem('login')) {
+		profile_pic = (JSON.parse(localStorage.getItem('login')).user.Photo).toString();
+	}
+	return (
+		<header class="block-institute">
+			<ul class="header-menu horizontal-list">
+				<li>
+					<button className="header-menu-tab" onClick={() => navigate("/")}>
+						<img src={logo} height="50px" width="100px"></img>
+					</button>
+				</li>
+				<li>
+					<button className="header-menu-tab" onClick={() => {
+						localStorage.removeItem("login");
+						localStorage.removeItem("duration");
+						localStorage.removeItem("papercode");
+						localStorage.removeItem("bankcode");
+						window.location.reload();
+
+					}}><span className="fa-sharp fa-solid fa-right-to-bracket"></span>LogOut</button>
+				</li>
+			</ul>
+			<div className="profile-menu">
+				<button className="profile-button" onClick={() => { navigate("/profile") }}>
+					<p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>
+					<div className="profile-picture small-profile-picture">
+						<img height="40px" width="40px" src={profile_pic} />
+					</div>
+				</button >
+			</div >
+		</header >
+	);
+};
 
 const mockTests = [
 	{
@@ -309,7 +346,6 @@ const Dashboard = () => {
 								{previous.map((test) => {
 									return <tbody>
 										<tr>
-
 											<td>{test.TestName}</td>
 											<td>{test.CourseName}</td>
 											<td>{test.Date.slice(0, 10)}</td>
@@ -342,7 +378,8 @@ const Dashboard = () => {
 
 	return (
 		<React.Fragment>
-			<Navbar />
+			{/* <Navbar /> */}
+			<Header_Menu />
 			<div className="section-type-admin-dashboard">
 				<Tabs />
 				<div className="calendar">

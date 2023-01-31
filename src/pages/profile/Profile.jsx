@@ -20,7 +20,44 @@ import { Chart, ChartSeries, ChartSeriesItem, ChartCategoryAxis, ChartCategoryAx
 import 'hammerjs';
 import { useEffect } from 'react';
 import logo from '../../Images/logo-no-background.png'
+import { useNavigate } from 'react-router-dom';
+const Header_Menu = () => {
+    // let porfile_pic_img = localStorage.getItem('login')
+    const navigate = useNavigate();
+    let profile_pic = "https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg";
+    if (localStorage.getItem('login')) {
+        profile_pic = (JSON.parse(localStorage.getItem('login')).user.Photo).toString();
+    }
+    return (
+        <header class="block-institute">
+            <ul class="header-menu horizontal-list">
+                <li>
+                    <button className="header-menu-tab" onClick={() => navigate("/")}>
+                        <img src={logo} height="50px" width="100px"></img>
+                    </button>
+                </li>
+                <li>
+                    <button className="header-menu-tab" onClick={() => {
+                        localStorage.removeItem("login");
+                        localStorage.removeItem("duration");
+                        localStorage.removeItem("papercode");
+                        localStorage.removeItem("bankcode");
+                        window.location.reload();
 
+                    }}><span className="fa-sharp fa-solid fa-right-to-bracket"></span>LogOut</button>
+                </li>
+            </ul>
+            <div className="profile-menu">
+                <button className="profile-button" onClick={() => { navigate("/profile") }}>
+                    <p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>
+                    <div className="profile-picture small-profile-picture">
+                        <img height="40px" width="40px" src={profile_pic} />
+                    </div>
+                </button >
+            </div >
+        </header >
+    );
+};
 
 const NavLinks = () => (
     <React.Fragment>
@@ -49,7 +86,7 @@ const NavLinks = () => (
                 localStorage.removeItem("duration");
                 localStorage.removeItem("papercode");
                 localStorage.removeItem("bankcode");
-                
+
                 window.location.reload();
                 // console.log("loggedout")
             }}></button>
@@ -58,10 +95,13 @@ const NavLinks = () => (
 );
 
 const Navbar = () => {
+    const navigate = useNavigate();
     return (
         <div className="landing-navbar">
             <div className="landing-navbar-logo">
-                <img src={logo}></img>
+                <button className='header-menu-tab' onClick={() => navigate("/")}>
+                    <img src={logo} height="50px" width="100px"/>
+                </button>
             </div>
             <div className="landing-navbar-links">
                 <NavLinks />
@@ -308,7 +348,7 @@ const Graph = () => {
                 })
             })
     }, [])
-
+    console.log(graph_data)
     return (
         <div className='graph-head'>
             <h1 className="text-heading">
@@ -320,7 +360,7 @@ const Graph = () => {
                     <LineChart data={graph_data} margin={{ right: 300 }}>
                         <Line type="monotone" dataKey="marks" stroke="#8884d8" activeDot={{ r: 8 }} />
                         <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                        <XAxis dataKey="StartTime" stroke="white" />
+                        <XAxis dataKey="TestName" stroke="white" />
                         <YAxis stroke="white" />
                         <Tooltip />
                     </LineChart>

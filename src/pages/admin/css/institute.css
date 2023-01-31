@@ -81,9 +81,10 @@ header {
 }
 
 .header-menu-tab {
-	background: #50597b;
+	/* background: #50597b;
 	border-bottom: 4px solid #11a8ab;
-	border-right: 4px solid #11a8ab;
+	border-right: 4px solid #11a8ab; */
+	background: transparent;
 	padding: 0 27px;
 	display: block;
 	line-height: 74px;
@@ -128,7 +129,7 @@ header {
 	float: right;
 	height: 80px;
 	padding-right: 20px;
-	background-color: black;
+	/* background-color: black; */
 }
 
 .profile-menu p {

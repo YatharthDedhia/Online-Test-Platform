@@ -23,6 +23,9 @@ const Header_Menu = () => {
 		<header class="block-institute">
 			<ul class="header-menu horizontal-list">
 				<li>
+					<Sidebar/>
+				</li>
+				<li>
 					<button className="header-menu-tab" onClick={() => navigate("/")}>
 						<img src={logo} height="50px" width="100px"></img>
 					</button>

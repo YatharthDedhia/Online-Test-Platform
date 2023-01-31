@@ -4,41 +4,43 @@ import axios from "axios";
 import logo from '../../Images/logo-no-background.png'
 
 import './css/notes.css'
+const testObj = [
+  {
+"CourseId": 2,
+"CourseName": "Maths",
+"CourseCode": 600,
+"Notes": "www.drive2.com",
+"Image": "https://cache.careers360.mobi/media/article_images/2022/1/14/_NCERT-Book-for-Class-12-Maths.jpg",
+"Syllabus": "https://www.amazon.in/Advanced-Engineering-Mathematics-H-C-Taneja/dp/9389307325/ref=sr_1_2_sspa?crid=1T04C756ZZXZ0&keywords=Engineering+maths&qid=1675101764&sprefix=engineering+maths%2Caps%2C304&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1 "
+  }];
 const Notes = () => {
-    const [label, setlabel] = useState(3);
-    const [link1,setLink1]=useState("");
-    const [link2,setLink2]=useState("");
-    const [link3,setLink3]=useState("");
-    const [link4,setLink4]=useState("");
-    const [courseName,setcourseName]=useState("");
-    const [linkimage,setLinkImage]=useState("");
-    const [syllabusimg,setSyllabusimg]=useState("");
-    useEffect(async () => {
-      let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
-      console.log(userid);
-      // userid = "4";
-      for (let i = 1; i <=4; i++){ 
-      const url3 = "https://lmsapiv01.azurewebsites.net/api/course/" + i;
-      axios
-          .get(url3)
-          .then((response) => {
-              console.log(url3)
+  const [label, setlabel] = useState(3);
+  const [link1, setLink1] = useState("");
+  const [link2, setLink2] = useState("");
+  const [link3, setLink3] = useState("");
+  const [link4, setLink4] = useState("");
+  const [courseName, setcourseName] = useState("");
+  const [linkimage, setLinkImage] = useState("");
+  const [syllabusimg, setSyllabusimg] = useState("");
+  const [obj, setObj] = useState(testObj);
+  const [courseList, setCourselist] = useState([]);
+  const [newType, setNewType] = useState(1)
+  let temparr = []
 
-              setLink1(response.data[0][0].Notes);
-              setLink2(response.data[0][0].Notes);
-              setLink3(response.data[0][0].Notes);
-              setLink4(response.data[0][0].Notes);
-              setLinkImage(response.data[0][0].Image);
-              setSyllabusimg(response.data[0][0].Syllabus);
-              setcourseName(response.data[0][0].CourseName);
+  useEffect(async () => {
 
-          })
-          .catch((err) => {
-              console.log(err);
-          });
-        }
+    axios.get("https://lmsapiv01.azurewebsites.net/api/course")
+      .then((response) => {
+        // console.log(response.data[0]);
+        setObj(response.data[0])
+      })
+
+    axios.get("https://lmsapiv01.azurewebsites.net/api/course")
+      .then((response) => {
+        setCourselist(response.data[0]);
+      })
   }, [])
-const Header_Menu = () => {
+  const Header_Menu = () => {
     return (
       <header class="block-institute">
         <ul class="header-menu horizontal-list">
@@ -64,27 +66,31 @@ const Header_Menu = () => {
       </header>
     );
   };
-  return(
+  return (
     <div>
-        <Header_Menu/>
-        <a href={syllabusimg}>
-        <img className="subimg" src="https://cache.careers360.mobi/media/article_images/2022/1/14/_NCERT-Book-for-Class-12-Maths.jpg" />
-        </a>
-        <a href={link1}>
-        <button className="buttonedu"><span className="icon fontawesome-calendar scnd-font-color"></span><h1>{courseName}</h1></button>
-      </a>
-      <img className="subimg" src="https://cache.careers360.mobi/media/article_images/2022/1/14/_NCERT-Book-for-Class-12-Maths.jpg"/>
-      <a href={link2}>
-        <button className="buttonedu"><span className="icon fontawesome-calendar scnd-font-color"></span><h1>Physics</h1></button>
-      </a>
-      <img className="subimg" src="https://cache.careers360.mobi/media/article_images/2022/1/14/_NCERT-Book-for-Class-12-Maths.jpg"/>
-      <a href={link3}>
-        <button className="buttonedu"><span className="icon fontawesome-calendar scnd-font-color"></span><h1>Chemistry</h1></button>
-      </a>
-      <img className="subimg" src={linkimage}/>
-      <a href={link4}>
-        <button className="buttonedu"><span className="icon fontawesome-calendar scnd-font-color"></span><h1>Geography</h1></button>
-      </a>
+      <Header_Menu/>
+      <header>
+        <br />
+        <h1>Courses List</h1>
+        <br />
+      </header>
+      <div className="flexboxcontainer">
+          {obj.map((e) => {
+              return (
+                <div className="container10">
+                <div className="container9">
+                  <a className="subimg1" href={e.Syllabus}>
+                  <img src={e.Image}/>
+                  </a>
+                  <a href={e.Link}>
+                  <button className="buttonedu"><span className="icon fontawesome-pencil scnd-font-color"></span>{e.CourseName}</button>
+                  </a>
+                  </div>
+                </div>
+              )
+
+          })}
+      </div>
     </div>
   )
 

@@ -7,6 +7,40 @@ import axios from "axios";
 import logo from '../../Images/logo-no-background.png'
 
 const Admin = () => {
+    const [Question, setQuestion] = useState('');
+    const [option1, setOption1] = useState('');
+    const [option2, setOption2] = useState('');
+    const [option3, setOption3] = useState('');
+    const [option4, setOption4] = useState('');
+    const [isCorrect1, setisCorrect1] = useState(false);
+    const [isCorrect2, setisCorrect2] = useState(false);
+    const [isCorrect3, setisCorrect3] = useState(false);
+    const [isCorrect4, setisCorrect4] = useState(false);
+    const [weightage1, setWeightage1] = useState(0);
+    const [weightage2, setWeightage2] = useState(0);
+    const [weightage3, setWeightage3] = useState(0);
+    const [weightage4, setWeightage4] = useState(0);
+    const [totalMarks, setTotalMarks] = useState(0);
+    const [testName, setTestName] = useState('');
+    const [courseName, setCourseName] = useState('');
+    const [courseName1, setCourseName1] = useState('');
+    const [courseName2, setCourseName2] = useState('');
+    const [courseName3, setCourseName3] = useState('');
+    const [courseName4, setCourseName4] = useState('');
+    const [courseCode, setCourseCode] = useState(0);
+    const [courseCode1, setCourseCode1] = useState(0);
+    const [courseCode2, setCourseCode2] = useState(0);
+    const [courseCode3, setCourseCode3] = useState(0);
+    const [courseCode4, setCourseCode4] = useState(0);
+    const [date, setDate] = useState(null);
+    const [startTime, setStartTime] = useState("");
+    const [endTime, setEndTime] = useState("");
+    const [duration, setDuration] = useState(0);
+    const [link, setLink] = useState("");
+    const [link1, setLink1] = useState("");
+    const [link2, setLink2] = useState("");
+    const [link3, setLink3] = useState("");
+    const [link4, setLink4] = useState("");
     const [label, setlabel] = useState(3)
 
     const Header_Menu = () => {
@@ -27,7 +61,6 @@ const Admin = () => {
                             localStorage.removeItem("login");
                             localStorage.removeItem("duration");
                             localStorage.removeItem("papercode");
-                            localStorage.removeItem("bankcode");
 
                             window.location.reload();
                         }}><span className="icon fontawesome-envelope scnd-font-color"></span>LogOut</button>
@@ -85,7 +118,6 @@ const Admin = () => {
                     localStorage.removeItem("login");
                     localStorage.removeItem("duration");
                     localStorage.removeItem("papercode");
-                    localStorage.removeItem("bankcode");
 
                     window.location.reload();
                     // console.log("loggedout")
@@ -220,7 +252,12 @@ const Admin = () => {
         ];
 
         const [obj, setObj] = useState(testObj)
-        const [courseList, setCourselist] = useState([])
+        const [courseLength, setCourseLength] = useState(0)
+        const [disMath, setdismath] = useState(false)
+        const [disChem, setdischem] = useState(false)
+        const [disPhy, setdisphy] = useState(false)
+        const [disBio, setdisbio] = useState(false)
+        let temparr = []
 
         useEffect(() => {
 
@@ -229,12 +266,9 @@ const Admin = () => {
                     // console.log(response.data[0]);
                     setObj(response.data[0])
                 })
-
-            axios.get("https://lmsapiv01.azurewebsites.net/api/course")
-                .then((response) => {
-                    setCourselist(response.data[0]);
-                })
         }, [])
+
+
 
         return (
             <div class="ranklist-container-institute">
@@ -249,11 +283,10 @@ const Admin = () => {
                             <tr>
                                 <th>Student ID</th>
                                 <th>Name</th>
-                                {courseList.map((course) => {
-                                    return (
-                                        <th>{course.CourseName}</th>
-                                    )
-                                })}
+                                <th>Maths</th>
+                                <th>Chem</th>
+                                <th>Phy</th>
+                                <th>Geo</th>
                             </tr>
                         </thead>
                         {obj.map((e) => {
@@ -262,20 +295,39 @@ const Admin = () => {
                                     <tr>
                                         <td class="ranklist-rank">{e.StudentId}</td>
                                         <td class="ranklist-team">{e.FirstName + ' ' + e.LastName}</td>
+                                        <td class="ranklist-up-down">
+                                            <button className='linkselect' disabled={disMath} onClick={() => {
+                                                console.log(e.StudentId);
+                                                // postMath
+                                                // setdismath(true);
+                                                axios.post("https://lmsapiv01.azurewebsites.net/api/student/courses", { StudentId: e.StudentId, CourseId: 2 }).then(result => { console.log(result.data) })
+                                            }}>Assign</button>
+                                        </td>
 
-                                        {courseList.map((course) => {
-                                            return (
-                                                <td class="ranklist-up-down">
-                                                    <button className='linkselect' onClick={() => {
-                                                        console.log(e.StudentId);
-                                                        axios.post("https://lmsapiv01.azurewebsites.net/api/student/courses", { StudentId: e.StudentId, CourseId: course.CourseId }).then(result => { console.log(result.data) })
-                                                    }}>Assign</button>
-                                                </td>
-                                            )
-                                        })}
+                                        <td class="ranklist-up-down">
+                                            <button className='linkselect' disabled={disChem} onClick={() => {
+                                                // setdischem(true)
+                                                axios.post("https://lmsapiv01.azurewebsites.net/api/student/courses", { StudentId: e.StudentId, CourseId: 3 }).then(result => { console.log(result.data) })
+                                            }}>Assign</button>
+                                        </td>
+
+                                        <td class="ranklist-up-down">
+                                            <button className='linkselect' disabled={disPhy} onClick={() => {
+                                                // setdisphy(true)
+                                                axios.post("https://lmsapiv01.azurewebsites.net/api/student/courses", { StudentId: e.StudentId, CourseId: 1 }).then(result => { console.log(result.data) })
+                                            }}>Assign</button>
+                                        </td>
+
+                                        <td class="ranklist-up-down">
+                                            <button className='linkselect' disabled={disBio} onClick={() => {
+                                                // setdisbio(true)
+                                                axios.post("https://lmsapiv01.azurewebsites.net/api/student/courses", { StudentId: e.StudentId, CourseId: 4 }).then(result => { console.log(result.data) })
+                                            }}>Assign</button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             )
+
                         })}
                     </table>
                 </div>
@@ -297,7 +349,11 @@ const Admin = () => {
         ];
 
         const [obj, setObj] = useState(testObj)
-        const [courseList, setCourselist] = useState([])
+        const [disMath, setdismath] = useState(false)
+        const [disChem, setdischem] = useState(false)
+        const [disPhy, setdisphy] = useState(false)
+        const [disBio, setdisbio] = useState(false)
+        let temparr = []
 
         useEffect(() => {
 
@@ -305,11 +361,6 @@ const Admin = () => {
                 .then((response) => {
                     console.log(response.data[0]);
                     setObj(response.data[0])
-                })
-
-            axios.get("https://lmsapiv01.azurewebsites.net/api/course")
-                .then((response) => {
-                    setCourselist(response.data[0]);
                 })
         }, [])
 
@@ -326,32 +377,52 @@ const Admin = () => {
                             <tr>
                                 <th>Teacher ID</th>
                                 <th>Name</th>
-                                {courseList.map((course) => {
-                                    return (
-                                        <th>{course.CourseName}</th>
-                                    )
-                                })}
+                                <th>Maths</th>
+                                <th>Chem</th>
+                                <th>Phy</th>
+                                <th>Geo</th>
                             </tr>
                         </thead>
                         {obj.map((e) => {
+                            // { console.log(e) }
                             return (
                                 <tbody>
                                     <tr>
                                         <td class="ranklist-rank">{e.TeacherId}</td>
                                         <td class="ranklist-team">{e.FirstName + ' ' + e.LastName}</td>
+                                        <td class="ranklist-up-down">
+                                            <button className='linkselect' disabled={disMath} onClick={() => {
+                                                console.log(e.TeacherId);
+                                                // postMath
+                                                // setdismath(true);
+                                                axios.post("https://lmsapiv01.azurewebsites.net/api/teacher/courses", { TeacherId: e.TeacherId, CourseId: 2 }).then(result => { console.log(result.data) })
+                                            }}>Assign</button>
+                                        </td>
 
-                                        {courseList.map((course) => {
-                                            return (
-                                                <td class="ranklist-up-down">
-                                                    <button className='linkselect' onClick={() => {
-                                                        axios.post("https://lmsapiv01.azurewebsites.net/api/teacher/courses", { TeacherId: e.TeacherId, CourseId: course.CourseId }).then(result => { console.log(result.data) })
-                                                    }}>Assign</button>
-                                                </td>
-                                            )
-                                        })}
+                                        <td class="ranklist-up-down">
+                                            <button className='linkselect' disabled={disChem} onClick={() => {
+                                                // setdischem(true)
+                                                axios.post("https://lmsapiv01.azurewebsites.net/api/teacher/courses", { TeacherId: e.TeacherId, CourseId: 3 }).then(result => { console.log(result.data) })
+                                            }}>Assign</button>
+                                        </td>
+
+                                        <td class="ranklist-up-down">
+                                            <button className='linkselect' disabled={disPhy} onClick={() => {
+                                                // setdisphy(true)
+                                                axios.post("https://lmsapiv01.azurewebsites.net/api/teacher/courses", { TeacherId: e.TeacherId, CourseId: 1 }).then(result => { console.log(result.data) })
+                                            }}>Assign</button>
+                                        </td>
+
+                                        <td class="ranklist-up-down">
+                                            <button className='linkselect' disabled={disBio} onClick={() => {
+                                                // setdisbio(true)
+                                                axios.post("https://lmsapiv01.azurewebsites.net/api/teacher/courses", { TeacherId: e.TeacherId, CourseId: 4 }).then(result => { console.log(result.data) })
+                                            }}>Assign</button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             )
+
                         })}
                     </table>
                 </div>
@@ -366,6 +437,7 @@ const Admin = () => {
             {label === 1 ? (<StudentCourse />) : null}
             {label === 3 ? (<UserList />) : null}
             {label === 0 ? (<TeacherCourse />) : null}
+
         </div>
     )
 }

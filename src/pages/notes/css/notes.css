@@ -8,19 +8,28 @@
     padding-right: 50px;
     font-size: larger;
     margin-right: 100px;
+    margin:20px;
 }
 
 .buttonedu span {
     padding-top: 10px;
     float: left;
 }
-
-.subimg {
+.container9{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+}
+.sumimg1{
+    display:flex;
+    width:500px;
+}
+.subimg1 img{
     display: flex;
     flex-direction: column;
     margin-left: 30px;
     border-radius: 50%;
-    width: 500px;
+    border:10px solid red;
     height: 250px;
     margin-bottom: 40px;
 }

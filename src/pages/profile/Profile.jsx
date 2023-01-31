@@ -21,6 +21,8 @@ import 'hammerjs';
 import { useEffect } from 'react';
 import logo from '../../Images/logo-no-background.png'
 import { useNavigate } from 'react-router-dom';
+import { Oval } from 'react-loader-spinner';
+
 const Header_Menu = () => {
     // let porfile_pic_img = localStorage.getItem('login')
     const navigate = useNavigate();
@@ -100,7 +102,7 @@ const Navbar = () => {
         <div className="landing-navbar">
             <div className="landing-navbar-logo">
                 <button className='header-menu-tab' onClick={() => navigate("/")}>
-                    <img src={logo} height="50px" width="100px"/>
+                    <img src={logo} height="50px" width="100px" />
                 </button>
             </div>
             <div className="landing-navbar-links">
@@ -119,8 +121,12 @@ const Profile_Block = () => {
     const [image, setImage] = useState("");
     const [mobileNo, setmobileNo] = useState("");
     const [url, setUrl] = useState("");
+    const [loading, setLoading] = useState(false)
 
     const submitImage = () => {
+        setLoading(true)
+        // const [loading, setLoading] = useState(false)
+
         let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
         console.log(userid);
         let typeid = (JSON.parse(localStorage.getItem('login')).user.TypeId)
@@ -156,7 +162,10 @@ const Profile_Block = () => {
 
                 // console.log(sendData.Photo);
 
-                axios.post('https://lmsapiv01.azurewebsites.net/api/update/user', sendData).then(result => { console.log(result.data) });
+                axios.post('https://lmsapiv01.azurewebsites.net/api/update/user', sendData).then(result => {
+                    setLoading(false)
+                    console.log(result.data)
+                });
 
 
             }).catch((err) => {
@@ -165,6 +174,8 @@ const Profile_Block = () => {
     }
 
     useEffect(async () => {
+        setLoading(true)
+
         let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
         console.log(userid);
         // userid = "4";
@@ -172,6 +183,8 @@ const Profile_Block = () => {
         axios
             .get(url3)
             .then((response) => {
+                setLoading(false)
+
                 console.log(response.data[0][0])
                 // for (let i = 0; i < response.data[0].length; i++) {
                 setFirstName(response.data[0][0].FirstName);
@@ -191,6 +204,24 @@ const Profile_Block = () => {
 
     return (
         <div class="profile block">
+            <div>
+                {loading
+                    ? (
+                        <div className='Loading-Screen'>
+                            <Oval
+                                height={80}
+                                width={80}
+                                color="#4fa94d"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                                ariaLabel='oval-loading'
+                                secondaryColor="#4fa94d"
+                                strokeWidth={2}
+                                strokeWidthSecondary={2} />
+                        </div>)
+                    : null}
+            </div>
             <a class="add-button">
                 <label >
                     {/* <input type="file" class="icon entypo-plus scnd-font-color" onChange={(e) => setImage(e.target.files[0])} /> */}
@@ -250,6 +281,7 @@ const Graph = () => {
     //         fees: 8
     //     },
     // ];
+    const [loading, setLoading] = useState(false)
 
     const pdata = [
         {
@@ -317,6 +349,8 @@ const Graph = () => {
     })
 
     useEffect(async () => {
+        setLoading(true)
+
         let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
         // console.log(userid);
 
@@ -347,10 +381,30 @@ const Graph = () => {
                     // setGraphData(current => [...current, {}])
                 })
             })
+        setLoading(false)
+
     }, [])
     console.log(graph_data)
     return (
         <div className='graph-head'>
+            <div>
+                {loading
+                    ? (
+                        <div className='Loading-Screen'>
+                            <Oval
+                                height={80}
+                                width={80}
+                                color="#4fa94d"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                                ariaLabel='oval-loading'
+                                secondaryColor="#4fa94d"
+                                strokeWidth={2}
+                                strokeWidthSecondary={2} />
+                        </div>)
+                    : null}
+            </div>
             <h1 className="text-heading">
                 Performance Graph
             </h1>
@@ -386,7 +440,11 @@ const RankList = () => {
     ];
 
     const [obj, setObj] = useState([])
+    const [loading, setLoading] = useState(false)
+
     useEffect(async () => {
+        setLoading(true)
+
         let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
         // console.log(userid);
         setObj([])
@@ -412,11 +470,29 @@ const RankList = () => {
                 })
                 // console.log(temparr);
             })
-        // setObj(temparr);
+        setLoading(false)
     }, [])
 
     return (
         <div class="ranklist-container">
+            <div>
+                {loading
+                    ? (
+                        <div className='Loading-Screen'>
+                            <Oval
+                                height={80}
+                                width={80}
+                                color="#4fa94d"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                                ariaLabel='oval-loading'
+                                secondaryColor="#4fa94d"
+                                strokeWidth={2}
+                                strokeWidthSecondary={2} />
+                        </div>)
+                    : null}
+            </div>
             <header>
                 <br />
                 <h1>Rankings</h1>
@@ -454,10 +530,27 @@ const RankList = () => {
 const Profile = () => {
     // let login = JSON.parse(localStorage.getItem('login'));
     // console.log(login)
+    const [loading, setLoading] = useState(false)
     return (
         <div className='main-container'>
             <div className='container3'>
                 <Navbar />
+                {loading
+                    ? (
+                        <div className='Loading-Screen'>
+                            <Oval
+                                height={80}
+                                width={80}
+                                color="#4fa94d"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                                ariaLabel='oval-loading'
+                                secondaryColor="#4fa94d"
+                                strokeWidth={2}
+                                strokeWidthSecondary={2} />
+                        </div>)
+                    : null}
                 <Profile_Block />
                 <Graph />
                 <RankList />

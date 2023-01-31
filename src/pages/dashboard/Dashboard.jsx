@@ -11,7 +11,7 @@ import { render } from 'react-dom';
 import axios from 'axios';
 import logo from '../../Images/logo-no-background.png'
 import { useNavigate } from 'react-router-dom';
-
+import { Oval } from 'react-loader-spinner';
 const Header_Menu = () => {
 	// let porfile_pic_img = localStorage.getItem('login')
 	const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Header_Menu = () => {
 		<header class="block-institute">
 			<ul class="header-menu horizontal-list">
 				<li>
-					<Sidebar/>
+					<Sidebar />
 				</li>
 				<li>
 					<button className="header-menu-tab" onClick={() => navigate("/")}>
@@ -134,7 +134,7 @@ const Dashboard = () => {
 	const [upcoming, setupcoming] = useState(obj)
 	const [previous, setprevious] = useState(obj)
 	const navigate = useNavigate();
-
+	const [loading, setLoading] = useState(false)
 	let fullstamp = new Date().toJSON();
 	let ddate = new Date();
 	console.log(fullstamp)
@@ -145,6 +145,7 @@ const Dashboard = () => {
 
 	console.log(d2)
 	useEffect(() => {
+		setLoading(true)
 		let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
 		console.log(userid);
 		const url4 = "https://lmsapiv01.azurewebsites.net/api/studentschedule/" + userid;
@@ -152,6 +153,7 @@ const Dashboard = () => {
 		axios
 			.get(url4)
 			.then((response) => {
+				setLoading(false)
 				setupcoming(response.data[0])
 				setprevious(response.data[1]);
 			})
@@ -383,6 +385,22 @@ const Dashboard = () => {
 		<React.Fragment>
 			{/* <Navbar /> */}
 			<Header_Menu />
+			{loading
+				? (
+					<div className='Loading-Screen'>
+						<Oval
+							height={80}
+							width={80}
+							color="#4fa94d"
+							wrapperStyle={{}}
+							wrapperClass=""
+							visible={true}
+							ariaLabel='oval-loading'
+							secondaryColor="#4fa94d"
+							strokeWidth={2}
+							strokeWidthSecondary={2} />
+					</div>)
+				: null}
 			<div className="section-type-admin-dashboard">
 				<Tabs />
 				<div className="calendar">
@@ -391,7 +409,7 @@ const Dashboard = () => {
 							// console.log(date.getYear())
 							// console.log(parseInt(tests[0].Date.slice(0, 4)) - 1900);
 							return upcoming.map((test) => (
-								(view === 'month' && date.getDate() === parseInt(test.Date.slice(8, 10)) && date.getMonth() === (parseInt(test.Date.slice(5, 7)) - 1) && date.getYear() === (parseInt(test.Date.slice(0, 4)) - 1900)) ? <p className='DateContent' >{date.getDate()} <br /> Test Day <br />{(test.TestName)}</p> : null))
+								(view === 'month' && date.getDate() === parseInt(test.Date.slice(8, 10)) && date.getMonth() === (parseInt(test.Date.slice(5, 7)) - 1) && date.getYear() === (parseInt(test.Date.slice(0, 4)) - 1900)) ? <p className='DateContent' >{date.getDate()} <br />{(test.TestName)}</p> : null))
 						}} />
 				</div>
 			</div >

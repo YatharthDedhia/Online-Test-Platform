@@ -9,15 +9,15 @@ function ProtectedAdmin(props) {
         let loginType;
         if (login) {
             let loginType = JSON.parse(localStorage.getItem('login'))["user"].TypeId;
-            if (loginType === 0) {
-                navigate('/admin');
+            if (loginType === 1) {
+                navigate('/institute');
             }
             else if (loginType === 2) {
                 navigate('/dashboard');
             }
-            else if (loginType === 1) {
-                navigate('/institute');
-            }
+            // else if (loginType === 1) {
+            //     navigate('/institute');
+            // }
         }
         if (!login) {
             navigate('/landing')

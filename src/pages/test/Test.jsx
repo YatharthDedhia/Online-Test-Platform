@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import axios from 'axios';
 import './css/timer.css';
-
+import { Oval } from 'react-loader-spinner';
 const questions = [
   {
     questionText: 'What is the capital of France?',
@@ -76,10 +76,13 @@ const Test = () => {
   const [active, setActive] = useState(false);
   const [getduration, setduration] = useState(60);
   const [response, setResponse] = useState([])
+  const [loading, setLoading] = useState(false)
 
   console.log(paper)
 
   useEffect(() => {
+    setLoading(true)
+
     let papercode = localStorage.getItem('papercode').toString();
     // console.log(papercode);
     const getPaper = async () => {
@@ -144,9 +147,13 @@ const Test = () => {
 
     getPaper();
     // console.log(paper)
+    setLoading(false)
+
   }, []);
 
   const submitscore = () => {
+    setLoading(true)
+
     let student_response = "";
 
     for (let i = 1; i < paper.length; i++) {
@@ -168,7 +175,10 @@ const Test = () => {
       StudentResponse: student_response
     }
     console.log(sendData2);
-    axios.post("https://lmsapiv01.azurewebsites.net/api/studentresponse/", sendData2).then(result => { console.log(result.data) });
+    axios.post("https://lmsapiv01.azurewebsites.net/api/studentresponse/", sendData2).then(result => {
+      setLoading(false)
+      console.log(result.data)
+    });
   }
 
   let tempobj = {};
@@ -215,6 +225,22 @@ const Test = () => {
 
   return (
     <div className="timer-wrapper">
+      {loading
+        ? (
+          <div className='Loading-Screen'>
+            <Oval
+              height={80}
+              width={80}
+              color="#4fa94d"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+              ariaLabel='oval-loading'
+              secondaryColor="#4fa94d"
+              strokeWidth={2}
+              strokeWidthSecondary={2} />
+          </div>)
+        : null}
       {console.log(paper)};
       {quizLength >= 0 ? (
         <div className='quizz-app'>
@@ -253,7 +279,7 @@ const Test = () => {
           <div>
             <CountdownCircleTimer
               isPlaying
-              duration={localStorage.getItem('duration')*60}
+              duration={localStorage.getItem('duration') * 60}
               colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
               colorsTime={[60, 0.6 * 60, 0.3 * 60, 0]}
               onComplete={() => setShowScore(true)}

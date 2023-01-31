@@ -12,7 +12,7 @@ import lecture from '../../Images/lecture.jpg';
 import proctor1 from '../../Images/proctor1.jpg';
 import logo from '../../Images/logo-no-background.png'
 import { useNavigate } from 'react-router-dom';
-import { ProgressBar } from 'react-loader-spinner'
+import { Oval } from 'react-loader-spinner'
 
 const featureList = [
 	'Face Verification',
@@ -65,6 +65,8 @@ const Landing = () => {
 
 	const signInFunc = (e) => {
 		e.preventDefault();
+		setLoading(true);
+		console.log(loading)
 		const senddata = {
 
 			"UserName": username,
@@ -77,6 +79,9 @@ const Landing = () => {
 			.post('http://lmsapiv01.azurewebsites.net/login', senddata)
 			.then((response) => {
 				if (response.data.token) {
+					setLoading(false);
+					console.log(loading)
+
 					console.log(response.data)
 					localStorage.setItem("login", JSON.stringify(response.data));
 					window.location.reload();
@@ -104,6 +109,8 @@ const Landing = () => {
 			};
 
 			console.log(sendData);
+			setLoading(true);
+			console.log(loading)
 
 			axios
 				.post('http://lmsapiv01.azurewebsites.net/signup', sendData)
@@ -125,6 +132,9 @@ const Landing = () => {
 						.post('http://lmsapiv01.azurewebsites.net/login', senddata)
 						.then((response) => {
 							if (response.data.token) {
+								setLoading(false);
+								console.log(loading)
+
 								console.log(response.data)
 								localStorage.setItem("login", JSON.stringify(response.data));
 								window.location.reload();
@@ -150,22 +160,28 @@ const Landing = () => {
 	const [mobile, setMobile] = useState('');
 	const [type, setType] = useState("2");
 	const [confirm, setConfirm] = useState(0);
+	const [loading, setLoading] = useState(false)
 	let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 	return (
 		<React.Fragment>
 			<Navbar />
-			{/* <div className="loading-screen">
-				<ProgressBar
-					height="80"
-					width="80"
-					ariaLabel="progress-bar-loading"
-					wrapperStyle={{}}
-					wrapperClass="progress-bar-wrapper"
-					borderColor='#F4442E'
-					barColor='#51E5FF'
-				/>
-			</div> */}
+			{loading
+				? (
+					<div className='Loading-Screen'>
+						<Oval
+							height={80}
+							width={80}
+							color="#4fa94d"
+							wrapperStyle={{}}
+							wrapperClass=""
+							visible={true}
+							ariaLabel='oval-loading'
+							secondaryColor="#4fa94d"
+							strokeWidth={2}
+							strokeWidthSecondary={2} />
+					</div>)
+				: null}
 			<div className="section-type-landing-page">
 
 				<div className="section-fluid-main">
@@ -241,11 +257,11 @@ const Landing = () => {
 
 							<div class="selector">
 								<div class="selector-item">
-									<input type="radio" id="radio1" name="selector" value="2" class="selector-item_radio" onClick={(e) => setType(e.target.value)}/>
+									<input type="radio" id="radio1" name="selector" value="2" class="selector-item_radio" onClick={(e) => setType(e.target.value)} />
 									<label for="radio1" class="selector-item_label">Student</label>
 								</div>
 								<div class="selector-item">
-									<input type="radio" id="radio2" name="selector" value="1" class="selector-item_radio" onClick={(e) => setType(e.target.value)}/>
+									<input type="radio" id="radio2" name="selector" value="1" class="selector-item_radio" onClick={(e) => setType(e.target.value)} />
 									<label for="radio2" class="selector-item_label">Teacher</label>
 								</div>
 							</div>
@@ -258,16 +274,6 @@ const Landing = () => {
 							<Components.Title>Sign in</Components.Title>
 							<Components.Input type='text' placeholder='User Name' value={username} onChange={(e) => setUsername(e.target.value)} required />
 							<Components.Input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
-							<div class="selector1">
-								<div class="selector-item1">
-									<input type="radio" id="radio3" name="selector" value="2" class="selector-item_radio1" onClick={(e) => setType(e.target.value)} />
-									<label for="radio3" class="selector-item_label1">Student</label>
-								</div>
-								<div class="selector-item1">
-									<input type="radio" id="radio4" name="selector" value="1" class="selector-item_radio1" onClick={(e) => setType(e.target.value)} />
-									<label for="radio4" class="selector-item_label1">Teacher</label>
-								</div>
-							</div>
 							<Components.Button type="submit">Sign In</Components.Button>
 						</Components.Form>
 					</Components.SignInContainer>

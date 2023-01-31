@@ -5,7 +5,7 @@ import './css/ranklist.css';
 import './css/navbar.css';
 import axios from "axios";
 import logo from '../../Images/logo-no-background.png'
-
+import { Oval } from "react-loader-spinner";
 const Institute = () => {
   const [Question, setQuestion] = useState('');
   const [option1, setOption1] = useState('');
@@ -41,7 +41,8 @@ const Institute = () => {
   const [link2, setLink2] = useState("");
   const [link3, setLink3] = useState("");
   const [link4, setLink4] = useState("");
-  const [label, setlabel] = useState(3)
+  const [label, setlabel] = useState(3);
+  const [loading, setLoading] = useState(false);
 
   const Header_Menu = () => {
     // let porfile_pic_img = localStorage.getItem('login')
@@ -159,7 +160,7 @@ const Institute = () => {
     e.preventDefault();
     // if (password == confpassword) {
     // setConfirm(1);
-
+    setLoading(true)
     const sendData = {
       "Question": Question,
       "Marks": totalMarks,
@@ -182,7 +183,10 @@ const Institute = () => {
 
     console.log(sendData);
 
-    axios.post('https://lmsapiv01.azurewebsites.net/api/answers', sendData).then(result => { console.log(result.data) });
+    axios.post('https://lmsapiv01.azurewebsites.net/api/answers', sendData).then(result => {
+      setLoading(false)
+      console.log(result.data)
+    });
     // }
     // else {
     // setConfirm(1);
@@ -191,6 +195,7 @@ const Institute = () => {
 
   const postExam = (e) => {
     e.preventDefault();
+    setLoading(true)
     const sendData1 = {
       "CourseId": parseInt(courseCode),
       "TeacherID": 7,
@@ -205,13 +210,17 @@ const Institute = () => {
 
     console.log(sendData1);
 
-    axios.post('https://lmsapiv01.azurewebsites.net/api/questionpaper', sendData1).then(result => { console.log(result.data) });
+    axios.post('https://lmsapiv01.azurewebsites.net/api/questionpaper', sendData1).then(result => {
+      setLoading(false)
+      console.log(result.data)
+    });
 
   };
   const postCourse1 = (e) => {
     e.preventDefault();
     // if (password == confpassword) {
     // setConfirm(1);
+    setLoading(true)
 
     const sendData1 = {
       "CourseName": courseName1,
@@ -221,13 +230,17 @@ const Institute = () => {
 
     console.log(sendData1);
 
-    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => { console.log(result.data) });
+    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => {
+      setLoading(false)
+      console.log(result.data)
+    });
 
   };
   const postCourse2 = (e) => {
     e.preventDefault();
     // if (password == confpassword) {
     // setConfirm(1);
+    setLoading(true)
 
     const sendData1 = {
       "CourseName": courseName2,
@@ -237,13 +250,17 @@ const Institute = () => {
 
     console.log(sendData1);
 
-    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => { console.log(result.data) });
+    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => {
+      setLoading(false)
+      console.log(result.data)
+    });
 
   };
   const postCourse3 = (e) => {
     e.preventDefault();
     // if (password == confpassword) {
     // setConfirm(1);
+    setLoading(true)
 
     const sendData1 = {
       "CourseName": courseName3,
@@ -253,13 +270,17 @@ const Institute = () => {
 
     console.log(sendData1);
 
-    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => { console.log(result.data) });
+    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => {
+      setLoading(false)
+      console.log(result.data)
+    });
 
   };
   const postCourse4 = (e) => {
     e.preventDefault();
     // if (password == confpassword) {
     // setConfirm(1);
+    setLoading(true)
 
     const sendData1 = {
       "CourseName": courseName4,
@@ -269,7 +290,10 @@ const Institute = () => {
 
     console.log(sendData1);
 
-    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => { console.log(result.data) });
+    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => {
+      setLoading(false)
+      console.log(result.data)
+    });
 
   };
 
@@ -292,11 +316,11 @@ const Institute = () => {
     // var userid_storage = "4"
 
     useEffect(async () => {
+      setLoading(true)
       let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
       console.log(userid);
       axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/" + userid)
         .then((response) => {
-
           response.data[0].map((f) => {
             var num = f.PaperCode
             var str = num.toString()
@@ -305,6 +329,7 @@ const Institute = () => {
               .get("https://lmsapiv01.azurewebsites.net/api/totalmarksallstuds/" + str)
               .then((response2) => {
                 response2.data[0].map((res) => {
+
                   setObj(current => [...current, res])
                 })
               })
@@ -313,6 +338,8 @@ const Institute = () => {
               });
           })
         })
+      setLoading(false)
+
     }, [])
 
     return (
@@ -364,6 +391,8 @@ const Institute = () => {
     const [schedule, setSchedule] = useState([])
 
     useEffect(async () => {
+      setLoading(true)
+
       let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
 
       axios.get("https://lmsapiv01.azurewebsites.net/api/teacher/courses/" + userid)
@@ -383,6 +412,7 @@ const Institute = () => {
               console.log(err);
             });
         })
+      setLoading(false)
 
     }, [])
 
@@ -421,6 +451,8 @@ const Institute = () => {
     const [temp, setTemp] = useState(0)
 
     useEffect(async () => {
+      setLoading(true)
+
       const getPaper = async () => {
         // setPaper(test)
         let papercode = localStorage.getItem('bankcode').toString();
@@ -478,6 +510,8 @@ const Institute = () => {
       }
       await getPaper();
       setTemp(1)
+      setLoading(false)
+
     }, [])
 
     console.log(paper)
@@ -518,8 +552,13 @@ const Institute = () => {
                       <td class="ranklist-up-down">
                         <button className='linkselect' onClick={() => {
                           // console.log(e.StudentId);
+                          setLoading(true)
+
                           let papercode = localStorage.getItem("Qcode")
-                          axios.post("https://lmsapiv01.azurewebsites.net/api/questionpaper/question", { PaperCode: papercode, QuestNo: e.QuestNo }).then(result => { console.log(result.data) })
+                          axios.post("https://lmsapiv01.azurewebsites.net/api/questionpaper/question", { PaperCode: papercode, QuestNo: e.QuestNo }).then(result => {
+                            setLoading(false)
+                            console.log(result.data)
+                          })
                         }}>Add</button>
                       </td>
 
@@ -538,6 +577,23 @@ const Institute = () => {
   return (
     <div>
       <Header_Menu />
+      {loading
+        ? (
+          <div className='Loading-Screen'>
+            <Oval
+              height={80}
+              width={80}
+              color="#4fa94d"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+              ariaLabel='oval-loading'
+              secondaryColor="#4fa94d"
+              strokeWidth={2}
+              strokeWidthSecondary={2} />
+          </div>)
+        : null}
+
       {label === 0 ? (
         <div>
           <form onSubmit={postData} className="container4">

@@ -5,42 +5,9 @@ import './css/ranklist.css';
 import './css/navbar.css';
 import axios from "axios";
 import logo from '../../Images/logo-no-background.png'
+import { Oval } from "react-loader-spinner";
 
 const Admin = () => {
-    const [Question, setQuestion] = useState('');
-    const [option1, setOption1] = useState('');
-    const [option2, setOption2] = useState('');
-    const [option3, setOption3] = useState('');
-    const [option4, setOption4] = useState('');
-    const [isCorrect1, setisCorrect1] = useState(false);
-    const [isCorrect2, setisCorrect2] = useState(false);
-    const [isCorrect3, setisCorrect3] = useState(false);
-    const [isCorrect4, setisCorrect4] = useState(false);
-    const [weightage1, setWeightage1] = useState(0);
-    const [weightage2, setWeightage2] = useState(0);
-    const [weightage3, setWeightage3] = useState(0);
-    const [weightage4, setWeightage4] = useState(0);
-    const [totalMarks, setTotalMarks] = useState(0);
-    const [testName, setTestName] = useState('');
-    const [courseName, setCourseName] = useState('');
-    const [courseName1, setCourseName1] = useState('');
-    const [courseName2, setCourseName2] = useState('');
-    const [courseName3, setCourseName3] = useState('');
-    const [courseName4, setCourseName4] = useState('');
-    const [courseCode, setCourseCode] = useState(0);
-    const [courseCode1, setCourseCode1] = useState(0);
-    const [courseCode2, setCourseCode2] = useState(0);
-    const [courseCode3, setCourseCode3] = useState(0);
-    const [courseCode4, setCourseCode4] = useState(0);
-    const [date, setDate] = useState(null);
-    const [startTime, setStartTime] = useState("");
-    const [endTime, setEndTime] = useState("");
-    const [duration, setDuration] = useState(0);
-    const [link, setLink] = useState("");
-    const [link1, setLink1] = useState("");
-    const [link2, setLink2] = useState("");
-    const [link3, setLink3] = useState("");
-    const [link4, setLink4] = useState("");
     const [label, setlabel] = useState(3)
 
     const Header_Menu = () => {
@@ -168,6 +135,7 @@ const Admin = () => {
 
             axios.get("https://lmsapiv01.azurewebsites.net/api/user")
                 .then((response) => {
+
                     console.log(response.data[0]);
                     setObj(response.data[0])
                 })
@@ -220,10 +188,12 @@ const Admin = () => {
                                             <td class="ranklist-up-down">{e.EmailId}</td>
                                             <td class="ranklist-up-down">
                                                 <button className='linkselect'
-                                                    onClick={
+                                                    onClick={() => {
                                                         e.TypeId === 2
                                                             ? axios.post("https://lmsapiv01.azurewebsites.net/api/activate/student", { UserId: e.UserId }).then(result => { console.log(result.data) })
                                                             : axios.post("https://lmsapiv01.azurewebsites.net/api/activate/teacher", { UserId: e.UserId }).then(result => { console.log(result.data) })
+                                                    }
+
                                                     }>Activate</button>
                                             </td>
                                         </tr>
@@ -433,6 +403,7 @@ const Admin = () => {
     return (
         <div>
             <Header_Menu />
+
             {/* <Navbar /> */}
             {label === 1 ? (<StudentCourse />) : null}
             {label === 3 ? (<UserList />) : null}

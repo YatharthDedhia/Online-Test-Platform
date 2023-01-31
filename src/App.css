@@ -4,3 +4,9 @@ body,
 html {
     font-family: 'Quicksand', sans-serif;
 }
+
+.Loading-Screen{
+    position: absolute;
+    /* right: -100px; */
+    top: 0px;
+}

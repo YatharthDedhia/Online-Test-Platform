@@ -82,9 +82,9 @@ const Notes = () => {
                   <a className="subimg1" href={e.Syllabus}>
                   <img src={e.Image}/>
                   </a>
-                  <a src={e.Link}>
-                  <div className="buttonlink"><button className="buttonedu"><span className="icon fontawesome-pencil scnd-font-color"></span>{e.CourseName}</button></div>
-                  </a>
+                  {/* <a href={e.Link}> */}
+                  <div className="buttonlink"><a href={e.Notes}><button className="buttonedu"><span className="icon fontawesome-pencil scnd-font-color"></span>{e.CourseName}</button></a></div>
+                  {/* </a> */}
                   </div>
                 // </div>
               )

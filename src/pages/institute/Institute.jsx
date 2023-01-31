@@ -54,10 +54,23 @@ const Institute = () => {
             <button className="header-menu-tab" onClick={() => { setlabel(3) }} href="#2"><span className="icon fontawesome-trophy scnd-font-color"></span>Rank List</button>
           </li>
           <li>
-            <button className="header-menu-tab" onClick={() => { setlabel(0) }}><span className="icon fontawesome-envelope scnd-font-color"></span>Make Question Paper</button>
+            <button className="header-menu-tab" onClick={() => { setlabel(0) }}><span className="icon fontawesome-envelope scnd-font-color"></span>Make Question Bank</button>
           </li>
           <li>
             <button className="header-menu-tab" onClick={() => { setlabel(2) }}><span className="icon fontawesome-pencil scnd-font-color"></span>Assign Notes</button>
+          </li>
+          <li>
+            <button className="header-menu-tab" onClick={() => { setlabel(4) }}><span className="icon fontawesome-pencil scnd-font-color"></span>Make Paper</button>
+          </li>
+          <li>
+            <button className="header-menu-tab" onClick={() => {
+              localStorage.removeItem("login");
+              localStorage.removeItem("duration");
+              localStorage.removeItem("papercode");
+              localStorage.removeItem("bankcode");
+              window.location.reload();
+
+            }}><span className="icon fontawesome-pencil scnd-font-color"></span>LogOut</button>
           </li>
         </ul>
         <div className="profile-menu">
@@ -112,6 +125,7 @@ const Institute = () => {
           localStorage.removeItem("login");
           localStorage.removeItem("duration");
           localStorage.removeItem("papercode");
+          localStorage.removeItem("bankcode");
 
           window.location.reload();
           // console.log("loggedout")
@@ -170,19 +184,16 @@ const Institute = () => {
 
   const postExam = (e) => {
     e.preventDefault();
-    // if (password == confpassword) {
-    // setConfirm(1);
-
     const sendData1 = {
-      "CourseId": 2,
-      "TeacherID": 1,
-      "TestName": "trialtestname1",
-      "CourseName": "courseName",
-      "Date": "2023-10-14T00:00:00.000Z",
-      "StartTime": "1970-01-01T08:00:00.000Z",
-      "EndTime": "1970-01-01T11:00:00.000Z",
-      "Link": "jshDJVHD",
-      "Duration": 3,
+      "CourseId": parseInt(courseCode),
+      "TeacherID": 5,
+      "TestName": testName,
+      "CourseName": courseName,
+      "Date": date,
+      "StartTime": startTime,
+      "EndTime": endTime,
+      "Link": link,
+      "Duration": duration,
     };
 
     console.log(sendData1);
@@ -253,94 +264,6 @@ const Institute = () => {
 
     axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => { console.log(result.data) });
 
-  };
-
-  const ScheduleExam = (e) => {
-    return (
-      <form onSubmit={postExam} className="container4">
-        <label>
-          Test Name:
-          <input
-            className="TestName"
-            name="tname"
-            type="text"
-            //   value={this.state.numberOfGuests}
-            onChange={e => setTestName(e.target.value)}
-            required />
-        </label>
-        <label>
-          Course Name:
-          <input
-            className="Course_Name"
-            name="course_name"
-            type="text"
-            //   value={this.state.numberOfGuests}
-            onChange={e => setCourseName(e.target.value)}
-            required />
-        </label>
-        <label>
-          Course Code:
-          <input
-            className="Course_Code"
-            name="course_code"
-            type="text"
-            //   value={this.state.numberOfGuests}
-            onChange={e => setCourseCode(e.target.value)}
-            required />
-        </label>
-        <label>
-          Date:
-          <input
-            className="Date"
-            name="date"
-            type="text"
-            //   value={this.state.numberOfGuests}
-            onChange={e => setDate(e.target.value)}
-            required />
-        </label>
-        <label>
-          Start Time:
-          <input
-            className="Start"
-            name="start"
-            type="text"
-            //   value={this.state.numberOfGuests}
-            onChange={e => setStartTime(e.target.value)}
-            required />
-        </label>
-        <label>
-          End Time:
-          <input
-            className="End"
-            name="end"
-            type="text"
-            //   value={this.state.numberOfGuests}
-            onChange={e => setEndTime(e.target.value)}
-            required />
-        </label>
-        <label>
-          Duration in Hourss:
-          <input
-            className="TestName"
-            name="tname"
-            type="text"
-            //   value={this.state.numberOfGuests}
-            onChange={e => setDuration(e.target.value)}
-            required />
-        </label>
-        <label>
-          Link:
-          <input
-            className="Link"
-            name="link"
-            type="text"
-            //   value={this.state.numberOfGuests}
-            onChange={e => setLink(e.target.value)}
-            required />
-        </label>
-        <button className='bubbly-button2' type="submit">Submit</button>
-      </form>
-    );
   };
 
   const RankList = () => {
@@ -424,10 +347,190 @@ const Institute = () => {
     )
   }
 
+  const SeeSchedule = () => {
+    const [obj, setObj] = useState([
+      {
+        "PaperCode": 4,
+        "TestName": "Angles Test 2"
+      }
+    ])
+    const [schedule, setSchedule] = useState([])
+
+    useEffect(async () => {
+      let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
+
+      axios.get("https://lmsapiv01.azurewebsites.net/api/teacher/courses/" + userid)
+        .then((response) => {
+          response.data[0].map((course) => {
+            axios.get("https://lmsapiv01.azurewebsites.net/api/qplist/" + String(course.CourseId))
+              .then((res) => {
+                res.data[0].map((r) => {
+                  setSchedule(current => [...current, r])
+                  schedule.push(r)
+                  console.log(schedule)
+                  setObj(schedule)
+                })
+              })
+          })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+
+    }, [])
+
+    console.log(obj)
+    return (
+      obj.map((test) => {
+        return (
+          <div>
+            <button onClick={((e) => {
+              setlabel(5);
+              localStorage.setItem("bankcode", test.CourseID);
+              localStorage.setItem("Qcode", test.PaperCode);
+            })}>{test.TestName}</button>
+          </div>
+        )
+      })
+    )
+  }
+
+  const SelectQuestions = () => {
+    const test = [
+      {
+        questionText: 'Dummy Question',
+        Difficulty: 0,
+        Marks: 0,
+        QuestNo: 0,
+        answerOptions: [
+          { answerText: 'Option 1', isCorrect: false },
+          { answerText: 'Option 2', isCorrect: false },
+          { answerText: 'Option 3', isCorrect: true },
+          { answerText: 'Option 4', isCorrect: false },
+        ],
+      }
+    ];
+    const [paper, setPaper] = useState(test)
+    const [temp, setTemp] = useState(0)
+
+    useEffect(async () => {
+      const getPaper = async () => {
+        // setPaper(test)
+        let papercode = localStorage.getItem('bankcode').toString();
+        const url2 = "https://lmsapiv01.azurewebsites.net/api/qbaf/" + papercode;
+        await axios
+          .get(url2)
+          .then((response) => {
+
+            for (let i = 0; i < response.data[0].length; i += 4) {
+              let tempobj1 = {}
+
+              let tempobj21 = {}
+              let tempobj22 = {}
+              let tempobj23 = {}
+              let tempobj24 = {}
+
+              let temparr = []
+
+              tempobj1["CourseId"] = response.data[0][i].CourseId;
+              tempobj1["QuestNo"] = response.data[0][i].QuestNo;
+              tempobj1["Marks"] = response.data[0][i].Marks;
+              tempobj1["Difficulty"] = response.data[0][i].Difficulty;
+              tempobj1["AnswerId"] = response.data[0][i].AnswerId;
+              tempobj1["Weightage"] = response.data[0][i].Weightage;
+              tempobj1["questionText"] = response.data[0][i].Question;
+
+              tempobj21["answerText"] = response.data[0][i].Answer;
+              tempobj22["answerText"] = response.data[0][i + 1].Answer;
+              tempobj23["answerText"] = response.data[0][i + 2].Answer;
+              tempobj24["answerText"] = response.data[0][i + 3].Answer;
+
+              tempobj21["isCorrect"] = response.data[0][i].isCorrect;
+              tempobj22["isCorrect"] = response.data[0][i + 1].isCorrect;
+              tempobj23["isCorrect"] = response.data[0][i + 2].isCorrect;
+              tempobj24["isCorrect"] = response.data[0][i + 3].isCorrect;
+
+              tempobj21["selected"] = false
+              tempobj22["selected"] = false
+              tempobj23["selected"] = false
+              tempobj24["selected"] = false
+
+              temparr.push(tempobj21)
+              temparr.push(tempobj22)
+              temparr.push(tempobj23)
+              temparr.push(tempobj24);
+
+              tempobj1["answerOptions"] = temparr;
+              paper.push(tempobj1);
+            }
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+      await getPaper();
+      setTemp(1)
+    }, [])
+
+    console.log(paper)
+    return (
+      <div class="ranklist-container-institute">
+        <header>
+          <br />
+          <h1>Question Bank</h1>
+          <br />
+        </header>
+        <div class="ranklist-wrapper-institute">
+          <table>
+            <thead>
+              <tr>
+                <th>Question No</th>
+                <th>Question Text</th>
+                <th>Marks</th>
+                <th>Option1</th>
+                <th>Option2</th>
+                <th>Option3</th>
+                <th>Option4</th>
+                <th>Add to Paper</th>
+              </tr>
+            </thead>
+            {paper.map((e) => {
+              return (
+                <tbody>
+                  {e.QuestNo != 0 ? (
+                    <tr>
+                      <td class="ranklist-rank">{e.QuestNo}</td>
+                      <td class="ranklist-rank">{e.questionText}</td>
+                      <td class="ranklist-team">{e.Difficulty}</td>
+                      {e.answerOptions.map((opt) => {
+                        return (
+                          <td class="ranklist-team">{opt.answerText}</td>
+                        )
+                      })}
+                      <td class="ranklist-up-down">
+                        <button className='linkselect' onClick={() => {
+                          // console.log(e.StudentId);
+                          let papercode = localStorage.getItem("Qcode")
+                          axios.post("https://lmsapiv01.azurewebsites.net/api/questionpaper/question", { PaperCode: papercode, QuestNo: e.QuestNo }).then(result => { console.log(result.data) })
+                        }}>Add</button>
+                      </td>
+
+                    </tr>
+                  ) : null}
+                </tbody>
+              )
+            })}
+          </table>
+        </div>
+      </div>
+
+    )
+  }
+
   return (
     <div>
       <Header_Menu />
-      {/* <Navbar /> */}
       {label === 0 ? (
         <div>
           <form onSubmit={postData} className="container4">
@@ -588,7 +691,6 @@ const Institute = () => {
           </form>
         </div>
       ) : null}
-
       {label === 1 ? (
         <div>
           <form onSubmit={postExam} className="container4">
@@ -702,7 +804,7 @@ const Institute = () => {
                 onChange={e => setCourseCode1(e.target.value)}
                 required />
             </label>
-            
+
             <label>
               Link 1:
               <input
@@ -736,7 +838,7 @@ const Institute = () => {
                 onChange={e => setCourseCode2(e.target.value)}
                 required />
             </label>
-            
+
             <label>
               Link 2:
               <input
@@ -770,7 +872,7 @@ const Institute = () => {
                 onChange={e => setCourseCode3(e.target.value)}
                 required />
             </label>
-            
+
             <label>
               Link 3:
               <input
@@ -804,7 +906,7 @@ const Institute = () => {
                 onChange={e => setCourseCode4(e.target.value)}
                 required />
             </label>
-            
+
             <label>
               Link 4:
               <input
@@ -819,6 +921,8 @@ const Institute = () => {
           </form>
         </div>
       ) : null}
+      {label === 4 ? (<SeeSchedule />) : null}
+      {label === 5 ? (<SelectQuestions />) : null}
     </div>
   )
 }

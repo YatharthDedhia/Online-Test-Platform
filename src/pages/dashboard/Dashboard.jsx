@@ -67,7 +67,7 @@ const Sidebar = () => {
 				<span></span>
 				<ul id="menu">
 					<a href="#"><li>Announcements</li></a>
-					<a href="#"><li>Homework</li></a>
+					<a href="/notes"><li>Homework</li></a>
 				</ul>
 			</div>
 		</nav>
@@ -96,8 +96,14 @@ const Dashboard = () => {
 	const navigate = useNavigate();
 
 	let fullstamp = new Date().toJSON();
+	let ddate = new Date();
+	console.log(fullstamp)
 	var d1 = Date.parse(fullstamp)
+	var h1 = ddate.getHours()
 
+	var d2 = Date.parse(String(ddate.getFullYear()) + "-" + String(ddate.getMonth() + 1) + "-" + String(ddate.getDate()) + "T" + String(ddate.getHours()) + ":" + String(ddate.getMinutes) + ":" + String(ddate.getSeconds))
+
+	console.log(d2)
 	useEffect(() => {
 		let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
 		console.log(userid);
@@ -120,13 +126,15 @@ const Dashboard = () => {
 		let end = test.EndTime;
 
 		let start_time = test_date + "T" + start;
+		console.log(Date.parse(start_time))
+		console.log(d1)
 		let end_time = test_date + "T" + end;
 
 		test["mode"] = "inactive";
-		if (Date.parse(start_time) < d1 && Date.parse(end_time) > d1) {
-			test["mode"] = "active";
-		}
-		if (Date.parse(test.Date) > d1) {
+		// if (Date.parse(start_time) < d2 && Date.parse(end_time) > d2) {
+		test["mode"] = "active";
+		// }
+		if (Date.parse(test.Date) > d2) {
 
 			test["status"] = "unattempted";
 			console.log("unattempted")
@@ -217,12 +225,7 @@ const Dashboard = () => {
 														<button className='linkselect' onClick={() => {
 															localStorage.setItem("papercode", test.PaperCode);
 															localStorage.setItem("duration", test.Duration);
-															// if () {
-															// 	navigate("/test");
-															// }
-															// else {
-															// 	console.log("inactive");
-															// }
+															navigate("/test");
 														}}>
 															{test.Link}
 														</button>

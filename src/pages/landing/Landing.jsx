@@ -87,7 +87,7 @@ const Landing = () => {
 
 	const signUpFunc = (e) => {
 		e.preventDefault();
-		if (password == confpassword) {
+		if ((password == confpassword) && re.test(email)) {
 			const sendData = {
 				"UserName": username,
 				"Password": password,
@@ -150,6 +150,8 @@ const Landing = () => {
 	const [mobile, setMobile] = useState('');
 	const [type, setType] = useState("2");
 	const [confirm, setConfirm] = useState(0);
+	let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 	return (
 		<React.Fragment>
 			<Navbar />
@@ -214,25 +216,40 @@ const Landing = () => {
 					<Components.SignUpContainer signinIn={signIn}>
 						<Components.Form onSubmit={signUpFunc}>
 							<Components.Title>Create Account</Components.Title>
+							{confirm
+								? (
+									<h1 className='ReEnter'>Re-Enter Details</h1>
+								)
+								: null}
 							<Components.Input type='text' placeholder='First Name' value={firstname} onChange={(e) => setFirstName(e.target.value)} required />
 							<Components.Input type='text' placeholder='Last Name' value={lastname} onChange={(e) => setLastName(e.target.value)} required />
-							<Components.Input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+							{email == ''
+								? null
+								: ((re.test(email))
+									? null
+									: (<h1 className='ReEnter'>Enter valid email</h1>))
+							}
+							<Components.Input type='email' placeholder='Email' value={email} onChange={(e) => { setEmail(e.target.value) }} required />
 							<Components.Input type='number' placeholder='Mobile No.' value={mobile} onChange={(e) => setMobile(e.target.value)} required />
 							<Components.Input type='text' placeholder='User Name' value={username} onChange={(e) => setUsername(e.target.value)} required />
-
 							<Components.Input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
+							{password === confpassword
+								? null
+								: (<h1 className='ReEnter'>Enter same password</h1>)
+							}
 							<Components.Input type='password' placeholder='Confirm Password' value={confpassword} onChange={(e) => setConfPassword(e.target.value)} required />
+
 							<div class="selector">
 								<div class="selector-item">
-									<input type="radio" id="radio1" name="selector" value="2" class="selector-item_radio" onClick={(e) => setType(e.target.value)} />
+									<input type="radio" id="radio1" name="selector" value="2" class="selector-item_radio" onClick={(e) => setType(e.target.value)}/>
 									<label for="radio1" class="selector-item_label">Student</label>
 								</div>
 								<div class="selector-item">
-									<input type="radio" id="radio2" name="selector" value="1" class="selector-item_radio" onClick={(e) => setType(e.target.value)} />
-									<label for="radio2" class="selector-item_label">Institute</label>
+									<input type="radio" id="radio2" name="selector" value="1" class="selector-item_radio" onClick={(e) => setType(e.target.value)}/>
+									<label for="radio2" class="selector-item_label">Teacher</label>
 								</div>
 							</div>
-							<Components.Button type="submit" >Sign Up</Components.Button>
+							<Components.Button type="submit">Sign Up</Components.Button>
 						</Components.Form>
 					</Components.SignUpContainer>
 
@@ -248,7 +265,7 @@ const Landing = () => {
 								</div>
 								<div class="selector-item1">
 									<input type="radio" id="radio4" name="selector" value="1" class="selector-item_radio1" onClick={(e) => setType(e.target.value)} />
-									<label for="radio4" class="selector-item_label1">Institute</label>
+									<label for="radio4" class="selector-item_label1">Teacher</label>
 								</div>
 							</div>
 							<Components.Button type="submit">Sign In</Components.Button>

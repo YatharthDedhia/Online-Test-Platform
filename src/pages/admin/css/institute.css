@@ -1,0 +1,340 @@
+input {
+	padding-left: 5px;
+	padding-top: 19px;
+	margin: 5px;
+}
+
+.Course_Code,
+.Question,
+.tmarks {
+	display: block;
+	background-color: #000000;
+	border-radius: 8px;
+	color: #fff;
+	margin-top: 10px;
+    margin-bottom: 22px;
+}
+.container5{
+	position: relative;
+	/* top: 100px;
+	left: 0%; */
+	/* display:flex; */
+	/* flex-direction: row; */
+	z-index: 0;
+	width: 300px;
+	height: 375px;
+	color: white;
+	margin: auto;
+	padding: 30px;
+	/* background: transparent; */
+	background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+	background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+	background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+	box-sizing: border-box;
+	/* box-shadow: 0 15px 25px grey; */
+	box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+
+}
+.container7{
+	margin-top: 90px;
+	 display:flex;
+	/* background-color: red; */
+	flex: 1 1 1 1;
+}
+.container4 {
+	position: relative;
+	top: 100px;
+	left: 0%;
+	/* display:flex; */
+	z-index: 0;
+	width: 1000px;
+	height: 750px;
+	/* background: transparent; */
+	background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+	background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+	background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+	box-sizing: border-box;
+	/* box-shadow: 0 15px 25px grey; */
+	box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+
+	border-radius: 5px;
+	margin: auto;
+	padding: 15px;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+
+header {
+	height: 80px;
+}
+
+.header-menu {
+	font-size: 17px;
+	line-height: 80px;
+}
+
+.header-menu li {
+	position: relative;
+	-webkit-transform: translateZ(0);
+	/** To avoid a flash when hover messages **/
+}
+
+.header-menu-tab {
+	background: #50597b;
+	border-bottom: 4px solid #11a8ab;
+	border-right: 4px solid #11a8ab;
+	padding: 0 27px;
+	display: block;
+	line-height: 74px;
+	font-size: 17px;
+	color: white;
+
+}
+
+.header-menu-tab:hover {
+	/* background: #50597b; */
+	/* border-bottom: 4px solid #11a8ab; */
+	text-decoration: none;
+	-webkit-transition: background .3s;
+	transition: background .3s;
+}
+
+.header-menu-tab .icon {
+	padding-right: 15px;
+}
+
+.header-menu-number {
+	position: absolute;
+	line-height: 22px;
+	padding: 0 6px;
+	font-weight: 700;
+	background: #e64c65;
+	border-radius: 100%;
+	top: 15px;
+	right: 2px;
+	-webkit-transition: all .3s linear;
+	transition: all .3s linear;
+}
+
+.header-menu li:hover .header-menu-number {
+	text-decoration: none;
+	-webkit-transform: rotate(360deg);
+	transform: rotate(360deg);
+
+}
+
+.profile-menu {
+	float: right;
+	height: 80px;
+	padding-right: 20px;
+	background-color: black;
+}
+
+.profile-menu p {
+	font-size: 17px;
+	display: inline-block;
+	line-height: 76px;
+	margin: 0;
+	padding-right: 10px;
+}
+
+.profile-menu a {
+	padding-left: 5px;
+}
+
+.profile-menu a:hover {
+	text-decoration: none;
+}
+
+.small-profile-picture {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+/** CONTAINERS **/
+/* .container {
+		float: left;
+		width: 300px;
+	} */
+.block-institute {
+	margin-bottom: 25px;
+	background: black;
+	/* border-radius: 5px; */
+	width: 100%;
+	color: white;
+}
+
+/* .Question {
+	border-radius: 0rem;
+	display: block;
+	margin-left: 0px;
+	width: 100%;
+	border: none;
+} */
+
+.Questionno {
+	border-radius: 0rem;
+	display: block;
+	border: none;
+	margin-left: 0px;
+}
+
+
+.opt {
+	/* position:relative; */
+	display: inline-block;
+	flex-direction: row;
+	flex: 1 1 1;
+	height: 55px;
+	width: 171px;
+	background: black;
+	
+}
+
+.weightage {
+	/* position:relative; */
+	display: inline-block;
+	flex-direction: row;
+	flex: 1 1 1;
+	width: 145px;
+	height: 55px;
+}
+
+/* .correct1 {
+	position: relative;
+	display: flex;
+	justify-content: space-around;
+	border-radius: 9999px;
+} */
+
+
+.institute-navbar-button {
+	background: transparent;
+	color: white;
+	padding-bottom: 14px;
+	font-size: 15px;
+}
+
+.institute-navbar-logo img{
+	height: 60px;
+	width: auto;
+}
+
+.institute-navbar-button:hover {
+	/* color: #222; */
+	background-color: black;
+}
+
+.bubbly-button2 {
+	display: block;
+	font-size: 1em;
+	padding: 1em 2em;
+	/* margin-top: -10px;
+	margin-bottom: 60px;
+	margin-left: auto;
+	margin-right: auto; */
+	margin-left:60px;
+	align-items: center;
+	background-color: #00008b;
+	color: #fff;
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+	position: absolute;
+	/* top: 700px;
+	right: 450px; */
+}
+.bubbly-button3 {
+	display: block;
+	font-size: 1em;
+	padding: 1em 2em;
+	margin-top: -10px;
+	margin-bottom: 60px;
+	margin-left: auto;
+	margin-right: auto;
+	align-items: center;
+	background-color: #00008b;
+	color: #fff;
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+	position: absolute;
+	top: 700px;
+	right: 450px;
+}
+.container6 {
+	/* width: 100%; */
+	/* width:100px; */
+	/* height: 100%; */
+	display: inline-block;
+	margin: 10px;
+	flex-direction: row;
+	flex: 1 1 1 1;
+	width: 140px;
+	justify-content: center;
+	align-items: center;
+}
+
+.radio_container {
+	display: flex;
+    /* display: inline-block; */
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000000;
+    width: 153px;
+    height: 47px;
+    border-radius: 9999px;
+    box-shadow: inset 0.5px 0.5px 2px 0 rgb(0 0 0 / 15%);
+}
+
+.correct1,
+.correct2,
+.correct3,
+.correct4 {
+	display: inline-block;
+	flex-direction: row;
+	flex: 1 1 1 1;
+	width: 140px;
+}
+
+input[type="radio"] {
+	appearance: none;
+	display: none;
+
+}
+
+.label1,
+.label2,
+.label3,
+.label4 {
+	font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    width: 67px;
+    height: 40px;
+    text-align: center;
+    border-radius: 9999px;
+    overflow: hidden;
+    transition: linear 0.3s;
+    color: #ffffffdd;
+}
+
+input[type="radio"]:checked+label {
+	background-color: #1e90ff;
+	color: #f1f3f5;
+	font-weight: 900;
+	transition: 0.3s;
+}
+
+/* input[type="text"] {
+    background: black;
+    border: none;
+	color: white;
+	max-width:10em;
+	margin-right: 16px;
+	margin-bottom: 16px;
+}  */

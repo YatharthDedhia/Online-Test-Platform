@@ -1,4 +1,4 @@
-import { React,useEffect } from "react";
+import { React, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function ProtectedAdmin(props) {
@@ -9,8 +9,14 @@ function ProtectedAdmin(props) {
         let loginType;
         if (login) {
             let loginType = JSON.parse(localStorage.getItem('login'))["user"].TypeId;
-            if (loginType === 2) {
+            if (loginType === 0) {
+                navigate('/admin');
+            }
+            else if (loginType === 2) {
                 navigate('/dashboard');
+            }
+            else if (loginType === 1) {
+                navigate('/institute');
             }
         }
         if (!login) {

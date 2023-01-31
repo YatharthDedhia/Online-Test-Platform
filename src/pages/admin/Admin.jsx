@@ -43,70 +43,6 @@ const Admin = () => {
         );
     };
 
-    const NavLinks = () => (
-        <React.Fragment>
-            <p>
-                <a >
-                    <button className="institute-navbar-button" onClick={() => setlabel(3)}><span>Users</span></button>
-                </a>
-            </p>
-
-            <p>
-                <a>
-                    <button className="institute-navbar-button" onClick={() => { setlabel(1) }} ><span>Students</span></button>
-                </a>
-            </p>
-
-            <p>
-                <a>
-                    <button className="institute-navbar-button" onClick={() => { setlabel(0) }}><span>Teachers</span></button>
-                </a>
-            </p>
-            <p>
-                <a href="/">Pricing</a>
-            </p>
-
-            <p>
-                <li class="nav-link dropdown"><a href="" class="dropdown">Contact<i
-                    class="bi bi-chevron-compact-down"></i></a>
-                    <ul class="dropdown-list">
-                        <li class="nav-link">
-                            <a href="mailto:cod.callofduty@gmail.com" target="_blank">&nbsp;&nbsp;E-Mail</a>
-                            <li class="nav-link">
-                                <a href="">Phone</a>
-                            </li>
-                        </li>
-                    </ul>
-                </li>
-            </p>
-            <p>
-                <a>LogOut</a>
-                <button onClick={() => {
-                    localStorage.removeItem("login");
-                    localStorage.removeItem("duration");
-                    localStorage.removeItem("papercode");
-
-                    window.location.reload();
-                    // console.log("loggedout")
-                }}></button>
-            </p>
-        </React.Fragment>
-    );
-
-    const Navbar = () => {
-        return (
-            <div className="landing-navbar">
-                <div className="institute-navbar-logo">
-                    <img src={logo}></img>
-                </div>
-
-                <div className="landing-navbar-links">
-                    <NavLinks />
-                </div>
-            </div>
-        );
-    };
-
     const UserList = () => {
 
         const testObj = [
@@ -403,8 +339,6 @@ const Admin = () => {
     return (
         <div>
             <Header_Menu />
-
-            {/* <Navbar /> */}
             {label === 1 ? (<StudentCourse />) : null}
             {label === 3 ? (<UserList />) : null}
             {label === 0 ? (<TeacherCourse />) : null}

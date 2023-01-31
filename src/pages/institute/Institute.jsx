@@ -1,11 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import './css/institute.css';
+// import './css/navbar.css';
 import './css/ranklist.css';
-import './css/navbar.css';
 import axios from "axios";
 import logo from '../../Images/logo-no-background.png'
 import { Oval } from "react-loader-spinner";
+
 const Institute = () => {
   const [Question, setQuestion] = useState('');
   const [option1, setOption1] = useState('');
@@ -24,25 +25,16 @@ const Institute = () => {
   const [testName, setTestName] = useState('');
   const [courseName, setCourseName] = useState('');
   const [courseName1, setCourseName1] = useState('');
-  const [courseName2, setCourseName2] = useState('');
-  const [courseName3, setCourseName3] = useState('');
-  const [courseName4, setCourseName4] = useState('');
   const [courseCode, setCourseCode] = useState(0);
   const [courseCode1, setCourseCode1] = useState(0);
-  const [courseCode2, setCourseCode2] = useState(0);
-  const [courseCode3, setCourseCode3] = useState(0);
-  const [courseCode4, setCourseCode4] = useState(0);
   const [date, setDate] = useState(null);
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [duration, setDuration] = useState(0);
   const [link, setLink] = useState("");
   const [link1, setLink1] = useState("");
-  const [link2, setLink2] = useState("");
-  const [link3, setLink3] = useState("");
   const [image, setImage] = useState("");
   const [syllabus, setSyllabus] = useState("");
-  const [link4, setLink4] = useState("");
   const [label, setlabel] = useState(3);
   const [loading, setLoading] = useState(false);
 
@@ -56,21 +48,21 @@ const Institute = () => {
       <header class="block-institute">
         <ul class="header-menu horizontal-list">
           <li>
-            <button className="header-menu-tab" onClick={() => setlabel(1)}><span className="icon fontawesome-calendar scnd-font-color"></span>Schedule Test</button>
-          </li>
-          <li>
             <button className="header-menu-tab" onClick={() => { setlabel(3) }} href="#2"><span className="icon fontawesome-trophy scnd-font-color"></span>Rank List</button>
-          </li>
-          <li>
-            <button className="header-menu-tab" onClick={() => { setlabel(0) }}><span className="icon fontawesome-envelope scnd-font-color"></span>Make Question Bank</button>
           </li>
           <li>
             <button className="header-menu-tab" onClick={() => { setlabel(2) }}><span className="icon fontawesome-pencil scnd-font-color"></span>Assign Notes</button>
           </li>
           <li>
-            <button className="header-menu-tab" onClick={() => { setlabel(4) }}><span className="icon fontawesome-pencil scnd-font-color"></span>Make Paper</button>
+            <button className="header-menu-tab" onClick={() => setlabel(1)}><span className="icon fontawesome-calendar scnd-font-color"></span>Schedule Test</button>
           </li>
           <li>
+            <button className="header-menu-tab" onClick={() => { setlabel(0) }}><span className="icon fontawesome-envelope scnd-font-color"></span>Make Question Bank</button>
+          </li>
+          <li>
+            <button className="header-menu-tab" onClick={() => { setlabel(4) }}><span className="icon fontawesome-pencil scnd-font-color"></span>Make Paper</button>
+          </li>
+          <li className="logout-tab">
             <button className="header-menu-tab" onClick={() => {
               localStorage.removeItem("login");
               localStorage.removeItem("duration");
@@ -83,78 +75,13 @@ const Institute = () => {
         </ul>
         <div className="profile-menu">
           <button className="profile-button">
-            <p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>
+            <p>Me</p>
             <div className="profile-picture small-profile-picture">
               <img height="40px" width="40px" src={profile_pic} />
             </div>
           </button>
         </div>
       </header>
-    );
-  };
-
-  const NavLinks = () => (
-    <React.Fragment>
-      <p>
-        <a >
-          <button className="institute-navbar-button" onClick={() => setlabel(1)}><span></span>Schedule Test</button>
-        </a>
-      </p>
-
-      <p>
-        <a>
-          <button className="institute-navbar-button" onClick={() => { setlabel(3) }} href="#2"><span></span>Rank List</button>
-        </a>
-      </p>
-
-      <p>
-        <a>
-          <button className="institute-navbar-button" onClick={() => { setlabel(0) }}><span></span>Make Paper</button>
-        </a>
-      </p>
-      <p>
-        <a href="/">Pricing</a>
-      </p>
-
-      <p>
-        <li class="nav-link dropdown"><a href="" class="dropdown">Contact<i
-          class="bi bi-chevron-compact-down"></i></a>
-          <ul class="dropdown-list">
-            <li class="nav-link">
-              <a href="mailto:cod.callofduty@gmail.com" target="_blank">&nbsp;&nbsp;E-Mail</a>
-              <li class="nav-link">
-                <a href="">Phone</a>
-              </li>
-            </li>
-          </ul>
-        </li>
-      </p>
-      <p>
-        <a>LogOut</a>
-        <button onClick={() => {
-          localStorage.removeItem("login");
-          localStorage.removeItem("duration");
-          localStorage.removeItem("papercode");
-          localStorage.removeItem("bankcode");
-
-          window.location.reload();
-          // console.log("loggedout")
-        }}></button>
-      </p>
-    </React.Fragment>
-  );
-
-  const Navbar = () => {
-    return (
-      <div className="landing-navbar">
-        <div className="institute-navbar-logo">
-          <img src={logo}></img>
-        </div>
-
-        <div className="landing-navbar-links">
-          <NavLinks />
-        </div>
-      </div>
     );
   };
 
@@ -183,11 +110,11 @@ const Institute = () => {
       "Weightage4": weightage4,
     };
 
-    console.log(sendData);
+    // console.log(sendData);
 
     axios.post('https://lmsapiv01.azurewebsites.net/api/answers', sendData).then(result => {
       setLoading(false)
-      console.log(result.data)
+      // console.log(result.data)
     });
     // }
     // else {
@@ -210,93 +137,32 @@ const Institute = () => {
       "Duration": parseInt(duration),
     };
 
-    console.log(sendData1);
+    // console.log(sendData1);
 
     axios.post('https://lmsapiv01.azurewebsites.net/api/questionpaper', sendData1).then(result => {
       setLoading(false)
-      console.log(result.data)
+      // console.log(result.data)
     });
 
   };
+
   const postCourse1 = (e) => {
     e.preventDefault();
-    // if (password == confpassword) {
-    // setConfirm(1);
     setLoading(true)
 
     const sendData1 = {
       "CourseName": courseName1,
       "CourseCode": courseCode1,
       "Notes": link1,
-      "Image":image,
-      "Syllabus":syllabus,
+      "Image": image,
+      "Syllabus": syllabus,
     };
 
-    console.log(sendData1);
+    // console.log(sendData1);
 
     axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => {
       setLoading(false)
-      console.log(result.data)
-    });
-
-  };
-  const postCourse2 = (e) => {
-    e.preventDefault();
-    // if (password == confpassword) {
-    // setConfirm(1);
-    setLoading(true)
-
-    const sendData1 = {
-      "CourseName": courseName2,
-      "CourseCode": courseCode2,
-      "Notes": link2,
-    };
-
-    console.log(sendData1);
-
-    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => {
-      setLoading(false)
-      console.log(result.data)
-    });
-
-  };
-  const postCourse3 = (e) => {
-    e.preventDefault();
-    // if (password == confpassword) {
-    // setConfirm(1);
-    setLoading(true)
-
-    const sendData1 = {
-      "CourseName": courseName3,
-      "CourseCode": courseCode3,
-      "Notes": link3,
-    };
-
-    console.log(sendData1);
-
-    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => {
-      setLoading(false)
-      console.log(result.data)
-    });
-
-  };
-  const postCourse4 = (e) => {
-    e.preventDefault();
-    // if (password == confpassword) {
-    // setConfirm(1);
-    setLoading(true)
-
-    const sendData1 = {
-      "CourseName": courseName4,
-      "CourseCode": courseCode4,
-      "Notes": link4,
-    };
-
-    console.log(sendData1);
-
-    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => {
-      setLoading(false)
-      console.log(result.data)
+      // console.log(result.data)
     });
 
   };
@@ -321,12 +187,14 @@ const Institute = () => {
 
     useEffect(async () => {
       setLoading(true)
+
       let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
-      console.log(userid);
-      axios.get("https://lmsapiv01.azurewebsites.net/api/attemptedlist/" + userid)
+      // console.log(userid);
+
+      axios.get("https://lmsapiv01.azurewebsites.net/api/teacher/courses/" + userid)
         .then((response) => {
           response.data[0].map((f) => {
-            var num = f.PaperCode
+            var num = f.CourseId
             var str = num.toString()
 
             axios
@@ -345,7 +213,7 @@ const Institute = () => {
       setLoading(false)
 
     }, [])
-
+    // console.log(obj)
     return (
       <div class="ranklist-container-institute">
         <header>
@@ -363,10 +231,7 @@ const Institute = () => {
                 <th>Marks</th>
               </tr>
             </thead>
-            {/* <tbody> */}
-            {/* {console.log(obj)} */}
             {obj.map((e) => {
-              // { console.log(e) }
               return (
                 <tbody>
                   <tr>
@@ -407,7 +272,7 @@ const Institute = () => {
                 res.data[0].map((r) => {
                   setSchedule(current => [...current, r])
                   schedule.push(r)
-                  console.log(schedule)
+                  // console.log(schedule)
                   setObj(schedule)
                 })
               })
@@ -420,19 +285,55 @@ const Institute = () => {
 
     }, [])
 
-    console.log(obj)
+    // console.log(obj)
     return (
-      obj.map((test) => {
-        return (
-          <div>
-            <button onClick={((e) => {
-              setlabel(5);
-              localStorage.setItem("bankcode", test.CourseID);
-              localStorage.setItem("Qcode", test.PaperCode);
-            })}>{test.TestName}</button>
-          </div>
-        )
-      })
+      <div class="ranklist-container-institute">
+        <header>
+          <br />
+          <h1>Schedule</h1>
+          <br />
+        </header>
+        <div class="ranklist-wrapper-institute">
+          <table>
+            <thead>
+              <tr>
+                <th>PaperCode</th>
+                <th>Test Name</th>
+                <th>Date</th>
+                <th>StartTime</th>
+                <th>Select Paper to set</th>
+              </tr>
+            </thead>
+            {obj.map((e) => {
+              return (
+                <tbody>
+                  {/* <button className="select-question"> */}
+
+
+                  <tr>
+                    <td class="ranklist-rank">{e.PaperCode}</td>
+                    <td class="ranklist-points">{e.TestName}</td>
+                    <td class="ranklist-team">{String(e.Date).slice(0, 10)}</td>
+                    <td class="ranklist-up-down">{e.StartTime}</td>
+                    <td class="ranklist-up-down">
+                      <button className='linkselect'
+                        onClick={() => {
+                          setlabel(5);
+                          localStorage.setItem("bankcode", e.CourseID);
+                          localStorage.setItem("Qcode", e.PaperCode);
+                        }}
+                      >{e.Link}</button>
+                    </td>
+                  </tr>
+                  {/* </button> */}
+                </tbody>
+              )
+              // }
+
+            })}
+          </table>
+        </div>
+      </div>
     )
   }
 
@@ -518,7 +419,7 @@ const Institute = () => {
 
     }, [])
 
-    console.log(paper)
+    // console.log(paper)
     return (
       <div class="ranklist-container-institute">
         <header>
@@ -561,7 +462,7 @@ const Institute = () => {
                           let papercode = localStorage.getItem("Qcode")
                           axios.post("https://lmsapiv01.azurewebsites.net/api/questionpaper/question", { PaperCode: papercode, QuestNo: e.QuestNo }).then(result => {
                             setLoading(false)
-                            console.log(result.data)
+                            // console.log(result.data)
                           })
                         }}>Add</button>
                       </td>
@@ -600,7 +501,7 @@ const Institute = () => {
 
       {label === 0 ? (
         <div>
-          <form onSubmit={postData} className="container4">
+          <form onSubmit={postData} className="container8">
             <label>
               Course ID:
               <input
@@ -610,6 +511,7 @@ const Institute = () => {
                 onChange={e => setCourseCode(e.target.value)}
                 required />
             </label>
+
             <label>
               Question
               <input
@@ -619,6 +521,7 @@ const Institute = () => {
                 onChange={e => setQuestion(e.target.value)}
                 required />
             </label>
+
             <label>
               Total Marks for this Question:
               <input
@@ -628,6 +531,7 @@ const Institute = () => {
                 onChange={e => setTotalMarks(e.target.value)}
                 required />
             </label>
+
             <label>
               Option 1:
               <input
@@ -637,6 +541,7 @@ const Institute = () => {
                 onChange={e => setOption1(e.target.value)}
                 required />
             </label>
+
             <label>
               Option 2:
               <input
@@ -646,6 +551,7 @@ const Institute = () => {
                 onChange={e => setOption2(e.target.value)}
                 required />
             </label>
+
             <label>
               Option 3:
               <input
@@ -655,6 +561,7 @@ const Institute = () => {
                 onChange={e => setOption3(e.target.value)}
                 required />
             </label>
+
             <label>
               Option 4:
               <input
@@ -664,6 +571,7 @@ const Institute = () => {
                 onChange={e => setOption4(e.target.value)}
                 required />
             </label>
+
             <label>
               Weightage 1:
               <input
@@ -674,6 +582,7 @@ const Institute = () => {
                 onChange={e => setWeightage1(e.target.value)}
                 required />
             </label>
+
             <label>
               Weightage 2:
               <input
@@ -683,6 +592,7 @@ const Institute = () => {
                 onChange={e => setWeightage2(e.target.value)}
                 required />
             </label>
+
             <label>
               Weightage 3:
               <input
@@ -692,6 +602,7 @@ const Institute = () => {
                 onChange={e => setWeightage3(e.target.value)}
                 required />
             </label>
+
             <label>
               Weightage 4:
               <input
@@ -701,57 +612,77 @@ const Institute = () => {
                 onChange={e => setWeightage4(e.target.value)}
                 required />
             </label>
-            <label>
-              Option 1 is:
-              <div class="container6">
-                <div class="radio_container">
-                  <input className="correct1" type="radio" name="radio1" id="true" value="true" onClick={e => setisCorrect1(true)} checked required />
-                  <label className="label1" for="true">True</label>
-                  <input className="correct1" type="radio" name="radio1" id="false" value="false" onClick={e => setisCorrect1(false)} required />
-                  <label className="label1" for="false">False</label>
 
+            <div className="opt1">
+              <label>
+                Option 1 is:
+                <br />
+                <div class="container6">
+                  <div class="radio_container">
+                    <input className="correct1" type="radio" name="radio1" id="true" value="true" onClick={e => setisCorrect1(true)} checked required />
+                    <label className="label1" for="true">True</label>
+                    <input className="correct1" type="radio" name="radio1" id="false" value="false" onClick={e => setisCorrect1(false)} required />
+                    <label className="label1" for="false">False</label>
+
+                  </div>
                 </div>
-              </div>
-            </label>
+              </label>
+            </div>
+
             <br />
-            <label>
-              Option 2 is:
-              <div class="container6">
-                <div class="radio_container">
-                  <input className="correct2" type="radio" name="radio2" id="true1" value="true" onClick={e => setisCorrect2(true)} checked required />
-                  <label className="label2" for="true1">True</label>
-                  <input className="correct2" type="radio" name="radio2" id="false1" value="false" onClick={e => setisCorrect2(false)} required />
-                  <label className="label2" for="false1">False</label>
 
+            <div className="opt2">
+              <label>
+                Option 2 is:
+                <br />
+                <div class="container6">
+                  <div class="radio_container">
+                    <input className="correct2" type="radio" name="radio2" id="true1" value="true" onClick={e => setisCorrect2(true)} checked required />
+                    <label className="label2" for="true1">True</label>
+                    <input className="correct2" type="radio" name="radio2" id="false1" value="false" onClick={e => setisCorrect2(false)} required />
+                    <label className="label2" for="false1">False</label>
+
+                  </div>
                 </div>
-              </div>
-            </label>
+              </label>
+            </div>
+
             <br />
-            <label>
-              Option 3 is:
-              <div class="container6">
-                <div class="radio_container">
-                  <input className="correct3" type="radio" name="radio3" id="true2" value="true" onClick={e => setisCorrect3(true)} checked required />
-                  <label className="label3" for="true2">True</label>
-                  <input className="correct3" type="radio" name="radio3" id="false2" value="false" onClick={e => setisCorrect3(false)} required />
-                  <label className="label3" for="false2">False</label>
 
+            <div className="opt3">
+              <label>
+                Option 3 is:
+                <br />
+                <div class="container6">
+                  <div class="radio_container">
+                    <input className="correct3" type="radio" name="radio3" id="true2" value="true" onClick={e => setisCorrect3(true)} checked required />
+                    <label className="label3" for="true2">True</label>
+                    <input className="correct3" type="radio" name="radio3" id="false2" value="false" onClick={e => setisCorrect3(false)} required />
+                    <label className="label3" for="false2">False</label>
+
+                  </div>
                 </div>
-              </div>
-            </label>
+              </label>
+            </div>
+
             <br />
-            <label>
-              Option 4 is:
-              <div class="container6">
-                <div class="radio_container">
-                  <input className="correct4" type="radio" name="radio4" id="true3" value="true" onClick={e => setisCorrect4(true)} checked required />
-                  <label className="label4" for="true3">True</label>
-                  <input className="correct4" type="radio" name="radio4" id="false3" value="false" onClick={e => setisCorrect4(false)} required />
-                  <label className="label4" for="false3">False</label>
 
+            <div className="opt4">
+              <label>
+                Option 4 is:
+                <br />
+                <div class="container6">
+                  <div class="radio_container">
+                    <input className="correct4" type="radio" name="radio4" id="true3" value="true" onClick={e => setisCorrect4(true)} checked required />
+                    <label className="label4" for="true3">True</label>
+                    <input className="correct4" type="radio" name="radio4" id="false3" value="false" onClick={e => setisCorrect4(false)} required />
+                    <label className="label4" for="false3">False</label>
+
+                  </div>
                 </div>
-              </div>
-            </label>
+              </label>
+            </div>
+
             <br />
 
             <button className='bubbly-button3' type="submit">Submit</button>
@@ -767,7 +698,7 @@ const Institute = () => {
                 className="TestName"
                 name="tname"
                 type="text"
-                //   value={this.state.numberOfGuests}
+                autoComplete="off"
                 onChange={e => setTestName(e.target.value)}
                 required />
             </label>
@@ -777,7 +708,7 @@ const Institute = () => {
                 className="Course_Name"
                 name="course_name"
                 type="text"
-                //   value={this.state.numberOfGuests}
+                autoComplete="off"
                 onChange={e => setCourseName(e.target.value)}
                 required />
             </label>
@@ -787,7 +718,7 @@ const Institute = () => {
                 className="Course_Code"
                 name="course_code"
                 type="text"
-                //   value={this.state.numberOfGuests}
+                autoComplete="off"
                 onChange={e => setCourseCode(e.target.value)}
                 required />
             </label>
@@ -797,7 +728,7 @@ const Institute = () => {
                 className="Date"
                 name="date"
                 type="text"
-                //   value={this.state.numberOfGuests}
+                autoComplete="off"
                 onChange={e => setDate(e.target.value)}
                 required />
             </label>
@@ -807,7 +738,7 @@ const Institute = () => {
                 className="Start"
                 name="start"
                 type="text"
-                //   value={this.state.numberOfGuests}
+                autoComplete="off"
                 onChange={e => setStartTime(e.target.value)}
                 required />
             </label>
@@ -817,7 +748,7 @@ const Institute = () => {
                 className="End"
                 name="end"
                 type="text"
-                //   value={this.state.numberOfGuests}
+                autoComplete="off"
                 onChange={e => setEndTime(e.target.value)}
                 required />
             </label>
@@ -827,7 +758,7 @@ const Institute = () => {
                 className="TestName"
                 name="tname"
                 type="text"
-                //   value={this.state.numberOfGuests}
+                autoComplete="off"
                 onChange={e => setDuration(e.target.value)}
                 required />
             </label>
@@ -837,11 +768,11 @@ const Institute = () => {
                 className="Link"
                 name="link"
                 type="text"
-                //   value={this.state.numberOfGuests}
+                autoComplete="off"
                 onChange={e => setLink(e.target.value)}
                 required />
             </label>
-            <button className='bubbly-button3' type="submit">Submit</button>
+            <button className='bubbly-button5' type="submit">Submit</button>
           </form>
         </div>
       ) : null}
@@ -857,7 +788,7 @@ const Institute = () => {
                 className="Course_Name"
                 name="course_name"
                 type="text"
-                //   value={this.state.numberOfGuests}
+                autoComplete="off"
                 onChange={e => setCourseName1(e.target.value)}
                 required />
             </label>
@@ -866,8 +797,8 @@ const Institute = () => {
               <input
                 className="Course_Code"
                 name="course_code"
-                type="text"
-                //   value={this.state.numberOfGuests}
+                type="number"
+                autoComplete="off"
                 onChange={e => setCourseCode1(e.target.value)}
                 required />
             </label>
@@ -878,7 +809,7 @@ const Institute = () => {
                 className="Link1"
                 name="link1"
                 type="text"
-                //   value={this.state.numberOfGuests}
+                autoComplete="off"
                 onChange={e => setLink1(e.target.value)}
                 required />
             </label>
@@ -888,7 +819,7 @@ const Institute = () => {
                 className="Link1"
                 name="link1"
                 type="text"
-                //   value={this.state.numberOfGuests}
+                autoComplete="off"
                 onChange={e => setImage(e.target.value)}
                 required />
             </label>
@@ -898,13 +829,13 @@ const Institute = () => {
                 className="Link1"
                 name="link1"
                 type="text"
-                //   value={this.state.numberOfGuests}
+                autoComplete="off"
                 onChange={e => setSyllabus(e.target.value)}
                 required />
             </label>
             <button className='bubbly-button2' type="submit">Submit</button>
           </form>
-          
+
         </div>
       ) : null}
       {label === 4 ? (<SeeSchedule />) : null}

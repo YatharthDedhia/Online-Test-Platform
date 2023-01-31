@@ -24,7 +24,7 @@ input {
 	font-size: 1rem;
 	font-weight: 400;
 	background-color: #F9F8F8;
-	border-color: #EB9486;
+	/* border-color: #EB9486; */
 	padding-left: 5px;
     padding-top: 19px;
 }
@@ -73,7 +73,7 @@ input:placeholder {
 
 input[type="email"],input[type="number"]{
 	color:white;
-	background-color: black;
+	background-color: transparent;
 }
 /* .No{
 	color:white;

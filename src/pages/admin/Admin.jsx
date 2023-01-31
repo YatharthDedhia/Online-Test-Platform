@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import './css/institute.css';
+// import './css/institute.css';
 import './css/ranklist.css';
-import './css/navbar.css';
+// import './css/navbar.css';
 import axios from "axios";
 import logo from '../../Images/logo-no-background.png'
 import { Oval } from "react-loader-spinner";
@@ -136,7 +136,7 @@ const Admin = () => {
             axios.get("https://lmsapiv01.azurewebsites.net/api/user")
                 .then((response) => {
 
-                    console.log(response.data[0]);
+                    // console.log(response.data[0]);
                     setObj(response.data[0])
                 })
         }, [])
@@ -267,7 +267,7 @@ const Admin = () => {
                                         <td class="ranklist-team">{e.FirstName + ' ' + e.LastName}</td>
                                         <td class="ranklist-up-down">
                                             <button className='linkselect' disabled={disMath} onClick={() => {
-                                                console.log(e.StudentId);
+                                                // console.log(e.StudentId);
                                                 // postMath
                                                 // setdismath(true);
                                                 axios.post("https://lmsapiv01.azurewebsites.net/api/student/courses", { StudentId: e.StudentId, CourseId: 2 }).then(result => { console.log(result.data) })
@@ -329,7 +329,7 @@ const Admin = () => {
 
             axios.get("https://lmsapiv01.azurewebsites.net/api/teacher")
                 .then((response) => {
-                    console.log(response.data[0]);
+                    // console.log(response.data[0]);
                     setObj(response.data[0])
                 })
         }, [])
@@ -362,7 +362,7 @@ const Admin = () => {
                                         <td class="ranklist-team">{e.FirstName + ' ' + e.LastName}</td>
                                         <td class="ranklist-up-down">
                                             <button className='linkselect' disabled={disMath} onClick={() => {
-                                                console.log(e.TeacherId);
+                                                // console.log(e.TeacherId);
                                                 // postMath
                                                 // setdismath(true);
                                                 axios.post("https://lmsapiv01.azurewebsites.net/api/teacher/courses", { TeacherId: e.TeacherId, CourseId: 2 }).then(result => { console.log(result.data) })

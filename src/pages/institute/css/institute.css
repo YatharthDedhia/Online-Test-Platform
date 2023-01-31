@@ -1,60 +1,59 @@
-input {
+/* input {
 	padding-left: 5px;
 	padding-top: 19px;
 	margin: 5px;
-}
+} */
 
 .Course_Code,
 .Question,
 .tmarks {
 	display: block;
-	background-color: #000000;
+	background: transparent;
 	border-radius: 8px;
 	color: #fff;
 	margin-top: 10px;
-    margin-bottom: 22px;
+	margin-bottom: 22px;
 }
-.container5{
+
+.container5 {
 	position: relative;
-	/* top: 100px;
-	left: 0%; */
-	/* display:flex; */
-	/* flex-direction: row; */
+	top: -60px;
 	z-index: 0;
 	width: 500px;
-	height: 575px;
+	height: 500px;
 	color: white;
 	margin: auto;
 	padding: 30px;
-	/* background: transparent; */
 	background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
 	background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
 	background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
 	box-sizing: border-box;
-	/* box-shadow: 0 15px 25px grey; */
 	box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
-
+	border-radius: 10px;
 }
-.container7{
+
+.container5 input {
+	color: white;
+	background-color: #1C1C1C;
+}
+
+.container7 {
 	margin-top: 90px;
-	 display:flex;
-	/* background-color: red; */
+	display: flex;
 	flex: 1 1 1 1;
 }
+
 .container4 {
 	position: relative;
-	top: 100px;
+	top: 10px;
 	left: 0%;
-	/* display:flex; */
 	z-index: 0;
-	width: 1000px;
-	height: 845px;
-	/* background: transparent; */
+	width: 600px;
+	height: 600px;
 	background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
 	background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
 	background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
 	box-sizing: border-box;
-	/* box-shadow: 0 15px 25px grey; */
 	box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
 
 	border-radius: 5px;
@@ -63,6 +62,12 @@ input {
 	justify-content: center;
 	align-items: center;
 	color: white;
+}
+
+
+.container4 input {
+	color: white;
+	background-color: #1C1C1C;
 }
 
 header {
@@ -77,29 +82,29 @@ header {
 .header-menu li {
 	position: relative;
 	-webkit-transform: translateZ(0);
-	/** To avoid a flash when hover messages **/
 }
 
 .header-menu-tab {
-	/* background: #50597b;
-	border-bottom: 4px solid #11a8ab;
-	border-right: 4px solid #11a8ab;
-	padding: 0 27px; */
 	background: transparent;
 	border-radius: 10px;
 	display: block;
+	width: fit-content;
+	/* margin: 10px; */
+	top: -10px;
+	position: relative;
 	line-height: 74px;
 	font-size: 17px;
+	padding-right: 20px;
+	padding-left: 20px;
 	color: white;
+}
 
+.logout-tab {
+	position: relative;
+	right: -350px;
 }
 
 .header-menu-tab:hover {
-	/* background: #50597b; */
-	/* border-bottom: 4px solid #11a8ab; */
-	/* text-decoration: none;
-	-webkit-transition: background .3s;
-	transition: background .3s; */
 	background-color: white;
 	color: black;
 }
@@ -157,30 +162,12 @@ header {
 	position: relative;
 	top: -5px;
 }
-/* .small-profile-picture img{
-	pos
-} */
 
-/** CONTAINERS **/
-/* .container {
-		float: left;
-		width: 300px;
-	} */
 .block-institute {
-	margin-bottom: 25px;
 	background: transparent;
-	/* border-radius: 5px; */
 	width: 100%;
 	color: white;
 }
-
-/* .Question {
-	border-radius: 0rem;
-	display: block;
-	margin-left: 0px;
-	width: 100%;
-	border: none;
-} */
 
 .Questionno {
 	border-radius: 0rem;
@@ -191,18 +178,16 @@ header {
 
 
 .opt {
-	/* position:relative; */
 	display: inline-block;
 	flex-direction: row;
 	flex: 1 1 1;
 	height: 55px;
 	width: 171px;
-	background: black;
-	
+	background: transparent;
+
 }
 
 .weightage {
-	/* position:relative; */
 	display: inline-block;
 	flex-direction: row;
 	flex: 1 1 1;
@@ -210,12 +195,6 @@ header {
 	height: 55px;
 }
 
-/* .correct1 {
-	position: relative;
-	display: flex;
-	justify-content: space-around;
-	border-radius: 9999px;
-} */
 
 
 .institute-navbar-button {
@@ -225,13 +204,12 @@ header {
 	font-size: 15px;
 }
 
-.institute-navbar-logo img{
+.institute-navbar-logo img {
 	height: 60px;
 	width: auto;
 }
 
 .institute-navbar-button:hover {
-	/* color: #222; */
 	background-color: black;
 }
 
@@ -239,11 +217,7 @@ header {
 	display: block;
 	font-size: 1em;
 	padding: 1em 2em;
-	/* margin-top: -10px;
-	margin-bottom: 60px;
-	margin-left: auto;
-	margin-right: auto; */
-	margin-left:60px;
+	margin-left: 160px;
 	align-items: center;
 	background-color: #00008b;
 	color: #fff;
@@ -251,15 +225,14 @@ header {
 	border: none;
 	cursor: pointer;
 	position: absolute;
-	/* top: 700px;
-	right: 450px; */
 }
+
 .bubbly-button3 {
 	display: block;
 	font-size: 1em;
 	padding: 1em 2em;
-	margin-top: 80px;
-	margin-bottom: 60px;
+	/* margin-top: 80px; */
+	/* margin-bottom: 60px; */
 	margin-left: auto;
 	margin-right: auto;
 	align-items: center;
@@ -268,14 +241,31 @@ header {
 	border-radius: 4px;
 	border: none;
 	cursor: pointer;
-	position: absolute;
-	top: 700px;
-	right: 450px;
+	position: relative;
+	top: -330px;
+	/* right: 450px; */
 }
+
+.bubbly-button5{
+	display: block;
+	font-size: 1em;
+	padding: 1em 2em;
+	/* margin-top: 80px; */
+	/* margin-bottom: 60px; */
+	margin-left: auto;
+	margin-right: auto;
+	align-items: center;
+	background-color: #00008b;
+	color: #fff;
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+	position: relative;
+	/* top: -330px; */
+	/* right: 450px; */
+}
+
 .container6 {
-	/* width: 100%; */
-	/* width:100px; */
-	/* height: 100%; */
 	display: inline-block;
 	margin: 10px;
 	flex-direction: row;
@@ -285,16 +275,40 @@ header {
 	align-items: center;
 }
 
+.container8 {
+	position: relative;
+	top: 10px;
+	left: 0%;
+	z-index: 0;
+	width: 1000px;
+	height: 600px;
+	background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+	background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+	background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+	box-sizing: border-box;
+	box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+
+	border-radius: 5px;
+	margin: auto;
+	padding: 15px;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+
+.container8 input{
+	background-color: #1C1C1C;
+}
+
 .radio_container {
 	display: flex;
-    /* display: inline-block; */
-    justify-content: space-around;
-    align-items: center;
-    background-color: #000000;
-    width: 153px;
-    height: 47px;
-    border-radius: 9999px;
-    box-shadow: inset 0.5px 0.5px 2px 0 rgb(0 0 0 / 15%);
+	justify-content: space-around;
+	align-items: center;
+	background-color: #000000;
+	width: 153px;
+	height: 47px;
+	border-radius: 9999px;
+	box-shadow: inset 0.5px 0.5px 2px 0 rgb(0 0 0 / 15%);
 }
 
 .correct1,
@@ -318,18 +332,18 @@ input[type="radio"] {
 .label3,
 .label4 {
 	font-family: "Open Sans", sans-serif;
-    font-size: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: inherit;
-    width: 67px;
-    height: 40px;
-    text-align: center;
-    border-radius: 9999px;
-    overflow: hidden;
-    transition: linear 0.3s;
-    color: #ffffffdd;
+	font-size: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: inherit;
+	width: 67px;
+	height: 40px;
+	text-align: center;
+	border-radius: 9999px;
+	overflow: hidden;
+	transition: linear 0.3s;
+	color: #ffffffdd;
 }
 
 input[type="radio"]:checked+label {
@@ -339,19 +353,22 @@ input[type="radio"]:checked+label {
 	transition: 0.3s;
 }
 
-input.opt{
-    background: black;
-    border: none;
+input.opt {
+	/* background: transparent; */
+	background-color: #1C1C1C;
+	border: none;
 	color: white;
-	max-width:9.6em;
+	max-width: 9.6em;
 	margin-right: 18px;
 	margin-bottom: 16px;
-}  
-input.weightage{
-    background: black;
-    border: none;
+}
+
+input.weightage {
+	/* background: transparent; */
+	background-color: #1C1C1C;
+	border: none;
 	color: white;
-	max-width:8em;
+	max-width: 8em;
 	margin-right: 10px;
 	margin-bottom: 16px;
 }
@@ -361,12 +378,41 @@ body {
 	background-attachment: fixed;
 }
 
-.profile-button{
+.profile-button {
 	background: transparent;
 	color: white;
 	border-radius: 10px;
 }
-.profile-button:hover{
+
+.profile-button:hover {
 	background-color: white;
+	color: black;
+}
+
+.opt2 {
+	position: relative;
+	right: -230px;
+	top: -110px;
+}
+
+.opt3 {
+	position: relative;
+	right: -470px;
+	top: -210px;
+}
+
+.opt4 {
+	position: relative;
+	right: -720px;
+	top: -320px;
+}
+
+.select-question{
+	background: transparent;
+	/* width: 1000px; */
+}
+
+.select-question:hover{
+	background: white;
 	color: black;
 }

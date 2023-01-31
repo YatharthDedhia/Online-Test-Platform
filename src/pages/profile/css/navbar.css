@@ -1,4 +1,4 @@
-.landing-navbar {
+.landing-navbar-profile {
 	display: flex;
 	position: fixed;
 	justify-content: space-between;
@@ -14,7 +14,7 @@
 	border-bottom: 1px solid var(--color-input-border);
 }
 
-.landing-navbar .landing-navbar-links {
+.landing-navbar-profile .landing-navbar-links-profile {
 	gap: 0rem;
 	display: flex;
 	font-weight: 500;
@@ -22,7 +22,7 @@
 	margin: 0 4rem;
 }
 
-.landing-navbar .landing-navbar-links p {
+.landing-navbar-profile .landing-navbar-links-profile p {
 	color: var(--color-navlinks);
 	transition: 0.2s all ease;
 	padding-right: 23px;
@@ -32,22 +32,22 @@
 	border-radius: 10px;
 }
 
-.landing-navbar .landing-navbar-links p:hover {
+.landing-navbar-profile .landing-navbar-links-profile p:hover {
 	color: #222;
 	background-color: black;
 }
 
-.landing-navbar-logo img {
+.landing-navbar-logo-profile img {
 	width: 75%;
 }
 
-.dropdown {
+.dropdown-profile {
 	cursor: default;
 	position: relative;
 	top: -9px;
 }
 
-.dropdown ul {
+.dropdown-profile ul {
 	display: none;
 	background-color: black;
 	color: white;
@@ -59,30 +59,56 @@
 	border-radius: 10px;
 }
 
-.dropdown ul li a {
+.dropdown-profile ul li a {
 	color: var(--grey);
 	/* position: relative; */
 }
 
-.dropdown ul li a:hover {
+.dropdown-profile ul li a:hover {
 	color: var(--black);
 }
 
-.dropdown ul li {
+.dropdown-profile ul li {
 	margin: 8px;
 }
 
-.dropdown:hover>ul {
+.dropdown-profile:hover>ul {
 	display: list-item;
 	position: absolute;
 	list-style: none;
 	transition: all 0.5s ease;
 }
 
-.landing-navbar-links button {
-    width: 75px;
-    height: 50px;
-    position: relative;
-    top: -35px;
-    background: transparent;
+.navbar-links-profile button {
+	width: 75px;
+	height: 50px;
+	position: relative;
+	top: -35px;
+	background: transparent;
+}
+
+.profile-logout-button:hover {
+	/* color: var(--black); */
+	background: transparent;
+}
+
+.header-menu-tab-profile {
+	background: transparent;
+	border-radius: 10px;
+	display: block;
+	line-height: 74px;
+	font-size: 17px;
+	color: white;
+	width: 120px;
+}
+
+.header-menu-tab-profile:hover {
+	background-color: white;
+	color: black;
+}
+
+.landing-navbar-logo img {
+	width: 100%;
+	position: relative;
+	top: 10px;
 }

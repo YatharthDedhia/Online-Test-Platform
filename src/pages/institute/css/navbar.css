@@ -46,7 +46,8 @@
 .dropdown{
     cursor:default;
 	position: relative;
-	top: -9px;
+	top: 0px;
+	left: -10px;
 }
 .dropdown ul{
     display:none;
@@ -56,8 +57,9 @@
     list-style: none;
     transition: all 15s ease;
 	position: relative;
-	left: -25px;
+	left: -15px;
 	border-radius: 10px;
+	width: 145px;
 }
 .dropdown ul li a{
     color:var(--grey);

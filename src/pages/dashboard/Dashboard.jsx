@@ -4,6 +4,7 @@ import './css/dashboard.css';
 import './css/table.css'
 import './css/sidebar.css'
 import './css/calendar.css'
+import './css/navbar.css'
 import { render } from 'react-dom';
 import axios from 'axios';
 import logo from '../../Images/logo-no-background.png'
@@ -20,22 +21,21 @@ const Header_Menu = () => {
 	return (
 		<header className="block-institute">
 			<ul className="header-menu horizontal-list">
-				<li>
+				<li className='hamburger-dashboard'>
 					<Sidebar />
 				</li>
 				<li>
-					<button className="header-menu-tab" onClick={() => navigate("/")}>
+					<button className="header-menu-tab-dashboard" onClick={() => navigate("/")}>
 						<img src={logo} height="50px" width="100px"></img>
 					</button>
 				</li>
-				<li>
+				<li className='logout-tab-dashboard'>
 					<button className="header-menu-tab" onClick={() => {
 						localStorage.removeItem("login");
 						localStorage.removeItem("duration");
 						localStorage.removeItem("papercode");
 						localStorage.removeItem("bankcode");
 						window.location.reload();
-
 					}}><span className="fa-sharp fa-solid fa-right-to-bracket"></span>LogOut</button>
 				</li>
 			</ul>

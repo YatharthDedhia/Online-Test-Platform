@@ -7,6 +7,6 @@ html {
 
 .Loading-Screen{
     position: absolute;
-    /* right: -100px; */
-    top: 0px;
+    right: 700px;
+    top: 10px;
 }

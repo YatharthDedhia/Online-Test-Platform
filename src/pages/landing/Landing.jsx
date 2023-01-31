@@ -25,6 +25,7 @@ const featureList = [
 
 //STUDENT TYPE 2
 //INSTITUTE TYPE 1
+
 const NavLinks = () => (
 	<React.Fragment>
 		<p>
@@ -50,7 +51,7 @@ const Navbar = () => {
 	return (
 		<div className="landing-navbar">
 			<div className="landing-navbar-logo-landing">
-				<img src={logo}></img>
+				<img src={logo} height="50px" width="100px"></img>
 			</div>
 			<div className="landing-navbar-links">
 				<NavLinks />
@@ -66,23 +67,23 @@ const Landing = () => {
 	const signInFunc = (e) => {
 		e.preventDefault();
 		setLoading(true);
-		console.log(loading)
+		// console.log(loading)
 		const senddata = {
 
 			"UserName": username,
 			"Password": password,
 
 		}
-		console.log(senddata);
+		// console.log(senddata);
 
 		axios
 			.post('http://lmsapiv01.azurewebsites.net/login', senddata)
 			.then((response) => {
 				if (response.data.token) {
 					setLoading(false);
-					console.log(loading)
+					// console.log(loading)
 
-					console.log(response.data)
+					// console.log(response.data)
 					localStorage.setItem("login", JSON.stringify(response.data));
 					window.location.reload();
 				}
@@ -108,15 +109,15 @@ const Landing = () => {
 				"Photo": "https://www.nicepng.com/maxp/u2q8i1a9e6i1o0o0/"
 			};
 
-			console.log(sendData);
+			// console.log(sendData);
 			setLoading(true);
-			console.log(loading)
+			// console.log(loading)
 
 			axios
 				.post('http://lmsapiv01.azurewebsites.net/signup', sendData)
 				.then((response) => {
 					if (response.data.accessToken) {
-						console.log(response.data)
+						// console.log(response.data)
 						localStorage.setItem("login", JSON.stringify(response.data));
 					}
 
@@ -126,16 +127,16 @@ const Landing = () => {
 						"Password": password,
 
 					}
-					console.log(senddata);
+					// console.log(senddata);
 
 					axios
 						.post('http://lmsapiv01.azurewebsites.net/login', senddata)
 						.then((response) => {
 							if (response.data.token) {
 								setLoading(false);
-								console.log(loading)
+								// console.log(loading)
 
-								console.log(response.data)
+								// console.log(response.data)
 								localStorage.setItem("login", JSON.stringify(response.data));
 								window.location.reload();
 							}

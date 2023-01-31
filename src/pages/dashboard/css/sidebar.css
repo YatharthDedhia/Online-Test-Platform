@@ -105,11 +105,9 @@
     margin: -100px 0 0 -50px;
     padding: 50px;
     padding-top: 125px;
-    /* height: 100%; */
     background: #201e1e;
     list-style-type: none;
     -webkit-font-smoothing: antialiased;
-    /* to stop flickering of text in safari */
     height: 1000px;
     transform-origin: 0% 0%;
     transform: translate(-100%, 0);

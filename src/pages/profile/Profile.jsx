@@ -23,90 +23,48 @@ import logo from '../../Images/logo-no-background.png'
 import { useNavigate } from 'react-router-dom';
 import { Oval } from 'react-loader-spinner';
 
-const Header_Menu = () => {
-    // let porfile_pic_img = localStorage.getItem('login')
-    const navigate = useNavigate();
-    let profile_pic = "https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg";
-    if (localStorage.getItem('login')) {
-        profile_pic = (JSON.parse(localStorage.getItem('login')).user.Photo).toString();
-    }
-    return (
-        <header class="block-institute">
-            <ul class="header-menu horizontal-list">
-                <li>
-                    <button className="header-menu-tab" onClick={() => navigate("/")}>
-                        <img src={logo} height="50px" width="100px"></img>
-                    </button>
-                </li>
-                <li>
-                    <button className="header-menu-tab" onClick={() => {
-                        localStorage.removeItem("login");
-                        localStorage.removeItem("duration");
-                        localStorage.removeItem("papercode");
-                        localStorage.removeItem("bankcode");
-                        window.location.reload();
-
-                    }}><span className="fa-sharp fa-solid fa-right-to-bracket"></span>LogOut</button>
-                </li>
-            </ul>
-            <div className="profile-menu">
-                <button className="profile-button" onClick={() => { navigate("/profile") }}>
-                    <p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>
-                    <div className="profile-picture small-profile-picture">
-                        <img height="40px" width="40px" src={profile_pic} />
-                    </div>
-                </button >
-            </div >
-        </header >
-    );
-};
-
-const NavLinks = () => (
-    <React.Fragment>
-        <p>
-            <a href="/">Pricing</a>
-        </p>
-
-        <p>
-            <li class="nav-link dropdown"><a href="" class="dropdown">Contact<i
-                class="bi bi-chevron-compact-down"></i></a>
-                <ul class="dropdown-list">
-                    <li class="nav-link">
-                        <a href="mailto:cod.callofduty@gmail.com" target="_blank">&nbsp;&nbsp;E-Mail</a>
-                        <li class="nav-link">
-                            <a href="">Phone</a>
-                        </li>
-                    </li>
-                </ul>
-            </li>
-        </p>
-
-        <p>
-            <a>LogOut</a>
-            <button onClick={() => {
-                localStorage.removeItem("login");
-                localStorage.removeItem("duration");
-                localStorage.removeItem("papercode");
-                localStorage.removeItem("bankcode");
-
-                window.location.reload();
-                // console.log("loggedout")
-            }}></button>
-        </p>
-    </React.Fragment>
-);
-
 const Navbar = () => {
     const navigate = useNavigate();
     return (
         <div className="landing-navbar">
             <div className="landing-navbar-logo">
-                <button className='header-menu-tab' onClick={() => navigate("/")}>
+                <button className='header-menu-tab-profile' onClick={() => navigate("/")}>
                     <img src={logo} height="50px" width="100px" />
                 </button>
             </div>
             <div className="landing-navbar-links">
-                <NavLinks />
+                <React.Fragment>
+                    <p>
+                        <a href="/">Pricing</a>
+                    </p>
+
+                    <p>
+                        <li className="nav-link dropdown-profile"><a href="" class="dropdown-profile">Contact<i
+                            className="bi bi-chevron-compact-down-profile"></i></a>
+                            <ul className="dropdown-list-profile">
+                                <li className="nav-link-profile">
+                                    <a href="mailto:cod.callofduty@gmail.com" target="_blank">&nbsp;&nbsp;E-Mail</a>
+                                    <li className="nav-link-profile">
+                                        <a href="">Phone</a>
+                                    </li>
+                                </li>
+                            </ul>
+                        </li>
+                    </p>
+
+                    <p>
+                        <a>LogOut</a>
+                        <button className='profile-logout-button' onClick={() => {
+                            localStorage.removeItem("login");
+                            localStorage.removeItem("duration");
+                            localStorage.removeItem("papercode");
+                            localStorage.removeItem("bankcode");
+
+                            window.location.reload();
+                            // console.log("loggedout")
+                        }}></button>
+                    </p>
+                </React.Fragment>
             </div>
         </div>
     );
@@ -128,7 +86,7 @@ const Profile_Block = () => {
         // const [loading, setLoading] = useState(false)
 
         let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
-        console.log(userid);
+        // console.log(userid);
         let typeid = (JSON.parse(localStorage.getItem('login')).user.TypeId)
         const data = new FormData()
         data.append("file", image)
@@ -164,7 +122,7 @@ const Profile_Block = () => {
 
                 axios.post('https://lmsapiv01.azurewebsites.net/api/update/user', sendData).then(result => {
                     setLoading(false)
-                    console.log(result.data)
+                    // console.log(result.data)
                 });
 
 
@@ -177,7 +135,7 @@ const Profile_Block = () => {
         setLoading(true)
 
         let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
-        console.log(userid);
+        // console.log(userid);
         // userid = "4";
         const url3 = "https://lmsapiv01.azurewebsites.net/api/user/" + userid;
         axios
@@ -185,7 +143,7 @@ const Profile_Block = () => {
             .then((response) => {
                 setLoading(false)
 
-                console.log(response.data[0][0])
+                // console.log(response.data[0][0])
                 // for (let i = 0; i < response.data[0].length; i++) {
                 setFirstName(response.data[0][0].FirstName);
                 setLastName(response.data[0][0].LastName);
@@ -384,7 +342,7 @@ const Graph = () => {
         setLoading(false)
 
     }, [])
-    console.log(graph_data)
+    // console.log(graph_data)
     return (
         <div className='graph-head'>
             <div>

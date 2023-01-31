@@ -1,10 +1,8 @@
 .graph-head{
     position: relative;
-    top: -330px;
-    right: -10px;
+    top: -380px;
     width: 800px;
     color: red;
-    /* background-color: black; */
     background: transparent;
     border-radius: 5px;
     padding: 10px;

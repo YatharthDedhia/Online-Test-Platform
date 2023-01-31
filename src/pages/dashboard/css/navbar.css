@@ -1,0 +1,111 @@
+header {
+	height: 80px;
+}
+
+.header-menu {
+	font-size: 17px;
+	line-height: 80px;
+}
+
+.header-menu li {
+	position: relative;
+	-webkit-transform: translateZ(0);
+}
+
+.header-menu-tab-dashboard {
+	background: transparent;
+	border-radius: 10px;
+	display: block;
+	width: fit-content;
+	/* margin: 10px; */
+	/* top: -10px; */
+	position: relative;
+	line-height: 74px;
+	font-size: 17px;
+	padding-right: 20px;
+	padding-left: 20px;
+	color: white;
+    right: -50px;
+}
+
+.logout-tab-dashboard {
+	position: relative;
+	right: -1080px;
+    top: 10px;
+}
+
+.header-menu-tab-dashboard:hover {
+	background-color: white;
+	color: black;
+}
+
+.header-menu-tab-dashboard img{
+    position: relative;
+    top: 10px;
+}
+
+.header-menu-tab-dashboard .icon {
+	padding-right: 15px;
+}
+
+.header-menu-number {
+	position: absolute;
+	line-height: 22px;
+	padding: 0 6px;
+	font-weight: 700;
+	background: #e64c65;
+	border-radius: 100%;
+	top: 15px;
+	right: 2px;
+	-webkit-transition: all .3s linear;
+	transition: all .3s linear;
+}
+
+.header-menu li:hover .header-menu-number {
+	text-decoration: none;
+	-webkit-transform: rotate(360deg);
+	transform: rotate(360deg);
+
+}
+
+.profile-menu {
+	float: right;
+	height: 80px;
+	padding-right: 20px;
+	/* background-color: black; */
+}
+
+.profile-menu p {
+	font-size: 17px;
+	display: inline-block;
+	line-height: 76px;
+	margin: 0;
+	padding-right: 10px;
+}
+
+.profile-menu a {
+	padding-left: 5px;
+}
+
+.profile-menu a:hover {
+	text-decoration: none;
+}
+
+.small-profile-picture {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	top: -5px;
+}
+
+.block-institute {
+	background: transparent;
+	width: 100%;
+	color: white;
+}
+
+.hamburger-dashboard{
+    position: relative;
+    top: 20px;
+    right: -15px;
+}

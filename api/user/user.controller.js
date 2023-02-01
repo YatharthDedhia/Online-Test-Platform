@@ -16,30 +16,28 @@
     login: async (req, res) => {
       let userinfo = {... req.body};
       Db.getUserByUserName(userinfo).then(result =>{
-        if(result.Password !=undefined){  
-        const results = compareSync(userinfo.Password, result[0][0].Password);
-        if (results) {
-          result[0][0].password = undefined;
-          const jsontoken = sign({ results: result[0][0] }, config.access_token, {
-            expiresIn: "1h"
-          });
-          return res.json({
-            success: 1,
-            message: "login successfully",
-            token: jsontoken,
-            user: result[0][0]
-          });
-        } else {
+        if(result[0].length == 0){
           return res.json({
             success: 0,
-            data: "Invalid email or password"
-          });
-        }
-      }
+            data: "Invalid username or password"});
+        } else {
+          const results = compareSync(userinfo.Password, result[0][0].Password);
+          if (results) {
+            result[0][0].password = undefined;
+            const jsontoken = sign({ results: result[0][0] }, config.access_token, {
+              expiresIn: "1h"
+            });
+            return res.json({
+              success: 1,
+              message: "login successfully",
+              token: jsontoken,
+              user: result[0][0]
+            });
+          } 
       else{
         return res.json({
           success: 0,
           data: "Invalid username or password"
         })
-    }})}
+    }}})}
   };

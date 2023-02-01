@@ -17,7 +17,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
-    "mssql": "^6.2.1"
+    "mssql": "^6.4.1"
   },
   "devDependencies": {
     "eslint": "^8.29.0",

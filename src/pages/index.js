@@ -7,5 +7,6 @@ export { default as Opening } from './opening/Opening';
 export { default as Institute} from './institute/Institute';
 export { default as Ml} from './ML/ml';
 export { default as Notes} from './notes/Notes';
+export { default as Contact} from './contact/Contact';
 // export { default as QuizInstructions} from './instruction/QuizInstructions';
 // export { default as Home} from './home/Home';

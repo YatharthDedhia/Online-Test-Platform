@@ -26,7 +26,9 @@ const Header_Menu = () => {
 				</li>
 				<li>
 					<button className="header-menu-tab-dashboard" onClick={() => navigate("/")}>
+						<a href="/contact">
 						<img src={logo} height="50px" width="100px"></img>
+						</a>
 					</button>
 				</li>
 				<li className='logout-tab-dashboard'>

@@ -7,7 +7,8 @@ import {
 	Test,
 	Opening,
 	Institute,
-	Notes
+	Notes,
+	Contact
 } from './pages';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
@@ -31,7 +32,7 @@ const App = () => {
 					<Route exact path="/institute" element={<Institute />} />
 					<Route exact path="/notes" element={<Notes />} /> */}
 
-
+					
 					<Route exact path="/" element={< ProtectedLanding Component={Opening} />} />
 					<Route exact path="/landing" element={<ProtectedLanding Component={Landing} />} />
 					<Route exact path="/dashboard" element={<ProtectedStudent Component={Dashboard} />} />
@@ -40,6 +41,7 @@ const App = () => {
 					<Route exact path="/institute" element={<ProtectedInstitute Component={Institute} />} />
 					<Route exact path="/notes" element={<ProtectedStudent Component={Notes} />} />
 					<Route exact path="/admin" element={<ProtectedAdmin Component={Admin} />} />
+					<Route exact path="/contact" element={<ProtectedStudent Component={Contact} />} />
 					{/* <Route exact path="/admin" element={<Admin />} /> */}
 
 				</Routes>

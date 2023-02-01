@@ -6,8 +6,9 @@
 	background-color: #ADD8E6;
 
 } */
-
-
+html{
+	scroll-behavior: smooth;
+  }
 
 * {
 	/* background: #121212;

@@ -57,7 +57,9 @@ const Notes = () => {
         <div className="profile-menu">
           <p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>
           <div className="profile-picture small-profile-picture">
+            <a href="/profile">
             <img width="40px" src="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg" />
+            </a>
           </div>
         </div>
       </header>

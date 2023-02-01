@@ -29,10 +29,10 @@ const featureList = [
 const NavLinks = () => (
 	<React.Fragment>
 		<p>
-			<a href="/">Pricing</a>
+			<a href="#features">Features</a>
 		</p>
 		<p>
-			<li class="nav-link dropdown"><a href="" class="dropdown-landing">Contact<i
+			<li class="nav-link dropdown"><a href="/contact" class="dropdown-landing">Contact<i
 				class="bi bi-chevron-compact-down"></i></a>
 				<ul class="dropdown-list">
 					<li class="nav-link">
@@ -184,7 +184,6 @@ const Landing = () => {
 					</div>)
 				: null}
 			<div className="section-type-landing-page">
-
 				<div className="section-fluid-main">
 					<div className="section-row">
 						<div className="section-col">
@@ -306,6 +305,9 @@ const Landing = () => {
 					</Components.OverlayContainer>
 
 				</Components.Container>
+				<div id="features" className='features'>
+				<h1>Features</h1>
+				</div>
 			</div>
 
 			<footer className="Footer">Copyright © 2022 All rights reserved.</footer>

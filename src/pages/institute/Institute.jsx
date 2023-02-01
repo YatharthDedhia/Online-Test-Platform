@@ -24,7 +24,7 @@ const Institute = () => {
   const [totalMarks, setTotalMarks] = useState(0);
   const [testName, setTestName] = useState('');
   const [courseName, setCourseName] = useState('');
-  const [courseName1, setCourseName1] = useState('');
+  const [courseName1, setCourseName1] = useState("");
   const [courseCode, setCourseCode] = useState(0);
   const [courseCode1, setCourseCode1] = useState(0);
   const [date, setDate] = useState(null);
@@ -32,9 +32,9 @@ const Institute = () => {
   const [endTime, setEndTime] = useState("");
   const [duration, setDuration] = useState(0);
   const [link, setLink] = useState("");
-  const [link1, setLink1] = useState("");
-  const [image, setImage] = useState("");
-  const [syllabus, setSyllabus] = useState("");
+  const [link1, setLink1] = useState("a");
+  const [image, setImage] = useState("a");
+  const [syllabus, setSyllabus] = useState("a");
   const [label, setlabel] = useState(3);
   const [loading, setLoading] = useState(false);
 
@@ -160,7 +160,7 @@ const Institute = () => {
 
     // console.log(sendData1);
 
-    axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => {
+    axios.post('https://lmsapiv01.azurewebsites.net/api/altercourse', sendData1).then(result => {
       setLoading(false)
       // console.log(result.data)
     });
@@ -700,7 +700,7 @@ const Institute = () => {
                 type="text"
                 autoComplete="off"
                 onChange={e => setTestName(e.target.value)}
-                required />
+                 />
             </label>
             <label>
               Course Name:
@@ -790,7 +790,7 @@ const Institute = () => {
                 type="text"
                 autoComplete="off"
                 onChange={e => setCourseName1(e.target.value)}
-                required />
+                 />
             </label>
             <label>
               Course Code 1:
@@ -800,7 +800,7 @@ const Institute = () => {
                 type="number"
                 autoComplete="off"
                 onChange={e => setCourseCode1(e.target.value)}
-                required />
+                 />
             </label>
 
             <label>
@@ -811,7 +811,7 @@ const Institute = () => {
                 type="text"
                 autoComplete="off"
                 onChange={e => setLink1(e.target.value)}
-                required />
+                 />
             </label>
             <label>
               Image Link:
@@ -821,7 +821,7 @@ const Institute = () => {
                 type="text"
                 autoComplete="off"
                 onChange={e => setImage(e.target.value)}
-                required />
+                 />
             </label>
             <label>
               Link For Book To Refer:
@@ -831,7 +831,7 @@ const Institute = () => {
                 type="text"
                 autoComplete="off"
                 onChange={e => setSyllabus(e.target.value)}
-                required />
+                 />
             </label>
             <button className='bubbly-button2' type="submit">Submit</button>
           </form>

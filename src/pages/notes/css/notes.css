@@ -34,8 +34,8 @@
     /* height: 250px; */
     margin-top: 1em;
     margin-bottom: 30px;
-    max-width:90%;
-    max-height: 90%;
+    width:200px;
+    height:200px;
 } 
 
 .flexboxcontainer {
@@ -48,13 +48,16 @@
 }
 
 .flexboxcontainer > div {
-    width: 33.33%; /* or - flex: 0 50% - or - flex-basis: 50% - */
+    width: 25%; /* or - flex: 0 50% - or - flex-basis: 50% - */
     /*demo*/
-    box-shadow: 0 0 0 1px black;
+    box-shadow: 0 0 0 3px black;
+    background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+    border-radius: 10%;
     margin-bottom: 10px;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
+    margin:25px;
 }
 
 /* .buttonedu {

@@ -6,9 +6,16 @@ import './css/ranklist.css';
 import axios from "axios";
 import logo from '../../Images/logo-no-background.png'
 import { Oval } from "react-loader-spinner";
+import Select from "react-dropdown-select";
 
 const Admin = () => {
-    const [label, setlabel] = useState(3)
+    const [label, setlabel] = useState(3);
+    const [courseName1,setCourseName1]=useState("");
+    const [courseCode1,setCourseCode1]=useState("");
+    const [link1,setLink1]=useState("");
+    const [image,setImage]=useState("");
+    const [syllabus,setSyllabus]=useState("");
+    const [loading, setLoading] = useState(false);
 
     const Header_Menu = () => {
         return (
@@ -22,6 +29,9 @@ const Admin = () => {
                     </li>
                     <li>
                         <button className="header-menu-tab" onClick={() => { setlabel(0) }}><span className="icon fontawesome-envelope scnd-font-color"></span>Assign Teacher Courses</button>
+                    </li>
+                    <li>
+                        <button className="header-menu-tab" onClick={() => { setlabel(2) }}><span className="icon fontawesome-envelope scnd-font-color"></span>Make Course</button>
                     </li>
                     <li>
                         <button className="header-menu-tab" onClick={() => {
@@ -143,7 +153,25 @@ const Admin = () => {
             </div>
         )
     }
-
+    const postCourse1 = (e) => {
+        e.preventDefault();
+        setLoading(true)
+    
+        const sendData1 = {
+          "CourseName": courseName1,
+          "CourseCode": courseCode1,
+          "Notes": link1,
+          "Image": image,
+          "Syllabus": syllabus,
+        };
+    
+    
+        axios.post('https://lmsapiv01.azurewebsites.net/api/course', sendData1).then(result => {
+          setLoading(false)
+        });
+    
+      };
+    
     const StudentCourse = () => {
 
         const testObj = [
@@ -240,7 +268,6 @@ const Admin = () => {
             </div>
         )
     }
-
     const TeacherCourse = () => {
 
         const testObj = [
@@ -342,6 +369,82 @@ const Admin = () => {
             {label === 1 ? (<StudentCourse />) : null}
             {label === 3 ? (<UserList />) : null}
             {label === 0 ? (<TeacherCourse />) : null}
+            {label === 2 ? (
+        <div className="container7">
+          <form onSubmit={postCourse1} className="container5">
+            <label>
+              Course Name:
+              <br />
+              <input
+                className="Course Name"
+                name="courseName"
+                type="text"
+                autoComplete="off"
+                onChange={e => setCourseName1(e.target.value)}
+              />
+            </label>
+
+            <br />
+            <br />
+            <label>
+              Course Code:
+              <br />
+              <input
+                className="CourseCode"
+                name="courseCode"
+                type="number"
+                autoComplete="off"
+                onChange={e => setCourseCode1(e.target.value)}
+              />
+            </label>
+            <label>
+              Notes Folder Link:
+              <br />
+              <input
+                className="Link1"
+                name="link1"
+                type="text"
+                autoComplete="off"
+                onChange={e => setLink1(e.target.value)}
+              />
+            </label>
+
+            <br />
+            <br />
+
+            <label>
+              Image Link:
+              <br />
+              <input
+                className="Link1"
+                name="link1"
+                type="text"
+                autoComplete="off"
+                onChange={e => setImage(e.target.value)}
+              />
+            </label>
+
+            <br />
+            <br />
+
+            <label>
+              Link For Book To Refer:
+              <input
+                className="Link1"
+                name="link1"
+                type="text"
+                autoComplete="off"
+                onChange={e => setSyllabus(e.target.value)}
+              />
+            </label>
+            <br />
+            <br />
+            <br />
+            <button className='bubbly-button2' type="submit">Submit</button>
+          </form>
+
+        </div>
+      ) : null}
 
         </div>
     )

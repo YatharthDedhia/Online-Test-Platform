@@ -161,7 +161,6 @@ const Institute = () => {
       "Syllabus": syllabus,
     };
 
-    console.log(sendData1);
 
     axios.post('https://lmsapiv01.azurewebsites.net/api/altercourse', sendData1).then(result => {
       setLoading(false)

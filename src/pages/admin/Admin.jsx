@@ -6,14 +6,23 @@ import './css/ranklist.css';
 import axios from "axios";
 import logo from '../../Images/logo-no-background.png'
 import { Oval } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
     const [label, setlabel] = useState(3)
 
     const Header_Menu = () => {
+        const navigate = useNavigate();
         return (
             <header class="block-institute">
                 <ul class="header-menu horizontal-list">
+                    <li>
+                        <button className="header-menu-tab" onClick={() => navigate("/")}>
+                            <a href="/contact">
+                                <img src={logo} height="50px" width="100px"></img>
+                            </a>
+                        </button>
+                    </li>
                     <li>
                         <button className="header-menu-tab" onClick={() => setlabel(3)}><span className="icon fontawesome-calendar scnd-font-color"></span>Assign Users</button>
                     </li>

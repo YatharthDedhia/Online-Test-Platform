@@ -12,6 +12,7 @@ import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import Select from "react-dropdown-select";
+import { useNavigate } from "react-router-dom";
 
 dayjs.extend(customParseFormat);
 
@@ -55,9 +56,17 @@ const Institute = () => {
     if (localStorage.getItem('login')) {
       profile_pic = (JSON.parse(localStorage.getItem('login')).user.Photo).toString();
     }
+    const navigate = useNavigate();
     return (
       <header class="block-institute">
         <ul class="header-menu horizontal-list">
+          <li>
+            <button className="header-menu-tab" onClick={() => navigate("/")}>
+              <a href="/contact">
+                <img src={logo} height="50px" width="100px"></img>
+              </a>
+            </button>
+          </li>
           <li>
             <button className="header-menu-tab" onClick={() => { setlabel(3) }} href="#2"><span className="icon fontawesome-trophy scnd-font-color"></span>Rank List</button>
           </li>

@@ -5,7 +5,17 @@ import './css/institute.css';
 import './css/ranklist.css';
 import axios from "axios";
 import logo from '../../Images/logo-no-background.png'
+import { DatePickerProps } from "antd";
 import { Oval } from "react-loader-spinner";
+import { DatePicker, TimePicker } from "antd";
+import type { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+dayjs.extend(customParseFormat);
+// import { ClockPicker } from "@mui/x-date-pickers";
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import dayjs, { Dayjs } from 'dayjs';
 
 const Institute = () => {
   const [Question, setQuestion] = useState('');
@@ -28,7 +38,8 @@ const Institute = () => {
   const [courseCode, setCourseCode] = useState(0);
   const [courseCode1, setCourseCode1] = useState(0);
   const [date, setDate] = useState(null);
-  const [startTime, setStartTime] = useState("");
+  // const [clock, setClock] = React.useState < Dayjs | null > (dayjs('2022-04-07T10:15'));
+  const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState("");
   const [duration, setDuration] = useState(0);
   const [link, setLink] = useState("");
@@ -125,6 +136,13 @@ const Institute = () => {
   const postExam = (e) => {
     e.preventDefault();
     setLoading(true)
+    let temp;
+    temp = new Date(String(date) + "T" + startTime)
+    console.log(temp);
+    temp.setTime(temp.getTime() + duration * 60 * 60 * 1000)
+    console.log(temp.toTimeString().slice(0, 8))
+    setEndTime(String(temp.toTimeString().slice(0, 8)))
+    
     const sendData1 = {
       "CourseId": parseInt(courseCode),
       "TeacherID": 7,
@@ -137,11 +155,10 @@ const Institute = () => {
       "Duration": parseInt(duration),
     };
 
-    // console.log(sendData1);
+    console.log(sendData1);
 
     axios.post('https://lmsapiv01.azurewebsites.net/api/questionpaper', sendData1).then(result => {
       setLoading(false)
-      // console.log(result.data)
     });
 
   };
@@ -479,6 +496,12 @@ const Institute = () => {
     )
   }
 
+  const changedate: DatePickerProps['onChange'] = (date, dateString) => {
+    // console.log(date, dateString);
+    setDate(String(dateString));
+  };
+
+  // console.log(date);
   return (
     <div>
       <Header_Menu />
@@ -724,34 +747,30 @@ const Institute = () => {
             </label>
             <label>
               Date:
-              <input
-                className="Date"
-                name="date"
-                type="text"
-                autoComplete="off"
-                onChange={e => setDate(e.target.value)}
-                required />
+              <br />
+              <div className="date-picker-institute">
+                <DatePicker onChange={changedate} required />
+              </div>
             </label>
+            <br />
             <label>
               Start Time:
-              <input
-                className="Start"
-                name="start"
-                type="text"
-                autoComplete="off"
-                onChange={e => setStartTime(e.target.value)}
-                required />
+              <br />
+              <TimePicker onChange={(time: Dayjs, timeString: string) => {
+                setStartTime(String(timeString));
+                // console.log(startTime);
+              }} defaultOpenValue={dayjs('00:00:00', 'HH:mm:ss')} />
+              <br />
             </label>
-            <label>
+            {/* <label>
               End Time:
-              <input
-                className="End"
-                name="end"
-                type="text"
-                autoComplete="off"
-                onChange={e => setEndTime(e.target.value)}
-                required />
-            </label>
+              <br />
+              <TimePicker onChange={(time: Dayjs, timeString: string) => {
+                setEndTime(String(timeString));
+                // console.log(startTime);
+              }} defaultOpenValue={dayjs('00:00:00', 'HH:mm:ss')} />
+              <br />
+            </label> */}
             <label>
               Duration in Hours:
               <input

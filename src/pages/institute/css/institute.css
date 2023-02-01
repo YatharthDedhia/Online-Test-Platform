@@ -416,3 +416,15 @@ body {
 	background: white;
 	color: black;
 }
+
+.ant-picker-content th,td{
+	background-color: #fff;
+}
+
+.ant-picker-input{
+	background: transparent;
+}
+
+.institute-clock{
+	background-color: white;
+}

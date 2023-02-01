@@ -27,9 +27,9 @@ const App = () => {
 					{/* <Route exact path="/" element={<Opening />} />
 					<Route exact path="/landing" element={<Landing />} />
 					<Route exact path="/dashboard" element={<Dashboard />} />
-					<Route exact path="/profile" element={<Profile />} />
 					<Route exact path="/test" element={<Test />} />
 					<Route exact path="/admin" element={<Admin />} />
+					<Route exact path="/profile" element={<Profile />} />
 					<Route exact path="/institute" element={<Institute />} />
 					<Route exact path="/notes" element={<Notes />} /> */}
 					{/* <Route exact path="/logo" element={<Opening2 />} />  */}
@@ -43,7 +43,7 @@ const App = () => {
 					<Route exact path="/institute" element={<ProtectedInstitute Component={Institute} />} />
 					<Route exact path="/notes" element={<ProtectedStudent Component={Notes} />} />
 					<Route exact path="/admin" element={<ProtectedAdmin Component={Admin} />} />
-					<Route exact path="/contact" element={<ProtectedStudent Component={Contact} />} />
+					<Route exact path="/contact" element={<Contact />} />
 
 				</Routes>
 			</BrowserRouter>

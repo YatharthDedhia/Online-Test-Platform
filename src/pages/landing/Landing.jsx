@@ -81,8 +81,8 @@ const Landing = () => {
 			.post('http://lmsapiv01.azurewebsites.net/login', senddata)
 			.then((response) => {
 				setLoading(false);
-				console.log(response.data)
-				if (response.data.data == "Invalid email or password") {
+				console.log(response)
+				if (response.data.data == "Invalid username or password") {
 					console.log("incorrect login")
 					seterrorlogin(true);
 				}

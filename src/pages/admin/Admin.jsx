@@ -28,7 +28,9 @@ const Admin = () => {
                             localStorage.removeItem("login");
                             localStorage.removeItem("duration");
                             localStorage.removeItem("papercode");
-
+                            localStorage.removeItem("papercode");
+                            localStorage.removeItem("teacher_id");
+                            localStorage.removeItem("authenticated");
                             window.location.reload();
                         }}><span className="icon fontawesome-envelope scnd-font-color"></span>LogOut</button>
                     </li>

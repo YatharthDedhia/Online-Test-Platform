@@ -58,8 +58,9 @@ const Navbar = () => {
                             localStorage.removeItem("login");
                             localStorage.removeItem("duration");
                             localStorage.removeItem("papercode");
-                            localStorage.removeItem("bankcode");
-
+                            localStorage.removeItem("papercode");
+                            localStorage.removeItem("teacher_id");
+                            localStorage.removeItem("authenticated");
                             window.location.reload();
                             // console.log("loggedout")
                         }}></button>

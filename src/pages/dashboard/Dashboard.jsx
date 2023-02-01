@@ -36,7 +36,9 @@ const Header_Menu = () => {
 						localStorage.removeItem("login");
 						localStorage.removeItem("duration");
 						localStorage.removeItem("papercode");
-						localStorage.removeItem("bankcode");
+						localStorage.removeItem("papercode");
+						localStorage.removeItem("teacher_id");
+						localStorage.removeItem("authenticated");
 						window.location.reload();
 					}}><span className="fa-sharp fa-solid fa-right-to-bracket"></span>LogOut</button>
 				</li>
@@ -88,10 +90,6 @@ const obj = [
 	}
 ]
 
-// const NavLinks = () => (
-
-// );
-
 const Sidebar = () => {
 	return (
 		<nav role="navigation">
@@ -107,51 +105,6 @@ const Sidebar = () => {
 				</ul>
 			</div>
 		</nav>
-	);
-};
-
-const Navbar = () => {
-	const navigate = useNavigate();
-
-	let profile_pic = "https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg";
-	if (localStorage.getItem('login')) {
-		profile_pic = (JSON.parse(localStorage.getItem('login')).user.Photo).toString();
-	}
-
-	return (
-		<div className="landing-navbar">
-			<Sidebar />
-			<div className='dashboard-logo'>
-				<img src={logo}></img>
-			</div>
-			<div className="landing-navbar-links">
-				<React.Fragment>
-					{/* <p>
-						<a href="/profile">Profile</a>
-					</p> */}
-					{/* <p>
-						<a>
-							<div className="profile-menu">
-								<button className="profile-button" onClick={() => { navigate("/profile") }}>
-									<p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>
-									<div className="profile-picture small-profile-picture">
-										<img height="40px" width="40px" src={profile_pic} />
-									</div>
-								</button >
-							</div >
-						</a>
-					</p> */}
-					<button className="profile-button" onClick={() => { navigate("/profile") }}>
-						<p>Me
-							{/* <span className="entypo-down-open scnd-font-color"></span> */}
-							<div className="profile-picture small-profile-picture">
-								<img height="40px" width="40px" src={profile_pic} />
-							</div>
-						</p>
-					</button >
-				</React.Fragment>
-			</div>
-		</div>
 	);
 };
 
@@ -184,13 +137,18 @@ const Dashboard = () => {
 
 
 	upcoming.map(async (test) => {
-		let test_start = Date.parse(test.Date.slice(0, 11) + test.StartTime.slice(11, -1))
-		let test_end = Date.parse(test.Date.slice(0, 11) + test.EndTime.slice(11, -1))
+		// console.log(test.StartTime)
+		let test_start = Date.parse(test.Date.slice(0, 11) + test.StartTime.slice(0, 10))
+		let test_end = Date.parse(test.Date.slice(0, 11) + test.EndTime.slice(0, 10))
+		console.log(stamp)
+		console.log(test_start)
+		console.log(test_end)
 
 		if (test_start < stamp && test_end > stamp) {
 			test["mode"] = "active";
 		}
 		else {
+			console.log(test);
 			test["mode"] = "inactive";
 		}
 	})

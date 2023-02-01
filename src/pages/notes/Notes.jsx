@@ -63,7 +63,9 @@ const Notes = () => {
               localStorage.removeItem("login");
               localStorage.removeItem("duration");
               localStorage.removeItem("papercode");
-              localStorage.removeItem("bankcode");
+              localStorage.removeItem("papercode");
+              localStorage.removeItem("teacher_id");
+              localStorage.removeItem("authenticated");
               window.location.reload();
             }}><span className="fa-sharp fa-solid fa-right-to-bracket"></span>LogOut</button>
           </li>

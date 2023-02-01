@@ -78,7 +78,9 @@ const Institute = () => {
               localStorage.removeItem("login");
               localStorage.removeItem("duration");
               localStorage.removeItem("papercode");
-              localStorage.removeItem("bankcode");
+              localStorage.removeItem("papercode");
+              localStorage.removeItem("teacher_id");
+              localStorage.removeItem("authenticated");
               window.location.reload();
 
             }}><span className="fa-sharp fa-solid fa-right-to-bracket"></span>LogOut</button>
@@ -125,20 +127,20 @@ const Institute = () => {
     let temp;
     temp = new Date(String(date) + "T" + startTime)
     console.log(temp);
-    temp.setTime(temp.getTime() + duration * 60 * 60 * 1000)
+    temp.setTime(temp.getTime() + parseInt(duration) * 60 * 60 * 1000)
     console.log(temp.toTimeString().slice(0, 8))
     setEndTime(String(temp.toTimeString().slice(0, 8)))
 
     const sendData1 = {
       "CourseId": parseInt(courseCode),
-      "TeacherID": 7,
+      "TeacherId": parseInt(localStorage.getItem("teacher_id")),
       "TestName": testName,
       "CourseName": courseName,
       "Date": date,
       "StartTime": startTime,
       "EndTime": endTime,
       "Link": link,
-      "Duration": parseInt(duration),
+      "Duration": 1,
     };
 
     console.log(sendData1);
@@ -265,7 +267,6 @@ const Institute = () => {
       setLoading(true)
 
       let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
-
       axios.get("https://lmsapiv01.azurewebsites.net/api/teacher/courses/" + userid)
         .then((response) => {
           response.data[0].map((course) => {
@@ -274,9 +275,12 @@ const Institute = () => {
                 res.data[0].map((r) => {
                   setSchedule(current => [...current, r])
                   schedule.push(r)
-                  // console.log(schedule)
+                  console.log(schedule)
                   setObj(schedule)
                 })
+              })
+              .catch((err) => {
+                console.log(err);
               })
           })
             .catch((err) => {
@@ -320,9 +324,9 @@ const Institute = () => {
                     <td class="ranklist-up-down">
                       <button className='linkselect'
                         onClick={() => {
-                          setlabel(5);
                           localStorage.setItem("bankcode", e.CourseID);
                           localStorage.setItem("Qcode", e.PaperCode);
+                          setlabel(5);
                         }}
                       >{e.Link}</button>
                     </td>
@@ -358,7 +362,7 @@ const Institute = () => {
     const [temp, setTemp] = useState(0)
 
     useEffect(async () => {
-      setLoading(true)
+      // setLoading(true)
 
       const getPaper = async () => {
         // setPaper(test)
@@ -367,7 +371,7 @@ const Institute = () => {
         await axios
           .get(url2)
           .then((response) => {
-
+            console.log(response.data[0]);
             for (let i = 0; i < response.data[0].length; i += 4) {
               let tempobj1 = {}
 
@@ -416,12 +420,12 @@ const Institute = () => {
           });
       }
       await getPaper();
+      console.log(paper)
       setTemp(1)
-      setLoading(false)
+      // setLoading(false)
 
     }, [])
 
-    // console.log(paper)
     return (
       <div class="ranklist-container-institute">
         <header>
@@ -495,6 +499,16 @@ const Institute = () => {
           setcoursenamelist(current => [...current, { id: ind + 1, name: course.CourseName, code: course.CourseId }])
         })
       })
+
+    axios.get("https://lmsapiv01.azurewebsites.net/api/teacher/")
+      .then((response) => {
+        response.data[0].map((teacher) => {
+          if (teacher.UserId == parseInt(userid)) {
+            localStorage.setItem("teacher_id", teacher.TeacherId);
+          }
+        })
+      })
+
     setLoading(false);
   }, [])
 
@@ -760,14 +774,13 @@ const Institute = () => {
             <br />
 
             <label>
-              Duration in Hours:
-              <input
-                className="TestName"
-                name="tname"
-                type="number"
-                autoComplete="off"
-                onChange={e => setDuration(e.target.value)}
-                required />
+              End Time:
+              <br />
+              <TimePicker onChange={(time: Dayjs, timeString: string) => {
+                setEndTime(String(timeString));
+                // console.log(startTime);
+              }} defaultOpenValue={dayjs('00:00:00', 'HH:mm:ss')} />
+              <br />
             </label>
 
             <br />

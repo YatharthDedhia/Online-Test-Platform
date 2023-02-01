@@ -48,12 +48,16 @@ function Ml() {
 
       const obj = await net.detect(video);
       // console.log(obj)
-      obj.map((e, index) => {
-        if ((e.class == "person" && index > 0) || e.class == "cell phone") {
-          count++;
-        }
-      })
-      if (obj.length == 0) {
+      // obj.map((e, index) => {
+      //   if ((e.class == "person" && index > 0) || e.class == "cell phone") {
+      //     count++;
+      //   }
+      // })
+      // if (obj.length == 0) {
+      //   setFlag(1)
+      //   count++;
+      // }
+      if (obj.length != 1) {
         setFlag(1)
         count++;
       }

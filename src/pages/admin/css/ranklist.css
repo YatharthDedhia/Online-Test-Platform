@@ -1,8 +1,11 @@
 .ranklist-container-institute {
     position: relative;
-    top: 125px;
-    right: -350px;
-    width: 800px;
+    /* top: 125px; */
+    /* right: -350px; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    width: auto;
     background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
     background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
     background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);

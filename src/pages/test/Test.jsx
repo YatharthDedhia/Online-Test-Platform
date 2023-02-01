@@ -244,13 +244,15 @@ const Test = () => {
       {console.log(paper)};
       {quizLength >= 0 ? (
         <div className='quizz-app'>
-          {showScore ? (
+          {true ? (
             <div className='score-section'>
-              You scored {score} out of {quizLength + 1}
-            </div>
-          ) : (
-            <>
-
+              Test Submitted
+              <br />
+              Go to
+              <a href="/profile">Profile</a>
+              to your score
+            </div>)
+            : (<>
               <div>
                 <div className='question-section'>
 
@@ -269,8 +271,8 @@ const Test = () => {
                 <button className='prevbutton' onClick={() => goPrev()}>Previous</button>
                 <button className='nextbutton' onClick={() => goNext()}>Next</button>
               </div>
-            </>
-          )}
+            </>)
+          }
         </div>
       ) : null}
 

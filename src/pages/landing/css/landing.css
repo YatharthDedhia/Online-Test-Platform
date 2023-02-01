@@ -90,3 +90,10 @@ input[type="email"],input[type="number"]{
 	background: linear-gradient(150deg, #000000, #2c3b4f);
 	background-attachment: fixed;
 }
+
+.error-login{
+	color: red;
+	position: relative;
+	top: 14px;
+	right: -610px;
+}

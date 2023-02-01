@@ -27,7 +27,7 @@ class Opening2 extends React.Component {
     render = () => {
         return (
           <div>
-            <meta http-equiv = "refresh" content = "10; url = /landing" />
+            <meta http-equiv = "refresh" content = "5; url = /landing" />
             <div className="videoc">
             <video width="800" height="600"  autoplay loop
               ref="vidRef"

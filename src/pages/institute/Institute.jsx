@@ -659,9 +659,9 @@ const Institute = () => {
                 <br />
                 <div class="container6">
                   <div class="radio_container">
-                    <input className="correct1" type="radio" name="radio1" id="true" value="true" onClick={e => setisCorrect1(true)} checked required />
+                    <input className="correct1" type="radio" name="radio1" id="true" value="true" onClick={e => setisCorrect1(true)} required />
                     <label className="label1" for="true">True</label>
-                    <input className="correct1" type="radio" name="radio1" id="false" value="false" onClick={e => setisCorrect1(false)} required />
+                    <input className="correct1" type="radio" name="radio1" id="false" value="false" onClick={e => setisCorrect1(false)} checked required />
                     <label className="label1" for="false">False</label>
 
                   </div>
@@ -677,9 +677,9 @@ const Institute = () => {
                 <br />
                 <div class="container6">
                   <div class="radio_container">
-                    <input className="correct2" type="radio" name="radio2" id="true1" value="true" onClick={e => setisCorrect2(true)} checked required />
+                    <input className="correct2" type="radio" name="radio2" id="true1" value="true" onClick={e => setisCorrect2(true)}  required />
                     <label className="label2" for="true1">True</label>
-                    <input className="correct2" type="radio" name="radio2" id="false1" value="false" onClick={e => setisCorrect2(false)} required />
+                    <input className="correct2" type="radio" name="radio2" id="false1" value="false" onClick={e => setisCorrect2(false)} checked required />
                     <label className="label2" for="false1">False</label>
 
                   </div>
@@ -695,9 +695,9 @@ const Institute = () => {
                 <br />
                 <div class="container6">
                   <div class="radio_container">
-                    <input className="correct3" type="radio" name="radio3" id="true2" value="true" onClick={e => setisCorrect3(true)} checked required />
+                    <input className="correct3" type="radio" name="radio3" id="true2" value="true" onClick={e => setisCorrect3(true)}  required />
                     <label className="label3" for="true2">True</label>
-                    <input className="correct3" type="radio" name="radio3" id="false2" value="false" onClick={e => setisCorrect3(false)} required />
+                    <input className="correct3" type="radio" name="radio3" id="false2" value="false" onClick={e => setisCorrect3(false)} checked required />
                     <label className="label3" for="false2">False</label>
 
                   </div>
@@ -713,9 +713,9 @@ const Institute = () => {
                 <br />
                 <div class="container6">
                   <div class="radio_container">
-                    <input className="correct4" type="radio" name="radio4" id="true3" value="true" onClick={e => setisCorrect4(true)} checked required />
+                    <input className="correct4" type="radio" name="radio4" id="true3" value="true" onClick={e => setisCorrect4(true)}  required />
                     <label className="label4" for="true3">True</label>
-                    <input className="correct4" type="radio" name="radio4" id="false3" value="false" onClick={e => setisCorrect4(false)} required />
+                    <input className="correct4" type="radio" name="radio4" id="false3" value="false" onClick={e => setisCorrect4(false)} checked required />
                     <label className="label4" for="false3">False</label>
 
                   </div>

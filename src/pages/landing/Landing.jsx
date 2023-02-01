@@ -62,6 +62,7 @@ const Navbar = () => {
 
 const Landing = () => {
 	const [signIn, toggle] = React.useState(true);
+	const [errorlogin, seterrorlogin] = useState(false);
 	// const navigate = useNavigate();
 
 	const signInFunc = (e) => {
@@ -79,12 +80,16 @@ const Landing = () => {
 		axios
 			.post('http://lmsapiv01.azurewebsites.net/login', senddata)
 			.then((response) => {
+				setLoading(false);
+				console.log(response.data)
+				if (response.data.data == "Invalid email or password") {
+					console.log("incorrect login")
+					seterrorlogin(true);
+				}
 				if (response.data.token) {
-					setLoading(false);
+					localStorage.setItem("login", JSON.stringify(response.data));
 					// console.log(loading)
 
-					// console.log(response.data)
-					localStorage.setItem("login", JSON.stringify(response.data));
 					window.location.reload();
 				}
 				return response.data;
@@ -167,6 +172,9 @@ const Landing = () => {
 	return (
 		<React.Fragment>
 			<Navbar />
+			{errorlogin
+				? (<h1 className='error-login'>Wrong details pls re enter</h1>)
+				: null}
 			{loading
 				? (
 					<div className='Loading-Screen'>
@@ -306,7 +314,7 @@ const Landing = () => {
 
 				</Components.Container>
 				<div id="features" className='features'>
-				<h1>Features</h1>
+					<h1>Features</h1>
 				</div>
 			</div>
 

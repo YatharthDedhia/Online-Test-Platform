@@ -49,7 +49,7 @@
 	left: 0%;
 	z-index: 0;
 	width: 600px;
-	height: 600px;
+	height: fit-content;
 	background: -webkit-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
 	background: -moz-linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
 	background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
@@ -90,7 +90,7 @@ header {
 	display: block;
 	width: fit-content;
 	/* margin: 10px; */
-	top: -10px;
+	top: -5px;
 	position: relative;
 	line-height: 74px;
 	font-size: 17px;
@@ -101,7 +101,7 @@ header {
 
 .logout-tab {
 	position: relative;
-	right: -350px;
+	right: -470px;
 }
 
 .header-menu-tab:hover {
@@ -389,22 +389,29 @@ body {
 	color: black;
 }
 
+.opt1{
+	width: fit-content;
+}
+
 .opt2 {
 	position: relative;
 	right: -230px;
 	top: -110px;
+	width: fit-content;
 }
 
 .opt3 {
 	position: relative;
 	right: -470px;
 	top: -210px;
+	width: fit-content;
 }
 
 .opt4 {
 	position: relative;
 	right: -720px;
 	top: -320px;
+	width: fit-content;
 }
 
 .select-question {
@@ -435,4 +442,9 @@ td {
 
 .institute-clock {
 	background-color: white;
+}
+
+.react-dropdown-select-item {
+	background-color: transparent;
+	color: black;
 }

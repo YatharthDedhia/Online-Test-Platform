@@ -11,11 +11,9 @@ import { DatePicker, TimePicker } from "antd";
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import Select from "react-dropdown-select";
+
 dayjs.extend(customParseFormat);
-// import { ClockPicker } from "@mui/x-date-pickers";
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import dayjs, { Dayjs } from 'dayjs';
 
 const Institute = () => {
   const [Question, setQuestion] = useState('');
@@ -48,6 +46,8 @@ const Institute = () => {
   const [syllabus, setSyllabus] = useState("a");
   const [label, setlabel] = useState(3);
   const [loading, setLoading] = useState(false);
+  const [courseIDlist, setcourseIDlist] = useState([])
+  const [coursenamelist, setcoursenamelist] = useState([])
 
   const Header_Menu = () => {
     // let porfile_pic_img = localStorage.getItem('login')
@@ -84,14 +84,6 @@ const Institute = () => {
             }}><span className="fa-sharp fa-solid fa-right-to-bracket"></span>LogOut</button>
           </li>
         </ul>
-        <div className="profile-menu">
-          <button className="profile-button">
-            <p>Me</p>
-            <div className="profile-picture small-profile-picture">
-              <img height="40px" width="40px" src={profile_pic} />
-            </div>
-          </button>
-        </div>
       </header>
     );
   };
@@ -121,18 +113,12 @@ const Institute = () => {
       "Weightage4": weightage4,
     };
 
-    // console.log(sendData);
+    console.log(sendData);
 
     axios.post('https://lmsapiv01.azurewebsites.net/api/answers', sendData).then(result => {
       setLoading(false)
-      // console.log(result.data)
     });
-    // }
-    // else {
-    // setConfirm(1);
-    // }
-  };
-
+  }
   const postExam = (e) => {
     e.preventDefault();
     setLoading(true)
@@ -142,7 +128,7 @@ const Institute = () => {
     temp.setTime(temp.getTime() + duration * 60 * 60 * 1000)
     console.log(temp.toTimeString().slice(0, 8))
     setEndTime(String(temp.toTimeString().slice(0, 8)))
-    
+
     const sendData1 = {
       "CourseId": parseInt(courseCode),
       "TeacherID": 7,
@@ -175,11 +161,10 @@ const Institute = () => {
       "Syllabus": syllabus,
     };
 
-    // console.log(sendData1);
+    console.log(sendData1);
 
     axios.post('https://lmsapiv01.azurewebsites.net/api/altercourse', sendData1).then(result => {
       setLoading(false)
-      // console.log(result.data)
     });
 
   };
@@ -501,10 +486,22 @@ const Institute = () => {
     setDate(String(dateString));
   };
 
-  // console.log(date);
+
+  useEffect(async () => {
+    let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
+    await axios.get("https://lmsapiv01.azurewebsites.net/api/teacher/courses/" + userid)
+      .then((response) => {
+        response.data[0].map((course, ind) => {
+          setcoursenamelist(current => [...current, { id: ind + 1, name: course.CourseName, code: course.CourseId }])
+        })
+      })
+    setLoading(false);
+  }, [])
+
   return (
     <div>
       <Header_Menu />
+
       {loading
         ? (
           <div className='Loading-Screen'>
@@ -526,13 +523,11 @@ const Institute = () => {
         <div>
           <form onSubmit={postData} className="container8">
             <label>
-              Course ID:
-              <input
-                className="Course_Code"
-                name="course_code"
-                // type="number"
-                onChange={e => setCourseCode(e.target.value)}
-                required />
+              Course Name:
+              <Select options={coursenamelist} labelField="name" valueField="id" onChange={(e) => {
+                setCourseName(e[0].name);
+                setCourseCode(e[0].code);
+              }} />
             </label>
 
             <label>
@@ -712,6 +707,7 @@ const Institute = () => {
           </form>
         </div>
       ) : null}
+
       {label === 1 ? (
         <div>
           <form onSubmit={postExam} className="container4">
@@ -723,28 +719,23 @@ const Institute = () => {
                 type="text"
                 autoComplete="off"
                 onChange={e => setTestName(e.target.value)}
-                 />
+              />
             </label>
+
+            <br />
+            <br />
+
             <label>
               Course Name:
-              <input
-                className="Course_Name"
-                name="course_name"
-                type="text"
-                autoComplete="off"
-                onChange={e => setCourseName(e.target.value)}
-                required />
+              <br />
+              <Select options={coursenamelist} labelField="name" valueField="id" onChange={(e) => {
+                setCourseName(e[0].name);
+                setCourseCode(e[0].code)
+              }} />
             </label>
-            <label>
-              Course Code:
-              <input
-                className="Course_Code"
-                name="course_code"
-                type="text"
-                autoComplete="off"
-                onChange={e => setCourseCode(e.target.value)}
-                required />
-            </label>
+
+            <br />
+
             <label>
               Date:
               <br />
@@ -752,7 +743,9 @@ const Institute = () => {
                 <DatePicker onChange={changedate} required />
               </div>
             </label>
+
             <br />
+
             <label>
               Start Time:
               <br />
@@ -762,25 +755,23 @@ const Institute = () => {
               }} defaultOpenValue={dayjs('00:00:00', 'HH:mm:ss')} />
               <br />
             </label>
-            {/* <label>
-              End Time:
-              <br />
-              <TimePicker onChange={(time: Dayjs, timeString: string) => {
-                setEndTime(String(timeString));
-                // console.log(startTime);
-              }} defaultOpenValue={dayjs('00:00:00', 'HH:mm:ss')} />
-              <br />
-            </label> */}
+
+            <br />
+            <br />
+
             <label>
               Duration in Hours:
               <input
                 className="TestName"
                 name="tname"
-                type="text"
+                type="number"
                 autoComplete="off"
                 onChange={e => setDuration(e.target.value)}
                 required />
             </label>
+
+            <br />
+            <br />
             <label>
               Link:
               <input
@@ -795,53 +786,56 @@ const Institute = () => {
           </form>
         </div>
       ) : null}
+
       {label === 3 ? (
         <RankList />
       ) : null}
+
       {label === 2 ? (
         <div className="container7">
           <form onSubmit={postCourse1} className="container5">
             <label>
-              Course Name 1:
-              <input
-                className="Course_Name"
-                name="course_name"
-                type="text"
-                autoComplete="off"
-                onChange={e => setCourseName1(e.target.value)}
-                 />
-            </label>
-            <label>
-              Course Code 1:
-              <input
-                className="Course_Code"
-                name="course_code"
-                type="number"
-                autoComplete="off"
-                onChange={e => setCourseCode1(e.target.value)}
-                 />
+              Course Name:
+              <br />
+              <Select options={coursenamelist} labelField="name" valueField="id" onChange={(e) => {
+                setCourseName1(e[0].name);
+                setCourseCode1(e[0].code);
+              }} />
             </label>
 
+            <br />
+            <br />
+
             <label>
-              Link 1:
+              Notes Folder Link:
+              <br />
               <input
                 className="Link1"
                 name="link1"
                 type="text"
                 autoComplete="off"
                 onChange={e => setLink1(e.target.value)}
-                 />
+              />
             </label>
+
+            <br />
+            <br />
+
             <label>
               Image Link:
+              <br />
               <input
                 className="Link1"
                 name="link1"
                 type="text"
                 autoComplete="off"
                 onChange={e => setImage(e.target.value)}
-                 />
+              />
             </label>
+
+            <br />
+            <br />
+
             <label>
               Link For Book To Refer:
               <input
@@ -850,13 +844,17 @@ const Institute = () => {
                 type="text"
                 autoComplete="off"
                 onChange={e => setSyllabus(e.target.value)}
-                 />
+              />
             </label>
+            <br />
+            <br />
+            <br />
             <button className='bubbly-button2' type="submit">Submit</button>
           </form>
 
         </div>
       ) : null}
+
       {label === 4 ? (<SeeSchedule />) : null}
       {label === 5 ? (<SelectQuestions />) : null}
     </div>

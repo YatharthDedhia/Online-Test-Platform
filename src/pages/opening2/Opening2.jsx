@@ -5,19 +5,47 @@ import video from '../../Images/s.mp4'
 import './css/opening2.css'
 // const { player } = Player.getState();
 // console.log(player.currentTime); // print current time
+class Opening2 extends React.Component {
+    componentDidMount = () => {
+      this.playVideo();
+    };
 
-const Opening2 = () => {
-  return (
-    <div>
-      {/* <Player ref={(player) => { this.player = player }}>
-        <source src={video} />
-      </Player> */}
-      <h1 className="hello">Hello World</h1>
-      <h1 className="hello">Hello World</h1>
-      <h1 className="hello">Hello World</h1>
-      <h1 className="hello">Hello World</h1>
-      <h1 className="hello">Hello World</h1>
-    </div>
-  );
-}
+    componentWillUnmount = () => {
+        this.pauseVideo();
+    };
+
+
+    playVideo = () => {
+      // You can use the play method as normal on your video ref
+      this.refs.vidRef.play();
+    };
+
+    pauseVideo = () => {
+      // Pause as well
+      this.refs.vidRef.pause();
+    };
+    render = () => {
+        return (
+          <div>
+            <meta http-equiv = "refresh" content = "10; url = /landing" />
+            <div className="videoc">
+            <video width="800" height="600"  autoplay loop
+              ref="vidRef"
+              src={video}
+              type="video/mp4"
+            />
+            </div>
+
+            {/* <div>
+              <button onClick={this.playVideo}>
+                Play!
+              </button>
+              <button onClick={this.pauseVideo}>
+                Pause!
+              </button>
+            </div> */}
+          </div>
+        );
+      };
+    }
 export default Opening2;

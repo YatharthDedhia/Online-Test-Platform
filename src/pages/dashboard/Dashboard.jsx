@@ -27,7 +27,7 @@ const Header_Menu = () => {
 				<li>
 					<button className="header-menu-tab-dashboard" onClick={() => navigate("/")}>
 						<a href="/contact">
-						<img src={logo} height="50px" width="100px"></img>
+							<img src={logo} height="50px" width="100px"></img>
 						</a>
 					</button>
 				</li>
@@ -379,7 +379,6 @@ const Dashboard = () => {
 
 	return (
 		<React.Fragment>
-			{/* <Navbar /> */}
 			<Header_Menu />
 			{loading
 				? (
@@ -406,7 +405,7 @@ const Dashboard = () => {
 								(view === 'month' && date.getDate() === parseInt(test.Date.slice(8, 10))
 									&& date.getMonth() === (parseInt(test.Date.slice(5, 7)) - 1)
 									&& date.getYear() === (parseInt(test.Date.slice(0, 4)) - 1900))
-									? <p className='DateContent' >{date.getDate()} <br />{(test.TestName)}</p>
+									? <p className='DateContent' >{(test.TestName)}</p>
 									: null))
 						}} />
 				</div>

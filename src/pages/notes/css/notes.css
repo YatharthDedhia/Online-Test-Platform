@@ -1,65 +1,33 @@
-/*.buttonedu {
-    position: relative;
-    display: flex;
-    width: 200px;
-    height: 50px;
-    text-align: right;
-    justify-content: center;
-    padding-right: 50px;
-    font-size: larger;
-    margin-right: 100px;
-    margin:20px;
-}
-
-.buttonedu span {
-    padding-top: 10px;
-    float: left;
-}
-.container9{
-    position:relative;
-    display:flex;
-    flex-direction:column;
-}
-/* .sumimg1{
-    /* display:flex;
-    width:500px; }*/
-    
-
-.subimg1 img{
-    display:block;
-    margin:auto;
+.subimg1 img {
+    display: block;
+    margin: auto;
     align-items: center;
     border-radius: 100%;
-    border:5px solid #2c3b4f;
-    /* height: 250px; */
+    border: 5px solid #2c3b4f;
     margin-top: 1em;
     margin-bottom: 30px;
-    max-width:90%;
-    max-height: 90%;
-} 
-
-.flexboxcontainer {
-    display:flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content:center;
-    /* max-width: 100%; */
-    /* flex-direction: column; */
+    width: 200px;
+    height: 200px;
 }
 
-.flexboxcontainer > div {
-    width: 33.33%; /* or - flex: 0 50% - or - flex-basis: 50% - */
-    /*demo*/
-    box-shadow: 0 0 0 1px black;
+.flexboxcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.flexboxcontainer>div {
+    width: 25%;
+    box-shadow: 10px 10px 42px 0px rgb(0 0 0 / 75%);
+    background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
+    border-radius: 10%;
     margin-bottom: 10px;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
+    margin: 25px;
 }
-
-/* .buttonedu {
-    align-items: center;
-} */
 
 .buttonedu {
     position: relative;
@@ -69,12 +37,25 @@
     align-items: center;
     justify-content: center;
     font-size: larger;
-    margin:20px;
+    margin: 20px;
     letter-spacing: 1.5px;
+    background: transparent;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 10px 10px 42px 0px rgb(0 0 0 / 75%);
+
 }
 
-.buttonlink{
+.buttonedu:hover {
+    background-color: white;
+    color: black;
+}
+
+.buttonlink {
     display: flex;
     justify-content: center;
 }
 
+.buttonlink a {
+    text-decoration: none;
+}

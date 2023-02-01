@@ -246,7 +246,7 @@ header {
 	/* right: 450px; */
 }
 
-.bubbly-button5{
+.bubbly-button5 {
 	display: block;
 	font-size: 1em;
 	padding: 1em 2em;
@@ -296,7 +296,7 @@ header {
 	color: white;
 }
 
-.container8 input{
+.container8 input {
 	background-color: #1C1C1C;
 }
 
@@ -407,24 +407,32 @@ body {
 	top: -320px;
 }
 
-.select-question{
+.select-question {
 	background: transparent;
 	/* width: 1000px; */
 }
 
-.select-question:hover{
+.select-question:hover {
 	background: white;
 	color: black;
 }
 
-.ant-picker-content th,td{
-	background-color: #fff;
+/* .ant-picker-content th,
+td {
+	background-color: black;
+	color: white !important;
+} */
+
+.ant-picker-content th,
+td {
+	background-color: black;
+	color: white !important;
 }
 
-.ant-picker-input{
+.ant-picker-input {
 	background: transparent;
 }
 
-.institute-clock{
+.institute-clock {
 	background-color: white;
 }

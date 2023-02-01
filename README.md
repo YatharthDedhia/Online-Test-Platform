@@ -15,7 +15,20 @@
 
     npm start
 
+---
+# Pages with their usage:
 
-# Pages:
-1. **Landing** page: "/"
-2. **Dashboard** page: "/dashboard"
+1. **Home / Intro** page
+2. **/landing:** Login Signup Page
+
+### Students:
+3. **/dashboard**:
+4. **/profile**:
+5. **/notes**:
+6. **/announcements**:
+7. **/test**:
+
+### Teachers:
+8. **/institute**:
+### Admin:
+9. **/admin**:

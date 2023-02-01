@@ -15,7 +15,8 @@
     },
     login: async (req, res) => {
       let userinfo = {... req.body};
-      Db.getUserByUserName(userinfo).then(result =>{  
+      Db.getUserByUserName(userinfo).then(result =>{
+        if(result.Password !=undefined){  
         const results = compareSync(userinfo.Password, result[0][0].Password);
         if (results) {
           result[0][0].password = undefined;
@@ -34,5 +35,11 @@
             data: "Invalid email or password"
           });
         }
-      })}
+      }
+      else{
+        return res.json({
+          success: 0,
+          data: "Invalid username or password"
+        })
+    }})}
   };

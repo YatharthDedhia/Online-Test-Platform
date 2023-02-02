@@ -1,0 +1,30 @@
+const jwt = require("jsonwebtoken");
+const config = require('../dbconfig');
+
+
+module.exports = {
+  checkToken: (req, res, next) => {
+    let token = req.get("authorization");
+    if (token) {
+      // Remove Bearer from string
+      token = token.slice(7);
+      jwt.verify(token, "access-token-secret", (err, decoded) => {
+        if (err) {
+          console.log(err);
+          return res.json({
+            success: 0,
+            message: "Invalid Token..."
+          });
+        } else {
+          req.decoded = decoded;
+          next();
+        }
+      });
+    } else {
+      return res.json({
+        success: 0,
+        message: "Access Denied! Unauthorized User"
+      });
+    }
+  }
+};

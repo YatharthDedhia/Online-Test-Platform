@@ -1,11 +1,15 @@
 class QuestionPaper{
-    constructor(PaperCode, CourseID, DurationHours, TeacherId, CourseName, CourseCode){
+    constructor(PaperCode, CourseID,  TeacherId,TestName,Date,StartTime,EndTime,Link,Duration){
         this.PaperCode = PaperCode;
         this.CourseID = CourseID;
-        this.DurationHours = DurationHours;
+        
         this.TeacherId = TeacherId;
-        this.CourseName = CourseName;
-        this.CourseCode = CourseCode;
+        this.TestName = TestName;
+        this.Date = Date;
+        this.StartTime = StartTime;
+        this.EndTime = EndTime;
+        this.Link = Link;
+        this.Duration = Duration
     }
 }
 

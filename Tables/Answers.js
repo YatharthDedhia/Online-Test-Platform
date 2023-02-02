@@ -1,9 +1,9 @@
 class Answers{
-    constructor(AnswerId, QuestNo, Answer,CorrOpt, isCorrect, Weightage){
+    constructor(AnswerId, QuestNo, Answer, isCorrect, Weightage){
         this.AnswerId = AnswerId;
         this.QuestNo = QuestNo;
         this.Answer = Answer;
-        this.CorrOpt = CorrOpt;
+        
         this.isCorrect = isCorrect;
         this.Weightage = Weightage;
     }

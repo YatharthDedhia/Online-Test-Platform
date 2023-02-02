@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/fd406cfc-7125-4c12-85c2-90e27f327c2b/resourceGroups/VJTI-Dev/subscriptions/fd406cfc-7125-4c12-85c2-90e27f327c2b/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/cocusertable",
+    "appService.deploySubpath": "."
+}

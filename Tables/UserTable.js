@@ -1,5 +1,5 @@
 class UserTable{
-    constructor(UserId,Username,Password,FirstName,LastName,EmailId,MobileNo,LastLoginDate,DateOfBirth,Age,TypeId,ActivationStatus){
+    constructor(UserId,Username,Password,FirstName,LastName,EmailId,MobileNo,LastLoginDate,DateOfBirth,Age,TypeId,ActivationStatus,Photo){
         this.UserId = UserId;
         this.Username = Username;
         this.Password = Password;
@@ -12,6 +12,7 @@ class UserTable{
         this.Age = Age;
         this.TypeId = TypeId;
         this.ActivationStatus = ActivationStatus;
+        this.Photo = Photo
     }
 }
 

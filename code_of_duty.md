@@ -30,6 +30,11 @@
   - [**Step 2:** Open *frontend* branch](#step-2-open-frontend-branch)
   - [**Step 3:** Install required **npm modules**](#step-3-install-required-npm-modules)
   - [**Step 4:** Start the local server](#step-4-start-the-local-server)
+  - [**Step 1:** Clone the repo](#step-1-clone-the-repo-1)
+  - [**Step 2:** Open *backend* branch](#step-2-open-backend-branch)
+  - [**Step 3:** Install required **npm modules**](#step-3-install-required-npm-modules-1)
+  - [**Step 4:** Set up your local environment in the .env file](#step-4-set-up-your-local-environment-in-the-env-file)
+  - [**Step 5:** Start the local server](#step-5-start-the-local-server)
 - [💻 Usage](#-usage)
 - [👨‍💻 Team Members](#-team-members)
 - [👨‍🏫 Mentors](#-mentors)
@@ -48,23 +53,35 @@
   - [Admin User Activaton Page:](#admin-user-activaton-page)
   - [Admin Student Course Assignment Page:](#admin-student-course-assignment-page)
   - [Admin Teacher Course Assignment Page:](#admin-teacher-course-assignment-page)
+  - [Admin Course Creation Page:](#admin-course-creation-page)
 
 </details>
 
 ## 📝Description
 
-Add your **project description** here. Your project description should cover how your website/app works. That way you can convey what your project is without the need for anyone to view the code. A more *detailed README* in your project repository is encouraged, which can include build and use instructions etc.
+SureShot is an Online Test Platform where the students can give their tests in an efficient and organized way.
 
-1. Include features and their usecases in bullet points
+The Proctoring System ensures that the teacher and the institute can rest assured of the true performance of the student.
+
+This platform also provides freedom to the Teachers by giving them the ability to:
+
+1. Schedule tests well in advance
+2. Prepare a combined course-wise Question Bank, on the basis of which papers are set.
+3. Provide a Ranklist of Students for every course that the teacher teaches.
+
+The Institutions are given additional control over the users with the ability to:
+
+1. Activate users based on their Payment / Admission status.
+2. Assign specific courses to specific students and teachers.
+
 
 ## 🔗Links
 
 - [GitHub Repository](https://github.com/YatharthDedhia/Online-Test-Platform)
 - [Demo Video](https://drive.google.com/drive/folders/1MhFz6CpIbnfKhD9x8FJFfd321_-WDrsg)
 - [Drive Link to Screenshots of your project](https://drive.google.com/drive/folders/1MhFz6CpIbnfKhD9x8FJFfd321_-WDrsg)
-- [Hosted Website Link](reshot.vercel.app)
-- [Hosted Backend Link]()
-
+- [Hosted Website Link](sureshot.vercel.app)
+  
 ## 🤖Tech-Stack
 
 #### **Front-end**
@@ -89,6 +106,7 @@ Add your **project description** here. Your project description should cover how
 - [x] Graphical and Rank-Table performance analysis
 - [x] User activation and course assignment by the Admin
 - [x] Test scheduling and Question bank creation by teachers
+- [x] Course Resources creation by teacher
 - [ ] Calendar view of upcoming tests 
 - [ ] Speech Based proctoring
 - [ ] UI/UX Refinement
@@ -128,6 +146,28 @@ Suitable for Tuition Classes / Institutes to host MCQ based Tests for their stud
     npm start
 
 >**Backend Development Guide:**
+### **Step 1:** Clone the repo
+
+    git clone https://github.com/YatharthDedhia/Online-Test-Platform.git && cd Online-Test-Platform/
+
+### **Step 2:** Open *backend* branch
+    
+    git checkout backend
+
+### **Step 3:** Install required **npm modules**
+
+    npm i
+
+### **Step 4:** Set up your local environment in the .env file
+
+Configure your host URL and your SQL configs
+
+### **Step 5:** Start the local server
+
+    npm start
+
+
+
 
 
 ## 💻 Usage
@@ -150,55 +190,62 @@ Role wise usage listed here:
 > 3. Introduce new courses.
 
 ## 👨‍💻 Team Members
-- [Akash Kumar](https://github.com/akash470): Email 
-- [Manav Shah](https://github.com/manav2580): Email 
-- [Vivek Dalal](https://github.com/VivekDDalal): Email 
+- [Akash Kumar](https://github.com/akash470): kumarakash428@gmail.com 
+- [Manav Shah](https://github.com/manav2580): manavshah.2003.ms@gmail.com 
+- [Vivek Dalal](https://github.com/VivekDDalal): vivekddalal8@gmail.com 
 - [Yatharth Dedhia](https://github.com/YatharthDedhia): dedhiayatharth2004@gmail.com
 
 ## 👨‍🏫 Mentors
-- [Smit Sekhadia](https://github.com/smitsekhadiaa): Email 
-- [Devansh Joshi](https://github.com/devdev29): Email 
+- [Smit Sekhadia](https://github.com/smitsekhadiaa): smitsekhadia99@gmail.com 
+- [Devansh Joshi](https://github.com/devdev29): devanshjoshi79@gmail.com 
 
 ## 📱 Screenshots
 
 ### Opening Page:
-![Opening Page]()
+
+![Opening Page](/Assets/1.png)
 
 ### Login-Signup Page:
-![Opening Page]()
+![Opening Page](/Assets/01.png)
 
+>## Students:
 ### Student Dashboard Page:
-![Opening Page]()
+![Opening Page](/Assets/16.png)
 
 ### Student Profile Page:
-![Opening Page]()
+![Opening Page](/Assets/17.png)
 
 ### Student Notes Page:
-![Opening Page]()
+![Opening Page](/Assets/02.png)
 
 ### Student Test Page:
-![Opening Page]()
+![Opening Page](/Assets/20.png)
 
+>## Teachers
 ### Teacher Ranklist Page:
-![Opening Page]()
+![Opening Page](/Assets/11.png)
 
 ### Teacher Schedule Test Page:
-![Opening Page]()
+![Opening Page](/Assets/13.png)
 
 ### Teacher Make Question Bank Page:
-![Opening Page]()
+![Opening Page](/Assets/14.png)
 
 ### Teacher Create Test Paper Page:
-![Opening Page]()
+![Opening Page](/Assets/18.png)
 
 ### Teacher Course Resources Page:
-![Opening Page]()
+![Opening Page](/Assets/12.png)
 
+>## Admin 
 ### Admin User Activaton Page:
-![Opening Page]()
+![Opening Page](/Assets/04.png)
 
 ### Admin Student Course Assignment Page:
-![Opening Page]()
+![Opening Page](/Assets/08.png)
 
 ### Admin Teacher Course Assignment Page:
-![Opening Page]()
+![Opening Page](/Assets/09.png)
+
+### Admin Course Creation Page:
+![Opening Page](/Assets/07.png)

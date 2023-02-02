@@ -163,24 +163,6 @@ const Profile_Block = () => {
 
     return (
         <div class="profile block">
-            <div>
-                {loading
-                    ? (
-                        <div className='Loading-Screen'>
-                            <Oval
-                                height={80}
-                                width={80}
-                                color="#4fa94d"
-                                wrapperStyle={{}}
-                                wrapperClass=""
-                                visible={true}
-                                ariaLabel='oval-loading'
-                                secondaryColor="#4fa94d"
-                                strokeWidth={2}
-                                strokeWidthSecondary={2} />
-                        </div>)
-                    : null}
-            </div>
             <a class="add-button">
                 <label >
                     {/* <input type="file" class="icon entypo-plus scnd-font-color" onChange={(e) => setImage(e.target.files[0])} /> */}
@@ -208,38 +190,6 @@ const Profile_Block = () => {
 };
 
 const Graph = () => {
-    // const pdata = [
-    //     {
-    //         name: 'MongoDb',
-    //         student: 11,
-    //         fees: 120
-    //     },
-    //     {
-    //         name: 'Javascript',
-    //         student: 15,
-    //         fees: 12
-    //     },
-    //     {
-    //         name: 'PHP',
-    //         student: 5,
-    //         fees: 10
-    //     },
-    //     {
-    //         name: 'Java',
-    //         student: 10,
-    //         fees: 5
-    //     },
-    //     {
-    //         name: 'C#',
-    //         student: 9,
-    //         fees: 4
-    //     },
-    //     {
-    //         name: 'C++',
-    //         student: 10,
-    //         fees: 8
-    //     },
-    // ];
     const [loading, setLoading] = useState(false)
 
     const pdata = [
@@ -346,24 +296,6 @@ const Graph = () => {
     // console.log(graph_data)
     return (
         <div className='graph-head'>
-            <div>
-                {loading
-                    ? (
-                        <div className='Loading-Screen'>
-                            <Oval
-                                height={80}
-                                width={80}
-                                color="#4fa94d"
-                                wrapperStyle={{}}
-                                wrapperClass=""
-                                visible={true}
-                                ariaLabel='oval-loading'
-                                secondaryColor="#4fa94d"
-                                strokeWidth={2}
-                                strokeWidthSecondary={2} />
-                        </div>)
-                    : null}
-            </div>
             <h1 className="text-heading">
                 Performance Graph
             </h1>
@@ -434,24 +366,6 @@ const RankList = () => {
 
     return (
         <div class="ranklist-container">
-            <div>
-                {loading
-                    ? (
-                        <div className='Loading-Screen'>
-                            <Oval
-                                height={80}
-                                width={80}
-                                color="#4fa94d"
-                                wrapperStyle={{}}
-                                wrapperClass=""
-                                visible={true}
-                                ariaLabel='oval-loading'
-                                secondaryColor="#4fa94d"
-                                strokeWidth={2}
-                                strokeWidthSecondary={2} />
-                        </div>)
-                    : null}
-            </div>
             <header>
                 <br />
                 <h1>Rankings</h1>
@@ -494,22 +408,6 @@ const Profile = () => {
         <div className='main-container'>
             <div className='container3'>
                 <Navbar />
-                {loading
-                    ? (
-                        <div className='Loading-Screen'>
-                            <Oval
-                                height={80}
-                                width={80}
-                                color="#4fa94d"
-                                wrapperStyle={{}}
-                                wrapperClass=""
-                                visible={true}
-                                ariaLabel='oval-loading'
-                                secondaryColor="#4fa94d"
-                                strokeWidth={2}
-                                strokeWidthSecondary={2} />
-                        </div>)
-                    : null}
                 <Profile_Block />
                 <Graph />
                 <RankList />

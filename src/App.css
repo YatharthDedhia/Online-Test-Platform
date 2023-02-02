@@ -9,4 +9,5 @@ html {
     position: absolute;
     right: 700px;
     top: 10px;
+    z-index: 1;
 }

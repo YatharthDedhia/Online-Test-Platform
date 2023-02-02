@@ -19,7 +19,7 @@ const Header_Menu = () => {
                     {/* <Sidebar /> */}
                 </li>
                 <li>
-                    <button className="header-menu-tab-dashboard" onClick={() => navigate("/")}>
+                    <button className="header-menu-tab" onClick={() => navigate("/")}>
                         <a href="/">
                             <img src={logo} height="50px" width="100px"></img>
                         </a>
@@ -87,13 +87,10 @@ const Contact = () => {
                                             <div class="app-form-group">
                                                 <input class="app-form-control" placeholder="CONTACT NO" value={e.MobileNo} />
                                             </div>
-                                            <div class="app-form-group message">
-                                                <input class="app-form-control" placeholder="MESSAGE" required />
-                                            </div>
                                             <div class="app-form-group buttons">
                                                 <button class="app-form-button">CANCEL</button>
                                                 <a href="mailto:cod.callofduty@gmail.com" target="_blank">&nbsp;&nbsp;
-                                                    <button class="app-form-button">SEND</button>
+                                                    <button class="app-form-button">MAIL</button>
                                                 </a>
                                             </div>
                                         </div>

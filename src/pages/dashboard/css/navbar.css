@@ -18,20 +18,20 @@ header {
 	display: block;
 	width: fit-content;
 	/* margin: 10px; */
-	/* top: -10px; */
+	top: -50px;
 	position: relative;
 	line-height: 74px;
 	font-size: 17px;
 	padding-right: 20px;
 	padding-left: 20px;
 	color: white;
-    right: -50px;
+	right: -50px;
 }
 
 .logout-tab-dashboard {
 	position: relative;
 	right: -1080px;
-    top: 10px;
+	top: 10px;
 }
 
 .header-menu-tab-dashboard:hover {
@@ -39,9 +39,9 @@ header {
 	color: black;
 }
 
-.header-menu-tab-dashboard img{
-    position: relative;
-    top: 10px;
+.header-menu-tab-dashboard img {
+	position: relative;
+	top: 10px;
 }
 
 .header-menu-tab-dashboard .icon {
@@ -68,14 +68,14 @@ header {
 
 }
 
-.profile-menu {
+.profile-menu-dashboard {
 	float: right;
 	height: 80px;
 	padding-right: 20px;
 	/* background-color: black; */
 }
 
-.profile-menu p {
+.profile-menu-dashboard p {
 	font-size: 17px;
 	display: inline-block;
 	line-height: 76px;
@@ -83,11 +83,11 @@ header {
 	padding-right: 10px;
 }
 
-.profile-menu a {
+.profile-menu-dashboard a {
 	padding-left: 5px;
 }
 
-.profile-menu a:hover {
+.profile-menu-dashboard a:hover {
 	text-decoration: none;
 }
 
@@ -104,8 +104,23 @@ header {
 	color: white;
 }
 
-.hamburger-dashboard{
-    position: relative;
-    top: 20px;
-    right: -15px;
+.hamburger-dashboard {
+	position: relative;
+	top: 20px;
+	right: 0px;
+}
+
+.profile-button-dashboard {
+	background: transparent;
+	color: white;
+	border-radius: 10px;
+	position: relative;
+	top: -50px;
+	right: -1150px;
+	width: fit-content;
+}
+
+.profile-button-dashboard:hover {
+	background: white;
+	color: black;
 }

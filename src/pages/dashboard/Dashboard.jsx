@@ -20,10 +20,10 @@ const Header_Menu = () => {
 	}
 	return (
 		<header className="block-institute">
+			<li className='hamburger-dashboard'>
+				<Sidebar />
+			</li>
 			<ul className="header-menu horizontal-list">
-				<li className='hamburger-dashboard'>
-					<Sidebar />
-				</li>
 				<li>
 					<button className="header-menu-tab-dashboard" onClick={() => navigate("/")}>
 						<a href="/contact">
@@ -32,7 +32,7 @@ const Header_Menu = () => {
 					</button>
 				</li>
 				<li className='logout-tab-dashboard'>
-					<button className="header-menu-tab" onClick={() => {
+					<button className="header-menu-tab-dashboard" onClick={() => {
 						localStorage.removeItem("login");
 						localStorage.removeItem("duration");
 						localStorage.removeItem("papercode");
@@ -43,9 +43,9 @@ const Header_Menu = () => {
 					}}><span className="fa-sharp fa-solid fa-right-to-bracket"></span>LogOut</button>
 				</li>
 			</ul>
-			<div className="profile-menu">
-				<button className="profile-button" onClick={() => { navigate("/profile") }}>
-					<p>Me <a href="#26"><span className="entypo-down-open scnd-font-color"></span></a></p>
+			<div className="profile-menu-bashboard">
+				<button className="profile-button-dashboard" onClick={() => { navigate("/profile") }}>
+					<p>Me <a><span className="entypo-down-open scnd-font-color"></span></a></p>
 					<div className="profile-picture small-profile-picture">
 						<img height="40px" width="40px" src={profile_pic} />
 					</div>

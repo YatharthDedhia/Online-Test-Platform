@@ -3,6 +3,7 @@ import { Player } from 'video-react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import video from '../../Images/s.mp4'
 import './css/opening2.css'
+import { Helmet } from 'react-helmet';
 // const { player } = Player.getState();
 // console.log(player.currentTime); // print current time
 class Opening2 extends React.Component {
@@ -26,7 +27,7 @@ class Opening2 extends React.Component {
     };
     render = () => {
         return (
-          <div>
+          <div className='backg'>
             <meta http-equiv = "refresh" content = "5; url = /landing" />
             <div className="videoc">
             <video width="800" height="600"  autoplay loop

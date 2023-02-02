@@ -71,7 +71,9 @@ body {
     /* display: flex; */
     justify-content: space-evenly;
     position: relative;
-    right: 250px;
+    /* right: 250px; */
+    margin-left: 500px;
+    margin-right: auto;
 }
 
 .score-section {
@@ -79,11 +81,10 @@ body {
     font-size: 24px;
     align-items: center;
     color: white;
-    align-items: center;
+    justify-content: center;
     text-align: center;
     position: relative;
-    top: 200px;
-    right: -150px;
+    margin: auto;
 }
 
 /* QUESTION/TIMER/LEFT SECTION */
@@ -206,4 +207,31 @@ button svg {
 .prevbutton {
     position: relative;
     top: 250px;
+}
+
+.submit-text1 {
+    position: relative;
+    top: 100px;
+    right: -190px;
+    font-size: 30px;
+}
+
+.submit-text2 {
+    position: relative;
+    top: 200px;
+    color: white;
+    height: 50px;
+    text-decoration: none;
+    font-size: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.submit-text3 {
+    position: relative;
+    top: 300px;
+    right: 200px;
+    font-size: 30px;
+
+    /* width: 500px; */
 }

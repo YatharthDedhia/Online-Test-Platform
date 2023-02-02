@@ -47,23 +47,20 @@ function Ml() {
       // Make Detections
 
       const obj = await net.detect(video);
-      // console.log(obj)
-      // obj.map((e, index) => {
-      //   if ((e.class == "person" && index > 0) || e.class == "cell phone") {
-      //     count++;
-      //   }
-      // })
-      // if (obj.length == 0) {
+      // console.log(obj);
+
+      // if ((obj.find(el => el.class == 'cell phone'))) {
       //   setFlag(1)
       //   count++;
       // }
-      if (obj.length != 1) {
-        setFlag(1)
+      if (obj.length > 1 || obj.length == 0) {
+        setFlag(1);
         count++;
       }
       else {
-        setFlag(0)
+        setFlag(0);
       }
+
       // Speech();
 
       // Draw mesh

@@ -5,6 +5,8 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import axios from 'axios';
 import './css/timer.css';
 import { Oval } from 'react-loader-spinner';
+import { useNavigate } from 'react-router-dom';
+
 const questions = [
   {
     questionText: 'What is the capital of France?',
@@ -78,12 +80,13 @@ const Test = () => {
   const [response, setResponse] = useState([])
   const [loading, setLoading] = useState(false)
 
-  console.log(paper)
+  // console.log(paper)
 
   useEffect(() => {
     setLoading(true)
 
     let papercode = localStorage.getItem('papercode').toString();
+    // let papercode = "30";
     // console.log(papercode);
     const getPaper = async () => {
       // setPaper(test)
@@ -162,19 +165,19 @@ const Test = () => {
         if (paper[i].answerOptions[j].selected === true) {
           // student_response + String(paper[i].QuestNo) + "=" + String(ans_code_common + j) + "&";
           let str = String(paper[i].QuestNo) + "=" + String(ans_code_common + j) + "&";
-          console.log(str);
+          // console.log(str);
           student_response += str;
         }
       }
     }
     student_response = student_response.slice(0, -1);
-    console.log(student_response);
+    // console.log(student_response);
     const sendData2 = {
       UserId: JSON.parse(localStorage.getItem('login')).user.UserId,
       PaperCode: localStorage.getItem('papercode'),
       StudentResponse: student_response
     }
-    console.log(sendData2);
+    // console.log(sendData2);
     axios.post("https://lmsapiv01.azurewebsites.net/api/studentresponse/", sendData2).then(result => {
       setLoading(false)
       console.log(result.data)
@@ -222,6 +225,7 @@ const Test = () => {
     }
     setIsDisabled(false)
   }
+  const navigate = useNavigate();
 
   return (
     <div className="timer-wrapper">
@@ -241,16 +245,21 @@ const Test = () => {
               strokeWidthSecondary={2} />
           </div>)
         : null}
-      {console.log(paper)};
+      {/* {console.log(paper)}; */}
       {quizLength >= 0 ? (
         <div className='quizz-app'>
-          {true ? (
+          {showScore ? (
             <div className='score-section'>
-              Test Submitted
-              <br />
-              Go to
-              <a href="/profile">Profile</a>
-              to your score
+              <div className='submit-text1'>
+                Test Submitted
+              </div>
+              <button className='submit-text2' onClick={() => { navigate("/profile") }}>
+                Profile
+              </button>
+
+              <div className='submit-text3'>
+                to see your score
+              </div>
             </div>)
             : (<>
               <div>

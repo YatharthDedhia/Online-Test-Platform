@@ -1,5 +1,0 @@
-Client ID
-916703848201-bq5a3ue5ht7cdo67itvao4g116kejorg.apps.googleusercontent.com
-
-Client Secret
-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

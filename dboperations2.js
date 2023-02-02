@@ -26,7 +26,7 @@ async function getUser(UserId){
             
     }
     catch(err){
-        consolele.log(err);
+        console.log(err);
     }
 }
 
@@ -45,7 +45,7 @@ async function addUser(UserTable)
             
             
             .input('MobileNo',sql.Numeric(10,0),UserTable.MobileNo)
-            
+            //
             .input('DateOfBirth',sql.Date,UserTable.DateOfBirth)
             .input('Age',sql.Int,UserTable.Age)
             .input('TypeId',sql.Int,UserTable.TypeId )
@@ -290,20 +290,6 @@ async function getCourseListTeacher(UserId){
     } 
 }
 
-// async function getQuestion_QB(Id){  //NOT WORKING
-//     try{
-//         let pool = await sql.connect(config.sql);
-//         let product = await pool.request()
-//             .input("input_param", sql.Int, Id)
-//             .execute("DisplayQuestionBank");
-//         return product.recordsets;
-            
-//     }
-//     catch(err){
-//         consolele.log(err);
-//     }
-// }
-
 async function getQuestions_QB(CourseId){
     try{
         let pool = await sql.connect(config);
@@ -314,6 +300,7 @@ async function getQuestions_QB(CourseId){
             
     }
     catch(err){
+        console.log(err);
         console.log(err);
     }
 }
@@ -359,6 +346,7 @@ async function getQuestionPaper(PaperCode){
         let questionpaper = await pool.request()
         
             .input("input_param",sql.Int,PaperCode )
+            .query("EXEC GetQuestionPaper @input_param");
             .query("EXEC GetQuestionPaper @input_param");
         return questionpaper.recordsets;
     }

@@ -25,6 +25,7 @@ var cors = require('cors');
 var app = express();
 var router = express.Router();
 
+app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors());
@@ -172,6 +173,7 @@ router.route('/teacher/courses').post((request,response)=>
 }
 )
 
+router.route('/questionbank/:id').get((request,response)=>{ 
 router.route('/questionbank/:id').get((request,response)=>{ 
     
     Db.getQuestions_QB(request.params.id).then(result =>{

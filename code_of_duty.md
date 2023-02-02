@@ -9,7 +9,6 @@
 <div align="center">
    <strong>SureShot</strong> - An Online Test Platform with Proctoring System<br>
   CoC Inheritance 2022 || <strong>Code of Duty</strong> <br> <br>
-  Add any <a href="https://shields.io/">Shields</a> here
 </div>
 <hr>
 

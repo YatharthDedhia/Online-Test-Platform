@@ -46,8 +46,8 @@ function Ml() {
         canvasRef.current.width = videoWidth;
         canvasRef.current.height = videoHeight;
 
-        // var socket = new WebSocket('ws://127.0.0.1:8080/facenet')
-        var socket = new WebSocket('ws://sureshotfacenet/facenet')
+        var socket = new WebSocket('ws://127.0.0.1:8080/facenet')
+        // var socket = new WebSocket('ws://sureshotfacenet/facenet')
         const canvas = document.createElement("canvas");
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
@@ -113,9 +113,11 @@ function Ml() {
     }
   };
 
+  // const[person,setperson] = useState("")
   useEffect(() => {
     // Speech()
     runCoco()
+    // setperson(name)
   }, []);
 
   return (
@@ -124,7 +126,7 @@ function Ml() {
         <div className="Copy">
           <h1>{flag === 1 ? "Dont Copy." : null}</h1>
           <h1>Copied {count} many times</h1>
-          <h1>{name}</h1>
+          {/* <h1>{person}</h1> */}
         </div>
 
         <Webcam

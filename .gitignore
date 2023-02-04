@@ -1,6 +1,4 @@
 node_modules
 .vercel
 .env
-_py_cache
-images/
-data/
+__pycache__/

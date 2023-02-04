@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import './Main.css'
 import Webcam from "react-webcam";
 
-function Twitter() {
+function FaceNet() {
     const webcamRef = useRef(null);
     const canvasRef = useRef(null);
-
+    const [logs,setlogs] = useState([])
     const detect = async () => {
         if (
             typeof webcamRef.current !== "undefined" &&
@@ -42,6 +42,7 @@ function Twitter() {
             socket.onmessage = function (event) {
                 var pred_log = JSON.parse(event.data)
                 console.log(pred_log);
+                setlogs(pred_log)
             }
         }
         else {
@@ -87,8 +88,10 @@ function Twitter() {
                     height: 480,
                 }}
             />
+
+            <h1>{logs.id}</h1>
         </div>
     );
 }
 
-export default Twitter
+export default FaceNet

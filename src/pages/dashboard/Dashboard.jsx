@@ -140,15 +140,15 @@ const Dashboard = () => {
 		// console.log(test.StartTime)
 		let test_start = Date.parse(test.Date.slice(0, 11) + test.StartTime.slice(0, 10))
 		let test_end = Date.parse(test.Date.slice(0, 11) + test.EndTime.slice(0, 10))
-		console.log(stamp)
-		console.log(test_start)
-		console.log(test_end)
+		// console.log(stamp)
+		// console.log(test_start)
+		// console.log(test_end)
 
 		if (test_start < stamp && test_end > stamp) {
 			test["mode"] = "active";
 		}
 		else {
-			console.log(test);
+			// console.log(test);
 			test["mode"] = "inactive";
 		}
 	})

@@ -81,56 +81,71 @@ const Profile_Block = () => {
     const [mobileNo, setmobileNo] = useState("");
     const [url, setUrl] = useState("");
     const [loading, setLoading] = useState(false)
+    const [postImage, setPostImage] = useState("");
 
-    const submitImage = () => {
-        setLoading(true)
-        // const [loading, setLoading] = useState(false)
+    let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
+    let typeid = (JSON.parse(localStorage.getItem('login')).user.TypeId)
+    const url2 = "https://lmsapiv01.azurewebsites.net/api/update/user";
 
-        let userid = (JSON.parse(localStorage.getItem('login')).user.UserId).toString();
-        // console.log(userid);
-        let typeid = (JSON.parse(localStorage.getItem('login')).user.TypeId)
-        const data = new FormData()
-        data.append("file", image)
-        data.append("upload_preset", "Inheritance")
-        data.append("cloud_name", "dugkqpzgq")
+    const createImage = (newImage) => {
+        const sendData = {
+            "UserId": userid,
+            "UserName": userName,
+            "Password": password,
+            "FirstName": firstName,
+            "LastName": lastName,
+            "EmailId": emailID,
+            "MobileNo": parseInt(mobileNo),
+            "LastLoginDateTime": "2022-11-27T00:00:00.000Z",
+            "DateOfBirth": "1974-07-13T00:00:00.000Z",
+            "Age": 26,
+            "TypeId": typeid,
+            "ActivationStatus": '0',
+            "Photo": newImage,
+        };
 
-        fetch("https://api.cloudinary.com/v1_1/dugkqpzgq/image/upload", {
-            method: "post",
-            body: data
-        }
-        )
-            .then((res) => res.json())
-            .then((data) => {
-                setUrl(data.url)
-                // console.log(data.url);
-                const sendData = {
-                    "UserId": userid,
-                    "UserName": userName,
-                    "Password": password,
-                    "FirstName": firstName,
-                    "LastName": lastName,
-                    "EmailId": emailID,
-                    "MobileNo": parseInt(mobileNo),
-                    "LastLoginDateTime": "2022-11-27T00:00:00.000Z",
-                    "DateOfBirth": "1974-07-13T00:00:00.000Z",
-                    "Age": 26,
-                    "TypeId": typeid,
-                    "ActivationStatus": '0',
-                    "Photo": data.url,
-                };
-
-                // console.log(sendData.Photo);
-
-                axios.post('https://lmsapiv01.azurewebsites.net/api/update/user', sendData).then(result => {
-                    setLoading(false)
-                    // console.log(result.data)
-                });
-
-
-            }).catch((err) => {
-                console.log(err);
+        console.log(sendData);
+        axios.post(url2, sendData).then((response) => {
+            console.log(response)
+            window.location.reload();
+        })
+            .catch((err) => {
+                console.log(err)
             })
-    }
+    };
+
+
+    const createPost = async (post) => {
+        try {
+            await createImage(post);
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        createPost(postImage);
+    };
+
+    const convertToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            };
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        });
+    };
+
+    const handleFileUpload = async (e) => {
+        const file = e.target.files[0];
+        const base64 = await convertToBase64(file);
+        setPostImage(base64 );
+    };
 
     useEffect(async () => {
         setLoading(true)
@@ -180,11 +195,11 @@ const Profile_Block = () => {
 
             <div class="upload-btn-wrapper">
                 <button class="btn">Upload a file</button>
-                <input type="file" onChange={(e) => setImage(e.target.files[0])} name="myfile" />
+                <input type="file"
+                    accept=".jpeg, .png, .jpg"
+                    onChange={(e) => handleFileUpload(e)} name="myfile" />
             </div>
-            {/* <button className="btn">Upload a file</button>
-            <input type="file" ></input> */}
-            <button onClick={submitImage} className='file-button'>Upload image as profile Photo</button>
+            <button onClick={handleSubmit} className='file-button'>Upload image as profile Photo</button>
         </div>
     );
 };
@@ -415,4 +430,5 @@ const Profile = () => {
         </div>
     );
 };
+
 export default Profile;

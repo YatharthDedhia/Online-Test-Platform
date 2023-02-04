@@ -46,8 +46,8 @@ function Ml() {
         canvasRef.current.width = videoWidth;
         canvasRef.current.height = videoHeight;
 
-        var socket = new WebSocket('ws://127.0.0.1:8080/facenet')
-        // var socket = new WebSocket('ws://sureshotfacenet/facenet')
+        // var socket = new WebSocket('ws://127.0.0.1:8080/facenet')
+        var socket = new WebSocket('ws://sureshotfacenet.up.railway.app/facenet')
         const canvas = document.createElement("canvas");
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;

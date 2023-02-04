@@ -78,6 +78,7 @@ database["papa"] = img_process("data/dad.jpg")
 database["manav"] = img_process("data/pic4.jpeg")
 database["vivek"] = img_process("data/vivek.jpg")
 database["mummy"] = img_process("data/pic66.jpeg")
+database["akash"] = img_process("data/akash1.jpeg")
 
 
 @app.websocket('/facenet')
@@ -115,8 +116,8 @@ async def get_gesture(ws: WebSocket):
                 input_img = cv_img[y:y+h, x:x+w]
 
             # input_img = cv_img[y:y+h, x:x+w]
-            cv2.imshow("window", input_img)
-            cv2.waitKey(10)
+            # cv2.imshow("window", input_img)
+            # cv2.waitKey(10)
 
             input_img = cv2.resize(input_img, (160, 160))
 
